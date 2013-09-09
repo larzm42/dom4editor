@@ -1,0 +1,2 @@
+<p>The skin of the caster is transformed into a rough, stone-like hide. As a side effect the target will take additional damage from cold.
+</p>

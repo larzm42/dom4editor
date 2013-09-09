@@ -1,0 +1,2 @@
+<p>The caster sends a Horror to attack a distant province. The Horror will annihilate any army that is not hiding inside a fortress before disappearing.
+</p>

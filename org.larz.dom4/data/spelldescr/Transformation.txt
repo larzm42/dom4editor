@@ -1,0 +1,2 @@
+<p>The caster is transformed into a random monster. This is not without risk, however, as the caster's mind and body may be damaged in the process.
+</p>

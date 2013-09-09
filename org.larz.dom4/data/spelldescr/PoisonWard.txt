@@ -1,0 +1,2 @@
+<p>Makes several friendly units resistant to natural poisons.
+</p>

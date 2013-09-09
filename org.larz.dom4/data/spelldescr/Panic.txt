@@ -1,0 +1,2 @@
+<p>This spell will cause panic to spread among the enemies.
+</p>

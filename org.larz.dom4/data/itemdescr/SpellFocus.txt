@@ -1,0 +1,1 @@
+<p>Spells cast with the help of a Spell Focus are harder to resist with magic resistance. This item can be most useful when trying to affect enemy mages with spells that can be negated by magic resistance.</p>

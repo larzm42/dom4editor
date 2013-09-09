@@ -1,0 +1,2 @@
+<p>This spell is used to boost the power of undead units. Any undead affected by this spell will receive increased speed, resulting in more attack skill and action points.
+</p>

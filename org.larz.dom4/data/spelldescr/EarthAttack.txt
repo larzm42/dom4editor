@@ -1,0 +1,1 @@
+<p>A huge Earth Elemental will appear in a province of the caster's choice. Here, it will travel under the ground and search for enemy commanders. When it finds one, it will rise out of the ground and strike it down. The Earth Elemental disappears when it has completed this task or if it can't find an enemy commander.</p>

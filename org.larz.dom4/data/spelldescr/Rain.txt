@@ -1,0 +1,2 @@
+<p>This spell creates a heavy rain upon the battlefield. This makes it harder to fly and the heat effects of Abysians and other hot creatures are severely reduced. Fire magic is more difficult to use during heavy rain, as all non-underwater Fire spells have their fatigue cost doubled.
+</p>

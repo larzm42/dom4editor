@@ -1,0 +1,2 @@
+<p>The caster freezes his enemies. Frozen units are slowed and suffer from fatigue each turn.
+</p>

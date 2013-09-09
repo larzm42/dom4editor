@@ -1,0 +1,2 @@
+<p>Makes all friendly units shoot more accurately.
+</p>

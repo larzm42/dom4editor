@@ -1,0 +1,2 @@
+<p>The caster alters the fate of an entire battle. All friendly units receive unnatural luck for the rest of the battle. Each hit against a lucky unit has a fifty percent chance of not wounding him.
+</p>

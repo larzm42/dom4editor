@@ -1,0 +1,2 @@
+<p>This spell makes units resistant to all normal fires, as well as most magical ones. It also reduces the heat effect of hot creatures, such as Abysians and Salamanders.
+</p>

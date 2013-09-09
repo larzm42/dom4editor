@@ -1,0 +1,2 @@
+<p>The caster creates a rift in space that sucks him through, sweeping him back to the home citadel. This spell will not work if the home citadel is controlled by the enemy or if the mage is already in the province containing the home citadel.
+</p>

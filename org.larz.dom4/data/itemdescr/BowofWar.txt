@@ -1,0 +1,1 @@
+<p>Arrows fired from this bow will split into thirteen lethal arrows.</p>

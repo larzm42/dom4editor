@@ -1,0 +1,2 @@
+<p>Up to 5 random enemy units in your dominion will attack their commander. If the commander has fear or is sacred a morale check is done before attack proceeds. Unit attacking is accompanied by a devil. Hidden troops are affected. Undead, mindless, demons will never attack.
+</p>

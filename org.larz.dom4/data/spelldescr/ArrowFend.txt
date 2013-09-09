@@ -1,0 +1,2 @@
+<p>The air itself will protect all friendly units from enemy projectiles.
+</p>

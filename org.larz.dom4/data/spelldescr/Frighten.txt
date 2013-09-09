@@ -1,0 +1,2 @@
+<p>The spell fills the targeted unit with fear.
+</p>

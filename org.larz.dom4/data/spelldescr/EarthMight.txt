@@ -1,0 +1,2 @@
+<p>Gives a small number of units increased strength.
+</p>

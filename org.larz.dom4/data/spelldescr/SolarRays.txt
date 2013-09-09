@@ -1,0 +1,2 @@
+<p>This spell invokes rays of solar fire that set undead targets ablaze.
+</p>

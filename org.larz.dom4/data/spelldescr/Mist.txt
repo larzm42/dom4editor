@@ -1,0 +1,2 @@
+<p>The caster creates a dense mist across the battle field. The mist will limit sight and the range of all spells and missiles.
+</p>

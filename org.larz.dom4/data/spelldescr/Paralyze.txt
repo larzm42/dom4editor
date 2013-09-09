@@ -1,0 +1,2 @@
+<p>The caster overloads the target's mind and effectively paralyzes the target for a very long time.
+</p>

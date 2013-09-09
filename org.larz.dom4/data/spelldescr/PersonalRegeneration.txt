@@ -1,0 +1,2 @@
+<p>Gives the caster regenerative powers. More powerful Nature mages will regenerate faster than less powerful ones and lifeless mages cannot be affected by this spell at all.
+</p>

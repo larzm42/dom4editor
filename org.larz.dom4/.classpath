@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry exported="true" kind="lib" path="lib/commons-io-2.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons-compress-1.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/imageio_tga_1.1.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/hsqldb.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="lib/itextpdf-5.1.1.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

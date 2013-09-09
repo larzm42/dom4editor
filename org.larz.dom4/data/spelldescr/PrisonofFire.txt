@@ -1,0 +1,2 @@
+<p>This spell works like Bonds of Fire, but it affects a larger number of units.
+</p>

@@ -1,0 +1,2 @@
+<p>The skin of the caster is transformed into a hard, metallic hide. As a side effect the target will take additional damage from lightning.
+</p>

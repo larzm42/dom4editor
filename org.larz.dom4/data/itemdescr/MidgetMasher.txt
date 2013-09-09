@@ -1,0 +1,1 @@
+<p>This huge weapon causes double damage against smaller opponents.</p>
