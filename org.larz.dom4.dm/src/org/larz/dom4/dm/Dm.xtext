@@ -43,6 +43,7 @@ GeneralInst1:
 	slothresources?='#slothresources' |
 	coldincome?='#coldincome' |
 	coldsupply?='#coldsupply' |
+	tempscalecap?='#tempscalecap' |
 	misfortune?='#misfortune' |
 	luckevents?='#luckevents' |
 	researchscale?='#researchscale';
@@ -175,7 +176,27 @@ WeaponInst4:
 	(nostr?='#nostr') |
 	(nostr?='#nostrength') |
 	(mrnegates?='#mrnegates') |
-	(mrnegateseasily?='#mrnegateseasily');
+	(mrnegateseasily?='#mrnegateseasily') |
+	(slash?='#slash') |
+	(pierce?='#pierce') |
+	(blunt?='#blunt') |
+	(acid?='#acid') |
+	(hardmrneg?='#hardmrneg') |
+	(sizeresist?='#sizeresist') |
+	(undeadimmune?='#undeadimmune') |
+	(inanimateimmune?='#inanimateimmune') |
+	(flyingimmune?='#flyingimmune') |
+	(enemyimmune?='#enemyimmune') |
+	(friendlyimmune?='#friendlyimmune') |
+	(undeadonly?='#undeadonly') |
+	(norepel?='#norepel') |
+	(unrepel?='#unrepel') |
+	(beam?='#beam') |
+	(range050?='#range050') |
+	(range0?='#range0') |
+	(melee50?='#melee50') |
+	(skip?='#skip') |
+	(skip2?='#skip2');
 	
 
 /****************/
@@ -446,7 +467,8 @@ SpellPattern5:
 
 SpellInst1:
 	name?='#name' |
-	descr?='#descr';
+	descr?='#descr' |
+	damagemon?='#damagemon';
 	
 SpellInst2:
 	school?='#school' |
@@ -462,7 +484,15 @@ SpellInst2:
 	precision?='#precision' |
 	sound?='#sound' |
 	spec?='#spec' |
-	restricted?='#restricted';
+	restricted?='#restricted' |
+	provrange?='#provrange' |
+	onlygeosrc?='#onlygeosrc' |
+	onlygeodst?='#onlygeodst' |
+	onlyfriendlydst?='#onlyfriendlydst' |
+	onlyowndst?='#onlyowndst' |
+	nowatertrace?='#nowatertrace' |
+	nolandtrace?='#nolandtrace' |
+	walkable?='#walkable';
 
 SpellInst3:
 	path?='#path' |
