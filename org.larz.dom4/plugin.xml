@@ -24,14 +24,14 @@
          point="org.eclipse.core.runtime.products">
       <product
             application="org.larz.dom4.application"
-            name="Dom4 Editor">
+            name="Dominions 4 Mod Editor">
          <property
                name="windowImages"
                value="icons/alt_window_16.png,icons/alt_window_32.png,icons/alt_window_48.png,icons/alt_window_64.png,icons/alt_window_128.png">
          </property>
          <property
                name="appName"
-               value="Dom4 Editor">
+               value="Dominions 4 Mod Editor">
          </property>
          <property
                name="aboutImage"
@@ -47,7 +47,7 @@
          </property>
          <property
                name="startupMessageRect"
-               value="7,252,445,20">
+               value="20,256,445,18">
          </property>
          <property
                name="startupProgressRect"
@@ -130,8 +130,7 @@
                   commandId="org.larz.dom4.Open"
                   icon="IMG_OBJ_FOLDER"
                   label="Open Mod..."
-                  style="push"
-                  tooltip="Open a mod">
+                  style="push">
             </command>
             <separator
                   name="org.larz.dom4.separator1"
@@ -167,7 +166,6 @@
             </separator>
             <command
                   commandId="org.eclipse.ui.file.exit"
-                  label="Exit"
                   style="push">
             </command>
          </menu>
@@ -212,7 +210,7 @@
                mnemonic="H">
             <command
                   commandId="org.eclipse.ui.help.aboutAction"
-                  label="About Dom4Editor"
+                  label="About Dominions 4 Mod Editor"
                   style="push">
             </command>
          </menu>
@@ -225,14 +223,14 @@
             <command
                   commandId="org.larz.dom4.New"
                   icon="IMG_TOOL_NEW_WIZARD"
-                  label="New"
-                  style="push">
+                  style="push"
+                  tooltip="New Mod...">
             </command>
             <command
                   commandId="org.larz.dom4.Open"
                   icon="IMG_OBJ_FOLDER"
-                  label="Open"
-                  style="push">
+                  style="push"
+                  tooltip="Open Mod...">
             </command>
             <command
                   commandId="org.eclipse.ui.file.save"

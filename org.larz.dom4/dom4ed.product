@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="Dom4 Editor" uid="dom4editor" id="org.larz.dom4.product" application="org.larz.dom4.application" version="1.0" useFeatures="false" includeLaunchers="true">
+<product name="Dominions 4 Mod Editor" uid="dom4editor" id="org.larz.dom4.product" application="org.larz.dom4.application" version="1.0" useFeatures="false" includeLaunchers="true">
 
    <aboutInfo>
       <image path="/org.larz.dom4/icons/alt_about.png"/>
@@ -26,9 +26,9 @@ Release 1.0 - October 1, 2013.
    <splash
       location="org.larz.dom4"
       startupProgressRect="5,275,445,15"
-      startupMessageRect="7,252,445,20"
+      startupMessageRect="20,256,445,18"
       startupForegroundColor="000000" />
-   <launcher name="dom3editor">
+   <launcher name="dom4editor">
       <linux icon="/org.larz.dom3/icons/alt_launcher.xpm"/>
       <macosx icon="/org.larz.dom3/icons/alt_launcher.icns"/>
       <solaris/>
