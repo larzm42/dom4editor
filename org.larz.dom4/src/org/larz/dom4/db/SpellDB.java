@@ -23,6 +23,7 @@ public class SpellDB {
 	public Integer researchlevel;
 	public Integer aoe;
 	public Integer damage;
+	public String damagemon;
 	public Integer effect;
 	public Integer fatiguecost;
 	public Integer flightspr;
@@ -42,4 +43,12 @@ public class SpellDB {
 	public Integer clear;
 	public Integer copyspell;
 	public Integer nextspell;
+	public Integer provrange;
+	public Integer onlygeosrc;
+	public Integer onlygeodst;
+	public Integer onlyfriendlydst;
+	public Integer onlyowndst;
+	public Integer nowatertrace;
+	public Integer nolandtrace;
+	public Integer walkable;
 }

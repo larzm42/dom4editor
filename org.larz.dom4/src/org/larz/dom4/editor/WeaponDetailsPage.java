@@ -76,13 +76,33 @@ public class WeaponDetailsPage extends AbstractDetailsPage {
 		RCOST (Messages.getString("WeaponDetailsSection.mod.rcost"), "0"),
 		TWOHANDED (Messages.getString("WeaponDetailsSection.mod.twohanded")),
 		SOUND (Messages.getString("WeaponDetailsSection.mod.sound"), "12"),
-		ARMORPIERCING (Messages.getString("WeaponDetailsSection.mod.armorpiercing")),
-		ARMORNEGATING (Messages.getString("WeaponDetailsSection.mod.armornegating")),
+		SLASH (Messages.getString("WeaponDetailsSection.mod.slash")),
+		PIERCE (Messages.getString("WeaponDetailsSection.mod.pierce")),
+		BLUNT (Messages.getString("WeaponDetailsSection.mod.blunt")),
+		COLD (Messages.getString("WeaponDetailsSection.mod.cold")),
+		FIRE (Messages.getString("WeaponDetailsSection.mod.fire")),
+		SHOCK (Messages.getString("WeaponDetailsSection.mod.shock")),
 		MAGIC (Messages.getString("WeaponDetailsSection.mod.magic")),
+		POISON (Messages.getString("WeaponDetailsSection.mod.poison")),
+		ACID (Messages.getString("WeaponDetailsSection.mod.acid")),
 		DT_NORMAL (Messages.getString("WeaponDetailsSection.mod.dt_normal")),
 		DT_STUN (Messages.getString("WeaponDetailsSection.mod.dt_stun")),
 		DT_PARALYZE (Messages.getString("WeaponDetailsSection.mod.dt_paralyze")),
 		DT_POISON (Messages.getString("WeaponDetailsSection.mod.dt_poison")),
+		ARMORPIERCING (Messages.getString("WeaponDetailsSection.mod.armorpiercing")),
+		ARMORNEGATING (Messages.getString("WeaponDetailsSection.mod.armornegating")),
+		NOSTR (Messages.getString("WeaponDetailsSection.mod.nostr")),
+		MRNEGATES (Messages.getString("WeaponDetailsSection.mod.mrnegates")),
+		MRNEGATESEASILY (Messages.getString("WeaponDetailsSection.mod.mrnegateseasily")),
+		HARDMRNEG (Messages.getString("WeaponDetailsSection.mod.hardmrneg")),
+		SIZERESIST (Messages.getString("WeaponDetailsSection.mod.sizeresist")),
+		MIND (Messages.getString("WeaponDetailsSection.mod.mind")),
+		UNDEADIMMUNE (Messages.getString("WeaponDetailsSection.mod.undeadimmune")),
+		INANIMATEIMMUNE (Messages.getString("WeaponDetailsSection.mod.inanimateimmune")),
+		FLYINGIMMUNE (Messages.getString("WeaponDetailsSection.mod.flyingimmune")),
+		ENEMYIMMUNE (Messages.getString("WeaponDetailsSection.mod.enemyimmune")),
+		FRIENDLYIMMUNE (Messages.getString("WeaponDetailsSection.mod.friendlyimmune")),
+		UNDEADONLY (Messages.getString("WeaponDetailsSection.mod.undeadonly")),
 		DT_CAP (Messages.getString("WeaponDetailsSection.mod.dt_cap")),
 		DT_DEMON (Messages.getString("WeaponDetailsSection.mod.dt_demon")),
 		DT_DEMONONLY (Messages.getString("WeaponDetailsSection.mod.dt_demononly")),
@@ -92,23 +112,23 @@ public class WeaponDetailsPage extends AbstractDetailsPage {
 		DT_LARGE (Messages.getString("WeaponDetailsSection.mod.dt_large")),
 		DT_CONSTRUCTONLY (Messages.getString("WeaponDetailsSection.mod.dt_constructonly")),
 		DT_RAISE (Messages.getString("WeaponDetailsSection.mod.dt_raise")),
-		MIND (Messages.getString("WeaponDetailsSection.mod.mind")),
-		COLD (Messages.getString("WeaponDetailsSection.mod.cold")),
-		FIRE (Messages.getString("WeaponDetailsSection.mod.fire")),
-		SHOCK (Messages.getString("WeaponDetailsSection.mod.shock")),
-		POISON (Messages.getString("WeaponDetailsSection.mod.poison")),
 		AOE (Messages.getString("WeaponDetailsSection.mod.aoe"), "10"),
 		BONUS (Messages.getString("WeaponDetailsSection.mod.bonus")),
-		CHARGE (Messages.getString("WeaponDetailsSection.mod.charge")),
-		FLAIL (Messages.getString("WeaponDetailsSection.mod.flail")),
-		NOSTR (Messages.getString("WeaponDetailsSection.mod.nostr")),
-		MRNEGATES (Messages.getString("WeaponDetailsSection.mod.mrnegates")),
-		MRNEGATESEASILY (Messages.getString("WeaponDetailsSection.mod.mrnegateseasily")),
 		SECONDARYEFFECT (Messages.getString("WeaponDetailsSection.mod.secondaryeffect"), "0"),
 		SECONDARYEFFECTALWAYS (Messages.getString("WeaponDetailsSection.mod.secondaryeffectalways"), "0"),
+		CHARGE (Messages.getString("WeaponDetailsSection.mod.charge")),
+		FLAIL (Messages.getString("WeaponDetailsSection.mod.flail")),
+		NOREPEL (Messages.getString("WeaponDetailsSection.mod.norepel")),
+		UNREPEL (Messages.getString("WeaponDetailsSection.mod.unrepel")),
+		BEAM (Messages.getString("WeaponDetailsSection.mod.beam")),
+		RANGE050 (Messages.getString("WeaponDetailsSection.mod.range050")),
+		RANGE0 (Messages.getString("WeaponDetailsSection.mod.range0")),
+		MELEE50 (Messages.getString("WeaponDetailsSection.mod.melee50")),
+		SKIP (Messages.getString("WeaponDetailsSection.mod.skip")),
+		SKIP2 (Messages.getString("WeaponDetailsSection.mod.skip2")),
 		FLYSPR (Messages.getString("WeaponDetailsSection.mod.flyspr"), "100", "1"),
 		EXPLSPR (Messages.getString("WeaponDetailsSection.mod.explspr"), "10001");
-		
+
 		private String label;
 		private String defaultValue;
 		private String defaultValue2;
@@ -164,13 +184,33 @@ public class WeaponDetailsPage extends AbstractDetailsPage {
 		instMap.put(Inst.RCOST, new Inst2Fields());
 		instMap.put(Inst.TWOHANDED, new Inst4Fields());
 		instMap.put(Inst.SOUND, new Inst2Fields());
-		instMap.put(Inst.ARMORPIERCING, new Inst4Fields());
-		instMap.put(Inst.ARMORNEGATING, new Inst4Fields());
+		instMap.put(Inst.SLASH, new Inst4Fields());
+		instMap.put(Inst.PIERCE, new Inst4Fields());
+		instMap.put(Inst.BLUNT, new Inst4Fields());
+		instMap.put(Inst.COLD, new Inst4Fields());
+		instMap.put(Inst.FIRE, new Inst4Fields());
+		instMap.put(Inst.SHOCK, new Inst4Fields());
 		instMap.put(Inst.MAGIC, new Inst4Fields());
+		instMap.put(Inst.POISON, new Inst4Fields());
+		instMap.put(Inst.ACID, new Inst4Fields());
 		instMap.put(Inst.DT_NORMAL, new Inst4Fields());
 		instMap.put(Inst.DT_STUN, new Inst4Fields());
 		instMap.put(Inst.DT_PARALYZE, new Inst4Fields());
 		instMap.put(Inst.DT_POISON, new Inst4Fields());
+		instMap.put(Inst.ARMORPIERCING, new Inst4Fields());
+		instMap.put(Inst.ARMORNEGATING, new Inst4Fields());
+		instMap.put(Inst.NOSTR, new Inst4Fields());
+		instMap.put(Inst.MRNEGATES, new Inst4Fields());
+		instMap.put(Inst.MRNEGATESEASILY, new Inst4Fields());
+		instMap.put(Inst.HARDMRNEG, new Inst4Fields());
+		instMap.put(Inst.SIZERESIST, new Inst4Fields());
+		instMap.put(Inst.MIND, new Inst4Fields());
+		instMap.put(Inst.UNDEADIMMUNE, new Inst4Fields());
+		instMap.put(Inst.INANIMATEIMMUNE, new Inst4Fields());
+		instMap.put(Inst.FLYINGIMMUNE, new Inst4Fields());
+		instMap.put(Inst.ENEMYIMMUNE, new Inst4Fields());
+		instMap.put(Inst.FRIENDLYIMMUNE, new Inst4Fields());
+		instMap.put(Inst.UNDEADONLY, new Inst4Fields());
 		instMap.put(Inst.DT_CAP, new Inst4Fields());
 		instMap.put(Inst.DT_DEMON, new Inst4Fields());
 		instMap.put(Inst.DT_DEMONONLY, new Inst4Fields());
@@ -180,23 +220,23 @@ public class WeaponDetailsPage extends AbstractDetailsPage {
 		instMap.put(Inst.DT_LARGE, new Inst4Fields());
 		instMap.put(Inst.DT_CONSTRUCTONLY, new Inst4Fields());
 		instMap.put(Inst.DT_RAISE, new Inst4Fields());
-		instMap.put(Inst.MIND, new Inst4Fields());
-		instMap.put(Inst.COLD, new Inst4Fields());
-		instMap.put(Inst.FIRE, new Inst4Fields());
-		instMap.put(Inst.SHOCK, new Inst4Fields());
-		instMap.put(Inst.POISON, new Inst4Fields());
 		instMap.put(Inst.AOE, new Inst2Fields());
 		instMap.put(Inst.BONUS, new Inst4Fields());
+		instMap.put(Inst.SECONDARYEFFECT, new Inst2Fields());
+		instMap.put(Inst.SECONDARYEFFECTALWAYS, new Inst2Fields());		
 		instMap.put(Inst.CHARGE, new Inst4Fields());
 		instMap.put(Inst.FLAIL, new Inst4Fields());
-		instMap.put(Inst.NOSTR, new Inst4Fields());
-		instMap.put(Inst.MRNEGATES, new Inst4Fields());
-		instMap.put(Inst.MRNEGATESEASILY, new Inst4Fields());
-		instMap.put(Inst.SECONDARYEFFECT, new Inst2Fields());
-		instMap.put(Inst.SECONDARYEFFECTALWAYS, new Inst2Fields());
+		instMap.put(Inst.NOREPEL, new Inst4Fields());
+		instMap.put(Inst.UNREPEL, new Inst4Fields());
+		instMap.put(Inst.BEAM, new Inst4Fields());
+		instMap.put(Inst.RANGE050, new Inst4Fields());
+		instMap.put(Inst.RANGE0, new Inst4Fields());
+		instMap.put(Inst.MELEE50, new Inst4Fields());
+		instMap.put(Inst.SKIP, new Inst4Fields());
+		instMap.put(Inst.SKIP2, new Inst4Fields());
 		instMap.put(Inst.FLYSPR, new Inst3Fields());
 		instMap.put(Inst.EXPLSPR, new Inst2Fields());
-		
+
 	}
 	
 	/* (non-Javadoc)
@@ -801,6 +841,126 @@ public class WeaponDetailsPage extends AbstractDetailsPage {
 						Inst.MRNEGATESEASILY.defaultValue = weaponDB.mrnegateseasily.toString();
 					}
 					break;	
+				case SLASH:
+					if (weaponDB.slash != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.slash));
+						Inst.SLASH.defaultValue = weaponDB.slash.toString();
+					}
+					break;
+				case PIERCE:
+					if (weaponDB.pierce != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.pierce));
+						Inst.PIERCE.defaultValue = weaponDB.pierce.toString();
+					}
+					break;
+				case BLUNT:
+					if (weaponDB.blunt != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.blunt));
+						Inst.BLUNT.defaultValue = weaponDB.blunt.toString();
+					}
+					break;
+				case ACID:
+					if (weaponDB.acid != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.acid));
+						Inst.ACID.defaultValue = weaponDB.acid.toString();
+					}
+					break;
+				case HARDMRNEG:
+					if (weaponDB.hardmrneg != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.hardmrneg));
+						Inst.HARDMRNEG.defaultValue = weaponDB.hardmrneg.toString();
+					}
+					break;
+				case SIZERESIST:
+					if (weaponDB.sizeresist != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.sizeresist));
+						Inst.SIZERESIST.defaultValue = weaponDB.sizeresist.toString();
+					}
+					break;
+				case UNDEADIMMUNE:
+					if (weaponDB.undeadimmune != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.undeadimmune));
+						Inst.UNDEADIMMUNE.defaultValue = weaponDB.undeadimmune.toString();
+					}
+					break;
+				case INANIMATEIMMUNE:
+					if (weaponDB.inanimateimmune != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.inanimateimmune));
+						Inst.INANIMATEIMMUNE.defaultValue = weaponDB.inanimateimmune.toString();
+					}
+					break;
+				case FLYINGIMMUNE:
+					if (weaponDB.flyingimmune != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.flyingimmune));
+						Inst.FLYINGIMMUNE.defaultValue = weaponDB.flyingimmune.toString();
+					}
+					break;
+				case ENEMYIMMUNE:
+					if (weaponDB.enemyimmune != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.enemyimmune));
+						Inst.ENEMYIMMUNE.defaultValue = weaponDB.enemyimmune.toString();
+					}
+					break;
+				case FRIENDLYIMMUNE:
+					if (weaponDB.friendlyimmune != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.friendlyimmune));
+						Inst.FRIENDLYIMMUNE.defaultValue = weaponDB.friendlyimmune.toString();
+					}
+					break;
+				case UNDEADONLY:
+					if (weaponDB.undeadonly != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.undeadonly));
+						Inst.UNDEADONLY.defaultValue = weaponDB.undeadonly.toString();
+					}
+					break;
+				case NOREPEL:
+					if (weaponDB.norepel != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.norepel));
+						Inst.NOREPEL.defaultValue = weaponDB.norepel.toString();
+					}
+					break;
+				case UNREPEL:
+					if (weaponDB.unrepel != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.unrepel));
+						Inst.UNREPEL.defaultValue = weaponDB.unrepel.toString();
+					}
+					break;
+				case BEAM:
+					if (weaponDB.beam != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.beam));
+						Inst.BEAM.defaultValue = weaponDB.beam.toString();
+					}
+					break;
+				case RANGE050:
+					if (weaponDB.range050 != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.range050));
+						Inst.RANGE050.defaultValue = weaponDB.range050.toString();
+					}
+					break;
+				case RANGE0:
+					if (weaponDB.range0 != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.range0));
+						Inst.RANGE0.defaultValue = weaponDB.range0.toString();
+					}
+					break;
+				case MELEE50:
+					if (weaponDB.melee50 != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.melee50));
+						Inst.MELEE50.defaultValue = weaponDB.melee50.toString();
+					}
+					break;
+				case SKIP:
+					if (weaponDB.skip != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.skip));
+						Inst.SKIP.defaultValue = weaponDB.skip.toString();
+					}
+					break;
+				case SKIP2:
+					if (weaponDB.skip2 != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.skip2));
+						Inst.SKIP2.defaultValue = weaponDB.skip2.toString();
+					}
+					break;
 				}
 			}
 		}
@@ -1106,6 +1266,96 @@ public class WeaponDetailsPage extends AbstractDetailsPage {
 					break;
 				case MRNEGATESEASILY:
 					if (((WeaponInst4)mod).isMrnegateseasily()) {
+						return Boolean.TRUE;
+					}
+					break;
+				case BLUNT:
+					if (((WeaponInst4)mod).isBlunt()) {
+						return Boolean.TRUE;
+					}
+					break;
+				case ACID:
+					if (((WeaponInst4)mod).isAcid()) {
+						return Boolean.TRUE;
+					}
+					break;
+				case HARDMRNEG:
+					if (((WeaponInst4)mod).isHardmrneg()) {
+						return Boolean.TRUE;
+					}
+					break;
+				case SIZERESIST:
+					if (((WeaponInst4)mod).isSizeresist()) {
+						return Boolean.TRUE;
+					}
+					break;
+				case UNDEADIMMUNE:
+					if (((WeaponInst4)mod).isUndeadimmune()) {
+						return Boolean.TRUE;
+					}
+					break;
+				case INANIMATEIMMUNE:
+					if (((WeaponInst4)mod).isInanimateimmune()) {
+						return Boolean.TRUE;
+					}
+					break;
+				case FLYINGIMMUNE:
+					if (((WeaponInst4)mod).isFlyingimmune()) {
+						return Boolean.TRUE;
+					}
+					break;
+				case ENEMYIMMUNE:
+					if (((WeaponInst4)mod).isEnemyimmune()) {
+						return Boolean.TRUE;
+					}
+					break;
+				case FRIENDLYIMMUNE:
+					if (((WeaponInst4)mod).isFriendlyimmune()) {
+						return Boolean.TRUE;
+					}
+					break;
+				case UNDEADONLY:
+					if (((WeaponInst4)mod).isUndeadonly()) {
+						return Boolean.TRUE;
+					}
+					break;
+				case NOREPEL:
+					if (((WeaponInst4)mod).isNorepel()) {
+						return Boolean.TRUE;
+					}
+					break;
+				case UNREPEL:
+					if (((WeaponInst4)mod).isUnrepel()) {
+						return Boolean.TRUE;
+					}
+					break;
+				case BEAM:
+					if (((WeaponInst4)mod).isBeam()) {
+						return Boolean.TRUE;
+					}
+					break;
+				case RANGE050:
+					if (((WeaponInst4)mod).isRange050()) {
+						return Boolean.TRUE;
+					}
+					break;
+				case RANGE0:
+					if (((WeaponInst4)mod).isRange0()) {
+						return Boolean.TRUE;
+					}
+					break;
+				case MELEE50:
+					if (((WeaponInst4)mod).isMelee50()) {
+						return Boolean.TRUE;
+					}
+					break;
+				case SKIP:
+					if (((WeaponInst4)mod).isSkip()) {
+						return Boolean.TRUE;
+					}
+					break;
+				case SKIP2:
+					if (((WeaponInst4)mod).isSkip2()) {
 						return Boolean.TRUE;
 					}
 					break;
@@ -1467,6 +1717,60 @@ public class WeaponDetailsPage extends AbstractDetailsPage {
 						case MRNEGATESEASILY:
 							type.setMrnegateseasily(true);
 							break;
+						case BLUNT:
+							type.setBlunt(true);
+							break;
+						case ACID:
+							type.setAcid(true);
+							break;
+						case HARDMRNEG:
+							type.setHardmrneg(true);
+							break;
+						case SIZERESIST:
+							type.setSizeresist(true);
+							break;
+						case UNDEADIMMUNE:
+							type.setUndeadimmune(true);
+							break;
+						case INANIMATEIMMUNE:
+							type.setInanimateimmune(true);
+							break;
+						case FLYINGIMMUNE:
+							type.setFlyingimmune(true);
+							break;
+						case ENEMYIMMUNE:
+							type.setEnemyimmune(true);
+							break;
+						case FRIENDLYIMMUNE:
+							type.setFriendlyimmune(true);
+							break;
+						case UNDEADONLY:
+							type.setUndeadonly(true);
+							break;
+						case NOREPEL:
+							type.setNorepel(true);
+							break;
+						case UNREPEL:
+							type.setUnrepel(true);
+							break;
+						case BEAM:
+							type.setBeam(true);
+							break;
+						case RANGE050:
+							type.setRange050(true);
+							break;
+						case RANGE0:
+							type.setRange0(true);
+							break;
+						case MELEE50:
+							type.setMelee50(true);
+							break;
+						case SKIP:
+							type.setSkip(true);
+							break;
+						case SKIP2:
+							type.setSkip2(true);
+							break;
 						}
 						mods.add(type);
 					}  
@@ -1714,6 +2018,96 @@ public class WeaponDetailsPage extends AbstractDetailsPage {
 									break;
 								case MRNEGATESEASILY:
 									if (((WeaponInst4)mod).isMrnegateseasily()) {
+										modToRemove = mod;
+									}
+									break;
+								case BLUNT:
+									if (((WeaponInst4)mod).isBlunt()) {
+										modToRemove = mod;
+									}
+									break;
+								case ACID:
+									if (((WeaponInst4)mod).isAcid()) {
+										modToRemove = mod;
+									}
+									break;
+								case HARDMRNEG:
+									if (((WeaponInst4)mod).isHardmrneg()) {
+										modToRemove = mod;
+									}
+									break;
+								case SIZERESIST:
+									if (((WeaponInst4)mod).isSizeresist()) {
+										modToRemove = mod;
+									}
+									break;
+								case UNDEADIMMUNE:
+									if (((WeaponInst4)mod).isUndeadimmune()) {
+										modToRemove = mod;
+									}
+									break;
+								case INANIMATEIMMUNE:
+									if (((WeaponInst4)mod).isInanimateimmune()) {
+										modToRemove = mod;
+									}
+									break;
+								case FLYINGIMMUNE:
+									if (((WeaponInst4)mod).isFlyingimmune()) {
+										modToRemove = mod;
+									}
+									break;
+								case ENEMYIMMUNE:
+									if (((WeaponInst4)mod).isEnemyimmune()) {
+										modToRemove = mod;
+									}
+									break;
+								case FRIENDLYIMMUNE:
+									if (((WeaponInst4)mod).isFriendlyimmune()) {
+										modToRemove = mod;
+									}
+									break;
+								case UNDEADONLY:
+									if (((WeaponInst4)mod).isUndeadonly()) {
+										modToRemove = mod;
+									}
+									break;
+								case NOREPEL:
+									if (((WeaponInst4)mod).isNorepel()) {
+										modToRemove = mod;
+									}
+									break;
+								case UNREPEL:
+									if (((WeaponInst4)mod).isUnrepel()) {
+										modToRemove = mod;
+									}
+									break;
+								case BEAM:
+									if (((WeaponInst4)mod).isBeam()) {
+										modToRemove = mod;
+									}
+									break;
+								case RANGE050:
+									if (((WeaponInst4)mod).isRange050()) {
+										modToRemove = mod;
+									}
+									break;
+								case RANGE0:
+									if (((WeaponInst4)mod).isRange0()) {
+										modToRemove = mod;
+									}
+									break;
+								case MELEE50:
+									if (((WeaponInst4)mod).isMelee50()) {
+										modToRemove = mod;
+									}
+									break;
+								case SKIP:
+									if (((WeaponInst4)mod).isSkip()) {
+										modToRemove = mod;
+									}
+									break;
+								case SKIP2:
+									if (((WeaponInst4)mod).isSkip2()) {
 										modToRemove = mod;
 									}
 									break;

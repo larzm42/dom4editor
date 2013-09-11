@@ -774,7 +774,11 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 		gd.horizontalSpan = 3;
 		spriteComp.setLayoutData(gd);
 		sprite1Label = new Label(spriteComp, SWT.NONE);
+		GridData gridData = new GridData(SWT.DEFAULT, SWT.BOTTOM, false, false);
+		sprite1Label.setLayoutData(gridData);
 		sprite2Label = new Label(spriteComp, SWT.NONE);
+		gridData = new GridData(SWT.DEFAULT, SWT.BOTTOM, false, false);
+		sprite2Label.setLayoutData(gridData);
 		
 		spr1Check = toolkit.createButton(nameComp, Messages.getString("MonsterDetailsSection.mod.spr1"), SWT.CHECK);
 		spr1Check.setToolTipText(HelpTextHelper.getText(HelpTextHelper.MONSTER_CATEGORY, "spr1"));

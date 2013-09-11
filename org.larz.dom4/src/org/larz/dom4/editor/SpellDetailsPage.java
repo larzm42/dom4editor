@@ -83,6 +83,7 @@ public class SpellDetailsPage extends AbstractDetailsPage {
 		PATHLEVEL2 (Messages.getString("SpellDetailsSection.mod.pathlevel"), "1", "0"),
 		AOE (Messages.getString("SpellDetailsSection.mod.aoe"), "1"),
 		DAMAGE (Messages.getString("SpellDetailsSection.mod.damage"), "1"),
+		DAMAGEMON (Messages.getString("SpellDetailsSection.mod.damagemon"), "1"),
 		EFFECT (Messages.getString("SpellDetailsSection.mod.effect"), "0"),
 		FATIGUECOST (Messages.getString("SpellDetailsSection.mod.fatiguecost"), "0"),
 		FLIGHTSPR (Messages.getString("SpellDetailsSection.mod.flightspr"), "10000"),
@@ -95,8 +96,16 @@ public class SpellDetailsPage extends AbstractDetailsPage {
 		SPEC (Messages.getString("SpellDetailsSection.mod.spec"), "0"),
 		RESTRICTED1 (Messages.getString("SpellDetailsSection.mod.restricted"), "0"),
 		RESTRICTED2 (Messages.getString("SpellDetailsSection.mod.restricted"), "0"),
-		RESTRICTED3 (Messages.getString("SpellDetailsSection.mod.restricted"), "0");
-		
+		RESTRICTED3 (Messages.getString("SpellDetailsSection.mod.restricted"), "0"),
+		PROVRANGE (Messages.getString("SpellDetailsSection.mod.provrange"), "0"),
+		ONLYGEOSRC (Messages.getString("SpellDetailsSection.mod.onlygeosrc"), "0"),
+		ONLYGEODST (Messages.getString("SpellDetailsSection.mod.onlygeodst"), "0"),
+		ONLYFRIENDLYDST (Messages.getString("SpellDetailsSection.mod.onlyfriendlydst"), "0"),
+		ONLYOWNDST (Messages.getString("SpellDetailsSection.mod.onlyowndst"), "0"),
+		NOWATERTRACE (Messages.getString("SpellDetailsSection.mod.nowatertrace"), "0"),
+		NOLANDTRACE (Messages.getString("SpellDetailsSection.mod.nolandtrace"), "0"),
+		WALKABLE (Messages.getString("SpellDetailsSection.mod.walkable"), "0");
+
 		private String label;
 		private String defaultValue;
 		private String defaultValue2;
@@ -170,6 +179,7 @@ public class SpellDetailsPage extends AbstractDetailsPage {
 		instMap.put(Inst.RESEARCHLEVEL, new Inst2Fields());
 		instMap.put(Inst.AOE, new Inst2Fields());
 		instMap.put(Inst.DAMAGE, new Inst2Fields());
+		instMap.put(Inst.DAMAGEMON, new Inst1Fields());
 		instMap.put(Inst.EFFECT, new Inst2Fields());
 		instMap.put(Inst.FATIGUECOST, new Inst2Fields());
 		instMap.put(Inst.FLIGHTSPR, new Inst2Fields());
@@ -189,6 +199,14 @@ public class SpellDetailsPage extends AbstractDetailsPage {
 		instMap.put(Inst.CLEAR, new Inst4Fields());	
 		instMap.put(Inst.COPYSPELL, new Inst5Fields());	
 		instMap.put(Inst.NEXTSPELL, new Inst5Fields());	
+		instMap.put(Inst.PROVRANGE, new Inst2Fields());
+		instMap.put(Inst.ONLYGEOSRC, new Inst2Fields());
+		instMap.put(Inst.ONLYGEODST, new Inst2Fields());
+		instMap.put(Inst.ONLYFRIENDLYDST, new Inst2Fields());
+		instMap.put(Inst.ONLYOWNDST, new Inst2Fields());
+		instMap.put(Inst.NOWATERTRACE, new Inst2Fields());
+		instMap.put(Inst.NOLANDTRACE, new Inst2Fields());
+		instMap.put(Inst.WALKABLE, new Inst2Fields());
 	}
 	
 	/* (non-Javadoc)
@@ -880,6 +898,11 @@ public class SpellDetailsPage extends AbstractDetailsPage {
 						Inst.DAMAGE.defaultValue = spellDB.damage.toString();
 					}
 					break;
+				case DAMAGEMON:
+					if (spellDB.damagemon != null) {
+						Inst.DAMAGEMON.defaultValue = spellDB.damagemon.toString();
+					}
+					break;
 				case EFFECT:
 					if (spellDB.effect != null) {
 						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", spellDB.effect));
@@ -940,7 +963,54 @@ public class SpellDetailsPage extends AbstractDetailsPage {
 						Inst.RESTRICTED3.defaultValue = spellDB.restricted3.toString();
 					}
 					break;
-				}
+				case PROVRANGE:
+					if (spellDB.provrange != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", spellDB.provrange));
+						Inst.PROVRANGE.defaultValue = spellDB.provrange.toString();
+					}
+					break;
+				case ONLYGEOSRC:
+					if (spellDB.onlygeosrc != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", spellDB.onlygeosrc));
+						Inst.ONLYGEOSRC.defaultValue = spellDB.onlygeosrc.toString();
+					}
+					break;
+				case ONLYGEODST:
+					if (spellDB.onlygeodst != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", spellDB.onlygeodst));
+						Inst.ONLYGEODST.defaultValue = spellDB.onlygeodst.toString();
+					}
+					break;
+				case ONLYFRIENDLYDST:
+					if (spellDB.onlyfriendlydst != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", spellDB.onlyfriendlydst));
+						Inst.ONLYFRIENDLYDST.defaultValue = spellDB.onlyfriendlydst.toString();
+					}
+					break;
+				case ONLYOWNDST:
+					if (spellDB.onlyowndst != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", spellDB.onlyowndst));
+						Inst.ONLYOWNDST.defaultValue = spellDB.onlyowndst.toString();
+					}
+					break;
+				case NOWATERTRACE:
+					if (spellDB.nowatertrace != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", spellDB.nowatertrace));
+						Inst.NOWATERTRACE.defaultValue = spellDB.nowatertrace.toString();
+					}
+					break;
+				case NOLANDTRACE:
+					if (spellDB.nolandtrace != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", spellDB.nolandtrace));
+						Inst.NOLANDTRACE.defaultValue = spellDB.nolandtrace.toString();
+					}
+					break;
+				case WALKABLE:
+					if (spellDB.walkable != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", spellDB.walkable));
+						Inst.WALKABLE.defaultValue = spellDB.walkable.toString();
+					}
+					break;				}
 			}
 		}
 		name.getParent().getParent().getParent().layout(true, true);
@@ -1100,6 +1170,11 @@ public class SpellDetailsPage extends AbstractDetailsPage {
 						return ((SpellInst1)mod).getValue();
 					}
 					break;
+				case DAMAGEMON:
+					if (((SpellInst1)mod).isDamagemon()){
+						return ((SpellInst1)mod).getValue();
+					}
+					break;
 				}
 			}
 		}
@@ -1201,7 +1276,46 @@ public class SpellDetailsPage extends AbstractDetailsPage {
 						}
 					}
 					break;
-				}
+				case PROVRANGE:
+					if (((SpellInst2)mod).isProvrange()){
+						return Integer.valueOf(((SpellInst2)mod).getValue());
+					}
+					break;
+				case ONLYGEOSRC:
+					if (((SpellInst2)mod).isOnlygeosrc()){
+						return Integer.valueOf(((SpellInst2)mod).getValue());
+					}
+					break;
+				case ONLYGEODST:
+					if (((SpellInst2)mod).isOnlygeodst()){
+						return Integer.valueOf(((SpellInst2)mod).getValue());
+					}
+					break;
+				case ONLYFRIENDLYDST:
+					if (((SpellInst2)mod).isOnlyfriendlydst()){
+						return Integer.valueOf(((SpellInst2)mod).getValue());
+					}
+					break;
+				case ONLYOWNDST:
+					if (((SpellInst2)mod).isOnlyowndst()){
+						return Integer.valueOf(((SpellInst2)mod).getValue());
+					}
+					break;
+				case NOWATERTRACE:
+					if (((SpellInst2)mod).isNowatertrace()){
+						return Integer.valueOf(((SpellInst2)mod).getValue());
+					}
+					break;
+				case NOLANDTRACE:
+					if (((SpellInst2)mod).isNolandtrace()){
+						return Integer.valueOf(((SpellInst2)mod).getValue());
+					}
+					break;
+				case WALKABLE:
+					if (((SpellInst2)mod).isWalkable()){
+						return Integer.valueOf(((SpellInst2)mod).getValue());
+					}
+					break;				}
 			}
 		}
 		return null;
@@ -1320,6 +1434,11 @@ public class SpellDetailsPage extends AbstractDetailsPage {
 								((SpellInst1)mod).setValue(newName);
 							}
 							break;
+						case DAMAGEMON:
+							if (((SpellInst1)mod).isDamagemon()) {
+								((SpellInst1)mod).setValue(newName);
+							}
+							break;
 						}
 					}
 				}
@@ -1431,7 +1550,46 @@ public class SpellDetailsPage extends AbstractDetailsPage {
 								}
 							}
 							break;
-						}
+						case PROVRANGE:
+							if (((SpellInst2)mod).isProvrange()){
+								((SpellInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case ONLYGEOSRC:
+							if (((SpellInst2)mod).isOnlygeosrc()){
+								((SpellInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case ONLYGEODST:
+							if (((SpellInst2)mod).isOnlygeodst()){
+								((SpellInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case ONLYFRIENDLYDST:
+							if (((SpellInst2)mod).isOnlyfriendlydst()){
+								((SpellInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case ONLYOWNDST:
+							if (((SpellInst2)mod).isOnlyowndst()){
+								((SpellInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case NOWATERTRACE:
+							if (((SpellInst2)mod).isNowatertrace()){
+								((SpellInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case NOLANDTRACE:
+							if (((SpellInst2)mod).isNolandtrace()){
+								((SpellInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case WALKABLE:
+							if (((SpellInst2)mod).isWalkable()){
+								((SpellInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;						}
 					}
 				}
 
@@ -1590,6 +1748,9 @@ public class SpellDetailsPage extends AbstractDetailsPage {
 						case DESCR:
 							type.setDescr(true);
 							break;
+						case DAMAGEMON:
+							type.setDamagemon(true);
+							break;
 						}
 						type.setValue(newName);
 						mods.add(type);
@@ -1660,7 +1821,30 @@ public class SpellDetailsPage extends AbstractDetailsPage {
 						case RESTRICTED3:
 							type.setRestricted(true);
 							break;
-						}
+						case PROVRANGE:
+							type.setProvrange(true);
+							break;
+						case ONLYGEOSRC:
+							type.setOnlygeosrc(true);
+							break;
+						case ONLYGEODST:
+							type.setOnlygeodst(true);
+							break;
+						case ONLYFRIENDLYDST:
+							type.setOnlyfriendlydst(true);
+							break;
+						case ONLYOWNDST:
+							type.setOnlyowndst(true);
+							break;
+						case NOWATERTRACE:
+							type.setNowatertrace(true);
+							break;
+						case NOLANDTRACE:
+							type.setNolandtrace(true);
+							break;
+						case WALKABLE:
+							type.setWalkable(true);
+							break;						}
 						type.setValue(Integer.valueOf(newName));
 						mods.add(type);
 					}  
@@ -1793,6 +1977,11 @@ public class SpellDetailsPage extends AbstractDetailsPage {
 										modToRemove = mod;
 									}
 									break;
+								case DAMAGEMON:
+									if (((SpellInst1)mod).isDamagemon()){
+										modToRemove = mod;
+									}
+									break;
 								}
 							}
 							if (mod instanceof SpellInst2) {
@@ -1877,7 +2066,46 @@ public class SpellDetailsPage extends AbstractDetailsPage {
 										modToRemove = mod;
 									}
 									break;
-								}
+								case PROVRANGE:
+									if (((SpellInst2)mod).isProvrange()){
+										modToRemove = mod;
+									}
+									break;
+								case ONLYGEOSRC:
+									if (((SpellInst2)mod).isOnlygeosrc()){
+										modToRemove = mod;
+									}
+									break;
+								case ONLYGEODST:
+									if (((SpellInst2)mod).isOnlygeodst()){
+										modToRemove = mod;
+									}
+									break;
+								case ONLYFRIENDLYDST:
+									if (((SpellInst2)mod).isOnlyfriendlydst()){
+										modToRemove = mod;
+									}
+									break;
+								case ONLYOWNDST:
+									if (((SpellInst2)mod).isOnlyowndst()){
+										modToRemove = mod;
+									}
+									break;
+								case NOWATERTRACE:
+									if (((SpellInst2)mod).isNowatertrace()){
+										modToRemove = mod;
+									}
+									break;
+								case NOLANDTRACE:
+									if (((SpellInst2)mod).isNolandtrace()){
+										modToRemove = mod;
+									}
+									break;
+								case WALKABLE:
+									if (((SpellInst2)mod).isWalkable()){
+										modToRemove = mod;
+									}
+									break;								}
 							}
 							if (mod instanceof SpellInst3) {
 								switch (inst2) {

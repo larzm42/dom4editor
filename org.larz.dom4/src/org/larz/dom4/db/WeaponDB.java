@@ -61,4 +61,25 @@ public class WeaponDB {
 	public Boolean nostr;
 	public Boolean mrnegates;
 	public Boolean mrnegateseasily;
+	public Boolean slash;
+	public Boolean pierce;
+	public Boolean blunt;
+	public Boolean acid;
+	public Boolean hardmrneg;
+	public Boolean sizeresist;
+	public Boolean undeadimmune;
+	public Boolean inanimateimmune;
+	public Boolean flyingimmune;
+	public Boolean enemyimmune;
+	public Boolean friendlyimmune;
+	public Boolean undeadonly;
+	public Boolean norepel;
+	public Boolean unrepel;
+	public Boolean beam;
+	public Boolean range050;
+	public Boolean range0;
+	public Boolean melee50;
+	public Boolean skip;
+	public Boolean skip2;
+
 }

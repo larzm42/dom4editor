@@ -97,16 +97,17 @@ public class MasterFormPage extends FormPage {
 		EVENTISRARE(Messages.getString("ScrolledPropertiesBlock.eventisrare"), "15"),
 		TURMOILINCOME(Messages.getString("ScrolledPropertiesBlock.turmoilincome"), "7"),
 		TURMOILEVENTS(Messages.getString("ScrolledPropertiesBlock.turmoilevents"), "5"),
-		DEATHINCOME(Messages.getString("ScrolledPropertiesBlock.deathincome"), "2"),
+		DEATHINCOME(Messages.getString("ScrolledPropertiesBlock.deathincome"), "3"),
 		DEATHSUPPLY(Messages.getString("ScrolledPropertiesBlock.deathsupply"), "20"),
-		DEATHDEATH(Messages.getString("ScrolledPropertiesBlock.deathdeath"), "2"),
+		DEATHDEATH(Messages.getString("ScrolledPropertiesBlock.deathdeath"), "20"),
 		SLOTHINCOME(Messages.getString("ScrolledPropertiesBlock.slothincome"), "2"),
 		SLOTHRESOURCES(Messages.getString("ScrolledPropertiesBlock.slothresources"), "15"),
 		COLDINCOME(Messages.getString("ScrolledPropertiesBlock.coldincome"), "5"),
 		COLDSUPPLY(Messages.getString("ScrolledPropertiesBlock.coldsupply"), "10"),
+		TEMPSCALECAP(Messages.getString("ScrolledPropertiesBlock.tempscalecap"), "3"),
 		MISFORTUNE(Messages.getString("ScrolledPropertiesBlock.misfortune"), "10"),
 		LUCKEVENTS(Messages.getString("ScrolledPropertiesBlock.luckevents"), "5"),
-		RESEARCHSCALE(Messages.getString("ScrolledPropertiesBlock.researchscale"), "2");
+		RESEARCHSCALE(Messages.getString("ScrolledPropertiesBlock.researchscale"), "3");
 		
 		private String label;
 		private String defaultValue;
@@ -154,6 +155,7 @@ public class MasterFormPage extends FormPage {
 		general2Map.put(General2.SLOTHRESOURCES, new General2Fields());
 		general2Map.put(General2.COLDINCOME, new General2Fields());
 		general2Map.put(General2.COLDSUPPLY, new General2Fields());
+		general2Map.put(General2.TEMPSCALECAP, new General2Fields());
 		general2Map.put(General2.MISFORTUNE, new General2Fields());
 		general2Map.put(General2.LUCKEVENTS, new General2Fields());
 		general2Map.put(General2.RESEARCHSCALE, new General2Fields());
@@ -264,9 +266,10 @@ public class MasterFormPage extends FormPage {
 		}
 
 		Composite general2Comp = toolkit.createComposite(header1);
-		layout = new GridLayout(18, false);
+		layout = new GridLayout(15, false);
 		layout.marginWidth = 0;
 		layout.marginHeight = 0;
+		layout.verticalSpacing = 0;
 		general2Comp.setLayout(layout);
 		GridData gd = new GridData(SWT.FILL, SWT.FILL, true, true);
 		gd.horizontalSpan = 2;
@@ -319,7 +322,7 @@ public class MasterFormPage extends FormPage {
 			
 			Label space = toolkit.createLabel(general2Comp, "");
 			gd = new GridData(SWT.DEFAULT, SWT.DEFAULT, false, false);
-			gd.widthHint = 10;
+			gd.widthHint = 30;
 			space.setLayoutData(gd);
 
 			fields.getValue().value = modname;
@@ -437,6 +440,11 @@ public class MasterFormPage extends FormPage {
 								return element.getValue();
 							}
 							break;
+						case TEMPSCALECAP:
+							if (element.isTempscalecap()) {
+								return element.getValue();
+							}
+							break;
 						case MISFORTUNE:
 							if (element.isMisfortune()) {
 								return element.getValue();
@@ -544,6 +552,9 @@ public class MasterFormPage extends FormPage {
 							break;
 						case COLDSUPPLY:
 							element.setColdsupply(true);
+							break;
+						case TEMPSCALECAP:
+							element.setTempscalecap(true);
 							break;
 						case MISFORTUNE:
 							element.setMisfortune(true);
@@ -655,6 +666,11 @@ public class MasterFormPage extends FormPage {
 								element.setValue(Integer.parseInt(newName));
 							}
 							break;
+						case TEMPSCALECAP:
+							if (element.isTempscalecap()) {
+								element.setValue(Integer.parseInt(newName));
+							}
+							break;
 						case MISFORTUNE:
 							if (element.isMisfortune()) {
 								element.setValue(Integer.parseInt(newName));
@@ -761,6 +777,11 @@ public class MasterFormPage extends FormPage {
 							break;
 						case COLDSUPPLY:
 							if (((GeneralInst1)mod).isColdsupply()) {
+								modToRemove = mod;
+							}
+							break;
+						case TEMPSCALECAP:
+							if (((GeneralInst1)mod).isTempscalecap()) {
 								modToRemove = mod;
 							}
 							break;
