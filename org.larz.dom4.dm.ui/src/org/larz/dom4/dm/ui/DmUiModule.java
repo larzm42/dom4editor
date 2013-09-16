@@ -19,6 +19,10 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.parser.antlr.ISyntaxErrorMessageProvider;
 import org.eclipse.xtext.parsetree.reconstr.impl.DefaultCommentAssociater;
 import org.eclipse.xtext.ui.editor.XtextEditor;
+import org.eclipse.xtext.ui.editor.model.ITokenTypeToPartitionTypeMapper;
+import org.eclipse.xtext.ui.editor.syntaxcoloring.AbstractAntlrTokenToAttributeIdMapper;
+import org.eclipse.xtext.ui.resource.IResourceSetProvider;
+import org.eclipse.xtext.ui.resource.SimpleResourceSetProvider;
 import org.larz.dom4.dm.ui.comment.DmCommentAssociater;
 import org.larz.dom4.dm.ui.editor.DmXtextEditor;
 import org.larz.dom4.dm.ui.help.DmSourceViewerConfiguration;
@@ -43,4 +47,14 @@ public class DmUiModule extends org.larz.dom4.dm.ui.AbstractDmUiModule {
 	public Class<? extends org.eclipse.xtext.ui.editor.XtextSourceViewerConfiguration> bindSourceViewerConfiguration() {  
 	    return DmSourceViewerConfiguration.class;  
     } 
+	public Class<? extends AbstractAntlrTokenToAttributeIdMapper> bindAbstractAntlrTokenToAttributeIdMapper() {
+		return AntlrTokenToAttributeIdMapper.class;
+	}
+	public Class<? extends ITokenTypeToPartitionTypeMapper> bindTokenTypeToPartitionTypeMapper() {
+		return AntlrTokenToAttributeIdMapper.class;
+	}
+	@Override 
+	public Class<? extends IResourceSetProvider> bindIResourceSetProvider() {
+		return SimpleResourceSetProvider.class;
+	}
 }
