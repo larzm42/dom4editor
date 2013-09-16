@@ -60,6 +60,7 @@ import org.larz.dom4.dm.dm.WeaponInst4;
 import org.larz.dom4.dm.dm.WeaponMods;
 import org.larz.dom4.dm.ui.help.HelpTextHelper;
 
+@SuppressWarnings("incomplete-switch")
 public class WeaponDetailsPage extends AbstractDetailsPage {
 	private Text name;
 	private Button nameCheck;

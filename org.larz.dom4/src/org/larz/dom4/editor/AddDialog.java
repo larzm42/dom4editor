@@ -237,10 +237,18 @@ public class AddDialog extends Dialog {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				if (newArmor[add.ordinal()].getSelection()) {
-					idText[add.ordinal()].setText("");
-					nameText[add.ordinal()].setText("");
-					nameText[add.ordinal()].setEnabled(true);
-					nameSearch.setEnabled(false);
+					if (add == TypeToAdd.NATION) {
+						idText[add.ordinal()].setText("");
+						idText[add.ordinal()].setEnabled(false);
+						nameText[add.ordinal()].setText("");
+						nameText[add.ordinal()].setEnabled(true);
+						nameSearch.setEnabled(false);
+					} else {
+						idText[add.ordinal()].setText("");
+						nameText[add.ordinal()].setText("");
+						nameText[add.ordinal()].setEnabled(true);
+						nameSearch.setEnabled(false);
+					}
 				}
 			}
 		});
@@ -248,10 +256,18 @@ public class AddDialog extends Dialog {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				if (selectArmor[add.ordinal()].getSelection()) {
-					idText[add.ordinal()].setText("");
-					nameText[add.ordinal()].setText("");
-					nameText[add.ordinal()].setEnabled(true);
-					nameSearch.setEnabled(true);
+					if (add == TypeToAdd.NATION) {
+						idText[add.ordinal()].setEnabled(true);
+						idText[add.ordinal()].setText("");
+						nameText[add.ordinal()].setText("");
+						nameText[add.ordinal()].setEnabled(false);
+						nameSearch.setEnabled(true);
+					} else {
+						idText[add.ordinal()].setText("");
+						nameText[add.ordinal()].setText("");
+						nameText[add.ordinal()].setEnabled(true);
+						nameSearch.setEnabled(true);
+					}
 				}
 			}
 		});
@@ -270,7 +286,7 @@ public class AddDialog extends Dialog {
 						nameSearch.setEnabled(true);
 					}
 				}
-				setOKEnablement();
+				setOKEnablement(add);
 			}
 		});
 		nameText[add.ordinal()].addModifyListener(new ModifyListener() {
@@ -282,10 +298,12 @@ public class AddDialog extends Dialog {
 						idSearch.setEnabled(false);
 					}
 				} else {
-					idText[add.ordinal()].setEnabled(true);
-					idSearch.setEnabled(true);
+					if (add != TypeToAdd.NATION) {
+						idText[add.ordinal()].setEnabled(true);
+						idSearch.setEnabled(true);
+					}
 				}
-				setOKEnablement();
+				setOKEnablement(add);
 			}
 		});
 		if (add == TypeToAdd.NAME) {
@@ -293,7 +311,7 @@ public class AddDialog extends Dialog {
 			nameText[add.ordinal()].setEnabled(false);
 		}
 		if (add == TypeToAdd.NATION) {
-			newArmor[add.ordinal()].setEnabled(false);
+			//newArmor[add.ordinal()].setEnabled(false);
 			nameText[add.ordinal()].setEnabled(false);
 		}
 
@@ -305,10 +323,12 @@ public class AddDialog extends Dialog {
 		getButton(IDialogConstants.OK_ID).setEnabled(false);
 	}
 
-	private void setOKEnablement() {
+	private void setOKEnablement(TypeToAdd add) {
 		if (selectArmor[type.ordinal()].getSelection() && (nameText[type.ordinal()].getText().length() > 0 || idText[type.ordinal()].getText().length() > 0)) {
 			getButton(IDialogConstants.OK_ID).setEnabled(true);
 		} else if (newArmor[type.ordinal()].getSelection() && nameText[type.ordinal()].getText().length() > 0 && idText[type.ordinal()].getText().length() > 0) {
+			getButton(IDialogConstants.OK_ID).setEnabled(true);
+		} else if (newArmor[type.ordinal()].getSelection() && nameText[type.ordinal()].getText().length() > 0 && add == TypeToAdd.NATION) {
 			getButton(IDialogConstants.OK_ID).setEnabled(true);
 		} else {
 			getButton(IDialogConstants.OK_ID).setEnabled(false);

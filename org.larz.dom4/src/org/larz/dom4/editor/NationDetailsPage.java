@@ -59,6 +59,7 @@ import org.eclipse.xtext.util.concurrent.IUnitOfWork;
 import org.larz.dom4.db.Database;
 import org.larz.dom4.db.NationDB;
 import org.larz.dom4.dm.dm.DmFactory;
+import org.larz.dom4.dm.dm.Nation;
 import org.larz.dom4.dm.dm.NationInst1;
 import org.larz.dom4.dm.dm.NationInst2;
 import org.larz.dom4.dm.dm.NationInst3;
@@ -68,6 +69,7 @@ import org.larz.dom4.dm.dm.NationMods;
 import org.larz.dom4.dm.dm.SelectNation;
 import org.larz.dom4.dm.ui.help.HelpTextHelper;
 
+@SuppressWarnings("incomplete-switch")
 public class NationDetailsPage extends AbstractDetailsPage {
 	private Text name;
 	private Button nameCheck;
@@ -86,106 +88,216 @@ public class NationDetailsPage extends AbstractDetailsPage {
 		BRIEF (Messages.getString("NationDetailsSection.mod.brief"), ""),
 		CLEARNATION (Messages.getString("NationDetailsSection.mod.clearnation")),
 		EPITHET (Messages.getString("NationDetailsSection.mod.epithet"), ""),
-		ERA (Messages.getString("NationDetailsSection.mod.era"), ""),
+		ERA (Messages.getString("NationDetailsSection.mod.era"), "0"),
+		COLOR (Messages.getString("NationDetailsSection.mod.color"), "0.0", "0.0", "0.0"),
+		SECONDARYCOLOR (Messages.getString("NationDetailsSection.mod.secondarycolor"), "0.0", "0.0", "0.0"),
 		FLAG (Messages.getString("NationDetailsSection.mod.flag"), ""),
-		LABCOST (Messages.getString("NationDetailsSection.mod.labcost"), ""),
-		TEMPLECOST (Messages.getString("NationDetailsSection.mod.templecost"), ""),
-		TEMPLEPIC (Messages.getString("NationDetailsSection.mod.templepic"), ""),
-		MAPBACKGROUND (Messages.getString("NationDetailsSection.mod.mapbackground"), ""),
 		CLEARREC (Messages.getString("NationDetailsSection.mod.clearrec")),
-		STARTCOM (Messages.getString("NationDetailsSection.mod.startcom"), ""),
-		STARTSCOUT (Messages.getString("NationDetailsSection.mod.startscout"), ""),
-		STARTUNITTYPE1 (Messages.getString("NationDetailsSection.mod.startunittype1"), ""),
-		STARTUNITNBRS1 (Messages.getString("NationDetailsSection.mod.startunitnbrs1"), ""),
-		STARTUNITTYPE2 (Messages.getString("NationDetailsSection.mod.startunittype2"), ""),
-		STARTUNITNBRS2 (Messages.getString("NationDetailsSection.mod.startunitnbrs2"), ""),
-		ADDRECUNIT1 (Messages.getString("NationDetailsSection.mod.addrecunit"), ""),
-		ADDRECCOM1 (Messages.getString("NationDetailsSection.mod.addreccom"), ""),
-		ADDRECUNIT2 (Messages.getString("NationDetailsSection.mod.addrecunit"), ""),
-		ADDRECCOM2 (Messages.getString("NationDetailsSection.mod.addreccom"), ""),
-		ADDRECUNIT3 (Messages.getString("NationDetailsSection.mod.addrecunit"), ""),
-		ADDRECCOM3 (Messages.getString("NationDetailsSection.mod.addreccom"), ""),
-		ADDRECUNIT4 (Messages.getString("NationDetailsSection.mod.addrecunit"), ""),
-		ADDRECCOM4 (Messages.getString("NationDetailsSection.mod.addreccom"), ""),
-		ADDRECUNIT5 (Messages.getString("NationDetailsSection.mod.addrecunit"), ""),
-		ADDRECCOM5 (Messages.getString("NationDetailsSection.mod.addreccom"), ""),
-		ADDRECUNIT6 (Messages.getString("NationDetailsSection.mod.addrecunit"), ""),
-		ADDRECCOM6 (Messages.getString("NationDetailsSection.mod.addreccom"), ""),
-		ADDRECUNIT7 (Messages.getString("NationDetailsSection.mod.addrecunit"), ""),
-		ADDRECCOM7 (Messages.getString("NationDetailsSection.mod.addreccom"), ""),
-		ADDRECUNIT8 (Messages.getString("NationDetailsSection.mod.addrecunit"), ""),
-		ADDRECCOM8 (Messages.getString("NationDetailsSection.mod.addreccom"), ""),
-		ADDRECUNIT9 (Messages.getString("NationDetailsSection.mod.addrecunit"), ""),
-		ADDRECCOM9 (Messages.getString("NationDetailsSection.mod.addreccom"), ""),
-		ADDRECUNIT10 (Messages.getString("NationDetailsSection.mod.addrecunit"), ""),
-		ADDRECCOM10 (Messages.getString("NationDetailsSection.mod.addreccom"), ""),
-		ADDRECUNIT11 (Messages.getString("NationDetailsSection.mod.addrecunit"), ""),
-		ADDRECCOM11 (Messages.getString("NationDetailsSection.mod.addreccom"), ""),
-		ADDRECUNIT12 (Messages.getString("NationDetailsSection.mod.addrecunit"), ""),
-		ADDRECCOM12 (Messages.getString("NationDetailsSection.mod.addreccom"), ""),
-		ADDRECUNIT13 (Messages.getString("NationDetailsSection.mod.addrecunit"), ""),
-		ADDRECCOM13 (Messages.getString("NationDetailsSection.mod.addreccom"), ""),
-		ADDRECUNIT14 (Messages.getString("NationDetailsSection.mod.addrecunit"), ""),
-		ADDRECCOM14 (Messages.getString("NationDetailsSection.mod.addreccom"), ""),
-		UWUNIT1 (Messages.getString("NationDetailsSection.mod.uwunit1"), ""),
-		UWUNIT2 (Messages.getString("NationDetailsSection.mod.uwunit2"), ""),
-		UWUNIT3 (Messages.getString("NationDetailsSection.mod.uwunit3"), ""),
-		UWUNIT4 (Messages.getString("NationDetailsSection.mod.uwunit4"), ""),
-		UWUNIT5 (Messages.getString("NationDetailsSection.mod.uwunit5"), ""),
-		UWCOM1 (Messages.getString("NationDetailsSection.mod.uwcom1"), ""),
-		UWCOM2 (Messages.getString("NationDetailsSection.mod.uwcom2"), ""),
-		UWCOM3 (Messages.getString("NationDetailsSection.mod.uwcom3"), ""),
-		UWCOM4 (Messages.getString("NationDetailsSection.mod.uwcom4"), ""),
-		UWCOM5 (Messages.getString("NationDetailsSection.mod.uwcom5"), ""),
-		HERO1 (Messages.getString("NationDetailsSection.mod.hero1"), ""),
-		HERO2 (Messages.getString("NationDetailsSection.mod.hero2"), ""),
-		HERO3 (Messages.getString("NationDetailsSection.mod.hero3"), ""),
-		HERO4 (Messages.getString("NationDetailsSection.mod.hero4"), ""),
-		HERO5 (Messages.getString("NationDetailsSection.mod.hero5"), ""),
-		HERO6 (Messages.getString("NationDetailsSection.mod.hero6"), ""),
-		MULTIHERO1 (Messages.getString("NationDetailsSection.mod.multihero1"), ""),
-		MULTIHERO2 (Messages.getString("NationDetailsSection.mod.multihero2"), ""),
-		DEFCOM1 (Messages.getString("NationDetailsSection.mod.defcom1"), ""),
-		DEFCOM2 (Messages.getString("NationDetailsSection.mod.defcom2"), ""),
-		DEFUNIT1 (Messages.getString("NationDetailsSection.mod.defunit1"), ""),
-		DEFUNIT1B (Messages.getString("NationDetailsSection.mod.defunit1b"), ""),
-		DEFUNIT2 (Messages.getString("NationDetailsSection.mod.defunit2"), ""),
-		DEFUNIT2B (Messages.getString("NationDetailsSection.mod.defunit2b"), ""),
-		DEFMULT1 (Messages.getString("NationDetailsSection.mod.defmult1"), ""),
-		DEFMULT1B (Messages.getString("NationDetailsSection.mod.defmult1b"), ""),
-		DEFMULT2 (Messages.getString("NationDetailsSection.mod.defmult2"), ""),
-		DEFMULT2B (Messages.getString("NationDetailsSection.mod.defmult2b"), ""),
+		STARTCOM (Messages.getString("NationDetailsSection.mod.startcom"), "0"),
+		STARTSCOUT (Messages.getString("NationDetailsSection.mod.startscout"), "0"),
+		STARTUNITTYPE1 (Messages.getString("NationDetailsSection.mod.startunittype1"), "0"),
+		STARTUNITNBRS1 (Messages.getString("NationDetailsSection.mod.startunitnbrs1"), "0"),
+		STARTUNITTYPE2 (Messages.getString("NationDetailsSection.mod.startunittype2"), "0"),
+		STARTUNITNBRS2 (Messages.getString("NationDetailsSection.mod.startunitnbrs2"), "0"),
+		ADDRECUNIT1 (Messages.getString("NationDetailsSection.mod.addrecunit"), "0"),
+		ADDRECCOM1 (Messages.getString("NationDetailsSection.mod.addreccom"), "0"),
+		ADDRECUNIT2 (Messages.getString("NationDetailsSection.mod.addrecunit"), "0"),
+		ADDRECCOM2 (Messages.getString("NationDetailsSection.mod.addreccom"), "0"),
+		ADDRECUNIT3 (Messages.getString("NationDetailsSection.mod.addrecunit"), "0"),
+		ADDRECCOM3 (Messages.getString("NationDetailsSection.mod.addreccom"), "0"),
+		ADDRECUNIT4 (Messages.getString("NationDetailsSection.mod.addrecunit"), "0"),
+		ADDRECCOM4 (Messages.getString("NationDetailsSection.mod.addreccom"), "0"),
+		ADDRECUNIT5 (Messages.getString("NationDetailsSection.mod.addrecunit"), "0"),
+		ADDRECCOM5 (Messages.getString("NationDetailsSection.mod.addreccom"), "0"),
+		ADDRECUNIT6 (Messages.getString("NationDetailsSection.mod.addrecunit"), "0"),
+		ADDRECCOM6 (Messages.getString("NationDetailsSection.mod.addreccom"), "0"),
+		ADDRECUNIT7 (Messages.getString("NationDetailsSection.mod.addrecunit"), "0"),
+		ADDRECCOM7 (Messages.getString("NationDetailsSection.mod.addreccom"), "0"),
+		ADDRECUNIT8 (Messages.getString("NationDetailsSection.mod.addrecunit"), "0"),
+		ADDRECCOM8 (Messages.getString("NationDetailsSection.mod.addreccom"), "0"),
+		ADDRECUNIT9 (Messages.getString("NationDetailsSection.mod.addrecunit"), "0"),
+		ADDRECCOM9 (Messages.getString("NationDetailsSection.mod.addreccom"), "0"),
+		ADDRECUNIT10 (Messages.getString("NationDetailsSection.mod.addrecunit"), "0"),
+		ADDRECCOM10 (Messages.getString("NationDetailsSection.mod.addreccom"), "0"),
+		ADDRECUNIT11 (Messages.getString("NationDetailsSection.mod.addrecunit"), "0"),
+		ADDRECCOM11 (Messages.getString("NationDetailsSection.mod.addreccom"), "0"),
+		ADDRECUNIT12 (Messages.getString("NationDetailsSection.mod.addrecunit"), "0"),
+		ADDRECCOM12 (Messages.getString("NationDetailsSection.mod.addreccom"), "0"),
+		ADDRECUNIT13 (Messages.getString("NationDetailsSection.mod.addrecunit"), "0"),
+		ADDRECCOM13 (Messages.getString("NationDetailsSection.mod.addreccom"), "0"),
+		ADDRECUNIT14 (Messages.getString("NationDetailsSection.mod.addrecunit"), "0"),
+		ADDRECCOM14 (Messages.getString("NationDetailsSection.mod.addreccom"), "0"),
+		UWUNIT1 (Messages.getString("NationDetailsSection.mod.uwunit1"), "0"),
+		UWUNIT2 (Messages.getString("NationDetailsSection.mod.uwunit2"), "0"),
+		UWUNIT3 (Messages.getString("NationDetailsSection.mod.uwunit3"), "0"),
+		UWUNIT4 (Messages.getString("NationDetailsSection.mod.uwunit4"), "0"),
+		UWUNIT5 (Messages.getString("NationDetailsSection.mod.uwunit5"), "0"),
+		UWCOM1 (Messages.getString("NationDetailsSection.mod.uwcom1"), "0"),
+		UWCOM2 (Messages.getString("NationDetailsSection.mod.uwcom2"), "0"),
+		UWCOM3 (Messages.getString("NationDetailsSection.mod.uwcom3"), "0"),
+		UWCOM4 (Messages.getString("NationDetailsSection.mod.uwcom4"), "0"),
+		UWCOM5 (Messages.getString("NationDetailsSection.mod.uwcom5"), "0"),
+		ADDFOREIGNUNIT1 (Messages.getString("NationDetailsSection.mod.addforeignunit"), "0"),
+		ADDFOREIGNCOM1 (Messages.getString("NationDetailsSection.mod.addforeigncom"), "0"),
+		ADDFOREIGNUNIT2 (Messages.getString("NationDetailsSection.mod.addforeignunit"), "0"),
+		ADDFOREIGNCOM2 (Messages.getString("NationDetailsSection.mod.addforeigncom"), "0"),
+		ADDFOREIGNUNIT3 (Messages.getString("NationDetailsSection.mod.addforeignunit"), "0"),
+		ADDFOREIGNCOM3 (Messages.getString("NationDetailsSection.mod.addforeigncom"), "0"),
+		ADDFOREIGNUNIT4 (Messages.getString("NationDetailsSection.mod.addforeignunit"), "0"),
+		ADDFOREIGNCOM4 (Messages.getString("NationDetailsSection.mod.addforeigncom"), "0"),
+		ADDFOREIGNUNIT5 (Messages.getString("NationDetailsSection.mod.addforeignunit"), "0"),
+		ADDFOREIGNCOM5 (Messages.getString("NationDetailsSection.mod.addforeigncom"), "0"),
+		ADDFOREIGNUNIT6 (Messages.getString("NationDetailsSection.mod.addforeignunit"), "0"),
+		ADDFOREIGNCOM6 (Messages.getString("NationDetailsSection.mod.addforeigncom"), "0"),
+		ADDFOREIGNUNIT7 (Messages.getString("NationDetailsSection.mod.addforeignunit"), "0"),
+		ADDFOREIGNCOM7 (Messages.getString("NationDetailsSection.mod.addforeigncom"), "0"),
+		ADDFOREIGNUNIT8 (Messages.getString("NationDetailsSection.mod.addforeignunit"), "0"),
+		ADDFOREIGNCOM8 (Messages.getString("NationDetailsSection.mod.addforeigncom"), "0"),
+		ADDFOREIGNUNIT9 (Messages.getString("NationDetailsSection.mod.addforeignunit"), "0"),
+		ADDFOREIGNCOM9 (Messages.getString("NationDetailsSection.mod.addforeigncom"), "0"),
+		ADDFOREIGNUNIT10 (Messages.getString("NationDetailsSection.mod.addforeignunit"), "0"),
+		ADDFOREIGNCOM10 (Messages.getString("NationDetailsSection.mod.addforeigncom"), "0"),
+		ADDFOREIGNUNIT11 (Messages.getString("NationDetailsSection.mod.addforeignunit"), "0"),
+		ADDFOREIGNCOM11 (Messages.getString("NationDetailsSection.mod.addforeigncom"), "0"),
+		ADDFOREIGNUNIT12 (Messages.getString("NationDetailsSection.mod.addforeignunit"), "0"),
+		ADDFOREIGNCOM12 (Messages.getString("NationDetailsSection.mod.addforeigncom"), "0"),
+		ADDFOREIGNUNIT13 (Messages.getString("NationDetailsSection.mod.addforeignunit"), "0"),
+		ADDFOREIGNCOM13 (Messages.getString("NationDetailsSection.mod.addforeigncom"), "0"),
+		ADDFOREIGNUNIT14 (Messages.getString("NationDetailsSection.mod.addforeignunit"), "0"),
+		ADDFOREIGNCOM14 (Messages.getString("NationDetailsSection.mod.addforeigncom"), "0"),
+		FORESTREC1 (Messages.getString("NationDetailsSection.mod.forestrec"), "0"),
+		FORESTCOM1 (Messages.getString("NationDetailsSection.mod.forestcom"), "0"),
+		FORESTREC2 (Messages.getString("NationDetailsSection.mod.forestrec"), "0"),
+		FORESTCOM2 (Messages.getString("NationDetailsSection.mod.forestcom"), "0"),
+		FORESTREC3 (Messages.getString("NationDetailsSection.mod.forestrec"), "0"),
+		FORESTCOM3 (Messages.getString("NationDetailsSection.mod.forestcom"), "0"),
+		FORESTREC4 (Messages.getString("NationDetailsSection.mod.forestrec"), "0"),
+		FORESTCOM4 (Messages.getString("NationDetailsSection.mod.forestcom"), "0"),
+		FORESTREC5 (Messages.getString("NationDetailsSection.mod.forestrec"), "0"),
+		FORESTCOM5 (Messages.getString("NationDetailsSection.mod.forestcom"), "0"),
+		MOUNTAINREC1 (Messages.getString("NationDetailsSection.mod.mountainrec"), "0"),
+		MOUNTAINCOM1 (Messages.getString("NationDetailsSection.mod.mountaincom"), "0"),
+		MOUNTAINREC2 (Messages.getString("NationDetailsSection.mod.mountainrec"), "0"),
+		MOUNTAINCOM2 (Messages.getString("NationDetailsSection.mod.mountaincom"), "0"),
+		MOUNTAINREC3 (Messages.getString("NationDetailsSection.mod.mountainrec"), "0"),
+		MOUNTAINCOM3 (Messages.getString("NationDetailsSection.mod.mountaincom"), "0"),
+		MOUNTAINREC4 (Messages.getString("NationDetailsSection.mod.mountainrec"), "0"),
+		MOUNTAINCOM4 (Messages.getString("NationDetailsSection.mod.mountaincom"), "0"),
+		MOUNTAINREC5 (Messages.getString("NationDetailsSection.mod.mountainrec"), "0"),
+		MOUNTAINCOM5 (Messages.getString("NationDetailsSection.mod.mountaincom"), "0"),
+		SWAMPREC1 (Messages.getString("NationDetailsSection.mod.swamprec"), "0"),
+		SWAMPCOM1 (Messages.getString("NationDetailsSection.mod.swampcom"), "0"),
+		SWAMPREC2 (Messages.getString("NationDetailsSection.mod.swamprec"), "0"),
+		SWAMPCOM2 (Messages.getString("NationDetailsSection.mod.swampcom"), "0"),
+		SWAMPREC3 (Messages.getString("NationDetailsSection.mod.swamprec"), "0"),
+		SWAMPCOM3 (Messages.getString("NationDetailsSection.mod.swampcom"), "0"),
+		SWAMPREC4 (Messages.getString("NationDetailsSection.mod.swamprec"), "0"),
+		SWAMPCOM4 (Messages.getString("NationDetailsSection.mod.swampcom"), "0"),
+		SWAMPREC5 (Messages.getString("NationDetailsSection.mod.swamprec"), "0"),
+		SWAMPCOM5 (Messages.getString("NationDetailsSection.mod.swampcom"), "0"),
+		WASTEREC1 (Messages.getString("NationDetailsSection.mod.wasterec"), "0"),
+		WASTECOM1 (Messages.getString("NationDetailsSection.mod.wastecom"), "0"),
+		WASTEREC2 (Messages.getString("NationDetailsSection.mod.wasterec"), "0"),
+		WASTECOM2 (Messages.getString("NationDetailsSection.mod.wastecom"), "0"),
+		WASTEREC3 (Messages.getString("NationDetailsSection.mod.wasterec"), "0"),
+		WASTECOM3 (Messages.getString("NationDetailsSection.mod.wastecom"), "0"),
+		WASTEREC4 (Messages.getString("NationDetailsSection.mod.wasterec"), "0"),
+		WASTECOM4 (Messages.getString("NationDetailsSection.mod.wastecom"), "0"),
+		WASTEREC5 (Messages.getString("NationDetailsSection.mod.wasterec"), "0"),
+		WASTECOM5 (Messages.getString("NationDetailsSection.mod.wastecom"), "0"),
+		CAVEREC1 (Messages.getString("NationDetailsSection.mod.caverec"), "0"),
+		CAVECOM1 (Messages.getString("NationDetailsSection.mod.cavecom"), "0"),
+		CAVEREC2 (Messages.getString("NationDetailsSection.mod.caverec"), "0"),
+		CAVECOM2 (Messages.getString("NationDetailsSection.mod.cavecom"), "0"),
+		CAVEREC3 (Messages.getString("NationDetailsSection.mod.caverec"), "0"),
+		CAVECOM3 (Messages.getString("NationDetailsSection.mod.cavecom"), "0"),
+		CAVEREC4 (Messages.getString("NationDetailsSection.mod.caverec"), "0"),
+		CAVECOM4 (Messages.getString("NationDetailsSection.mod.cavecom"), "0"),
+		CAVEREC5 (Messages.getString("NationDetailsSection.mod.caverec"), "0"),
+		CAVECOM5 (Messages.getString("NationDetailsSection.mod.cavecom"), "0"),
+		HERO1 (Messages.getString("NationDetailsSection.mod.hero1"), "0"),
+		HERO2 (Messages.getString("NationDetailsSection.mod.hero2"), "0"),
+		HERO3 (Messages.getString("NationDetailsSection.mod.hero3"), "0"),
+		HERO4 (Messages.getString("NationDetailsSection.mod.hero4"), "0"),
+		HERO5 (Messages.getString("NationDetailsSection.mod.hero5"), "0"),
+		HERO6 (Messages.getString("NationDetailsSection.mod.hero6"), "0"),
+		MULTIHERO1 (Messages.getString("NationDetailsSection.mod.multihero1"), "0"),
+		MULTIHERO2 (Messages.getString("NationDetailsSection.mod.multihero2"), "0"),
+		MERCCOST (Messages.getString("NationDetailsSection.mod.merccost"), "0"),
+		CLEARGODS (Messages.getString("NationDetailsSection.mod.cleargods")),
+		HOMEREALM (Messages.getString("NationDetailsSection.mod.homerealm"), "10"),
+		ADDGOD1 (Messages.getString("NationDetailsSection.mod.addgod"), "0"),
+		DELGOD1 (Messages.getString("NationDetailsSection.mod.delgod"), "0"),
+		ADDGOD2 (Messages.getString("NationDetailsSection.mod.addgod"), "0"),
+		DELGOD2 (Messages.getString("NationDetailsSection.mod.delgod"), "0"),
+		ADDGOD3 (Messages.getString("NationDetailsSection.mod.addgod"), "0"),
+		DELGOD3 (Messages.getString("NationDetailsSection.mod.delgod"), "0"),
+		ADDGOD4 (Messages.getString("NationDetailsSection.mod.addgod"), "0"),
+		DELGOD4 (Messages.getString("NationDetailsSection.mod.delgod"), "0"),
+		ADDGOD5 (Messages.getString("NationDetailsSection.mod.addgod"), "0"),
+		DELGOD5 (Messages.getString("NationDetailsSection.mod.delgod"), "0"),
+		ADDGOD6 (Messages.getString("NationDetailsSection.mod.addgod"), "0"),
+		DELGOD6 (Messages.getString("NationDetailsSection.mod.delgod"), "0"),
+		ADDGOD7 (Messages.getString("NationDetailsSection.mod.addgod"), "0"),
+		DELGOD7 (Messages.getString("NationDetailsSection.mod.delgod"), "0"),
+		ADDGOD8 (Messages.getString("NationDetailsSection.mod.addgod"), "0"),
+		DELGOD8 (Messages.getString("NationDetailsSection.mod.delgod"), "0"),
+		ADDGOD9 (Messages.getString("NationDetailsSection.mod.addgod"), "0"),
+		DELGOD9 (Messages.getString("NationDetailsSection.mod.delgod"), "0"),
+		ADDGOD10 (Messages.getString("NationDetailsSection.mod.addgod"), "0"),
+		DELGOD10 (Messages.getString("NationDetailsSection.mod.delgod"), "0"),
+		ADDGOD11 (Messages.getString("NationDetailsSection.mod.addgod"), "0"),
+		DELGOD11 (Messages.getString("NationDetailsSection.mod.delgod"), "0"),
+		ADDGOD12 (Messages.getString("NationDetailsSection.mod.addgod"), "0"),
+		DELGOD12 (Messages.getString("NationDetailsSection.mod.delgod"), "0"),
+		ADDGOD13 (Messages.getString("NationDetailsSection.mod.addgod"), "0"),
+		DELGOD13 (Messages.getString("NationDetailsSection.mod.delgod"), "0"),
+		ADDGOD14 (Messages.getString("NationDetailsSection.mod.addgod"), "0"),
+		DELGOD14 (Messages.getString("NationDetailsSection.mod.delgod"), "0"),
+		DEFCOM1 (Messages.getString("NationDetailsSection.mod.defcom1"), "0"),
+		DEFCOM2 (Messages.getString("NationDetailsSection.mod.defcom2"), "0"),
+		DEFUNIT1 (Messages.getString("NationDetailsSection.mod.defunit1"), "0"),
+		DEFUNIT1B (Messages.getString("NationDetailsSection.mod.defunit1b"), "0"),
+		DEFUNIT2 (Messages.getString("NationDetailsSection.mod.defunit2"), "0"),
+		DEFUNIT2B (Messages.getString("NationDetailsSection.mod.defunit2b"), "0"),
+		DEFMULT1 (Messages.getString("NationDetailsSection.mod.defmult1"), "0"),
+		DEFMULT1B (Messages.getString("NationDetailsSection.mod.defmult1b"), "0"),
+		DEFMULT2 (Messages.getString("NationDetailsSection.mod.defmult2"), "0"),
+		DEFMULT2B (Messages.getString("NationDetailsSection.mod.defmult2b"), "0"),
+		LIKESPOP (Messages.getString("NationDetailsSection.mod.likespop"), "0"),
+		FORTERA (Messages.getString("NationDetailsSection.mod.fortera"), "0"),
+		FORTCOST (Messages.getString("NationDetailsSection.mod.fortcost"), "0"),
+		LABCOST (Messages.getString("NationDetailsSection.mod.labcost"), "0"),
+		TEMPLECOST (Messages.getString("NationDetailsSection.mod.templecost"), "0"),
+		TEMPLEPIC (Messages.getString("NationDetailsSection.mod.templepic"), "0"),
 		CLEARSITES (Messages.getString("NationDetailsSection.mod.clearsites")),
-		STARTSITE1 (Messages.getString("NationDetailsSection.mod.startsite"), ""),
-		STARTSITE2 (Messages.getString("NationDetailsSection.mod.startsite"), ""),
-		STARTSITE3 (Messages.getString("NationDetailsSection.mod.startsite"), ""),
-		STARTSITE4 (Messages.getString("NationDetailsSection.mod.startsite"), ""),
+		STARTSITE1 (Messages.getString("NationDetailsSection.mod.startsite"), "0"),
+		STARTSITE2 (Messages.getString("NationDetailsSection.mod.startsite"), "0"),
+		STARTSITE3 (Messages.getString("NationDetailsSection.mod.startsite"), "0"),
+		STARTSITE4 (Messages.getString("NationDetailsSection.mod.startsite"), "0"),
 		UWNATION (Messages.getString("NationDetailsSection.mod.uwnation")),
 		BLOODNATION (Messages.getString("NationDetailsSection.mod.bloodnation")),
 		NOPREACH (Messages.getString("NationDetailsSection.mod.nopreach")),
 		DYINGDOM (Messages.getString("NationDetailsSection.mod.dyingdom")),
 		SACRIFICEDOM (Messages.getString("NationDetailsSection.mod.sacrificedom")),
+		SPREADCOLD (Messages.getString("NationDetailsSection.mod.spreadcold"), "0"),
+		SPREADHEAT (Messages.getString("NationDetailsSection.mod.spreadheat"), "0"),
+		SPREADCHAOS (Messages.getString("NationDetailsSection.mod.spreadchaos"), "0"),
+		SPREADLAZY (Messages.getString("NationDetailsSection.mod.spreadlazy"), "0"),
+		SPREADDEATH (Messages.getString("NationDetailsSection.mod.spreaddeath"), "0"),
+		GOLEMHP (Messages.getString("NationDetailsSection.mod.golemhp"), "0"),
 		NODEATHSUPPLY (Messages.getString("NationDetailsSection.mod.nodeathsupply")),
-		IDEALCOLD (Messages.getString("NationDetailsSection.mod.idealcold"), ""),
-		CASTLEPROD (Messages.getString("NationDetailsSection.mod.castleprod"), ""),
-		DOMKILL (Messages.getString("NationDetailsSection.mod.domkill"), ""),
-		DOMUNREST (Messages.getString("NationDetailsSection.mod.domunrest"), ""),
+		IDEALCOLD (Messages.getString("NationDetailsSection.mod.idealcold"), "0"),
+		CASTLEPROD (Messages.getString("NationDetailsSection.mod.castleprod"), "0"),
+		DOMKILL (Messages.getString("NationDetailsSection.mod.domkill"), "0"),
+		DOMUNREST (Messages.getString("NationDetailsSection.mod.domunrest"), "0"),
 		AUTOUNDEAD (Messages.getString("NationDetailsSection.mod.autoundead")),
 		ZOMBIEREANIM (Messages.getString("NationDetailsSection.mod.zombiereanim")),
 		HORSEREANIM (Messages.getString("NationDetailsSection.mod.horsereanim")),
 		WIGHTREANIM (Messages.getString("NationDetailsSection.mod.wightreanim")),
 		MANIKINREANIM (Messages.getString("NationDetailsSection.mod.manikinreanim")),
-		TOMBWYRMREANIM (Messages.getString("NationDetailsSection.mod.tombwyrmreanim")),
-		STARTFORT (Messages.getString("NationDetailsSection.mod.startfort"), ""),
-		DEFAULTFORT (Messages.getString("NationDetailsSection.mod.defaultfort"), ""),
-		FARMFORT (Messages.getString("NationDetailsSection.mod.farmfort"), ""),
-		MOUNTAINFORT (Messages.getString("NationDetailsSection.mod.mountainfort"), ""),
-		FORESTFORT (Messages.getString("NationDetailsSection.mod.forestfort"), ""),
-		SWAMPFORT (Messages.getString("NationDetailsSection.mod.swampfort"), ""),
-		UWFORT (Messages.getString("NationDetailsSection.mod.uwfort"), ""),
-		DEEPFORT (Messages.getString("NationDetailsSection.mod.deepfort"), ""),
-		COLOR (Messages.getString("NationDetailsSection.mod.color"), "0.0", "0.0", "0.0");
-		
+		TOMBWYRMREANIM (Messages.getString("NationDetailsSection.mod.tombwyrmreanim"));
+
 		private String label;
 		private String defaultValue;
 		private String defaultValue2;
@@ -252,7 +364,6 @@ public class NationDetailsPage extends AbstractDetailsPage {
 		super(doc, viewer);
 		instMap.put(Inst.EPITHET, new Inst1Fields());
 		instMap.put(Inst.FLAG, new Inst1Fields());
-		instMap.put(Inst.MAPBACKGROUND, new Inst1Fields());
 		instMap.put(Inst.STARTSITE1, new Inst1Fields());
 		instMap.put(Inst.STARTSITE2, new Inst1Fields());
 		instMap.put(Inst.STARTSITE3, new Inst1Fields());
@@ -279,14 +390,6 @@ public class NationDetailsPage extends AbstractDetailsPage {
 		instMap.put(Inst.CASTLEPROD, new Inst2Fields());
 		instMap.put(Inst.DOMKILL, new Inst2Fields());
 		instMap.put(Inst.DOMUNREST, new Inst2Fields());
-		instMap.put(Inst.STARTFORT, new Inst2Fields());
-		instMap.put(Inst.DEFAULTFORT, new Inst2Fields());
-		instMap.put(Inst.FARMFORT, new Inst2Fields());
-		instMap.put(Inst.MOUNTAINFORT, new Inst2Fields());
-		instMap.put(Inst.FORESTFORT, new Inst2Fields());
-		instMap.put(Inst.SWAMPFORT, new Inst2Fields());
-		instMap.put(Inst.UWFORT, new Inst2Fields());
-		instMap.put(Inst.DEEPFORT, new Inst2Fields());
 		instMap.put(Inst.CLEARNATION, new Inst3Fields());
 		instMap.put(Inst.CLEARREC, new Inst3Fields());
 		instMap.put(Inst.CLEARSITES, new Inst3Fields());
@@ -351,7 +454,126 @@ public class NationDetailsPage extends AbstractDetailsPage {
 		instMap.put(Inst.DEFUNIT2, new Inst4Fields());
 		instMap.put(Inst.DEFUNIT2B, new Inst4Fields());
 		instMap.put(Inst.COLOR, new Inst5Fields());
-		
+		instMap.put(Inst.SECONDARYCOLOR, new Inst5Fields());
+		instMap.put(Inst.ADDFOREIGNUNIT1, new Inst4Fields());
+		instMap.put(Inst.ADDFOREIGNUNIT2, new Inst4Fields());
+		instMap.put(Inst.ADDFOREIGNUNIT3, new Inst4Fields());
+		instMap.put(Inst.ADDFOREIGNUNIT4, new Inst4Fields());
+		instMap.put(Inst.ADDFOREIGNUNIT5, new Inst4Fields());
+		instMap.put(Inst.ADDFOREIGNUNIT6, new Inst4Fields());
+		instMap.put(Inst.ADDFOREIGNUNIT7, new Inst4Fields());
+		instMap.put(Inst.ADDFOREIGNUNIT8, new Inst4Fields());
+		instMap.put(Inst.ADDFOREIGNUNIT9, new Inst4Fields());
+		instMap.put(Inst.ADDFOREIGNUNIT10, new Inst4Fields());
+		instMap.put(Inst.ADDFOREIGNUNIT11, new Inst4Fields());
+		instMap.put(Inst.ADDFOREIGNUNIT12, new Inst4Fields());
+		instMap.put(Inst.ADDFOREIGNUNIT13, new Inst4Fields());
+		instMap.put(Inst.ADDFOREIGNUNIT14, new Inst4Fields());
+		instMap.put(Inst.ADDFOREIGNCOM1, new Inst4Fields());
+		instMap.put(Inst.ADDFOREIGNCOM2, new Inst4Fields());
+		instMap.put(Inst.ADDFOREIGNCOM3, new Inst4Fields());
+		instMap.put(Inst.ADDFOREIGNCOM4, new Inst4Fields());
+		instMap.put(Inst.ADDFOREIGNCOM5, new Inst4Fields());
+		instMap.put(Inst.ADDFOREIGNCOM6, new Inst4Fields());
+		instMap.put(Inst.ADDFOREIGNCOM7, new Inst4Fields());
+		instMap.put(Inst.ADDFOREIGNCOM8, new Inst4Fields());
+		instMap.put(Inst.ADDFOREIGNCOM9, new Inst4Fields());
+		instMap.put(Inst.ADDFOREIGNCOM10, new Inst4Fields());
+		instMap.put(Inst.ADDFOREIGNCOM11, new Inst4Fields());
+		instMap.put(Inst.ADDFOREIGNCOM12, new Inst4Fields());
+		instMap.put(Inst.ADDFOREIGNCOM13, new Inst4Fields());
+		instMap.put(Inst.ADDFOREIGNCOM14, new Inst4Fields());
+		instMap.put(Inst.MERCCOST, new Inst2Fields());
+		instMap.put(Inst.FORESTREC1, new Inst4Fields());
+		instMap.put(Inst.FORESTREC2, new Inst4Fields());
+		instMap.put(Inst.FORESTREC3, new Inst4Fields());
+		instMap.put(Inst.FORESTREC4, new Inst4Fields());
+		instMap.put(Inst.FORESTREC5, new Inst4Fields());
+		instMap.put(Inst.FORESTCOM1, new Inst4Fields());
+		instMap.put(Inst.FORESTCOM2, new Inst4Fields());
+		instMap.put(Inst.FORESTCOM3, new Inst4Fields());
+		instMap.put(Inst.FORESTCOM4, new Inst4Fields());
+		instMap.put(Inst.FORESTCOM5, new Inst4Fields());
+		instMap.put(Inst.MOUNTAINREC1, new Inst4Fields());
+		instMap.put(Inst.MOUNTAINREC2, new Inst4Fields());
+		instMap.put(Inst.MOUNTAINREC3, new Inst4Fields());
+		instMap.put(Inst.MOUNTAINREC4, new Inst4Fields());
+		instMap.put(Inst.MOUNTAINREC5, new Inst4Fields());
+		instMap.put(Inst.MOUNTAINCOM1, new Inst4Fields());
+		instMap.put(Inst.MOUNTAINCOM2, new Inst4Fields());
+		instMap.put(Inst.MOUNTAINCOM3, new Inst4Fields());
+		instMap.put(Inst.MOUNTAINCOM4, new Inst4Fields());
+		instMap.put(Inst.MOUNTAINCOM5, new Inst4Fields());
+		instMap.put(Inst.SWAMPREC1, new Inst4Fields());
+		instMap.put(Inst.SWAMPREC2, new Inst4Fields());
+		instMap.put(Inst.SWAMPREC3, new Inst4Fields());
+		instMap.put(Inst.SWAMPREC4, new Inst4Fields());
+		instMap.put(Inst.SWAMPREC5, new Inst4Fields());
+		instMap.put(Inst.SWAMPCOM1, new Inst4Fields());
+		instMap.put(Inst.SWAMPCOM2, new Inst4Fields());
+		instMap.put(Inst.SWAMPCOM3, new Inst4Fields());
+		instMap.put(Inst.SWAMPCOM4, new Inst4Fields());
+		instMap.put(Inst.SWAMPCOM5, new Inst4Fields());
+		instMap.put(Inst.WASTEREC1, new Inst4Fields());
+		instMap.put(Inst.WASTEREC2, new Inst4Fields());
+		instMap.put(Inst.WASTEREC3, new Inst4Fields());
+		instMap.put(Inst.WASTEREC4, new Inst4Fields());
+		instMap.put(Inst.WASTEREC5, new Inst4Fields());
+		instMap.put(Inst.WASTECOM1, new Inst4Fields());
+		instMap.put(Inst.WASTECOM2, new Inst4Fields());
+		instMap.put(Inst.WASTECOM3, new Inst4Fields());
+		instMap.put(Inst.WASTECOM4, new Inst4Fields());
+		instMap.put(Inst.WASTECOM5, new Inst4Fields());
+		instMap.put(Inst.CAVEREC1, new Inst4Fields());
+		instMap.put(Inst.CAVEREC2, new Inst4Fields());
+		instMap.put(Inst.CAVEREC3, new Inst4Fields());
+		instMap.put(Inst.CAVEREC4, new Inst4Fields());
+		instMap.put(Inst.CAVEREC5, new Inst4Fields());
+		instMap.put(Inst.CAVECOM1, new Inst4Fields());
+		instMap.put(Inst.CAVECOM2, new Inst4Fields());
+		instMap.put(Inst.CAVECOM3, new Inst4Fields());
+		instMap.put(Inst.CAVECOM4, new Inst4Fields());
+		instMap.put(Inst.CAVECOM5, new Inst4Fields());
+		instMap.put(Inst.CLEARGODS, new Inst3Fields());
+		instMap.put(Inst.ADDGOD1, new Inst4Fields());
+		instMap.put(Inst.ADDGOD2, new Inst4Fields());
+		instMap.put(Inst.ADDGOD3, new Inst4Fields());
+		instMap.put(Inst.ADDGOD4, new Inst4Fields());
+		instMap.put(Inst.ADDGOD5, new Inst4Fields());
+		instMap.put(Inst.ADDGOD6, new Inst4Fields());
+		instMap.put(Inst.ADDGOD7, new Inst4Fields());
+		instMap.put(Inst.ADDGOD8, new Inst4Fields());
+		instMap.put(Inst.ADDGOD9, new Inst4Fields());
+		instMap.put(Inst.ADDGOD10, new Inst4Fields());
+		instMap.put(Inst.ADDGOD11, new Inst4Fields());
+		instMap.put(Inst.ADDGOD12, new Inst4Fields());
+		instMap.put(Inst.ADDGOD13, new Inst4Fields());
+		instMap.put(Inst.ADDGOD14, new Inst4Fields());
+		instMap.put(Inst.HOMEREALM, new Inst2Fields());
+		instMap.put(Inst.DELGOD1, new Inst4Fields());
+		instMap.put(Inst.DELGOD2, new Inst4Fields());
+		instMap.put(Inst.DELGOD3, new Inst4Fields());
+		instMap.put(Inst.DELGOD4, new Inst4Fields());
+		instMap.put(Inst.DELGOD5, new Inst4Fields());
+		instMap.put(Inst.DELGOD6, new Inst4Fields());
+		instMap.put(Inst.DELGOD7, new Inst4Fields());
+		instMap.put(Inst.DELGOD8, new Inst4Fields());
+		instMap.put(Inst.DELGOD9, new Inst4Fields());
+		instMap.put(Inst.DELGOD10, new Inst4Fields());
+		instMap.put(Inst.DELGOD11, new Inst4Fields());
+		instMap.put(Inst.DELGOD12, new Inst4Fields());
+		instMap.put(Inst.DELGOD13, new Inst4Fields());
+		instMap.put(Inst.DELGOD14, new Inst4Fields());
+		instMap.put(Inst.LIKESPOP, new Inst2Fields());
+		instMap.put(Inst.FORTERA, new Inst2Fields());
+		instMap.put(Inst.FORTCOST, new Inst2Fields());
+		instMap.put(Inst.SPREADCOLD, new Inst2Fields());
+		instMap.put(Inst.SPREADHEAT, new Inst2Fields());
+		instMap.put(Inst.SPREADCHAOS, new Inst2Fields());
+		instMap.put(Inst.SPREADLAZY, new Inst2Fields());
+		instMap.put(Inst.SPREADDEATH, new Inst2Fields());
+		instMap.put(Inst.GOLEMHP, new Inst2Fields());
+
 		List<Inst> recUnitList = new ArrayList<Inst>();
 		recUnitList.add(Inst.ADDRECUNIT1);
 		recUnitList.add(Inst.ADDRECUNIT2);
@@ -385,7 +607,156 @@ public class NationDetailsPage extends AbstractDetailsPage {
 		recComList.add(Inst.ADDRECCOM13);
 		recComList.add(Inst.ADDRECCOM14);
 		dynamicFields.add(recComList);
-	}
+
+		List<Inst> forUnitList = new ArrayList<Inst>();
+		forUnitList.add(Inst.ADDFOREIGNUNIT1);
+		forUnitList.add(Inst.ADDFOREIGNUNIT2);
+		forUnitList.add(Inst.ADDFOREIGNUNIT3);
+		forUnitList.add(Inst.ADDFOREIGNUNIT4);
+		forUnitList.add(Inst.ADDFOREIGNUNIT5);
+		forUnitList.add(Inst.ADDFOREIGNUNIT6);
+		forUnitList.add(Inst.ADDFOREIGNUNIT7);
+		forUnitList.add(Inst.ADDFOREIGNUNIT8);
+		forUnitList.add(Inst.ADDFOREIGNUNIT9);
+		forUnitList.add(Inst.ADDFOREIGNUNIT10);
+		forUnitList.add(Inst.ADDFOREIGNUNIT11);
+		forUnitList.add(Inst.ADDFOREIGNUNIT12);
+		forUnitList.add(Inst.ADDFOREIGNUNIT13);
+		forUnitList.add(Inst.ADDFOREIGNUNIT14);
+		dynamicFields.add(forUnitList);
+		
+		List<Inst> forComList = new ArrayList<Inst>();
+		forComList.add(Inst.ADDFOREIGNCOM1);
+		forComList.add(Inst.ADDFOREIGNCOM2);
+		forComList.add(Inst.ADDFOREIGNCOM3);
+		forComList.add(Inst.ADDFOREIGNCOM4);
+		forComList.add(Inst.ADDFOREIGNCOM5);
+		forComList.add(Inst.ADDFOREIGNCOM6);
+		forComList.add(Inst.ADDFOREIGNCOM7);
+		forComList.add(Inst.ADDFOREIGNCOM8);
+		forComList.add(Inst.ADDFOREIGNCOM9);
+		forComList.add(Inst.ADDFOREIGNCOM10);
+		forComList.add(Inst.ADDFOREIGNCOM11);
+		forComList.add(Inst.ADDFOREIGNCOM12);
+		forComList.add(Inst.ADDFOREIGNCOM13);
+		forComList.add(Inst.ADDFOREIGNCOM14);
+		dynamicFields.add(forComList);
+		
+		List<Inst> forestRecList = new ArrayList<Inst>();
+		forestRecList.add(Inst.FORESTREC1);
+		forestRecList.add(Inst.FORESTREC2);
+		forestRecList.add(Inst.FORESTREC3);
+		forestRecList.add(Inst.FORESTREC4);
+		forestRecList.add(Inst.FORESTREC5);
+		dynamicFields.add(forestRecList);
+		
+		List<Inst> forestComList = new ArrayList<Inst>();
+		forestComList.add(Inst.FORESTCOM1);
+		forestComList.add(Inst.FORESTCOM2);
+		forestComList.add(Inst.FORESTCOM3);
+		forestComList.add(Inst.FORESTCOM4);
+		forestComList.add(Inst.FORESTCOM5);
+		dynamicFields.add(forestComList);
+		
+		List<Inst> mountRecList = new ArrayList<Inst>();
+		mountRecList.add(Inst.MOUNTAINREC1);
+		mountRecList.add(Inst.MOUNTAINREC2);
+		mountRecList.add(Inst.MOUNTAINREC3);
+		mountRecList.add(Inst.MOUNTAINREC4);
+		mountRecList.add(Inst.MOUNTAINREC5);
+		dynamicFields.add(mountRecList);
+
+		List<Inst> mountComList = new ArrayList<Inst>();
+		mountComList.add(Inst.MOUNTAINCOM1);
+		mountComList.add(Inst.MOUNTAINCOM2);
+		mountComList.add(Inst.MOUNTAINCOM3);
+		mountComList.add(Inst.MOUNTAINCOM4);
+		mountComList.add(Inst.MOUNTAINCOM5);
+		dynamicFields.add(mountComList);
+
+		List<Inst> swampRecList = new ArrayList<Inst>();
+		swampRecList.add(Inst.SWAMPREC1);
+		swampRecList.add(Inst.SWAMPREC2);
+		swampRecList.add(Inst.SWAMPREC3);
+		swampRecList.add(Inst.SWAMPREC4);
+		swampRecList.add(Inst.SWAMPREC5);
+		dynamicFields.add(swampRecList);
+
+		List<Inst> swampComList = new ArrayList<Inst>();
+		swampComList.add(Inst.SWAMPCOM1);
+		swampComList.add(Inst.SWAMPCOM2);
+		swampComList.add(Inst.SWAMPCOM3);
+		swampComList.add(Inst.SWAMPCOM4);
+		swampComList.add(Inst.SWAMPCOM5);
+		dynamicFields.add(swampComList);
+
+		List<Inst> wasteRecList = new ArrayList<Inst>();
+		wasteRecList.add(Inst.WASTEREC1);
+		wasteRecList.add(Inst.WASTEREC2);
+		wasteRecList.add(Inst.WASTEREC3);
+		wasteRecList.add(Inst.WASTEREC4);
+		wasteRecList.add(Inst.WASTEREC5);
+		dynamicFields.add(wasteRecList);
+
+		List<Inst> wasteComList = new ArrayList<Inst>();
+		wasteComList.add(Inst.WASTECOM1);
+		wasteComList.add(Inst.WASTECOM2);
+		wasteComList.add(Inst.WASTECOM3);
+		wasteComList.add(Inst.WASTECOM4);
+		wasteComList.add(Inst.WASTECOM5);
+		dynamicFields.add(wasteComList);
+
+		List<Inst> caveRecList = new ArrayList<Inst>();
+		caveRecList.add(Inst.CAVEREC1);
+		caveRecList.add(Inst.CAVEREC2);
+		caveRecList.add(Inst.CAVEREC3);
+		caveRecList.add(Inst.CAVEREC4);
+		caveRecList.add(Inst.CAVEREC5);
+		dynamicFields.add(caveRecList);
+
+		List<Inst> caveComList = new ArrayList<Inst>();
+		caveComList.add(Inst.CAVECOM1);
+		caveComList.add(Inst.CAVECOM2);
+		caveComList.add(Inst.CAVECOM3);
+		caveComList.add(Inst.CAVECOM4);
+		caveComList.add(Inst.CAVECOM5);
+		dynamicFields.add(caveComList);
+
+		List<Inst> addGodList = new ArrayList<Inst>();
+		addGodList.add(Inst.ADDGOD1);
+		addGodList.add(Inst.ADDGOD2);
+		addGodList.add(Inst.ADDGOD3);
+		addGodList.add(Inst.ADDGOD4);
+		addGodList.add(Inst.ADDGOD5);
+		addGodList.add(Inst.ADDGOD6);
+		addGodList.add(Inst.ADDGOD7);
+		addGodList.add(Inst.ADDGOD8);
+		addGodList.add(Inst.ADDGOD9);
+		addGodList.add(Inst.ADDGOD10);
+		addGodList.add(Inst.ADDGOD11);
+		addGodList.add(Inst.ADDGOD12);
+		addGodList.add(Inst.ADDGOD13);
+		addGodList.add(Inst.ADDGOD14);
+		dynamicFields.add(addGodList);
+
+		List<Inst> delGodList = new ArrayList<Inst>();
+		delGodList.add(Inst.DELGOD1);
+		delGodList.add(Inst.DELGOD2);
+		delGodList.add(Inst.DELGOD3);
+		delGodList.add(Inst.DELGOD4);
+		delGodList.add(Inst.DELGOD5);
+		delGodList.add(Inst.DELGOD6);
+		delGodList.add(Inst.DELGOD7);
+		delGodList.add(Inst.DELGOD8);
+		delGodList.add(Inst.DELGOD9);
+		delGodList.add(Inst.DELGOD10);
+		delGodList.add(Inst.DELGOD11);
+		delGodList.add(Inst.DELGOD12);
+		delGodList.add(Inst.DELGOD13);
+		delGodList.add(Inst.DELGOD14);
+		dynamicFields.add(delGodList);
+
+}
 	
 	/* (non-Javadoc)
 	 * @see org.eclipse.ui.forms.IDetailsPage#createContents(org.eclipse.swt.widgets.Composite)
@@ -629,27 +1000,38 @@ public class NationDetailsPage extends AbstractDetailsPage {
 		Composite leftColumn = null;
 		Composite rightColumn = null;
 		boolean isRight = false;
+		boolean inGeneral = false;
 		for (final Map.Entry<Inst, InstFields> fields : instMap.entrySet()) {
 			final Inst key = fields.getKey();
 			
 			if (key.equals(Inst.CLEARNATION) || 
 				key.equals(Inst.CLEARREC) || 
-				key.equals(Inst.CLEARSITES) || 
-				key.equals(Inst.STARTFORT)) {
+				key.equals(Inst.CLEARGODS) || 
+				key.equals(Inst.DEFCOM1) || 
+				key.equals(Inst.FORTERA) || 
+				key.equals(Inst.CLEARSITES)) {
 
 				final Section expandable = toolkit.createSection(client, ExpandableComposite.TWISTIE|ExpandableComposite.EXPANDED);
 				switch (key) {
 				case CLEARNATION:
 					expandable.setText(Messages.getString("NationDetailsSection.mod.section.general"));
+					inGeneral = true;
 					break;
 				case CLEARREC:
 					expandable.setText(Messages.getString("NationDetailsSection.mod.section.units"));
+					inGeneral = false;
+					break;
+				case CLEARGODS:
+					expandable.setText(Messages.getString("NationDetailsSection.mod.section.gods"));
+					break;
+				case DEFCOM1:
+					expandable.setText(Messages.getString("NationDetailsSection.mod.section.pd"));
+					break;
+				case FORTERA:
+					expandable.setText(Messages.getString("NationDetailsSection.mod.section.forts"));
 					break;
 				case CLEARSITES:
 					expandable.setText(Messages.getString("NationDetailsSection.mod.section.sites"));
-					break;
-				case STARTFORT:
-					expandable.setText(Messages.getString("NationDetailsSection.mod.section.forts"));
 					break;
 				}
 				gd = new GridData(SWT.FILL, SWT.FILL, false, false);
@@ -662,7 +1044,11 @@ public class NationDetailsPage extends AbstractDetailsPage {
 				});
 
 				Composite header1 = toolkit.createComposite(expandable, SWT.BORDER);
-				header1.setLayout(new GridLayout(2, true));
+				if (inGeneral) {
+					header1.setLayout(new GridLayout(1, true));
+				} else {
+					header1.setLayout(new GridLayout(2, true));
+				}
 				expandable.setClient(header1);
 				if (key.equals(Inst.CLEARNATION)) {
 					expandable.setExpanded(true);
@@ -678,13 +1064,17 @@ public class NationDetailsPage extends AbstractDetailsPage {
 				leftColumn.setLayout(glayout);
 				leftColumn.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
-				rightColumn = toolkit.createComposite(header1);
-				glayout = new GridLayout(5, false);
-				glayout.marginHeight = 0;
-				glayout.marginWidth = 0;
-				glayout.verticalSpacing = 0;
-				rightColumn.setLayout(glayout);
-				rightColumn.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+				if (inGeneral) {
+					rightColumn = leftColumn;
+				} else {
+					rightColumn = toolkit.createComposite(header1);
+					glayout = new GridLayout(5, false);
+					glayout.marginHeight = 0;
+					glayout.marginWidth = 0;
+					glayout.verticalSpacing = 0;
+					rightColumn.setLayout(glayout);
+					rightColumn.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+				}
 				isRight = false;
 			}
 
@@ -920,14 +1310,14 @@ public class NationDetailsPage extends AbstractDetailsPage {
 				value3.addFocusListener(new FocusAdapter() {
 					@Override
 					public void focusLost(FocusEvent e) {
-						setInst5(key, doc, null, value3.getText(), null);
+						setInst5(key, doc, null, null, value3.getText());
 					}			
 				});
 				value3.addKeyListener(new KeyAdapter() {
 					@Override
 					public void keyPressed(KeyEvent e) {
 						if (e.character == '\r') {
-							setInst5(key, doc, null, value3.getText(), null);
+							setInst5(key, doc, null, null, value3.getText());
 						}
 					}
 				});
@@ -937,8 +1327,9 @@ public class NationDetailsPage extends AbstractDetailsPage {
 				gd.widthHint = DEFAULT_VALUE_WIDTH;
 				value3.setLayoutData(gd);
 				
-				defaultLabel3 = toolkit.createLabel(isRight?rightColumn:leftColumn, "");
-				defaultLabel3.setEnabled(false);
+				//TODO fix third default label
+				//defaultLabel3 = toolkit.createLabel(isRight?rightColumn:leftColumn, "");
+				//defaultLabel3.setEnabled(false);
 				
 			}
 			
@@ -984,6 +1375,14 @@ public class NationDetailsPage extends AbstractDetailsPage {
 				createSpacer(toolkit, rightColumn, 5);
 				isRight = !isRight;
 			}
+			if (key.equals(Inst.CLEARGODS)) {
+				createSpacer(toolkit, rightColumn, 5);
+				isRight = !isRight;
+			}
+			if (key.equals(Inst.CLEARSITES)) {
+				createSpacer(toolkit, rightColumn, 5);
+				isRight = !isRight;
+			}
 			isRight = !isRight;
 		}
 
@@ -1001,17 +1400,21 @@ public class NationDetailsPage extends AbstractDetailsPage {
 				nameCheck.setSelection(true);
 				nameCheck.setFont(boldFont);
 			} else {
-				String nameStr = Database.getNationName(((SelectNation)input).getValue());
-				name.setText(nameStr != null ? nameStr : "");
-				name.setEnabled(false);
-				nameCheck.setSelection(false);
-				nameCheck.setFont(normalFont);
+				if (input instanceof SelectNation) {
+					String nameStr = Database.getNationName(((SelectNation)input).getValue());
+					name.setText(nameStr != null ? nameStr : "");
+					name.setEnabled(false);
+					nameCheck.setSelection(false);
+					nameCheck.setFont(normalFont);
+				}
 			}
 
 			if (getInst1(Inst.FLAG, input) != null) {
 				sprite = getInst1(Inst.FLAG, input);
 			} else {
-				sprite = ((SelectNation)input).getValue() + ".png";
+				if (input instanceof SelectNation) {
+					sprite = ((SelectNation)input).getValue() + ".png";
+				}
 				fromZip = true;
 			}
 
@@ -1185,7 +1588,7 @@ public class NationDetailsPage extends AbstractDetailsPage {
 					((Inst5Fields)fields.getValue()).check.setFont(normalFont);
 				}
 			}
-			if (input instanceof SelectNation) {
+			if (input instanceof Nation) {
 				switch (fields.getKey()) {
 				case EPITHET:
 					if (nationDB.epithet != null) {
@@ -1223,12 +1626,6 @@ public class NationDetailsPage extends AbstractDetailsPage {
 						Inst.ERA.defaultValue = nationDB.era.toString();
 					}
 					break;
-				case STARTFORT:
-					if (nationDB.startfort != null) {
-						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", nationDB.startfort));
-						Inst.STARTFORT.defaultValue = nationDB.startfort.toString();
-					}
-					break;
 				}
 			}
 		}
@@ -1241,7 +1638,7 @@ public class NationDetailsPage extends AbstractDetailsPage {
 		myDocument.modify(new IUnitOfWork.Void<XtextResource>() {
 			@Override
 			public void process(XtextResource resource) throws Exception {
-				SelectNation nationToEdit = (SelectNation)input;
+				Nation nationToEdit = (Nation)input;
 				EList<NationMods> mods = nationToEdit.getMods();
 				boolean nameSet = false;
 				for (NationMods mod : mods) {
@@ -1270,7 +1667,7 @@ public class NationDetailsPage extends AbstractDetailsPage {
 		myDocument.modify(new IUnitOfWork.Void<XtextResource>() {
 			@Override
 			public void process(XtextResource resource) throws Exception {
-				SelectNation nationToEdit = (SelectNation)input;
+				Nation nationToEdit = (Nation)input;
 				EList<NationMods> mods = nationToEdit.getMods();
 				boolean nameSet = false;
 				for (NationMods mod : mods) {
@@ -1294,7 +1691,7 @@ public class NationDetailsPage extends AbstractDetailsPage {
 	}
 
 	private String getInst1(Inst inst2, Object nation) {
-		EList<NationMods> list = ((SelectNation)nation).getMods();
+		EList<NationMods> list = ((Nation)nation).getMods();
 		int siteCount = 0;
 		for (NationMods mod : list) {
 			if (mod instanceof NationInst1) {
@@ -1326,11 +1723,6 @@ public class NationDetailsPage extends AbstractDetailsPage {
 					break;
 				case FLAG:
 					if (((NationInst1)mod).isFlag()){
-						return ((NationInst1)mod).getValue();
-					}
-					break;
-				case MAPBACKGROUND:
-					if (((NationInst1)mod).isMapbackground()){
 						return ((NationInst1)mod).getValue();
 					}
 					break;
@@ -1373,7 +1765,7 @@ public class NationDetailsPage extends AbstractDetailsPage {
 	}
 	
 	private Integer getInst2(Inst inst2, Object nation) {
-		EList<NationMods> list = ((SelectNation)nation).getMods();
+		EList<NationMods> list = ((Nation)nation).getMods();
 		for (NationMods mod : list) {
 			if (mod instanceof NationInst2) {
 				switch (inst2) {
@@ -1487,43 +1879,58 @@ public class NationDetailsPage extends AbstractDetailsPage {
 						return Integer.valueOf(((NationInst2)mod).getValue());
 					}
 					break;
-				case STARTFORT:
-					if (((NationInst2)mod).isStartfort()){
+				case MERCCOST:
+					if (((NationInst2)mod).isMerccost()){
 						return Integer.valueOf(((NationInst2)mod).getValue());
 					}
 					break;
-				case DEFAULTFORT:
-					if (((NationInst2)mod).isDefaultfort()){
+				case HOMEREALM:
+					if (((NationInst2)mod).isHomerealm()){
 						return Integer.valueOf(((NationInst2)mod).getValue());
 					}
 					break;
-				case FARMFORT:
-					if (((NationInst2)mod).isFarmfort()){
+				case LIKESPOP:
+					if (((NationInst2)mod).isLikespop()){
 						return Integer.valueOf(((NationInst2)mod).getValue());
 					}
 					break;
-				case MOUNTAINFORT:
-					if (((NationInst2)mod).isMountainfort()){
+				case FORTERA:
+					if (((NationInst2)mod).isFortera()){
 						return Integer.valueOf(((NationInst2)mod).getValue());
 					}
 					break;
-				case FORESTFORT:
-					if (((NationInst2)mod).isForestfort()){
+				case FORTCOST:
+					if (((NationInst2)mod).isFortcost()){
 						return Integer.valueOf(((NationInst2)mod).getValue());
 					}
 					break;
-				case SWAMPFORT:
-					if (((NationInst2)mod).isSwampfort()){
+				case SPREADCOLD:
+					if (((NationInst2)mod).isSpreadcold()){
 						return Integer.valueOf(((NationInst2)mod).getValue());
 					}
 					break;
-				case UWFORT:
-					if (((NationInst2)mod).isUwfort()){
+				case SPREADHEAT:
+					if (((NationInst2)mod).isSpreadheat()){
 						return Integer.valueOf(((NationInst2)mod).getValue());
 					}
 					break;
-				case DEEPFORT:
-					if (((NationInst2)mod).isDeepfort()){
+				case SPREADCHAOS:
+					if (((NationInst2)mod).isSpreadchaos()){
+						return Integer.valueOf(((NationInst2)mod).getValue());
+					}
+					break;
+				case SPREADLAZY:
+					if (((NationInst2)mod).isSpreadlazy()){
+						return Integer.valueOf(((NationInst2)mod).getValue());
+					}
+					break;
+				case SPREADDEATH:
+					if (((NationInst2)mod).isSpreaddeath()){
+						return Integer.valueOf(((NationInst2)mod).getValue());
+					}
+					break;
+				case GOLEMHP:
+					if (((NationInst2)mod).isGolemhp()){
 						return Integer.valueOf(((NationInst2)mod).getValue());
 					}
 					break;
@@ -1534,7 +1941,7 @@ public class NationDetailsPage extends AbstractDetailsPage {
 	}
 	
 	private Boolean getInst3(Inst inst3, Object nation) {
-		EList<NationMods> list = ((SelectNation)nation).getMods();
+		EList<NationMods> list = ((Nation)nation).getMods();
 		for (NationMods mod : list) {
 			if (mod instanceof NationInst3) {
 				switch (inst3) {
@@ -1550,6 +1957,11 @@ public class NationDetailsPage extends AbstractDetailsPage {
 					break;
 				case CLEARSITES:
 					if (((NationInst3)mod).isClearsites()){
+						return Boolean.TRUE;
+					}
+					break;
+				case CLEARGODS:
+					if (((NationInst3)mod).isCleargods()){
 						return Boolean.TRUE;
 					}
 					break;
@@ -1622,7 +2034,21 @@ public class NationDetailsPage extends AbstractDetailsPage {
 	private Object getInst4(Inst inst4, Object nation) {
 		int addreccom = 0;
 		int addrecunit = 0;
-		EList<NationMods> list = ((SelectNation)nation).getMods();
+		int addforeignunit = 0;
+		int addforeigncom = 0;
+		int forestrec = 0;
+		int forestcom = 0;
+		int mountainrec = 0;
+		int mountaincom = 0;
+		int swamprec = 0;
+		int swampcom = 0;
+		int wasterec = 0;
+		int wastecom = 0;
+		int caverec = 0;
+		int cavecom = 0;
+		int addgod = 0;
+		int delgod = 0;
+		EList<NationMods> list = ((Nation)nation).getMods();
 		for (NationMods mod : list) {
 			if (mod instanceof NationInst4) {
 				switch (inst4) {
@@ -2190,6 +2616,1384 @@ public class NationDetailsPage extends AbstractDetailsPage {
 						return intVal;
 					}
 					break;
+				case ADDFOREIGNUNIT1:
+					if (((NationInst4)mod).isAddforeignunit()){
+						addforeignunit++;
+						if (addforeignunit == 1) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case ADDFOREIGNUNIT2:
+					if (((NationInst4)mod).isAddforeignunit()){
+						addforeignunit++;
+						if (addforeignunit == 2) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case ADDFOREIGNUNIT3:
+					if (((NationInst4)mod).isAddforeignunit()){
+						addforeignunit++;
+						if (addforeignunit == 3) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case ADDFOREIGNUNIT4:
+					if (((NationInst4)mod).isAddforeignunit()){
+						addforeignunit++;
+						if (addforeignunit == 4) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case ADDFOREIGNUNIT5:
+					if (((NationInst4)mod).isAddforeignunit()){
+						addforeignunit++;
+						if (addforeignunit == 5) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case ADDFOREIGNUNIT6:
+					if (((NationInst4)mod).isAddforeignunit()){
+						addforeignunit++;
+						if (addforeignunit == 6) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case ADDFOREIGNUNIT7:
+					if (((NationInst4)mod).isAddforeignunit()){
+						addforeignunit++;
+						if (addforeignunit == 7) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case ADDFOREIGNUNIT8:
+					if (((NationInst4)mod).isAddforeignunit()){
+						addforeignunit++;
+						if (addforeignunit == 8) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case ADDFOREIGNUNIT9:
+					if (((NationInst4)mod).isAddforeignunit()){
+						addforeignunit++;
+						if (addforeignunit == 9) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case ADDFOREIGNUNIT10:
+					if (((NationInst4)mod).isAddforeignunit()){
+						addforeignunit++;
+						if (addforeignunit == 10) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case ADDFOREIGNUNIT11:
+					if (((NationInst4)mod).isAddforeignunit()){
+						addforeignunit++;
+						if (addforeignunit == 11) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case ADDFOREIGNUNIT12:
+					if (((NationInst4)mod).isAddforeignunit()){
+						addforeignunit++;
+						if (addforeignunit == 12) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case ADDFOREIGNUNIT13:
+					if (((NationInst4)mod).isAddforeignunit()){
+						addforeignunit++;
+						if (addforeignunit == 13) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case ADDFOREIGNUNIT14:
+					if (((NationInst4)mod).isAddforeignunit()){
+						addforeignunit++;
+						if (addforeignunit == 14) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case ADDFOREIGNCOM1:
+					if (((NationInst4)mod).isAddforeigncom()){
+						addforeigncom++;
+						if (addforeigncom == 1) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case ADDFOREIGNCOM2:
+					if (((NationInst4)mod).isAddforeigncom()){
+						addforeigncom++;
+						if (addforeigncom == 2) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case ADDFOREIGNCOM3:
+					if (((NationInst4)mod).isAddforeigncom()){
+						addforeigncom++;
+						if (addforeigncom == 3) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case ADDFOREIGNCOM4:
+					if (((NationInst4)mod).isAddforeigncom()){
+						addforeigncom++;
+						if (addforeigncom == 4) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case ADDFOREIGNCOM5:
+					if (((NationInst4)mod).isAddforeigncom()){
+						addforeigncom++;
+						if (addforeigncom == 5) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case ADDFOREIGNCOM6:
+					if (((NationInst4)mod).isAddforeigncom()){
+						addforeigncom++;
+						if (addforeigncom == 6) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case ADDFOREIGNCOM7:
+					if (((NationInst4)mod).isAddforeigncom()){
+						addforeigncom++;
+						if (addforeigncom == 7) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case ADDFOREIGNCOM8:
+					if (((NationInst4)mod).isAddforeigncom()){
+						addforeigncom++;
+						if (addforeigncom == 8) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case ADDFOREIGNCOM9:
+					if (((NationInst4)mod).isAddforeigncom()){
+						addforeigncom++;
+						if (addforeigncom == 9) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case ADDFOREIGNCOM10:
+					if (((NationInst4)mod).isAddforeigncom()){
+						addforeigncom++;
+						if (addforeigncom == 10) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case ADDFOREIGNCOM11:
+					if (((NationInst4)mod).isAddforeigncom()){
+						addforeigncom++;
+						if (addforeigncom == 11) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case ADDFOREIGNCOM12:
+					if (((NationInst4)mod).isAddforeigncom()){
+						addforeigncom++;
+						if (addforeigncom == 12) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case ADDFOREIGNCOM13:
+					if (((NationInst4)mod).isAddforeigncom()){
+						addforeigncom++;
+						if (addforeigncom == 13) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case ADDFOREIGNCOM14:
+					if (((NationInst4)mod).isAddforeigncom()){
+						addforeigncom++;
+						if (addforeigncom == 14) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case FORESTREC1:
+					if (((NationInst4)mod).isForestrec()){
+						forestrec++;
+						if (forestrec == 1) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case FORESTREC2:
+					if (((NationInst4)mod).isForestrec()){
+						forestrec++;
+						if (forestrec == 2) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case FORESTREC3:
+					if (((NationInst4)mod).isForestrec()){
+						forestrec++;
+						if (forestrec == 3) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case FORESTREC4:
+					if (((NationInst4)mod).isForestrec()){
+						forestrec++;
+						if (forestrec == 4) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case FORESTREC5:
+					if (((NationInst4)mod).isForestrec()){
+						forestrec++;
+						if (forestrec == 5) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case FORESTCOM1:
+					if (((NationInst4)mod).isForestcom()){
+						forestcom++;
+						if (forestcom == 1) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case FORESTCOM2:
+					if (((NationInst4)mod).isForestcom()){
+						forestcom++;
+						if (forestcom == 2) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case FORESTCOM3:
+					if (((NationInst4)mod).isForestcom()){
+						forestcom++;
+						if (forestcom == 3) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case FORESTCOM4:
+					if (((NationInst4)mod).isForestcom()){
+						forestcom++;
+						if (forestcom == 4) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case FORESTCOM5:
+					if (((NationInst4)mod).isForestcom()){
+						forestcom++;
+						if (forestcom == 5) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case MOUNTAINREC1:
+					if (((NationInst4)mod).isMountainrec()){
+						mountainrec++;
+						if (mountainrec == 1) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case MOUNTAINREC2:
+					if (((NationInst4)mod).isMountainrec()){
+						mountainrec++;
+						if (mountainrec == 2) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case MOUNTAINREC3:
+					if (((NationInst4)mod).isMountainrec()){
+						mountainrec++;
+						if (mountainrec == 3) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case MOUNTAINREC4:
+					if (((NationInst4)mod).isMountainrec()){
+						mountainrec++;
+						if (mountainrec == 4) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case MOUNTAINREC5:
+					if (((NationInst4)mod).isMountainrec()){
+						mountainrec++;
+						if (mountainrec == 5) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case MOUNTAINCOM1:
+					if (((NationInst4)mod).isMountaincom()){
+						mountaincom++;
+						if (mountaincom == 1) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case MOUNTAINCOM2:
+					if (((NationInst4)mod).isMountaincom()){
+						mountaincom++;
+						if (mountaincom == 2) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case MOUNTAINCOM3:
+					if (((NationInst4)mod).isMountaincom()){
+						mountaincom++;
+						if (mountaincom == 3) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case MOUNTAINCOM4:
+					if (((NationInst4)mod).isMountaincom()){
+						mountaincom++;
+						if (mountaincom == 4) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case MOUNTAINCOM5:
+					if (((NationInst4)mod).isMountaincom()){
+						mountaincom++;
+						if (mountaincom == 5) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case SWAMPREC1:
+					if (((NationInst4)mod).isSwamprec()){
+						swamprec++;
+						if (swamprec == 1) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case SWAMPREC2:
+					if (((NationInst4)mod).isSwamprec()){
+						swamprec++;
+						if (swamprec == 2) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case SWAMPREC3:
+					if (((NationInst4)mod).isSwamprec()){
+						swamprec++;
+						if (swamprec == 3) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case SWAMPREC4:
+					if (((NationInst4)mod).isSwamprec()){
+						swamprec++;
+						if (swamprec == 4) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case SWAMPREC5:
+					if (((NationInst4)mod).isSwamprec()){
+						swamprec++;
+						if (swamprec == 5) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case SWAMPCOM1:
+					if (((NationInst4)mod).isSwampcom()){
+						swampcom++;
+						if (swampcom == 1) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case SWAMPCOM2:
+					if (((NationInst4)mod).isSwampcom()){
+						swampcom++;
+						if (swampcom == 2) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case SWAMPCOM3:
+					if (((NationInst4)mod).isSwampcom()){
+						swampcom++;
+						if (swampcom == 3) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case SWAMPCOM4:
+					if (((NationInst4)mod).isSwampcom()){
+						swampcom++;
+						if (swampcom == 4) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case SWAMPCOM5:
+					if (((NationInst4)mod).isSwampcom()){
+						swampcom++;
+						if (swampcom == 5) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case WASTEREC1:
+					if (((NationInst4)mod).isWasterec()){
+						wasterec++;
+						if (wasterec == 1) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case WASTEREC2:
+					if (((NationInst4)mod).isWasterec()){
+						wasterec++;
+						if (wasterec == 2) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case WASTEREC3:
+					if (((NationInst4)mod).isWasterec()){
+						wasterec++;
+						if (wasterec == 3) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case WASTEREC4:
+					if (((NationInst4)mod).isWasterec()){
+						wasterec++;
+						if (wasterec == 4) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case WASTEREC5:
+					if (((NationInst4)mod).isWasterec()){
+						wasterec++;
+						if (wasterec == 5) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case WASTECOM1:
+					if (((NationInst4)mod).isWastecom()){
+						wastecom++;
+						if (wastecom == 1) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case WASTECOM2:
+					if (((NationInst4)mod).isWastecom()){
+						wastecom++;
+						if (wastecom == 2) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case WASTECOM3:
+					if (((NationInst4)mod).isWastecom()){
+						wastecom++;
+						if (wastecom == 3) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case WASTECOM4:
+					if (((NationInst4)mod).isWastecom()){
+						wastecom++;
+						if (wastecom == 4) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case WASTECOM5:
+					if (((NationInst4)mod).isWastecom()){
+						wastecom++;
+						if (wastecom == 5) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case CAVEREC1:
+					if (((NationInst4)mod).isCaverec()){
+						caverec++;
+						if (caverec == 1) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case CAVEREC2:
+					if (((NationInst4)mod).isCaverec()){
+						caverec++;
+						if (caverec == 2) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case CAVEREC3:
+					if (((NationInst4)mod).isCaverec()){
+						caverec++;
+						if (caverec == 3) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case CAVEREC4:
+					if (((NationInst4)mod).isCaverec()){
+						caverec++;
+						if (caverec == 4) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case CAVEREC5:
+					if (((NationInst4)mod).isCaverec()){
+						caverec++;
+						if (caverec == 5) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case CAVECOM1:
+					if (((NationInst4)mod).isCavecom()){
+						cavecom++;
+						if (cavecom == 1) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case CAVECOM2:
+					if (((NationInst4)mod).isCavecom()){
+						cavecom++;
+						if (cavecom == 2) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case CAVECOM3:
+					if (((NationInst4)mod).isCavecom()){
+						cavecom++;
+						if (cavecom == 3) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case CAVECOM4:
+					if (((NationInst4)mod).isCavecom()){
+						cavecom++;
+						if (cavecom == 4) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case CAVECOM5:
+					if (((NationInst4)mod).isCavecom()){
+						cavecom++;
+						if (cavecom == 5) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case ADDGOD1:
+					if (((NationInst4)mod).isAddgod()){
+						addgod++;
+						if (addgod == 1) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case ADDGOD2:
+					if (((NationInst4)mod).isAddgod()){
+						addgod++;
+						if (addgod == 2) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case ADDGOD3:
+					if (((NationInst4)mod).isAddgod()){
+						addgod++;
+						if (addgod == 3) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case ADDGOD4:
+					if (((NationInst4)mod).isAddgod()){
+						addgod++;
+						if (addgod == 4) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case ADDGOD5:
+					if (((NationInst4)mod).isAddgod()){
+						addgod++;
+						if (addgod == 5) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case ADDGOD6:
+					if (((NationInst4)mod).isAddgod()){
+						addgod++;
+						if (addgod == 6) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case ADDGOD7:
+					if (((NationInst4)mod).isAddgod()){
+						addgod++;
+						if (addgod == 7) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case ADDGOD8:
+					if (((NationInst4)mod).isAddgod()){
+						addgod++;
+						if (addgod == 8) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case ADDGOD9:
+					if (((NationInst4)mod).isAddgod()){
+						addgod++;
+						if (addgod == 9) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case ADDGOD10:
+					if (((NationInst4)mod).isAddgod()){
+						addgod++;
+						if (addgod == 10) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case ADDGOD11:
+					if (((NationInst4)mod).isAddgod()){
+						addgod++;
+						if (addgod == 11) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case ADDGOD12:
+					if (((NationInst4)mod).isAddgod()){
+						addgod++;
+						if (addgod == 12) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case ADDGOD13:
+					if (((NationInst4)mod).isAddgod()){
+						addgod++;
+						if (addgod == 13) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case ADDGOD14:
+					if (((NationInst4)mod).isAddgod()){
+						addgod++;
+						if (addgod == 14) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case DELGOD1:
+					if (((NationInst4)mod).isDelgod()){
+						delgod++;
+						if (delgod == 1) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case DELGOD2:
+					if (((NationInst4)mod).isDelgod()){
+						delgod++;
+						if (delgod == 2) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case DELGOD3:
+					if (((NationInst4)mod).isDelgod()){
+						delgod++;
+						if (delgod == 3) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case DELGOD4:
+					if (((NationInst4)mod).isDelgod()){
+						delgod++;
+						if (delgod == 4) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case DELGOD5:
+					if (((NationInst4)mod).isDelgod()){
+						delgod++;
+						if (delgod == 5) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case DELGOD6:
+					if (((NationInst4)mod).isDelgod()){
+						delgod++;
+						if (delgod == 6) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case DELGOD7:
+					if (((NationInst4)mod).isDelgod()){
+						delgod++;
+						if (delgod == 7) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case DELGOD8:
+					if (((NationInst4)mod).isDelgod()){
+						delgod++;
+						if (delgod == 8) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case DELGOD9:
+					if (((NationInst4)mod).isDelgod()){
+						delgod++;
+						if (delgod == 9) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case DELGOD10:
+					if (((NationInst4)mod).isDelgod()){
+						delgod++;
+						if (delgod == 10) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case DELGOD11:
+					if (((NationInst4)mod).isDelgod()){
+						delgod++;
+						if (delgod == 11) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case DELGOD12:
+					if (((NationInst4)mod).isDelgod()){
+						delgod++;
+						if (delgod == 12) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case DELGOD13:
+					if (((NationInst4)mod).isDelgod()){
+						delgod++;
+						if (delgod == 13) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
+				case DELGOD14:
+					if (((NationInst4)mod).isDelgod()){
+						delgod++;
+						if (delgod == 14) {
+							String strVal = ((NationInst4)mod).getValue1();
+							Integer intVal = ((NationInst4)mod).getValue2();
+							if (strVal != null) {
+								return strVal;
+							}
+							return intVal;
+						}
+					}
+					break;
 				}
 			}
 		}
@@ -2197,12 +4001,20 @@ public class NationDetailsPage extends AbstractDetailsPage {
 	}
 	
 	private Double[] getInst5(Inst inst5, Object nation) {
-		EList<NationMods> list = ((SelectNation)nation).getMods();
+		EList<NationMods> list = ((Nation)nation).getMods();
 		for (NationMods mod : list) {
 			if (mod instanceof NationInst5) {
 				switch (inst5) {
 				case COLOR:
 					if (((NationInst5)mod).isColor()){
+						Double value1 = ((NationInst5)mod).getValue1() != null ? Double.valueOf(((NationInst5)mod).getValue1()) : null; 
+						Double value2 = ((NationInst5)mod).getValue2() != null ? Double.valueOf(((NationInst5)mod).getValue2()) : null;
+						Double value3 = ((NationInst5)mod).getValue3() != null ? Double.valueOf(((NationInst5)mod).getValue3()) : null;
+						return new Double[]{value1, value2, value3};
+					}
+					break;
+				case SECONDARYCOLOR:
+					if (((NationInst5)mod).isSecondarycolor()){
 						Double value1 = ((NationInst5)mod).getValue1() != null ? Double.valueOf(((NationInst5)mod).getValue1()) : null; 
 						Double value2 = ((NationInst5)mod).getValue2() != null ? Double.valueOf(((NationInst5)mod).getValue2()) : null;
 						Double value3 = ((NationInst5)mod).getValue3() != null ? Double.valueOf(((NationInst5)mod).getValue3()) : null;
@@ -2221,7 +4033,7 @@ public class NationDetailsPage extends AbstractDetailsPage {
 		myDocument.modify(new IUnitOfWork.Void<XtextResource>() {
 			@Override
 			public void process(XtextResource resource) throws Exception {
-				SelectNation nationToEdit = (SelectNation)input;
+				Nation nationToEdit = (Nation)input;
 				int siteCount = 0;
 				EList<NationMods> mods = nationToEdit.getMods();				
 				for (NationMods mod : mods) {
@@ -2247,11 +4059,6 @@ public class NationDetailsPage extends AbstractDetailsPage {
 								((NationInst1)mod).setValue(newName);
 								spriteLabel.setImage(getSprite(newName));
 								spriteLabel.getParent().layout(true, true);
-							}
-							break;
-						case MAPBACKGROUND:
-							if (((NationInst1)mod).isMapbackground()) {
-								((NationInst1)mod).setValue(newName);
 							}
 							break;
 						case STARTSITE1:
@@ -2302,7 +4109,7 @@ public class NationDetailsPage extends AbstractDetailsPage {
 		myDocument.modify(new IUnitOfWork.Void<XtextResource>() {
 			@Override
 			public void process(XtextResource resource) throws Exception {
-				SelectNation nationToEdit = (SelectNation)input;
+				Nation nationToEdit = (Nation)input;
 				EList<NationMods> mods = nationToEdit.getMods();
 				for (NationMods mod : mods) {
 					if (mod instanceof NationInst2) {
@@ -2417,43 +4224,58 @@ public class NationDetailsPage extends AbstractDetailsPage {
 								((NationInst2)mod).setValue(Integer.parseInt(newName));
 							}
 							break;
-						case STARTFORT:
-							if (((NationInst2)mod).isStartfort()){
+						case MERCCOST:
+							if (((NationInst2)mod).isMerccost()){
 								((NationInst2)mod).setValue(Integer.parseInt(newName));
 							}
 							break;
-						case DEFAULTFORT:
-							if (((NationInst2)mod).isDefaultfort()){
+						case HOMEREALM:
+							if (((NationInst2)mod).isHomerealm()){
 								((NationInst2)mod).setValue(Integer.parseInt(newName));
 							}
 							break;
-						case FARMFORT:
-							if (((NationInst2)mod).isFarmfort()){
+						case LIKESPOP:
+							if (((NationInst2)mod).isLikespop()){
 								((NationInst2)mod).setValue(Integer.parseInt(newName));
 							}
 							break;
-						case MOUNTAINFORT:
-							if (((NationInst2)mod).isMountainfort()){
+						case FORTERA:
+							if (((NationInst2)mod).isFortera()){
 								((NationInst2)mod).setValue(Integer.parseInt(newName));
 							}
 							break;
-						case FORESTFORT:
-							if (((NationInst2)mod).isForestfort()){
+						case FORTCOST:
+							if (((NationInst2)mod).isFortcost()){
 								((NationInst2)mod).setValue(Integer.parseInt(newName));
 							}
 							break;
-						case SWAMPFORT:
-							if (((NationInst2)mod).isSwampfort()){
+						case SPREADCOLD:
+							if (((NationInst2)mod).isSpreadcold()){
 								((NationInst2)mod).setValue(Integer.parseInt(newName));
 							}
 							break;
-						case UWFORT:
-							if (((NationInst2)mod).isUwfort()){
+						case SPREADHEAT:
+							if (((NationInst2)mod).isSpreadheat()){
 								((NationInst2)mod).setValue(Integer.parseInt(newName));
 							}
 							break;
-						case DEEPFORT:
-							if (((NationInst2)mod).isDeepfort()){
+						case SPREADCHAOS:
+							if (((NationInst2)mod).isSpreadchaos()){
+								((NationInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case SPREADLAZY:
+							if (((NationInst2)mod).isSpreadlazy()){
+								((NationInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case SPREADDEATH:
+							if (((NationInst2)mod).isSpreaddeath()){
+								((NationInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case GOLEMHP:
+							if (((NationInst2)mod).isGolemhp()){
 								((NationInst2)mod).setValue(Integer.parseInt(newName));
 							}
 							break;
@@ -2475,7 +4297,21 @@ public class NationDetailsPage extends AbstractDetailsPage {
 			public void process(XtextResource resource) throws Exception {
 				int addreccom = 0;
 				int addrecunit = 0;
-				SelectNation nationToEdit = (SelectNation)input;
+				int addforeignunit = 0;
+				int addforeigncom = 0;
+				int forestrec = 0;
+				int forestcom = 0;
+				int mountainrec = 0;
+				int mountaincom = 0;
+				int swamprec = 0;
+				int swampcom = 0;
+				int wasterec = 0;
+				int wastecom = 0;
+				int caverec = 0;
+				int cavecom = 0;
+				int addgod = 0;
+				int delgod = 0;
+				Nation nationToEdit = (Nation)input;
 				List<NationMods> modsToRemove = new ArrayList<NationMods>();
 				List<NationMods> modsToAdd = new ArrayList<NationMods>();
 				EList<NationMods> mods = nationToEdit.getMods();
@@ -3197,6 +5033,1702 @@ public class NationDetailsPage extends AbstractDetailsPage {
 								modsToAdd.add(newMod);
 							}
 							break;
+						case ADDFOREIGNUNIT1:
+							if (((NationInst4)mod).isAddforeignunit()){
+								addforeignunit++;
+								if (addforeignunit == 1) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setAddforeignunit(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case ADDFOREIGNUNIT2:
+							if (((NationInst4)mod).isAddforeignunit()){
+								addforeignunit++;
+								if (addforeignunit == 2) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setAddforeignunit(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case ADDFOREIGNUNIT3:
+							if (((NationInst4)mod).isAddforeignunit()){
+								addforeignunit++;
+								if (addforeignunit == 3) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setAddforeignunit(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case ADDFOREIGNUNIT4:
+							if (((NationInst4)mod).isAddforeignunit()){
+								addforeignunit++;
+								if (addforeignunit == 4) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setAddforeignunit(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case ADDFOREIGNUNIT5:
+							if (((NationInst4)mod).isAddforeignunit()){
+								addforeignunit++;
+								if (addforeignunit == 5) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setAddforeignunit(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case ADDFOREIGNUNIT6:
+							if (((NationInst4)mod).isAddforeignunit()){
+								addforeignunit++;
+								if (addforeignunit == 6) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setAddforeignunit(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case ADDFOREIGNUNIT7:
+							if (((NationInst4)mod).isAddforeignunit()){
+								addforeignunit++;
+								if (addforeignunit == 7) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setAddforeignunit(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case ADDFOREIGNUNIT8:
+							if (((NationInst4)mod).isAddforeignunit()){
+								addforeignunit++;
+								if (addforeignunit == 8) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setAddforeignunit(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case ADDFOREIGNUNIT9:
+							if (((NationInst4)mod).isAddforeignunit()){
+								addforeignunit++;
+								if (addforeignunit == 9) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setAddforeignunit(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case ADDFOREIGNUNIT10:
+							if (((NationInst4)mod).isAddforeignunit()){
+								addforeignunit++;
+								if (addforeignunit == 10) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setAddforeignunit(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case ADDFOREIGNUNIT11:
+							if (((NationInst4)mod).isAddforeignunit()){
+								addforeignunit++;
+								if (addforeignunit == 11) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setAddforeignunit(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case ADDFOREIGNUNIT12:
+							if (((NationInst4)mod).isAddforeignunit()){
+								addforeignunit++;
+								if (addforeignunit == 12) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setAddforeignunit(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case ADDFOREIGNUNIT13:
+							if (((NationInst4)mod).isAddforeignunit()){
+								addforeignunit++;
+								if (addforeignunit == 13) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setAddforeignunit(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case ADDFOREIGNUNIT14:
+							if (((NationInst4)mod).isAddforeignunit()){
+								addforeignunit++;
+								if (addforeignunit == 14) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setAddforeignunit(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case ADDFOREIGNCOM1:
+							if (((NationInst4)mod).isAddforeigncom()){
+								addforeigncom++;
+								if (addforeigncom == 1) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setAddforeigncom(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case ADDFOREIGNCOM2:
+							if (((NationInst4)mod).isAddforeigncom()){
+								addforeigncom++;
+								if (addforeigncom == 2) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setAddforeigncom(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case ADDFOREIGNCOM3:
+							if (((NationInst4)mod).isAddforeigncom()){
+								addforeigncom++;
+								if (addforeigncom == 3) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setAddforeigncom(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case ADDFOREIGNCOM4:
+							if (((NationInst4)mod).isAddforeigncom()){
+								addforeigncom++;
+								if (addforeigncom == 4) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setAddforeigncom(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case ADDFOREIGNCOM5:
+							if (((NationInst4)mod).isAddforeigncom()){
+								addforeigncom++;
+								if (addforeigncom == 5) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setAddforeigncom(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case ADDFOREIGNCOM6:
+							if (((NationInst4)mod).isAddforeigncom()){
+								addforeigncom++;
+								if (addforeigncom == 6) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setAddforeigncom(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case ADDFOREIGNCOM7:
+							if (((NationInst4)mod).isAddforeigncom()){
+								addforeigncom++;
+								if (addforeigncom == 7) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setAddforeigncom(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case ADDFOREIGNCOM8:
+							if (((NationInst4)mod).isAddforeigncom()){
+								addforeigncom++;
+								if (addforeigncom == 8) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setAddforeigncom(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case ADDFOREIGNCOM9:
+							if (((NationInst4)mod).isAddforeigncom()){
+								addforeigncom++;
+								if (addforeigncom == 9) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setAddforeigncom(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case ADDFOREIGNCOM10:
+							if (((NationInst4)mod).isAddforeigncom()){
+								addforeigncom++;
+								if (addforeigncom == 10) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setAddforeigncom(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case ADDFOREIGNCOM11:
+							if (((NationInst4)mod).isAddforeigncom()){
+								addforeigncom++;
+								if (addforeigncom == 11) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setAddforeigncom(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case ADDFOREIGNCOM12:
+							if (((NationInst4)mod).isAddforeigncom()){
+								addforeigncom++;
+								if (addforeigncom == 12) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setAddforeigncom(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case ADDFOREIGNCOM13:
+							if (((NationInst4)mod).isAddforeigncom()){
+								addforeigncom++;
+								if (addforeigncom == 13) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setAddforeigncom(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case ADDFOREIGNCOM14:
+							if (((NationInst4)mod).isAddforeigncom()){
+								addforeigncom++;
+								if (addforeigncom == 14) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setAddforeigncom(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case FORESTREC1:
+							if (((NationInst4)mod).isForestrec()){
+								forestrec++;
+								if (forestrec == 1) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setForestrec(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case FORESTREC2:
+							if (((NationInst4)mod).isForestrec()){
+								forestrec++;
+								if (forestrec == 2) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setForestrec(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case FORESTREC3:
+							if (((NationInst4)mod).isForestrec()){
+								forestrec++;
+								if (forestrec == 3) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setForestrec(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case FORESTREC4:
+							if (((NationInst4)mod).isForestrec()){
+								forestrec++;
+								if (forestrec == 4) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setForestrec(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case FORESTREC5:
+							if (((NationInst4)mod).isForestrec()){
+								forestrec++;
+								if (forestrec == 5) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setForestrec(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case FORESTCOM1:
+							if (((NationInst4)mod).isForestcom()){
+								forestcom++;
+								if (forestcom == 1) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setForestcom(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case FORESTCOM2:
+							if (((NationInst4)mod).isForestcom()){
+								forestcom++;
+								if (forestcom == 2) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setForestcom(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case FORESTCOM3:
+							if (((NationInst4)mod).isForestcom()){
+								forestcom++;
+								if (forestcom == 3) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setForestcom(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case FORESTCOM4:
+							if (((NationInst4)mod).isForestcom()){
+								forestcom++;
+								if (forestcom == 4) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setForestcom(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case FORESTCOM5:
+							if (((NationInst4)mod).isForestcom()){
+								forestcom++;
+								if (forestcom == 5) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setForestcom(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case MOUNTAINREC1:
+							if (((NationInst4)mod).isMountainrec()){
+								mountainrec++;
+								if (mountainrec == 1) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setMountainrec(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case MOUNTAINREC2:
+							if (((NationInst4)mod).isMountainrec()){
+								mountainrec++;
+								if (mountainrec == 2) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setMountainrec(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case MOUNTAINREC3:
+							if (((NationInst4)mod).isMountainrec()){
+								mountainrec++;
+								if (mountainrec == 3) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setMountainrec(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case MOUNTAINREC4:
+							if (((NationInst4)mod).isMountainrec()){
+								mountainrec++;
+								if (mountainrec == 4) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setMountainrec(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case MOUNTAINREC5:
+							if (((NationInst4)mod).isMountainrec()){
+								mountainrec++;
+								if (mountainrec == 5) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setMountainrec(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case MOUNTAINCOM1:
+							if (((NationInst4)mod).isMountaincom()){
+								mountaincom++;
+								if (mountaincom == 1) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setMountaincom(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case MOUNTAINCOM2:
+							if (((NationInst4)mod).isMountaincom()){
+								mountaincom++;
+								if (mountaincom == 2) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setMountaincom(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case MOUNTAINCOM3:
+							if (((NationInst4)mod).isMountaincom()){
+								mountaincom++;
+								if (mountaincom == 3) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setMountaincom(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case MOUNTAINCOM4:
+							if (((NationInst4)mod).isMountaincom()){
+								mountaincom++;
+								if (mountaincom == 4) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setMountaincom(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case MOUNTAINCOM5:
+							if (((NationInst4)mod).isMountaincom()){
+								mountaincom++;
+								if (mountaincom == 5) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setMountaincom(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case SWAMPREC1:
+							if (((NationInst4)mod).isSwamprec()){
+								swamprec++;
+								if (swamprec == 1) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setSwamprec(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case SWAMPREC2:
+							if (((NationInst4)mod).isSwamprec()){
+								swamprec++;
+								if (swamprec == 2) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setSwamprec(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case SWAMPREC3:
+							if (((NationInst4)mod).isSwamprec()){
+								swamprec++;
+								if (swamprec == 3) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setSwamprec(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case SWAMPREC4:
+							if (((NationInst4)mod).isSwamprec()){
+								swamprec++;
+								if (swamprec == 4) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setSwamprec(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case SWAMPREC5:
+							if (((NationInst4)mod).isSwamprec()){
+								swamprec++;
+								if (swamprec == 5) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setSwamprec(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case SWAMPCOM1:
+							if (((NationInst4)mod).isSwampcom()){
+								swampcom++;
+								if (swampcom == 1) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setSwampcom(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case SWAMPCOM2:
+							if (((NationInst4)mod).isSwampcom()){
+								swampcom++;
+								if (swampcom == 2) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setSwampcom(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case SWAMPCOM3:
+							if (((NationInst4)mod).isSwampcom()){
+								swampcom++;
+								if (swampcom == 3) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setSwampcom(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case SWAMPCOM4:
+							if (((NationInst4)mod).isSwampcom()){
+								swampcom++;
+								if (swampcom == 4) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setSwampcom(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case SWAMPCOM5:
+							if (((NationInst4)mod).isSwampcom()){
+								swampcom++;
+								if (swampcom == 5) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setSwampcom(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case WASTEREC1:
+							if (((NationInst4)mod).isWasterec()){
+								wasterec++;
+								if (wasterec == 1) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setWasterec(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case WASTEREC2:
+							if (((NationInst4)mod).isWasterec()){
+								wasterec++;
+								if (wasterec == 2) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setWasterec(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case WASTEREC3:
+							if (((NationInst4)mod).isWasterec()){
+								wasterec++;
+								if (wasterec == 3) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setWasterec(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case WASTEREC4:
+							if (((NationInst4)mod).isWasterec()){
+								wasterec++;
+								if (wasterec == 4) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setWasterec(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case WASTEREC5:
+							if (((NationInst4)mod).isWasterec()){
+								wasterec++;
+								if (wasterec == 5) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setWasterec(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case WASTECOM1:
+							if (((NationInst4)mod).isWastecom()){
+								wastecom++;
+								if (wastecom == 1) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setWastecom(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case WASTECOM2:
+							if (((NationInst4)mod).isWastecom()){
+								wastecom++;
+								if (wastecom == 2) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setWastecom(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case WASTECOM3:
+							if (((NationInst4)mod).isWastecom()){
+								wastecom++;
+								if (wastecom == 3) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setWastecom(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case WASTECOM4:
+							if (((NationInst4)mod).isWastecom()){
+								wastecom++;
+								if (wastecom == 4) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setWastecom(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case WASTECOM5:
+							if (((NationInst4)mod).isWastecom()){
+								wastecom++;
+								if (wastecom == 5) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setWastecom(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case CAVEREC1:
+							if (((NationInst4)mod).isCaverec()){
+								caverec++;
+								if (caverec == 1) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setCaverec(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case CAVEREC2:
+							if (((NationInst4)mod).isCaverec()){
+								caverec++;
+								if (caverec == 2) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setCaverec(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case CAVEREC3:
+							if (((NationInst4)mod).isCaverec()){
+								caverec++;
+								if (caverec == 3) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setCaverec(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case CAVEREC4:
+							if (((NationInst4)mod).isCaverec()){
+								caverec++;
+								if (caverec == 4) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setCaverec(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case CAVEREC5:
+							if (((NationInst4)mod).isCaverec()){
+								caverec++;
+								if (caverec == 5) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setCaverec(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case CAVECOM1:
+							if (((NationInst4)mod).isCavecom()){
+								cavecom++;
+								if (cavecom == 1) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setCavecom(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case CAVECOM2:
+							if (((NationInst4)mod).isCavecom()){
+								cavecom++;
+								if (cavecom == 2) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setCavecom(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case CAVECOM3:
+							if (((NationInst4)mod).isCavecom()){
+								cavecom++;
+								if (cavecom == 3) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setCavecom(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case CAVECOM4:
+							if (((NationInst4)mod).isCavecom()){
+								cavecom++;
+								if (cavecom == 4) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setCavecom(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case CAVECOM5:
+							if (((NationInst4)mod).isCavecom()){
+								cavecom++;
+								if (cavecom == 5) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setCavecom(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case ADDGOD1:
+							if (((NationInst4)mod).isAddgod()){
+								addgod++;
+								if (addgod == 1) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setAddgod(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case ADDGOD2:
+							if (((NationInst4)mod).isAddgod()){
+								addgod++;
+								if (addgod == 2) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setAddgod(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case ADDGOD3:
+							if (((NationInst4)mod).isAddgod()){
+								addgod++;
+								if (addgod == 3) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setAddgod(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case ADDGOD4:
+							if (((NationInst4)mod).isAddgod()){
+								addgod++;
+								if (addgod == 4) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setAddgod(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case ADDGOD5:
+							if (((NationInst4)mod).isAddgod()){
+								addgod++;
+								if (addgod == 5) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setAddgod(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case ADDGOD6:
+							if (((NationInst4)mod).isAddgod()){
+								addgod++;
+								if (addgod == 6) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setAddgod(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case ADDGOD7:
+							if (((NationInst4)mod).isAddgod()){
+								addgod++;
+								if (addgod == 7) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setAddgod(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case ADDGOD8:
+							if (((NationInst4)mod).isAddgod()){
+								addgod++;
+								if (addgod == 8) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setAddgod(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case ADDGOD9:
+							if (((NationInst4)mod).isAddgod()){
+								addgod++;
+								if (addgod == 9) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setAddgod(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case ADDGOD10:
+							if (((NationInst4)mod).isAddgod()){
+								addgod++;
+								if (addgod == 10) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setAddgod(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case ADDGOD11:
+							if (((NationInst4)mod).isAddgod()){
+								addgod++;
+								if (addgod == 11) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setAddgod(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case ADDGOD12:
+							if (((NationInst4)mod).isAddgod()){
+								addgod++;
+								if (addgod == 12) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setAddgod(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case ADDGOD13:
+							if (((NationInst4)mod).isAddgod()){
+								addgod++;
+								if (addgod == 13) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setAddgod(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case ADDGOD14:
+							if (((NationInst4)mod).isAddgod()){
+								addgod++;
+								if (addgod == 14) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setAddgod(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case DELGOD1:
+							if (((NationInst4)mod).isDelgod()){
+								delgod++;
+								if (delgod == 1) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setDelgod(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case DELGOD2:
+							if (((NationInst4)mod).isDelgod()){
+								delgod++;
+								if (delgod == 2) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setDelgod(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case DELGOD3:
+							if (((NationInst4)mod).isDelgod()){
+								delgod++;
+								if (delgod == 3) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setDelgod(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case DELGOD4:
+							if (((NationInst4)mod).isDelgod()){
+								delgod++;
+								if (delgod == 4) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setDelgod(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case DELGOD5:
+							if (((NationInst4)mod).isDelgod()){
+								delgod++;
+								if (delgod == 5) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setDelgod(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case DELGOD6:
+							if (((NationInst4)mod).isDelgod()){
+								delgod++;
+								if (delgod == 6) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setDelgod(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case DELGOD7:
+							if (((NationInst4)mod).isDelgod()){
+								delgod++;
+								if (delgod == 7) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setDelgod(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case DELGOD8:
+							if (((NationInst4)mod).isDelgod()){
+								delgod++;
+								if (delgod == 8) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setDelgod(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case DELGOD9:
+							if (((NationInst4)mod).isDelgod()){
+								delgod++;
+								if (delgod == 9) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setDelgod(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case DELGOD10:
+							if (((NationInst4)mod).isDelgod()){
+								delgod++;
+								if (delgod == 10) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setDelgod(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case DELGOD11:
+							if (((NationInst4)mod).isDelgod()){
+								delgod++;
+								if (delgod == 11) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setDelgod(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case DELGOD12:
+							if (((NationInst4)mod).isDelgod()){
+								delgod++;
+								if (delgod == 12) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setDelgod(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case DELGOD13:
+							if (((NationInst4)mod).isDelgod()){
+								delgod++;
+								if (delgod == 13) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setDelgod(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
+						case DELGOD14:
+							if (((NationInst4)mod).isDelgod()){
+								delgod++;
+								if (delgod == 14) {
+									modsToRemove.add(mod);
+									NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+									newMod.setDelgod(true);
+									if (newValue != null) {
+										newMod.setValue2(Integer.parseInt(newName));
+									} else {
+										newMod.setValue1(newName);
+									}
+									modsToAdd.add(newMod);
+								}
+							}
+							break;
 						}
 					}
 				}
@@ -3213,13 +6745,41 @@ public class NationDetailsPage extends AbstractDetailsPage {
 		myDocument.modify(new IUnitOfWork.Void<XtextResource>() {
 			@Override
 			public void process(XtextResource resource) throws Exception {
-				SelectNation nationToEdit = (SelectNation)input;
+				Nation nationToEdit = (Nation)input;
 				EList<NationMods> mods = nationToEdit.getMods();
 				for (NationMods mod : mods) {
 					if (mod instanceof NationInst5) {
 						switch (inst5) {
 						case COLOR:
 							if (((NationInst5)mod).isColor()) {
+								if (value1 != null) {
+									try {
+										Double.parseDouble(value1);
+										((NationInst5)mod).setValue1(value1);
+									} catch(NumberFormatException e) {
+										// Skip if not a double
+									}
+								}
+								if (value2 != null) {
+									try {
+										Double.parseDouble(value2);
+										((NationInst5)mod).setValue2(value2);
+									} catch(NumberFormatException e) {
+										// Skip if not a double
+									}
+								}
+								if (value3 != null) {
+									try {
+										Double.parseDouble(value3);
+										((NationInst5)mod).setValue3(value3);
+									} catch(NumberFormatException e) {
+										// Skip if not a double
+									}
+								}
+							}
+							break;
+						case SECONDARYCOLOR:
+							if (((NationInst5)mod).isSecondarycolor()) {
 								if (value1 != null) {
 									try {
 										Double.parseDouble(value1);
@@ -3264,7 +6824,7 @@ public class NationDetailsPage extends AbstractDetailsPage {
 				myDocument.modify(new IUnitOfWork.Void<XtextResource>() {
 					@Override
 					public void process(XtextResource resource) throws Exception {
-						EList<NationMods> mods = ((SelectNation)input).getMods();
+						EList<NationMods> mods = ((Nation)input).getMods();
 						NationInst1 type = DmFactory.eINSTANCE.createNationInst1();
 						switch (inst) {
 						case NAME:
@@ -3284,9 +6844,6 @@ public class NationDetailsPage extends AbstractDetailsPage {
 							break;
 						case FLAG:
 							type.setFlag(true);
-							break;
-						case MAPBACKGROUND:
-							type.setMapbackground(true);
 							break;
 						case STARTSITE1:
 							type.setStartsite(true);
@@ -3319,7 +6876,7 @@ public class NationDetailsPage extends AbstractDetailsPage {
 				myDocument.modify(new IUnitOfWork.Void<XtextResource>() {
 					@Override
 					public void process(XtextResource resource) throws Exception {
-						EList<NationMods> mods = ((SelectNation)input).getMods();
+						EList<NationMods> mods = ((Nation)input).getMods();
 						NationInst2 type = DmFactory.eINSTANCE.createNationInst2();
 						switch (inst) {
 						case ERA:
@@ -3388,29 +6945,38 @@ public class NationDetailsPage extends AbstractDetailsPage {
 						case DOMUNREST:
 							type.setDomunrest(true);
 							break;
-						case STARTFORT:
-							type.setStartfort(true);
+						case MERCCOST:
+							type.setMerccost(true);
 							break;
-						case DEFAULTFORT:
-							type.setDefaultfort(true);
+						case HOMEREALM:
+							type.setHomerealm(true);
 							break;
-						case FARMFORT:
-							type.setFarmfort(true);
+						case LIKESPOP:
+							type.setLikespop(true);
 							break;
-						case MOUNTAINFORT:
-							type.setMountainfort(true);
+						case FORTERA:
+							type.setFortera(true);
 							break;
-						case FORESTFORT:
-							type.setForestfort(true);
+						case FORTCOST:
+							type.setFortcost(true);
 							break;
-						case SWAMPFORT:
-							type.setSwampfort(true);
+						case SPREADCOLD:
+							type.setSpreadcold(true);
 							break;
-						case UWFORT:
-							type.setUwfort(true);
+						case SPREADHEAT:
+							type.setSpreadheat(true);
 							break;
-						case DEEPFORT:
-							type.setDeepfort(true);
+						case SPREADCHAOS:
+							type.setSpreadchaos(true);
+							break;
+						case SPREADLAZY:
+							type.setSpreadlazy(true);
+							break;
+						case SPREADDEATH:
+							type.setSpreaddeath(true);
+							break;
+						case GOLEMHP:
+							type.setGolemhp(true);
 							break;
 						}
 						try {
@@ -3435,7 +7001,7 @@ public class NationDetailsPage extends AbstractDetailsPage {
 				myDocument.modify(new IUnitOfWork.Void<XtextResource>() {
 					@Override
 					public void process(XtextResource resource) throws Exception {
-						EList<NationMods> mods = ((SelectNation)input).getMods();
+						EList<NationMods> mods = ((Nation)input).getMods();
 						NationInst3 type = DmFactory.eINSTANCE.createNationInst3();
 						switch (inst) {
 						case CLEARNATION:
@@ -3483,6 +7049,9 @@ public class NationDetailsPage extends AbstractDetailsPage {
 						case TOMBWYRMREANIM:
 							type.setTombwyrmreanim(true);
 							break;
+						case CLEARGODS:
+							type.setCleargods(true);
+							break;
 						}
 						mods.add(type);
 					}  
@@ -3501,7 +7070,7 @@ public class NationDetailsPage extends AbstractDetailsPage {
 				myDocument.modify(new IUnitOfWork.Void<XtextResource>() {
 					@Override
 					public void process(XtextResource resource) throws Exception {
-						EList<NationMods> mods = ((SelectNation)input).getMods();
+						EList<NationMods> mods = ((Nation)input).getMods();
 						NationInst4 type = DmFactory.eINSTANCE.createNationInst4();
 						switch (inst) {
 						case STARTCOM:
@@ -3648,6 +7217,324 @@ public class NationDetailsPage extends AbstractDetailsPage {
 						case DEFUNIT2B:
 							type.setDefunit2b(true);
 							break;
+						case ADDFOREIGNUNIT1:
+							type.setAddforeignunit(true);
+							break;
+						case ADDFOREIGNUNIT2:
+							type.setAddforeignunit(true);
+							break;
+						case ADDFOREIGNUNIT3:
+							type.setAddforeignunit(true);
+							break;
+						case ADDFOREIGNUNIT4:
+							type.setAddforeignunit(true);
+							break;
+						case ADDFOREIGNUNIT5:
+							type.setAddforeignunit(true);
+							break;
+						case ADDFOREIGNUNIT6:
+							type.setAddforeignunit(true);
+							break;
+						case ADDFOREIGNUNIT7:
+							type.setAddforeignunit(true);
+							break;
+						case ADDFOREIGNUNIT8:
+							type.setAddforeignunit(true);
+							break;
+						case ADDFOREIGNUNIT9:
+							type.setAddforeignunit(true);
+							break;
+						case ADDFOREIGNUNIT10:
+							type.setAddforeignunit(true);
+							break;
+						case ADDFOREIGNUNIT11:
+							type.setAddforeignunit(true);
+							break;
+						case ADDFOREIGNUNIT12:
+							type.setAddforeignunit(true);
+							break;
+						case ADDFOREIGNUNIT13:
+							type.setAddforeignunit(true);
+							break;
+						case ADDFOREIGNUNIT14:
+							type.setAddforeignunit(true);
+							break;
+						case ADDFOREIGNCOM1:
+							type.setAddforeigncom(true);
+							break;
+						case ADDFOREIGNCOM2:
+							type.setAddforeigncom(true);
+							break;
+						case ADDFOREIGNCOM3:
+							type.setAddforeigncom(true);
+							break;
+						case ADDFOREIGNCOM4:
+							type.setAddforeigncom(true);
+							break;
+						case ADDFOREIGNCOM5:
+							type.setAddforeigncom(true);
+							break;
+						case ADDFOREIGNCOM6:
+							type.setAddforeigncom(true);
+							break;
+						case ADDFOREIGNCOM7:
+							type.setAddforeigncom(true);
+							break;
+						case ADDFOREIGNCOM8:
+							type.setAddforeigncom(true);
+							break;
+						case ADDFOREIGNCOM9:
+							type.setAddforeigncom(true);
+							break;
+						case ADDFOREIGNCOM10:
+							type.setAddforeigncom(true);
+							break;
+						case ADDFOREIGNCOM11:
+							type.setAddforeigncom(true);
+							break;
+						case ADDFOREIGNCOM12:
+							type.setAddforeigncom(true);
+							break;
+						case ADDFOREIGNCOM13:
+							type.setAddforeigncom(true);
+							break;
+						case ADDFOREIGNCOM14:
+							type.setAddforeigncom(true);
+							break;
+						case FORESTREC1:
+							type.setForestrec(true);
+							break;
+						case FORESTREC2:
+							type.setForestrec(true);
+							break;
+						case FORESTREC3:
+							type.setForestrec(true);
+							break;
+						case FORESTREC4:
+							type.setForestrec(true);
+							break;
+						case FORESTREC5:
+							type.setForestrec(true);
+							break;
+						case FORESTCOM1:
+							type.setForestcom(true);
+							break;
+						case FORESTCOM2:
+							type.setForestcom(true);
+							break;
+						case FORESTCOM3:
+							type.setForestcom(true);
+							break;
+						case FORESTCOM4:
+							type.setForestcom(true);
+							break;
+						case FORESTCOM5:
+							type.setForestcom(true);
+							break;
+						case MOUNTAINREC1:
+							type.setMountainrec(true);
+							break;
+						case MOUNTAINREC2:
+							type.setMountainrec(true);
+							break;
+						case MOUNTAINREC3:
+							type.setMountainrec(true);
+							break;
+						case MOUNTAINREC4:
+							type.setMountainrec(true);
+							break;
+						case MOUNTAINREC5:
+							type.setMountainrec(true);
+							break;
+						case MOUNTAINCOM1:
+							type.setMountaincom(true);
+							break;
+						case MOUNTAINCOM2:
+							type.setMountaincom(true);
+							break;
+						case MOUNTAINCOM3:
+							type.setMountaincom(true);
+							break;
+						case MOUNTAINCOM4:
+							type.setMountaincom(true);
+							break;
+						case MOUNTAINCOM5:
+							type.setMountaincom(true);
+							break;
+						case SWAMPREC1:
+							type.setSwamprec(true);
+							break;
+						case SWAMPREC2:
+							type.setSwamprec(true);
+							break;
+						case SWAMPREC3:
+							type.setSwamprec(true);
+							break;
+						case SWAMPREC4:
+							type.setSwamprec(true);
+							break;
+						case SWAMPREC5:
+							type.setSwamprec(true);
+							break;
+						case SWAMPCOM1:
+							type.setSwampcom(true);
+							break;
+						case SWAMPCOM2:
+							type.setSwampcom(true);
+							break;
+						case SWAMPCOM3:
+							type.setSwampcom(true);
+							break;
+						case SWAMPCOM4:
+							type.setSwampcom(true);
+							break;
+						case SWAMPCOM5:
+							type.setSwampcom(true);
+							break;
+						case WASTEREC1:
+							type.setWasterec(true);
+							break;
+						case WASTEREC2:
+							type.setWasterec(true);
+							break;
+						case WASTEREC3:
+							type.setWasterec(true);
+							break;
+						case WASTEREC4:
+							type.setWasterec(true);
+							break;
+						case WASTEREC5:
+							type.setWasterec(true);
+							break;
+						case WASTECOM1:
+							type.setWastecom(true);
+							break;
+						case WASTECOM2:
+							type.setWastecom(true);
+							break;
+						case WASTECOM3:
+							type.setWastecom(true);
+							break;
+						case WASTECOM4:
+							type.setWastecom(true);
+							break;
+						case WASTECOM5:
+							type.setWastecom(true);
+							break;
+						case CAVEREC1:
+							type.setCaverec(true);
+							break;
+						case CAVEREC2:
+							type.setCaverec(true);
+							break;
+						case CAVEREC3:
+							type.setCaverec(true);
+							break;
+						case CAVEREC4:
+							type.setCaverec(true);
+							break;
+						case CAVEREC5:
+							type.setCaverec(true);
+							break;
+						case CAVECOM1:
+							type.setCavecom(true);
+							break;
+						case CAVECOM2:
+							type.setCavecom(true);
+							break;
+						case CAVECOM3:
+							type.setCavecom(true);
+							break;
+						case CAVECOM4:
+							type.setCavecom(true);
+							break;
+						case CAVECOM5:
+							type.setCavecom(true);
+							break;
+						case ADDGOD1:
+							type.setAddgod(true);
+							break;
+						case ADDGOD2:
+							type.setAddgod(true);
+							break;
+						case ADDGOD3:
+							type.setAddgod(true);
+							break;
+						case ADDGOD4:
+							type.setAddgod(true);
+							break;
+						case ADDGOD5:
+							type.setAddgod(true);
+							break;
+						case ADDGOD6:
+							type.setAddgod(true);
+							break;
+						case ADDGOD7:
+							type.setAddgod(true);
+							break;
+						case ADDGOD8:
+							type.setAddgod(true);
+							break;
+						case ADDGOD9:
+							type.setAddgod(true);
+							break;
+						case ADDGOD10:
+							type.setAddgod(true);
+							break;
+						case ADDGOD11:
+							type.setAddgod(true);
+							break;
+						case ADDGOD12:
+							type.setAddgod(true);
+							break;
+						case ADDGOD13:
+							type.setAddgod(true);
+							break;
+						case ADDGOD14:
+							type.setAddgod(true);
+							break;
+						case DELGOD1:
+							type.setDelgod(true);
+							break;
+						case DELGOD2:
+							type.setDelgod(true);
+							break;
+						case DELGOD3:
+							type.setDelgod(true);
+							break;
+						case DELGOD4:
+							type.setDelgod(true);
+							break;
+						case DELGOD5:
+							type.setDelgod(true);
+							break;
+						case DELGOD6:
+							type.setDelgod(true);
+							break;
+						case DELGOD7:
+							type.setDelgod(true);
+							break;
+						case DELGOD8:
+							type.setDelgod(true);
+							break;
+						case DELGOD9:
+							type.setDelgod(true);
+							break;
+						case DELGOD10:
+							type.setDelgod(true);
+							break;
+						case DELGOD11:
+							type.setDelgod(true);
+							break;
+						case DELGOD12:
+							type.setDelgod(true);
+							break;
+						case DELGOD13:
+							type.setDelgod(true);
+							break;
+						case DELGOD14:
+							type.setDelgod(true);
+							break;
 						}
 						Integer newValue = null;
 						try {
@@ -3677,11 +7564,14 @@ public class NationDetailsPage extends AbstractDetailsPage {
 				myDocument.modify(new IUnitOfWork.Void<XtextResource>() {
 					@Override
 					public void process(XtextResource resource) throws Exception {
-						EList<NationMods> mods = ((SelectNation)input).getMods();
+						EList<NationMods> mods = ((Nation)input).getMods();
 						NationInst5 type = DmFactory.eINSTANCE.createNationInst5();
 						switch (inst) {
 						case COLOR:
 							type.setColor(true);
+							break;
+						case SECONDARYCOLOR:
+							type.setSecondarycolor(true);
 							break;
 						}
 						type.setValue1(newName1);
@@ -3708,7 +7598,21 @@ public class NationDetailsPage extends AbstractDetailsPage {
 						int siteCount = 0;
 						int addreccom = 0;
 						int addrecunit = 0;
-						EList<NationMods> mods = ((SelectNation)input).getMods();
+						int addforeignunit = 0;
+						int addforeigncom = 0;
+						int forestrec = 0;
+						int forestcom = 0;
+						int mountainrec = 0;
+						int mountaincom = 0;
+						int swamprec = 0;
+						int swampcom = 0;
+						int wasterec = 0;
+						int wastecom = 0;
+						int caverec = 0;
+						int cavecom = 0;
+						int addgod = 0;
+						int delgod = 0;
+						EList<NationMods> mods = ((Nation)input).getMods();
 						for (NationMods mod : mods) {
 							if (mod instanceof NationInst1) {
 								switch (inst) {
@@ -3739,11 +7643,6 @@ public class NationDetailsPage extends AbstractDetailsPage {
 									break;
 								case FLAG:
 									if (((NationInst1)mod).isFlag()){
-										modToRemove = mod;
-									}
-									break;
-								case MAPBACKGROUND:
-									if (((NationInst1)mod).isMapbackground()){
 										modToRemove = mod;
 									}
 									break;
@@ -3893,43 +7792,58 @@ public class NationDetailsPage extends AbstractDetailsPage {
 										modToRemove = mod;
 									}
 									break;
-								case STARTFORT:
-									if (((NationInst2)mod).isStartfort()){
+								case MERCCOST:
+									if (((NationInst2)mod).isMerccost()){
 										modToRemove = mod;
 									}
 									break;
-								case DEFAULTFORT:
-									if (((NationInst2)mod).isDefaultfort()){
+								case HOMEREALM:
+									if (((NationInst2)mod).isHomerealm()){
 										modToRemove = mod;
 									}
 									break;
-								case FARMFORT:
-									if (((NationInst2)mod).isFarmfort()){
+								case LIKESPOP:
+									if (((NationInst2)mod).isLikespop()){
 										modToRemove = mod;
 									}
 									break;
-								case MOUNTAINFORT:
-									if (((NationInst2)mod).isMountainfort()){
+								case FORTERA:
+									if (((NationInst2)mod).isFortera()){
 										modToRemove = mod;
 									}
 									break;
-								case FORESTFORT:
-									if (((NationInst2)mod).isForestfort()){
+								case FORTCOST:
+									if (((NationInst2)mod).isFortcost()){
 										modToRemove = mod;
 									}
 									break;
-								case SWAMPFORT:
-									if (((NationInst2)mod).isSwampfort()){
+								case SPREADCOLD:
+									if (((NationInst2)mod).isSpreadcold()){
 										modToRemove = mod;
 									}
 									break;
-								case UWFORT:
-									if (((NationInst2)mod).isUwfort()){
+								case SPREADHEAT:
+									if (((NationInst2)mod).isSpreadheat()){
 										modToRemove = mod;
 									}
 									break;
-								case DEEPFORT:
-									if (((NationInst2)mod).isDeepfort()){
+								case SPREADCHAOS:
+									if (((NationInst2)mod).isSpreadchaos()){
+										modToRemove = mod;
+									}
+									break;
+								case SPREADLAZY:
+									if (((NationInst2)mod).isSpreadlazy()){
+										modToRemove = mod;
+									}
+									break;
+								case SPREADDEATH:
+									if (((NationInst2)mod).isSpreaddeath()){
+										modToRemove = mod;
+									}
+									break;
+								case GOLEMHP:
+									if (((NationInst2)mod).isGolemhp()){
 										modToRemove = mod;
 									}
 									break;
@@ -3949,6 +7863,11 @@ public class NationDetailsPage extends AbstractDetailsPage {
 									break;
 								case CLEARSITES:
 									if (((NationInst3)mod).isClearsites()){
+										modToRemove = mod;
+									}
+									break;
+								case CLEARGODS:
+									if (((NationInst3)mod).isCleargods()){
 										modToRemove = mod;
 									}
 									break;
@@ -4340,12 +8259,865 @@ public class NationDetailsPage extends AbstractDetailsPage {
 										modToRemove = mod;
 									}
 									break;
+								case ADDFOREIGNUNIT1:
+									if (((NationInst4)mod).isAddforeignunit()){
+										addforeignunit++;
+										if (addforeignunit == 1) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case ADDFOREIGNUNIT2:
+									if (((NationInst4)mod).isAddforeignunit()){
+										addforeignunit++;
+										if (addforeignunit == 2) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case ADDFOREIGNUNIT3:
+									if (((NationInst4)mod).isAddforeignunit()){
+										addforeignunit++;
+										if (addforeignunit == 3) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case ADDFOREIGNUNIT4:
+									if (((NationInst4)mod).isAddforeignunit()){
+										addforeignunit++;
+										if (addforeignunit == 4) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case ADDFOREIGNUNIT5:
+									if (((NationInst4)mod).isAddforeignunit()){
+										addforeignunit++;
+										if (addforeignunit == 5) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case ADDFOREIGNUNIT6:
+									if (((NationInst4)mod).isAddforeignunit()){
+										addforeignunit++;
+										if (addforeignunit == 6) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case ADDFOREIGNUNIT7:
+									if (((NationInst4)mod).isAddforeignunit()){
+										addforeignunit++;
+										if (addforeignunit == 7) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case ADDFOREIGNUNIT8:
+									if (((NationInst4)mod).isAddforeignunit()){
+										addforeignunit++;
+										if (addforeignunit == 8) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case ADDFOREIGNUNIT9:
+									if (((NationInst4)mod).isAddforeignunit()){
+										addforeignunit++;
+										if (addforeignunit == 9) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case ADDFOREIGNUNIT10:
+									if (((NationInst4)mod).isAddforeignunit()){
+										addforeignunit++;
+										if (addforeignunit == 10) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case ADDFOREIGNUNIT11:
+									if (((NationInst4)mod).isAddforeignunit()){
+										addforeignunit++;
+										if (addforeignunit == 11) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case ADDFOREIGNUNIT12:
+									if (((NationInst4)mod).isAddforeignunit()){
+										addforeignunit++;
+										if (addforeignunit == 12) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case ADDFOREIGNUNIT13:
+									if (((NationInst4)mod).isAddforeignunit()){
+										addforeignunit++;
+										if (addforeignunit == 13) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case ADDFOREIGNUNIT14:
+									if (((NationInst4)mod).isAddforeignunit()){
+										addforeignunit++;
+										if (addforeignunit == 14) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case ADDFOREIGNCOM1:
+									if (((NationInst4)mod).isAddforeigncom()){
+										addforeigncom++;
+										if (addforeigncom == 1) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case ADDFOREIGNCOM2:
+									if (((NationInst4)mod).isAddforeigncom()){
+										addforeigncom++;
+										if (addforeigncom == 2) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case ADDFOREIGNCOM3:
+									if (((NationInst4)mod).isAddforeigncom()){
+										addforeigncom++;
+										if (addforeigncom == 3) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case ADDFOREIGNCOM4:
+									if (((NationInst4)mod).isAddforeigncom()){
+										addforeigncom++;
+										if (addforeigncom == 4) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case ADDFOREIGNCOM5:
+									if (((NationInst4)mod).isAddforeigncom()){
+										addforeigncom++;
+										if (addforeigncom == 5) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case ADDFOREIGNCOM6:
+									if (((NationInst4)mod).isAddforeigncom()){
+										addforeigncom++;
+										if (addforeigncom == 6) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case ADDFOREIGNCOM7:
+									if (((NationInst4)mod).isAddforeigncom()){
+										addforeigncom++;
+										if (addforeigncom == 7) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case ADDFOREIGNCOM8:
+									if (((NationInst4)mod).isAddforeigncom()){
+										addforeigncom++;
+										if (addforeigncom == 8) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case ADDFOREIGNCOM9:
+									if (((NationInst4)mod).isAddforeigncom()){
+										addforeigncom++;
+										if (addforeigncom == 9) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case ADDFOREIGNCOM10:
+									if (((NationInst4)mod).isAddforeigncom()){
+										addforeigncom++;
+										if (addforeigncom == 10) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case ADDFOREIGNCOM11:
+									if (((NationInst4)mod).isAddforeigncom()){
+										addforeigncom++;
+										if (addforeigncom == 11) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case ADDFOREIGNCOM12:
+									if (((NationInst4)mod).isAddforeigncom()){
+										addforeigncom++;
+										if (addforeigncom == 12) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case ADDFOREIGNCOM13:
+									if (((NationInst4)mod).isAddforeigncom()){
+										addforeigncom++;
+										if (addforeigncom == 13) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case ADDFOREIGNCOM14:
+									if (((NationInst4)mod).isAddforeigncom()){
+										addforeigncom++;
+										if (addforeigncom == 14) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case FORESTREC1:
+									if (((NationInst4)mod).isForestrec()){
+										forestrec++;
+										if (forestrec == 1) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case FORESTREC2:
+									if (((NationInst4)mod).isForestrec()){
+										forestrec++;
+										if (forestrec == 2) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case FORESTREC3:
+									if (((NationInst4)mod).isForestrec()){
+										forestrec++;
+										if (forestrec == 3) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case FORESTREC4:
+									if (((NationInst4)mod).isForestrec()){
+										forestrec++;
+										if (forestrec == 4) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case FORESTREC5:
+									if (((NationInst4)mod).isForestrec()){
+										forestrec++;
+										if (forestrec == 5) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case FORESTCOM1:
+									if (((NationInst4)mod).isForestcom()){
+										forestcom++;
+										if (forestcom == 1) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case FORESTCOM2:
+									if (((NationInst4)mod).isForestcom()){
+										forestcom++;
+										if (forestcom == 2) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case FORESTCOM3:
+									if (((NationInst4)mod).isForestcom()){
+										forestcom++;
+										if (forestcom == 3) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case FORESTCOM4:
+									if (((NationInst4)mod).isForestcom()){
+										forestcom++;
+										if (forestcom == 4) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case FORESTCOM5:
+									if (((NationInst4)mod).isForestcom()){
+										forestcom++;
+										if (forestcom == 5) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case MOUNTAINREC1:
+									if (((NationInst4)mod).isMountainrec()){
+										mountainrec++;
+										if (mountainrec == 1) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case MOUNTAINREC2:
+									if (((NationInst4)mod).isMountainrec()){
+										mountainrec++;
+										if (mountainrec == 2) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case MOUNTAINREC3:
+									if (((NationInst4)mod).isMountainrec()){
+										mountainrec++;
+										if (mountainrec == 3) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case MOUNTAINREC4:
+									if (((NationInst4)mod).isMountainrec()){
+										mountainrec++;
+										if (mountainrec == 4) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case MOUNTAINREC5:
+									if (((NationInst4)mod).isMountainrec()){
+										mountainrec++;
+										if (mountainrec == 5) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case MOUNTAINCOM1:
+									if (((NationInst4)mod).isMountaincom()){
+										mountaincom++;
+										if (mountaincom == 1) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case MOUNTAINCOM2:
+									if (((NationInst4)mod).isMountaincom()){
+										mountaincom++;
+										if (mountaincom == 2) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case MOUNTAINCOM3:
+									if (((NationInst4)mod).isMountaincom()){
+										mountaincom++;
+										if (mountaincom == 3) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case MOUNTAINCOM4:
+									if (((NationInst4)mod).isMountaincom()){
+										mountaincom++;
+										if (mountaincom == 4) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case MOUNTAINCOM5:
+									if (((NationInst4)mod).isMountaincom()){
+										mountaincom++;
+										if (mountaincom == 5) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case SWAMPREC1:
+									if (((NationInst4)mod).isSwamprec()){
+										swamprec++;
+										if (swamprec == 1) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case SWAMPREC2:
+									if (((NationInst4)mod).isSwamprec()){
+										swamprec++;
+										if (swamprec == 2) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case SWAMPREC3:
+									if (((NationInst4)mod).isSwamprec()){
+										swamprec++;
+										if (swamprec == 3) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case SWAMPREC4:
+									if (((NationInst4)mod).isSwamprec()){
+										swamprec++;
+										if (swamprec == 4) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case SWAMPREC5:
+									if (((NationInst4)mod).isSwamprec()){
+										swamprec++;
+										if (swamprec == 5) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case SWAMPCOM1:
+									if (((NationInst4)mod).isSwampcom()){
+										swampcom++;
+										if (swampcom == 1) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case SWAMPCOM2:
+									if (((NationInst4)mod).isSwampcom()){
+										swampcom++;
+										if (swampcom == 2) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case SWAMPCOM3:
+									if (((NationInst4)mod).isSwampcom()){
+										swampcom++;
+										if (swampcom == 3) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case SWAMPCOM4:
+									if (((NationInst4)mod).isSwampcom()){
+										swampcom++;
+										if (swampcom == 4) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case SWAMPCOM5:
+									if (((NationInst4)mod).isSwampcom()){
+										swampcom++;
+										if (swampcom == 5) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case WASTEREC1:
+									if (((NationInst4)mod).isWasterec()){
+										wasterec++;
+										if (wasterec == 1) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case WASTEREC2:
+									if (((NationInst4)mod).isWasterec()){
+										wasterec++;
+										if (wasterec == 2) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case WASTEREC3:
+									if (((NationInst4)mod).isWasterec()){
+										wasterec++;
+										if (wasterec == 3) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case WASTEREC4:
+									if (((NationInst4)mod).isWasterec()){
+										wasterec++;
+										if (wasterec == 4) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case WASTEREC5:
+									if (((NationInst4)mod).isWasterec()){
+										wasterec++;
+										if (wasterec == 5) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case WASTECOM1:
+									if (((NationInst4)mod).isWastecom()){
+										wastecom++;
+										if (wastecom == 1) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case WASTECOM2:
+									if (((NationInst4)mod).isWastecom()){
+										wastecom++;
+										if (wastecom == 2) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case WASTECOM3:
+									if (((NationInst4)mod).isWastecom()){
+										wastecom++;
+										if (wastecom == 3) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case WASTECOM4:
+									if (((NationInst4)mod).isWastecom()){
+										wastecom++;
+										if (wastecom == 4) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case WASTECOM5:
+									if (((NationInst4)mod).isWastecom()){
+										wastecom++;
+										if (wastecom == 5) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case CAVEREC1:
+									if (((NationInst4)mod).isCaverec()){
+										caverec++;
+										if (caverec == 1) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case CAVEREC2:
+									if (((NationInst4)mod).isCaverec()){
+										caverec++;
+										if (caverec == 2) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case CAVEREC3:
+									if (((NationInst4)mod).isCaverec()){
+										caverec++;
+										if (caverec == 3) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case CAVEREC4:
+									if (((NationInst4)mod).isCaverec()){
+										caverec++;
+										if (caverec == 4) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case CAVEREC5:
+									if (((NationInst4)mod).isCaverec()){
+										caverec++;
+										if (caverec == 5) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case CAVECOM1:
+									if (((NationInst4)mod).isCavecom()){
+										cavecom++;
+										if (cavecom == 1) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case CAVECOM2:
+									if (((NationInst4)mod).isCavecom()){
+										cavecom++;
+										if (cavecom == 2) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case CAVECOM3:
+									if (((NationInst4)mod).isCavecom()){
+										cavecom++;
+										if (cavecom == 3) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case CAVECOM4:
+									if (((NationInst4)mod).isCavecom()){
+										cavecom++;
+										if (cavecom == 4) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case CAVECOM5:
+									if (((NationInst4)mod).isCavecom()){
+										cavecom++;
+										if (cavecom == 5) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case ADDGOD1:
+									if (((NationInst4)mod).isAddgod()){
+										addgod++;
+										if (addgod == 1) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case ADDGOD2:
+									if (((NationInst4)mod).isAddgod()){
+										addgod++;
+										if (addgod == 2) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case ADDGOD3:
+									if (((NationInst4)mod).isAddgod()){
+										addgod++;
+										if (addgod == 3) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case ADDGOD4:
+									if (((NationInst4)mod).isAddgod()){
+										addgod++;
+										if (addgod == 4) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case ADDGOD5:
+									if (((NationInst4)mod).isAddgod()){
+										addgod++;
+										if (addgod == 5) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case ADDGOD6:
+									if (((NationInst4)mod).isAddgod()){
+										addgod++;
+										if (addgod == 6) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case ADDGOD7:
+									if (((NationInst4)mod).isAddgod()){
+										addgod++;
+										if (addgod == 7) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case ADDGOD8:
+									if (((NationInst4)mod).isAddgod()){
+										addgod++;
+										if (addgod == 8) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case ADDGOD9:
+									if (((NationInst4)mod).isAddgod()){
+										addgod++;
+										if (addgod == 9) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case ADDGOD10:
+									if (((NationInst4)mod).isAddgod()){
+										addgod++;
+										if (addgod == 10) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case ADDGOD11:
+									if (((NationInst4)mod).isAddgod()){
+										addgod++;
+										if (addgod == 11) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case ADDGOD12:
+									if (((NationInst4)mod).isAddgod()){
+										addgod++;
+										if (addgod == 12) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case ADDGOD13:
+									if (((NationInst4)mod).isAddgod()){
+										addgod++;
+										if (addgod == 13) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case ADDGOD14:
+									if (((NationInst4)mod).isAddgod()){
+										addgod++;
+										if (addgod == 14) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case DELGOD1:
+									if (((NationInst4)mod).isDelgod()){
+										delgod++;
+										if (delgod == 1) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case DELGOD2:
+									if (((NationInst4)mod).isDelgod()){
+										delgod++;
+										if (delgod == 2) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case DELGOD3:
+									if (((NationInst4)mod).isDelgod()){
+										delgod++;
+										if (delgod == 3) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case DELGOD4:
+									if (((NationInst4)mod).isDelgod()){
+										delgod++;
+										if (delgod == 4) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case DELGOD5:
+									if (((NationInst4)mod).isDelgod()){
+										delgod++;
+										if (delgod == 5) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case DELGOD6:
+									if (((NationInst4)mod).isDelgod()){
+										delgod++;
+										if (delgod == 6) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case DELGOD7:
+									if (((NationInst4)mod).isDelgod()){
+										delgod++;
+										if (delgod == 7) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case DELGOD8:
+									if (((NationInst4)mod).isDelgod()){
+										delgod++;
+										if (delgod == 8) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case DELGOD9:
+									if (((NationInst4)mod).isDelgod()){
+										delgod++;
+										if (delgod == 9) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case DELGOD10:
+									if (((NationInst4)mod).isDelgod()){
+										delgod++;
+										if (delgod == 10) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case DELGOD11:
+									if (((NationInst4)mod).isDelgod()){
+										delgod++;
+										if (delgod == 11) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case DELGOD12:
+									if (((NationInst4)mod).isDelgod()){
+										delgod++;
+										if (delgod == 12) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case DELGOD13:
+									if (((NationInst4)mod).isDelgod()){
+										delgod++;
+										if (delgod == 13) {
+											modToRemove = mod;
+										}
+									}
+									break;
+								case DELGOD14:
+									if (((NationInst4)mod).isDelgod()){
+										delgod++;
+										if (delgod == 14) {
+											modToRemove = mod;
+										}
+									}
+									break;
 								}
 							}
 							if (mod instanceof NationInst5) {
 								switch (inst) {
 								case COLOR:
 									if (((NationInst5)mod).isColor()){
+										modToRemove = mod;
+									}
+									break;
+								case SECONDARYCOLOR:
+									if (((NationInst5)mod).isSecondarycolor()){
 										modToRemove = mod;
 									}
 									break;

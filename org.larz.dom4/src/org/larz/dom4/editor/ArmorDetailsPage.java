@@ -56,6 +56,7 @@ import org.larz.dom4.dm.dm.SelectArmorById;
 import org.larz.dom4.dm.dm.SelectArmorByName;
 import org.larz.dom4.dm.ui.help.HelpTextHelper;
 
+@SuppressWarnings("incomplete-switch")
 public class ArmorDetailsPage extends AbstractDetailsPage {
 	private Text name;
 	private Button nameCheck;

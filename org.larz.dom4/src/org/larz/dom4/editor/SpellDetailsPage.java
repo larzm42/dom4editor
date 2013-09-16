@@ -64,6 +64,7 @@ import org.larz.dom4.dm.dm.SpellInst5;
 import org.larz.dom4.dm.dm.SpellMods;
 import org.larz.dom4.dm.ui.help.HelpTextHelper;
 
+@SuppressWarnings("incomplete-switch")
 public class SpellDetailsPage extends AbstractDetailsPage {
 	private Text name;
 	private Button nameCheck;

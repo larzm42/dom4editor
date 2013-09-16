@@ -56,6 +56,7 @@ import org.eclipse.xtext.ui.editor.model.XtextDocumentUtil;
 import org.eclipse.xtext.ui.editor.validation.MarkerCreator;
 import org.eclipse.xtext.ui.editor.validation.MarkerIssueProcessor;
 import org.eclipse.xtext.ui.editor.validation.ValidationJob;
+import org.eclipse.xtext.ui.validation.MarkerTypeProvider;
 import org.eclipse.xtext.util.concurrent.IUnitOfWork;
 import org.eclipse.xtext.validation.CheckMode;
 import org.eclipse.xtext.validation.IResourceValidator;
@@ -89,7 +90,7 @@ import org.larz.dom4.dm.dm.SelectSpellByName;
 import org.larz.dom4.dm.dm.SelectWeaponById;
 import org.larz.dom4.dm.dm.SelectWeaponByName;
 import org.larz.dom4.dm.dm.Site;
-import org.larz.dom4.dm.dm.SiteInst2;
+import org.larz.dom4.dm.dm.SiteInst5;
 import org.larz.dom4.dm.dm.SiteMods;
 import org.larz.dom4.dm.dm.Spell;
 import org.larz.dom4.dm.dm.SpellInst2;
@@ -249,7 +250,7 @@ public class DmEditor extends FormEditor implements IMenuListener, IGotoMarker {
 		MarkerCreator markerCreator = DmActivator.getInstance().getInjector("org.larz.dom4.dm.Dm").getInstance(MarkerCreator.class);
 		XtextEditor xtextEditor = ((XtextEditor)sourcePage);
 		if (xtextEditor != null) {
-			MarkerIssueProcessor markerIssueProcessor = new MarkerIssueProcessor(xtextEditor.getResource(),	markerCreator);
+			MarkerIssueProcessor markerIssueProcessor = new MarkerIssueProcessor(xtextEditor.getResource(),	markerCreator, new MarkerTypeProvider());
 			IXtextDocument xtextDocument = XtextDocumentUtil.get(xtextEditor);
 			ValidationJob validationJob = new ValidationJob(resourceValidator, xtextDocument, markerIssueProcessor, CheckMode.EXPENSIVE_ONLY);
 			validationJob.schedule();
@@ -270,7 +271,7 @@ public class DmEditor extends FormEditor implements IMenuListener, IGotoMarker {
 						((ArmorDetailsPage)((SummaryList)masterDetailsPage.block).getDetailsPart().getCurrentPage()).update();
 
 						Object one = ((ArmorDetailsPage)((SummaryList)masterDetailsPage.block).getDetailsPart().getCurrentPage()).getInput();
-						Object two = ((AbstractElementWrapper)((IStructuredSelection)masterDetailsPage.block.viewer.getSelection()).getFirstElement()).getElement();
+						Object two = ((IStructuredSelection)masterDetailsPage.block.viewer.getSelection()).getFirstElement() != null ? ((AbstractElementWrapper)((IStructuredSelection)masterDetailsPage.block.viewer.getSelection()).getFirstElement()).getElement() : null;
 						if (one != two) {
 							if (one instanceof SelectArmorById && two instanceof SelectArmorById) {
 								if (((SelectArmorById)one).getValue() == ((SelectArmorById)two).getValue()) {
@@ -292,7 +293,7 @@ public class DmEditor extends FormEditor implements IMenuListener, IGotoMarker {
 						((WeaponDetailsPage)((SummaryList)masterDetailsPage.block).getDetailsPart().getCurrentPage()).update();
 
 						Object one = ((WeaponDetailsPage)((SummaryList)masterDetailsPage.block).getDetailsPart().getCurrentPage()).getInput();
-						Object two = ((AbstractElementWrapper)((IStructuredSelection)masterDetailsPage.block.viewer.getSelection()).getFirstElement()).getElement();
+						Object two = ((IStructuredSelection)masterDetailsPage.block.viewer.getSelection()).getFirstElement() != null ? ((AbstractElementWrapper)((IStructuredSelection)masterDetailsPage.block.viewer.getSelection()).getFirstElement()).getElement() : null;
 						if (one != two) {
 							if (one instanceof SelectWeaponById && two instanceof SelectWeaponById) {
 								if (((SelectWeaponById)one).getValue() == ((SelectWeaponById)two).getValue()) {
@@ -314,7 +315,7 @@ public class DmEditor extends FormEditor implements IMenuListener, IGotoMarker {
 						((MonsterDetailsPage)((SummaryList)masterDetailsPage.block).getDetailsPart().getCurrentPage()).update();
 
 						Object one = ((MonsterDetailsPage)((SummaryList)masterDetailsPage.block).getDetailsPart().getCurrentPage()).getInput();
-						Object two = ((AbstractElementWrapper)((IStructuredSelection)masterDetailsPage.block.viewer.getSelection()).getFirstElement()).getElement();
+						Object two = ((IStructuredSelection)masterDetailsPage.block.viewer.getSelection()).getFirstElement() != null ? ((AbstractElementWrapper)((IStructuredSelection)masterDetailsPage.block.viewer.getSelection()).getFirstElement()).getElement() : null;
 						if (one != two) {
 							if (one instanceof SelectMonsterById && two instanceof SelectMonsterById) {
 								if (((SelectMonsterById)one).getValue() == ((SelectMonsterById)two).getValue()) {
@@ -336,7 +337,7 @@ public class DmEditor extends FormEditor implements IMenuListener, IGotoMarker {
 						((NationDetailsPage)((SummaryList)masterDetailsPage.block).getDetailsPart().getCurrentPage()).update();
 
 						Object one = ((NationDetailsPage)((SummaryList)masterDetailsPage.block).getDetailsPart().getCurrentPage()).getInput();
-						Object two = ((AbstractElementWrapper)((IStructuredSelection)masterDetailsPage.block.viewer.getSelection()).getFirstElement()).getElement();
+						Object two = ((IStructuredSelection)masterDetailsPage.block.viewer.getSelection()).getFirstElement() != null ? ((AbstractElementWrapper)((IStructuredSelection)masterDetailsPage.block.viewer.getSelection()).getFirstElement()).getElement() : null;
 						if (one != two) {
 							if (one instanceof SelectNation && two instanceof SelectNation) {
 								if (((SelectNation)one).getValue() == ((SelectNation)two).getValue()) {
@@ -350,7 +351,7 @@ public class DmEditor extends FormEditor implements IMenuListener, IGotoMarker {
 						((SpellDetailsPage)((SummaryList)masterDetailsPage.block).getDetailsPart().getCurrentPage()).update();
 
 						Object one = ((SpellDetailsPage)((SummaryList)masterDetailsPage.block).getDetailsPart().getCurrentPage()).getInput();
-						Object two = ((AbstractElementWrapper)((IStructuredSelection)masterDetailsPage.block.viewer.getSelection()).getFirstElement()).getElement();
+						Object two = ((IStructuredSelection)masterDetailsPage.block.viewer.getSelection()).getFirstElement() != null ? ((AbstractElementWrapper)((IStructuredSelection)masterDetailsPage.block.viewer.getSelection()).getFirstElement()).getElement() : null;
 						if (one != two) {
 							if (one instanceof SelectSpellById && two instanceof SelectSpellById) {
 								if (((SelectSpellById)one).getValue() == ((SelectSpellById)two).getValue()) {
@@ -368,7 +369,7 @@ public class DmEditor extends FormEditor implements IMenuListener, IGotoMarker {
 						((ItemDetailsPage)((SummaryList)masterDetailsPage.block).getDetailsPart().getCurrentPage()).update();
 
 						Object one = ((ItemDetailsPage)((SummaryList)masterDetailsPage.block).getDetailsPart().getCurrentPage()).getInput();
-						Object two = ((AbstractElementWrapper)((IStructuredSelection)masterDetailsPage.block.viewer.getSelection()).getFirstElement()).getElement();
+						Object two = ((IStructuredSelection)masterDetailsPage.block.viewer.getSelection()).getFirstElement() != null ? ((AbstractElementWrapper)((IStructuredSelection)masterDetailsPage.block.viewer.getSelection()).getFirstElement()).getElement() : null;
 						if (one != two) {
 							if (one instanceof SelectItemById && two instanceof SelectItemById) {
 								if (((SelectItemById)one).getValue() == ((SelectItemById)two).getValue()) {
@@ -386,7 +387,7 @@ public class DmEditor extends FormEditor implements IMenuListener, IGotoMarker {
 						((SiteDetailsPage)((SummaryList)masterDetailsPage.block).getDetailsPart().getCurrentPage()).update();
 
 						Object one = ((SiteDetailsPage)((SummaryList)masterDetailsPage.block).getDetailsPart().getCurrentPage()).getInput();
-						Object two = ((AbstractElementWrapper)((IStructuredSelection)masterDetailsPage.block.viewer.getSelection()).getFirstElement()).getElement();
+						Object two = ((IStructuredSelection)masterDetailsPage.block.viewer.getSelection()).getFirstElement() != null ? ((AbstractElementWrapper)((IStructuredSelection)masterDetailsPage.block.viewer.getSelection()).getFirstElement()).getElement() : null;
 						if (one != two) {
 							if (one instanceof SelectSiteById && two instanceof SelectSiteById) {
 								if (((SelectSiteById)one).getValue() == ((SelectSiteById)two).getValue()) {
@@ -408,7 +409,7 @@ public class DmEditor extends FormEditor implements IMenuListener, IGotoMarker {
 						((NameDetailsPage)((SummaryList)masterDetailsPage.block).getDetailsPart().getCurrentPage()).update();
 
 						Object one = ((NameDetailsPage)((SummaryList)masterDetailsPage.block).getDetailsPart().getCurrentPage()).getInput();
-						Object two = ((AbstractElementWrapper)((IStructuredSelection)masterDetailsPage.block.viewer.getSelection()).getFirstElement()).getElement();
+						Object two = ((IStructuredSelection)masterDetailsPage.block.viewer.getSelection()).getFirstElement() != null ? ((AbstractElementWrapper)((IStructuredSelection)masterDetailsPage.block.viewer.getSelection()).getFirstElement()).getElement() : null;
 						if (one != two) {
 							if (one instanceof SelectName && two instanceof SelectName) {
 								if (((SelectName)one).getValue() == ((SelectName)two).getValue()) {
@@ -642,13 +643,13 @@ public class DmEditor extends FormEditor implements IMenuListener, IGotoMarker {
 									} else if (element instanceof Site) {
 										EList<SiteMods> mods = ((Site)element).getMods();
 										for (SiteMods mod : mods) {
-											if (mod instanceof SiteInst2 && 
-											   (((SiteInst2)mod).isHomecom() ||
-												((SiteInst2)mod).isHomemon() ||
-												((SiteInst2)mod).isCom() ||
-												((SiteInst2)mod).isMon() )) {
-												if (((SiteInst2)mod).getValue() == oldValue) {
-													((SiteInst2)mod).setValue(i);
+											if (mod instanceof SiteInst5 && 
+											   (((SiteInst5)mod).isHomecom() ||
+												((SiteInst5)mod).isHomemon() ||
+												((SiteInst5)mod).isCom() ||
+												((SiteInst5)mod).isMon() )) {
+												if (((SiteInst5)mod).getValue2() == oldValue) {
+													((SiteInst5)mod).setValue2(i);
 												}
 											}
 										}

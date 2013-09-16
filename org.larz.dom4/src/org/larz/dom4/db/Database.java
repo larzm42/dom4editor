@@ -622,7 +622,6 @@ public class Database {
 			nation.name = rs.getString("name");
 			nation.epithet = rs.getString("epithet");
 			nation.era = rs.getInt("era");
-			nation.startfort = rs.getInt("fort");
 			nation.startsite1 = getSiteName(rs.getInt("site1"));
 			nation.startsite2 = getSiteName(rs.getInt("site2"));
 			nation.startsite3 = getSiteName(rs.getInt("site3"));

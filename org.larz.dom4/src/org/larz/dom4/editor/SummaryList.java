@@ -74,6 +74,7 @@ import org.larz.dom4.dm.dm.ArmorInst1;
 import org.larz.dom4.dm.dm.ArmorMods;
 import org.larz.dom4.dm.dm.Dom4Mod;
 import org.larz.dom4.dm.dm.GeneralInst1;
+import org.larz.dom4.dm.dm.IndepFlag;
 import org.larz.dom4.dm.dm.Item;
 import org.larz.dom4.dm.dm.ItemInst1;
 import org.larz.dom4.dm.dm.ItemMods;
@@ -85,6 +86,7 @@ import org.larz.dom4.dm.dm.NationMods;
 import org.larz.dom4.dm.dm.NewArmor;
 import org.larz.dom4.dm.dm.NewItem;
 import org.larz.dom4.dm.dm.NewMonster;
+import org.larz.dom4.dm.dm.NewNation;
 import org.larz.dom4.dm.dm.NewSite;
 import org.larz.dom4.dm.dm.NewSpell;
 import org.larz.dom4.dm.dm.NewWeapon;
@@ -115,6 +117,7 @@ import org.larz.dom4.dm.dm.WeaponMods;
 import org.larz.dom4.dm.dm.impl.NewArmorImpl;
 import org.larz.dom4.dm.dm.impl.NewItemImpl;
 import org.larz.dom4.dm.dm.impl.NewMonsterImpl;
+import org.larz.dom4.dm.dm.impl.NewNationImpl;
 import org.larz.dom4.dm.dm.impl.NewSiteImpl;
 import org.larz.dom4.dm.dm.impl.NewSpellImpl;
 import org.larz.dom4.dm.dm.impl.NewWeaponImpl;
@@ -133,6 +136,7 @@ import org.larz.dom4.dm.dm.impl.SelectSpellByNameImpl;
 import org.larz.dom4.dm.dm.impl.SelectWeaponByIdImpl;
 import org.larz.dom4.dm.dm.impl.SelectWeaponByNameImpl;
 
+@SuppressWarnings("incomplete-switch")
 public class SummaryList extends MasterDetailsBlock {
 	private DmEditor editor;
 	private XtextEditor doc;
@@ -433,6 +437,15 @@ public class SummaryList extends MasterDetailsBlock {
 						}
 					}
 				}
+			} else if (element instanceof NewNation) {
+				EList<NationMods> list = ((NewNation)element).getMods();
+				for (NationMods mod : list) {
+					if (mod instanceof NationInst1) {
+						if (((NationInst1)mod).isName()) {
+							return Messages.format("ScrolledPropertiesBlock.nation.single.fmt", ((NationInst1)mod).getValue());
+						}
+					}
+				}
 			} else if (element instanceof SelectNation) {
 				EList<NationMods> list = ((SelectNation)element).getMods();
 				for (NationMods mod : list) {
@@ -445,6 +458,8 @@ public class SummaryList extends MasterDetailsBlock {
 				return Messages.format("ScrolledPropertiesBlock.nation.double.fmt", ((SelectNation)element).getValue(), Database.getNationName(((SelectNation)element).getValue()));
 			} else if (element instanceof SelectName) {
 				return Messages.format("ScrolledPropertiesBlock.nametype.single.fmt", ((SelectName)element).getValue());
+			} else if (element instanceof IndepFlag) {
+				return Messages.getString("ScrolledPropertiesBlock.indepflag.txt");
 			}
 			return obj.toString();
 		}
@@ -480,7 +495,8 @@ public class SummaryList extends MasterDetailsBlock {
 				element instanceof SelectSpellByName) {
 				return SPELL_IMAGE;
 			}
-			if (element instanceof SelectNation) {
+			if (element instanceof SelectNation ||
+				element instanceof NewNation) {
 				return NATION_IMAGE;
 			}
 			if (element instanceof SelectName) {
@@ -742,6 +758,7 @@ public class SummaryList extends MasterDetailsBlock {
 		detailsPart.registerPage(SelectMonsterByNameImpl.class, new MonsterDetailsPage(doc, viewer));
 		detailsPart.registerPage(NewMonsterImpl.class, new MonsterDetailsPage(doc, viewer));
 		detailsPart.registerPage(SelectNationImpl.class, new NationDetailsPage(doc, viewer));
+		detailsPart.registerPage(NewNationImpl.class, new NationDetailsPage(doc, viewer));
 		detailsPart.registerPage(SelectSpellByIdImpl.class, new SpellDetailsPage(doc, viewer));
 		detailsPart.registerPage(SelectSpellByNameImpl.class, new SpellDetailsPage(doc, viewer));
 		detailsPart.registerPage(NewSpellImpl.class, new SpellDetailsPage(doc, viewer));
@@ -970,7 +987,14 @@ public class SummaryList extends MasterDetailsBlock {
 	{
 		IXtextDocument document = ((XtextEditor)doc).getDocument();
 		try {
-			document.replace(document.getLength(), 0, "\n#selectnation " + id + "\n#end\n");
+			switch (type) {
+			case BY_ID:
+				document.replace(document.getLength(), 0, "\n#selectnation " + id + "\n#end\n");
+				break;
+			case NEW:
+				document.replace(document.getLength(), 0, "\n#newnation\n#name \"" + name + "\"\n#end\n");
+				break;
+			}
 		} catch (BadLocationException e) {
 			e.printStackTrace();
 		}

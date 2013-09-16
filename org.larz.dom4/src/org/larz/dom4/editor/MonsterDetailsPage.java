@@ -87,6 +87,7 @@ import org.larz.dom4.dm.ui.help.HelpTextHelper;
 import org.larz.dom4.image.ImageConverter;
 import org.larz.dom4.image.ImageLoader;
 
+@SuppressWarnings("incomplete-switch")
 public class MonsterDetailsPage extends AbstractDetailsPage {
 	private Text name;
 	private Button nameCheck;

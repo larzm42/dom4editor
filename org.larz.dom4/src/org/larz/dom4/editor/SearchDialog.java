@@ -40,9 +40,7 @@ import org.larz.dom4.db.IDNameDB;
 import org.larz.dom4.dm.validation.DmJavaValidator;
 import org.larz.dom4.editor.AddDialog.TypeToAdd;
 
-/**
- *
- */
+@SuppressWarnings("incomplete-switch")
 public class SearchDialog extends Dialog {
 	private TableViewer viewer;
 	private IDNameDB selected;

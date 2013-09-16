@@ -25,7 +25,6 @@ public class NationDB {
 	public String startsite3;
 	public String startsite4;
 	public Integer era;
-	public Integer startfort;
 	
 	public Integer hero1;
 	public Integer hero2;
@@ -38,7 +37,6 @@ public class NationDB {
 	public Integer multihero2;
 	
 	public Integer clearrec;
-	public Integer forestfort;
 	public Integer idealcold;
 	
 	public Integer startcom;
@@ -70,7 +68,33 @@ public class NationDB {
 	public Integer defmult2;
 	public Integer defmult2b;
 	
-	public String mapbackground;
 	public Integer templecost;
 	public Integer castleprod;
+	
+	public Integer[] addforeignunit;
+	public Integer[] addforeigncom;
+	public Integer merccost;
+	public Integer[] forestrec;
+	public Integer[] forestcom;
+	public Integer[] mountainrec;
+	public Integer[] mountaincom;
+	public Integer[] swamprec;
+	public Integer[] swampcom;
+	public Integer[] wasterec;
+	public Integer[] wastecom;
+	public Integer[] caverec;
+	public Integer[] cavecom;
+	public Integer[] addgod;
+	public Integer homerealm;
+	public Integer[] delgod;
+	public Integer likespop;
+	public Integer fortera;
+	public Integer fortcost;
+	public Integer spreadcold;
+	public Integer spreadheat;
+	public Integer spreadchaos;
+	public Integer spreadlazy;
+	public Integer spreaddeath;
+	public Integer golemhp;
+
 }

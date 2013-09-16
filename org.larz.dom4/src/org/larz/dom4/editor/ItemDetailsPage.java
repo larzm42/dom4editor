@@ -62,6 +62,7 @@ import org.larz.dom4.dm.dm.SelectItemById;
 import org.larz.dom4.dm.dm.SelectItemByName;
 import org.larz.dom4.dm.ui.help.HelpTextHelper;
 
+@SuppressWarnings("incomplete-switch")
 public class ItemDetailsPage extends AbstractDetailsPage {
 	private Text name;
 	private Button nameCheck;
