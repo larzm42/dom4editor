@@ -139,6 +139,8 @@ class DmFormatter extends AbstractDeclarativeFormatter {
 		c.setLinewrap(0, 1, 1).after((getGrammarAccess() as DmGrammarAccess).getSitePattern3Rule());
 		c.setLinewrap(1, 1, 1).before((getGrammarAccess() as DmGrammarAccess).getSitePattern4Rule());
 		c.setLinewrap(0, 1, 1).after((getGrammarAccess() as DmGrammarAccess).getSitePattern4Rule());
+		c.setLinewrap(1, 1, 1).before((getGrammarAccess() as DmGrammarAccess).getSitePattern5Rule());
+		c.setLinewrap(0, 1, 1).after((getGrammarAccess() as DmGrammarAccess).getSitePattern5Rule());
 		
 		// Spell rules
 		c.setLinewrap(2, 2, 2).before((getGrammarAccess() as DmGrammarAccess).getSelectSpellByIdRule());

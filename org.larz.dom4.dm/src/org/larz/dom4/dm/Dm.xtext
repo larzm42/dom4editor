@@ -14,7 +14,7 @@ Dom4Mod:
 	elements+=AbstractElement*;
 
 AbstractElement:
-	 General | Armor | Weapon | Monster | Spell | Item | Name | Site | Nation;
+	 General | Armor | Weapon | Monster | Spell | Item | Name | Site | Nation | IndepFlag;
 		
 	
 /****************/
@@ -607,7 +607,7 @@ NewSite:
 	'#end';
 
 SiteMods:
-	SitePattern1 | SitePattern2 | SitePattern3 | SitePattern4;
+	SitePattern1 | SitePattern2 | SitePattern3 | SitePattern4 | SitePattern5;
 	
 SitePattern1:
 	SiteInst1 value=STRING (FREE_FORM_COMMENT)*;
@@ -621,6 +621,9 @@ SitePattern3:
 SitePattern4:
 	SiteInst4 (FREE_FORM_COMMENT)*;
 
+SitePattern5:
+	SiteInst5 (value1=STRING | value2=INT) (FREE_FORM_COMMENT)*;
+
 SiteInst1:
 	name?='#name';
 	
@@ -629,10 +632,6 @@ SiteInst2:
 	level?='#level' |
 	rarity?='#rarity' |
 	loc?='#loc' |
-	homemon?='#homemon' |
-	homecom?='#homecom' |
-	mon?='#mon' |
-	com?='#com' |
 	gold?='#gold' |
 	res?='#res' |
 	incscale?='#incscale' |
@@ -649,29 +648,86 @@ SiteInst2:
 	constcost?='#constcost' |
 	enchcost?='#enchcost' |
 	thaucost?='#thaucost' |
-	bloodcost?='#bloodcost';
+	bloodcost?='#bloodcost' |
+	decunrest?='#decunrest' |
+	supply?='#supply' |
+	voidgate?='#voidgate' |
+	fort?='#fort' |
+	fortpart?='#fortpart' |
+	scry?='#scry' |
+	firerange?='#firerange' |
+	airrange?='#airrange' |
+	waterrange?='#waterrange' |
+	earthrange?='#earthrange' |
+	astralrange?='#astralrange' |
+	deathrange?='#deathrange' |
+	naturerange?='#naturerange' |
+	bloodrange?='#bloodrange' |
+	elementrange?='#elementrange' |
+	sorceryrange?='#sorceryrange' |
+	allrange?='#allrange' |
+	xp?='#xp' |
+	adventureruin?='#adventureruin' |
+	cluster?='#cluster' |
+	dominion?='#dominion' |
+	goddomchaos?='#goddomchaos' |
+	goddomlazy?='#goddomlazy' |
+	goddomcold?='#goddomcold' |
+	goddomdeath?='#goddomdeath' |
+	goddommisfortune?='#goddommisfortune' |
+	goddomdrain?='#goddomdrain' |
+	blesshp?='#blesshp' |
+	blessmr?='#blessmr' |
+	blessmor?='#blessmor' |
+	blessstr?='#blessstr' |
+	blessatt?='#blessatt' |
+	blessdef?='#blessdef' |
+	blessprec?='#blessprec' |
+	blessfireres?='#blessfireres' |
+	blesscoldres?='#blesscoldres' |
+	blessshockres?='#blessshockres' |
+	blesspoisres?='#blesspoisres' |
+	blessairshld?='#blessairshld' |
+	blessreinvig?='#blessreinvig' |
+	blessdtv?='#blessdtv' |
+	blessanimawe?='#blessanimawe' |
+	blessawe?='#blessawe' |
+	blessdarkvis?='#blessdarkvis';
 	
 SiteInst3:
 	gems?='#gems';
 
 SiteInst4:
 	clear?='#clear' |
-	lab?='#lab';
+	lab?='#lab' |
+	temple?='#temple' |
+	claim?='#claim' |
+	evil?='#evil' |
+	wild?='#wild';
+	
+SiteInst5:
+	homemon?='#homemon' |
+	homecom?='#homecom' |
+	mon?='#mon' |
+	com?='#com' |
+	summon?='#summon';
 
 
 /***************/
 /* Nation Mods */
 /***************/
 Nation:
-	SelectNation | IndepFlag;
+	SelectNation | NewNation;
 	
 SelectNation:
 	'#selectnation' value=INT (FREE_FORM_COMMENT)*
 	mods+=NationMods*
 	'#end';
 	
-IndepFlag:
-	'#indepflag' value=STRING (FREE_FORM_COMMENT)*;
+NewNation:
+	'#newnation' (FREE_FORM_COMMENT)*
+	mods+=NationMods*
+	'#end';
 
 NationMods:
 	NationPattern1 | NationPattern2 | NationPattern3 | NationPattern4 | NationPattern5;
@@ -699,7 +755,6 @@ NationInst1:
 	summary?='#summary' |
 	brief?='#brief' |
 	flag?='#flag' |
-	mapbackground?='#mapbackground' |
 	startsite?='#startsite';
 	
 NationInst2:
@@ -725,14 +780,17 @@ NationInst2:
 	castleprod?='#castleprod' |
 	domkill?='#domkill' |
 	domunrest?='#domunrest' |
-	startfort?='#startfort' |
-	defaultfort?='#defaultfort' |
-	farmfort?='#farmfort' |
-	mountainfort?='#mountainfort' |
-	forestfort?='#forestfort' |
-	swampfort?='#swampfort' |
-	uwfort?='#uwfort' |
-	deepfort?='#deepfort';
+	merccost?='#merccost' |
+	homerealm?='#homerealm' |
+	likespop?='#likespop' |
+	fortera?='#fortera' |
+	fortcost?='#fortcost' |
+	spreadcold?='#spreadcold' |
+	spreadheat?='#spreadheat' |
+	spreadchaos?='#spreadchaos' |
+	spreadlazy?='#spreadlazy' |
+	spreaddeath?='#spreaddeath' |
+	golemhp?='#golemhp';	
 
 NationInst3:
 	clearnation?='#clearnation' |
@@ -749,7 +807,8 @@ NationInst3:
 	horsereanim?='#horsereanim' |
 	wightreanim?='#wightreanim' |
 	manikinreanim?='#manikinreanim' |
-	tombwyrmreanim?='#tombwyrmreanim';
+	tombwyrmreanim?='#tombwyrmreanim' |
+	cleargods?='#cleargods';
 	
 NationInst4:
 	startcom?='#startcom' |
@@ -773,10 +832,33 @@ NationInst4:
 	defunit1?='#defunit1' |
 	defunit1b?='#defunit1b' |
 	defunit2?='#defunit2' |
-	defunit2b?='#defunit2b';
-	
+	defunit2b?='#defunit2b' |
+	addforeignunit?='#addforeignunit' |
+	addforeigncom?='#addforeigncom' |
+	forestrec?='#forestrec' |
+	forestcom?='#forestcom' |
+	mountainrec?='#mountainrec' |
+	mountaincom?='#mountaincom' |
+	swamprec?='#swamprec' |
+	swampcom?='#swampcom' |
+	wasterec?='#wasterec' |
+	wastecom?='#wastecom' |
+	caverec?='#caverec' |
+	cavecom?='#cavecom' |
+	addgod?='#addgod' |
+	delgod?='#delgod';
+
 NationInst5:
-	color?='#color';
+	color?='#color' |
+	secondarycolor?="#secondarycolor";
+
+
+/********************/
+/* Independant Flag */
+/********************/
+IndepFlag:
+	'#indepflag' value=STRING (FREE_FORM_COMMENT)*;
+
 
 DecimalValue:
 	INT ('.' INT)*;
@@ -784,6 +866,8 @@ DecimalValue:
 /*************/
 /* Terminals */
 /*************/
+terminal ID  		: '^'?('a'..'z'|'A'..'Z'|'_'|'#') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
+
 terminal INT returns ecore::EInt: '-'?('0'..'9')+;
 
 terminal STRING	: 
