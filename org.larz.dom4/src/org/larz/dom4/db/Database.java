@@ -1058,7 +1058,8 @@ public class Database {
 			monster.pooramphibian = rs.getInt("pooramphibian") == 1;
 			monster.flying = rs.getInt("flying") == 1;
 			monster.stormimmune = rs.getInt("stormimmune") == 1;
-			monster.sailing = rs.getInt("sailing") == 1;
+			monster.sailing1 = (rs.getInt("sailing") == 1 ? 999 : null);
+			monster.sailing2 = (rs.getInt("sailing") == 1 ? 2 : null);
 			monster.forestsurvival = rs.getInt("forestsurvival") == 1;
 			monster.mountainsurvival = rs.getInt("mountainsurvival") == 1;
 			monster.swampsurvival = rs.getInt("swampsurvival") == 1;

@@ -140,7 +140,6 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 		CLEARSPEC (Messages.getString("MonsterDetailsSection.mod.clearspec")),
 		COPYSTATS (Messages.getString("MonsterDetailsSection.mod.copystats"), "0"),
 		COPYSPR (Messages.getString("MonsterDetailsSection.mod.copyspr"), "0"),
-		RESTRICTEDGOD (Messages.getString("MonsterDetailsSection.mod.restrictedgod"), "0"),
 		FEMALE (Messages.getString("MonsterDetailsSection.mod.female")),
 		MOUNTED (Messages.getString("MonsterDetailsSection.mod.mounted")),
 		HOLY (Messages.getString("MonsterDetailsSection.mod.holy")),
@@ -161,7 +160,7 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 		POORAMPHIBIAN (Messages.getString("MonsterDetailsSection.mod.pooramphibian")),
 		FLYING (Messages.getString("MonsterDetailsSection.mod.flying")),
 		STORMIMMUNE (Messages.getString("MonsterDetailsSection.mod.stormimmune")),
-		SAILING (Messages.getString("MonsterDetailsSection.mod.sailing")),
+		SAILING (Messages.getString("MonsterDetailsSection.mod.sailing"), "999", "2"),
 		FORESTSURVIVAL (Messages.getString("MonsterDetailsSection.mod.forestsurvival")),
 		MOUNTAINSURVIVAL (Messages.getString("MonsterDetailsSection.mod.mountainsurvival")),
 		SWAMPSURVIVAL (Messages.getString("MonsterDetailsSection.mod.swampsurvival")),
@@ -410,7 +409,6 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 		instMap.put(Inst.EYES, new Inst2Fields());
 		instMap.put(Inst.COPYSTATS, new Inst2Fields());
 		instMap.put(Inst.COPYSPR, new Inst2Fields());
-		instMap.put(Inst.RESTRICTEDGOD, new Inst2Fields());
 		instMap.put(Inst.SHATTEREDSOUL, new Inst2Fields());
 		instMap.put(Inst.COLDRES, new Inst2Fields());
 		instMap.put(Inst.FIRERES, new Inst2Fields());
@@ -524,7 +522,7 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 		instMap.put(Inst.POORAMPHIBIAN, new Inst4Fields());
 		instMap.put(Inst.FLYING, new Inst4Fields());
 		instMap.put(Inst.STORMIMMUNE, new Inst4Fields());
-		instMap.put(Inst.SAILING, new Inst4Fields());
+		instMap.put(Inst.SAILING, new Inst7Fields());
 		instMap.put(Inst.FORESTSURVIVAL, new Inst4Fields());
 		instMap.put(Inst.MOUNTAINSURVIVAL, new Inst4Fields());
 		instMap.put(Inst.SWAMPSURVIVAL, new Inst4Fields());
@@ -911,7 +909,7 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 			
 			if (key.equals(Inst.SPECIALLOOK) || 
 				key.equals(Inst.CLEAR) || 
-				key.equals(Inst.RESTRICTEDGOD) || 
+				key.equals(Inst.FEMALE) || 
 				key.equals(Inst.IMMOBILE) || 
 				key.equals(Inst.COLDRES) || 
 				key.equals(Inst.STEALTHY) || 
@@ -935,7 +933,7 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 				case CLEAR:
 					expandable.setText(Messages.getString("MonsterDetailsSection.mod.section.clearing"));
 					break;
-				case RESTRICTEDGOD:
+				case FEMALE:
 					expandable.setText(Messages.getString("MonsterDetailsSection.mod.section.type"));
 					break;
 				case IMMOBILE:
@@ -2268,15 +2266,6 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 						Inst.COPYSPR.defaultValue = monsterDB.copyspr.toString();
 					}
 					break;
-				case RESTRICTEDGOD:
-					if (monsterDB.restrictedgod != null) {
-						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.restrictedgod));
-						Inst.RESTRICTEDGOD.defaultValue = monsterDB.restrictedgod.toString();
-					} else {
-						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
-						Inst.RESTRICTEDGOD.defaultValue = "";
-					}
-					break;
 				case SHATTEREDSOUL:
 					if (monsterDB.shatteredsoul != null) {
 						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.shatteredsoul));
@@ -3144,12 +3133,16 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 					}
 					break;
 				case SAILING:
-					if (monsterDB.sailing != null) {
-						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.sailing));
-						Inst.SAILING.defaultValue = monsterDB.sailing.toString();
+					if (monsterDB.sailing1 != null) {
+						((Inst7Fields)fields.getValue()).defaultLabel1.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.sailing1));
+						Inst.SAILING.defaultValue = monsterDB.sailing1.toString();
+						((Inst7Fields)fields.getValue()).defaultLabel2.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.sailing2));
+						Inst.SAILING.defaultValue2 = monsterDB.sailing2.toString();
 					} else {
-						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
-						Inst.SAILING.defaultValue = "";
+						((Inst7Fields)fields.getValue()).defaultLabel1.setText("");
+						Inst.SAILING.defaultValue = "999";
+						((Inst7Fields)fields.getValue()).defaultLabel2.setText("");
+						Inst.SAILING.defaultValue2 = "2";
 					}
 					break;
 				case FORESTSURVIVAL:
@@ -4051,11 +4044,6 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 						return Integer.valueOf(((MonsterInst2)mod).getValue());
 					}
 					break;
-				case RESTRICTEDGOD:
-					if (((MonsterInst2)mod).isRestrictedgod()){
-						return Integer.valueOf(((MonsterInst2)mod).getValue());
-					}
-					break;
 				case SHATTEREDSOUL:
 					if (((MonsterInst2)mod).isShatteredsoul()){
 						return Integer.valueOf(((MonsterInst2)mod).getValue());
@@ -4607,6 +4595,11 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 						}
 					}
 					break;
+				case SAILING:
+					if (((MonsterInst3)mod).isSailing()){
+						return new Integer[]{Integer.valueOf(((MonsterInst3)mod).getValue1()), Integer.valueOf(((MonsterInst3)mod).getValue2())};
+					}
+					break;
 				}
 			}
 		}
@@ -4735,11 +4728,6 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 					break;
 				case STORMIMMUNE:
 					if (((MonsterInst4)mod).isStormimmune()){
-						return Boolean.TRUE;
-					}
-					break;
-				case SAILING:
-					if (((MonsterInst4)mod).isSailing()){
 						return Boolean.TRUE;
 					}
 					break;
@@ -5409,11 +5397,6 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 							break;
 						case COPYSPR:
 							if (((MonsterInst2)mod).isCopyspr()){
-								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
-							}
-							break;
-						case RESTRICTEDGOD:
-							if (((MonsterInst2)mod).isRestrictedgod()){
 								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
 							}
 							break;
@@ -6139,6 +6122,16 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 								}
 							}
 							break;
+						case SAILING:
+							if (((MonsterInst3)mod).isSailing()) {
+								if (value1 != null) {
+									((MonsterInst3)mod).setValue1(Integer.parseInt(value1));
+								}
+								if (value2 != null) {
+									((MonsterInst3)mod).setValue2(Integer.parseInt(value2));
+								}
+							}
+							break;
 						}
 					}
 				}
@@ -6713,9 +6706,6 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 						case COPYSPR:
 							type.setCopyspr(true);
 							break;
-						case RESTRICTEDGOD:
-							type.setRestrictedgod(true);
-							break;
 						case SHATTEREDSOUL:
 							type.setShatteredsoul(true);
 							break;
@@ -7001,6 +6991,9 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 						case GEMPROD8:
 							type.setGemprod(true);
 							break;
+						case SAILING:
+							type.setSailing(true);
+							break;
 						}
 						type.setValue1(Integer.valueOf(newName1));
 						type.setValue2(Integer.valueOf(newName2));
@@ -7095,9 +7088,6 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 							break;
 						case STORMIMMUNE:
 							type.setStormimmune(true);
-							break;
-						case SAILING:
-							type.setSailing(true);
 							break;
 						case FORESTSURVIVAL:
 							type.setForestsurvival(true);
@@ -7506,11 +7496,6 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 									break;
 								case COPYSPR:
 									if (((MonsterInst2)mod).isCopyspr()){
-										modToRemove = mod;
-									}
-									break;
-								case RESTRICTEDGOD:
-									if (((MonsterInst2)mod).isRestrictedgod()){
 										modToRemove = mod;
 									}
 									break;
@@ -8044,6 +8029,11 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 										}
 									}
 									break;
+								case SAILING:
+									if (((MonsterInst3)mod).isSailing()){
+										modToRemove = mod;
+									}
+									break;
 								}
 							}
 							if (mod instanceof MonsterInst4) {
@@ -8165,11 +8155,6 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 									break;
 								case STORMIMMUNE:
 									if (((MonsterInst4)mod).isStormimmune()){
-										modToRemove = mod;
-									}
-									break;
-								case SAILING:
-									if (((MonsterInst4)mod).isSailing()){
 										modToRemove = mod;
 									}
 									break;

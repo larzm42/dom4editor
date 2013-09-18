@@ -45,7 +45,6 @@ public class MonsterDB {
 	public Integer eyes;
 	public Integer copystats;
 	public Integer copyspr;
-	public Integer restrictedgod;
 	public Integer shatteredsoul;
 	public Integer coldres;
 	public Integer fireres;
@@ -152,7 +151,8 @@ public class MonsterDB {
 	public Boolean pooramphibian;
 	public Boolean flying;
 	public Boolean stormimmune;
-	public Boolean sailing;
+	public Integer sailing1;
+	public Integer sailing2;
 	public Boolean forestsurvival;
 	public Boolean mountainsurvival;
 	public Boolean swampsurvival;
