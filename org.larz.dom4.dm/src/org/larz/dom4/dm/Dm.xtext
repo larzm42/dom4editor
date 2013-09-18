@@ -14,17 +14,25 @@ Dom4Mod:
 	elements+=AbstractElement*;
 
 AbstractElement:
-	 General | Armor | Weapon | Monster | Spell | Item | Name | Site | Nation | IndepFlag;
+	 General | Armor | Weapon | Monster | Spell | Item | Name | Site | Nation | Mercenary | Poptype;
 		
 	
 /****************/
 /* General Mods */
 /****************/
 General:
-	GeneralPattern1;
+	GeneralPattern1 | GeneralPattern2 | GeneralPattern3;
 	
 GeneralPattern1:
 	GeneralInst1 value=INT (FREE_FORM_COMMENT)*
+	'#end'?;
+
+GeneralPattern2:
+	GeneralInst2 value=STRING (FREE_FORM_COMMENT)*
+	'#end'?;
+
+GeneralPattern3:
+	GeneralInst3 (FREE_FORM_COMMENT)*
 	'#end'?;
 
 GeneralInst1:
@@ -47,6 +55,12 @@ GeneralInst1:
 	misfortune?='#misfortune' |
 	luckevents?='#luckevents' |
 	researchscale?='#researchscale';
+
+GeneralInst2:
+	indepflag?='#indepflag';
+
+GeneralInst3:
+	clearmercs?='#clearmercs';
 
 	
 /**************/
@@ -747,7 +761,6 @@ NationPattern4:
 NationPattern5:
 	NationInst5 value1=DecimalValue value2=DecimalValue value3=DecimalValue (FREE_FORM_COMMENT)*;
 	
-
 NationInst1:
 	name?='#name' |
 	epithet?='#epithet' |
@@ -853,11 +866,71 @@ NationInst5:
 	secondarycolor?="#secondarycolor";
 
 
-/********************/
-/* Independant Flag */
-/********************/
-IndepFlag:
-	'#indepflag' value=STRING (FREE_FORM_COMMENT)*;
+/******************/
+/* Mercenary Mods */
+/******************/
+Mercenary:
+	NewMercenary;
+	
+NewMercenary:
+	'#newmerc' (FREE_FORM_COMMENT)*
+	mods+=MercenaryMods*
+	'#end';
+
+MercenaryMods:
+	MercenaryPattern1 | MercenaryPattern2;
+	
+MercenaryPattern1:
+	MercenaryInst1 value=STRING (FREE_FORM_COMMENT)*;
+
+MercenaryPattern2:
+	MercenaryInst2 value=INT (FREE_FORM_COMMENT)*;
+
+MercenaryInst1:
+	name?='#name' |
+	bossname?='#bossname' |
+	com?='#com' |
+	unit?='#unit' |
+	item?='#item';
+	
+MercenaryInst2:
+	nrunits?='#nrunits' |
+	level?='#level' |
+	minmen?='#minmen' |
+	minpay?='#minpay' |
+	xp?='#xp' |
+	randequip?='#randequip' |
+	recrate?='#recrate' |
+	eramask?='#eramask';
+
+
+/****************/
+/* Poptype Mods */
+/****************/
+Poptype:
+	SelectPoptype;
+	
+SelectPoptype:
+	'#selectpoptype' value=INT (FREE_FORM_COMMENT)*
+	mods+=PoptypeMods*
+	'#end';
+	
+PoptypeMods:
+	PoptypePattern1 | PoptypePattern2;
+	
+PoptypePattern1:
+	PoptypeInst1 value=STRING (FREE_FORM_COMMENT)*;
+
+PoptypePattern2:
+	PoptypeInst2 (FREE_FORM_COMMENT)*;
+
+PoptypeInst1:
+	addrecunit?='#addrecunit' |
+	addreccom?='#addreccom';
+	
+PoptypeInst2:
+	clearrec?='#clearrec' |
+	cleardef?='#cleardef';
 
 
 DecimalValue:

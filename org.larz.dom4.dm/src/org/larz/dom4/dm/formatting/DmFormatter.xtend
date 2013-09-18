@@ -191,5 +191,25 @@ class DmFormatter extends AbstractDeclarativeFormatter {
 		c.setLinewrap(0, 1, 1).after((getGrammarAccess() as DmGrammarAccess).getNamePattern1Rule());
 		c.setLinewrap(1, 1, 1).before((getGrammarAccess() as DmGrammarAccess).getNamePattern2Rule());
 		c.setLinewrap(0, 1, 1).after((getGrammarAccess() as DmGrammarAccess).getNamePattern2Rule());
+
+		// Poptype rules
+		c.setLinewrap(2, 2, 2).before((getGrammarAccess() as DmGrammarAccess).getSelectPoptypeRule());
+		c.setLinewrap(1, 1, 2).after((getGrammarAccess() as DmGrammarAccess).getSelectPoptypeRule());
+		c.setLinewrap(1, 1, 1).before((getGrammarAccess() as DmGrammarAccess).getSelectPoptypeAccess().getEndKeyword_4());
+		
+		c.setLinewrap(1, 1, 1).before((getGrammarAccess() as DmGrammarAccess).getPoptypePattern1Rule());
+		c.setLinewrap(0, 1, 1).after((getGrammarAccess() as DmGrammarAccess).getPoptypePattern1Rule());
+		c.setLinewrap(1, 1, 1).before((getGrammarAccess() as DmGrammarAccess).getPoptypePattern2Rule());
+		c.setLinewrap(0, 1, 1).after((getGrammarAccess() as DmGrammarAccess).getPoptypePattern2Rule());
+
+		// Mercenary rules
+		c.setLinewrap(2, 2, 2).before((getGrammarAccess() as DmGrammarAccess).getNewMercenaryRule());
+		c.setLinewrap(1, 1, 2).after((getGrammarAccess() as DmGrammarAccess).getNewMercenaryRule());
+		c.setLinewrap(1, 1, 1).before((getGrammarAccess() as DmGrammarAccess).getNewMercenaryAccess().getEndKeyword_3());
+		
+		c.setLinewrap(1, 1, 1).before((getGrammarAccess() as DmGrammarAccess).getMercenaryPattern1Rule());
+		c.setLinewrap(0, 1, 1).after((getGrammarAccess() as DmGrammarAccess).getMercenaryPattern1Rule());
+		c.setLinewrap(1, 1, 1).before((getGrammarAccess() as DmGrammarAccess).getMercenaryPattern2Rule());
+		c.setLinewrap(0, 1, 1).after((getGrammarAccess() as DmGrammarAccess).getMercenaryPattern2Rule());
 	}
 }
