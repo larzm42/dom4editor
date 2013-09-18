@@ -74,10 +74,12 @@ import org.larz.dom4.dm.dm.ArmorInst1;
 import org.larz.dom4.dm.dm.ArmorMods;
 import org.larz.dom4.dm.dm.Dom4Mod;
 import org.larz.dom4.dm.dm.GeneralInst1;
-import org.larz.dom4.dm.dm.IndepFlag;
+import org.larz.dom4.dm.dm.GeneralInst2;
 import org.larz.dom4.dm.dm.Item;
 import org.larz.dom4.dm.dm.ItemInst1;
 import org.larz.dom4.dm.dm.ItemMods;
+import org.larz.dom4.dm.dm.MercenaryInst1;
+import org.larz.dom4.dm.dm.MercenaryMods;
 import org.larz.dom4.dm.dm.Monster;
 import org.larz.dom4.dm.dm.MonsterInst1;
 import org.larz.dom4.dm.dm.MonsterMods;
@@ -85,6 +87,7 @@ import org.larz.dom4.dm.dm.NationInst1;
 import org.larz.dom4.dm.dm.NationMods;
 import org.larz.dom4.dm.dm.NewArmor;
 import org.larz.dom4.dm.dm.NewItem;
+import org.larz.dom4.dm.dm.NewMercenary;
 import org.larz.dom4.dm.dm.NewMonster;
 import org.larz.dom4.dm.dm.NewNation;
 import org.larz.dom4.dm.dm.NewSite;
@@ -98,6 +101,7 @@ import org.larz.dom4.dm.dm.SelectMonsterById;
 import org.larz.dom4.dm.dm.SelectMonsterByName;
 import org.larz.dom4.dm.dm.SelectName;
 import org.larz.dom4.dm.dm.SelectNation;
+import org.larz.dom4.dm.dm.SelectPoptype;
 import org.larz.dom4.dm.dm.SelectSiteById;
 import org.larz.dom4.dm.dm.SelectSiteByName;
 import org.larz.dom4.dm.dm.SelectSpellById;
@@ -116,6 +120,7 @@ import org.larz.dom4.dm.dm.WeaponInst1;
 import org.larz.dom4.dm.dm.WeaponMods;
 import org.larz.dom4.dm.dm.impl.NewArmorImpl;
 import org.larz.dom4.dm.dm.impl.NewItemImpl;
+import org.larz.dom4.dm.dm.impl.NewMercenaryImpl;
 import org.larz.dom4.dm.dm.impl.NewMonsterImpl;
 import org.larz.dom4.dm.dm.impl.NewNationImpl;
 import org.larz.dom4.dm.dm.impl.NewSiteImpl;
@@ -129,6 +134,7 @@ import org.larz.dom4.dm.dm.impl.SelectMonsterByIdImpl;
 import org.larz.dom4.dm.dm.impl.SelectMonsterByNameImpl;
 import org.larz.dom4.dm.dm.impl.SelectNameImpl;
 import org.larz.dom4.dm.dm.impl.SelectNationImpl;
+import org.larz.dom4.dm.dm.impl.SelectPoptypeImpl;
 import org.larz.dom4.dm.dm.impl.SelectSiteByIdImpl;
 import org.larz.dom4.dm.dm.impl.SelectSiteByNameImpl;
 import org.larz.dom4.dm.dm.impl.SelectSpellByIdImpl;
@@ -173,7 +179,8 @@ public class SummaryList extends MasterDetailsBlock {
 		List<AbstractElementWrapper> wrapperList = new ArrayList<AbstractElementWrapper>();
 		int id = 1;
 		for (AbstractElement abstractElement : elements) {
-			if (!(abstractElement instanceof GeneralInst1)) {
+			if (!(abstractElement instanceof GeneralInst1) &&
+				!(abstractElement instanceof GeneralInst2)) {
 				wrapperList.add(new AbstractElementWrapper(abstractElement, id++));
 			}
 		}
@@ -253,6 +260,20 @@ public class SummaryList extends MasterDetailsBlock {
 		} else if (listFilter.getSelectionIndex() == 8) {
 			for (Object element : model) {
 				if (((AbstractElementWrapper)element).getElement() instanceof SelectNation) {
+					filteredList.add(element);
+				}
+			}
+			newModel = filteredList.toArray(new Object[filteredList.size()]);
+		} else if (listFilter.getSelectionIndex() == 9) {
+			for (Object element : model) {
+				if (((AbstractElementWrapper)element).getElement() instanceof NewMercenary) {
+					filteredList.add(element);
+				}
+			}
+			newModel = filteredList.toArray(new Object[filteredList.size()]);
+		} else if (listFilter.getSelectionIndex() == 10) {
+			for (Object element : model) {
+				if (((AbstractElementWrapper)element).getElement() instanceof SelectPoptype) {
 					filteredList.add(element);
 				}
 			}
@@ -458,8 +479,18 @@ public class SummaryList extends MasterDetailsBlock {
 				return Messages.format("ScrolledPropertiesBlock.nation.double.fmt", ((SelectNation)element).getValue(), Database.getNationName(((SelectNation)element).getValue()));
 			} else if (element instanceof SelectName) {
 				return Messages.format("ScrolledPropertiesBlock.nametype.single.fmt", ((SelectName)element).getValue());
-			} else if (element instanceof IndepFlag) {
-				return Messages.getString("ScrolledPropertiesBlock.indepflag.txt");
+			} else if (element instanceof SelectPoptype) {
+				return Messages.format("ScrolledPropertiesBlock.poptype.single.fmt", ((SelectPoptype)element).getValue());
+			} else if (element instanceof NewMercenary) {
+				EList<MercenaryMods> list = ((NewMercenary)element).getMods();
+				for (MercenaryMods mod : list) {
+					if (mod instanceof MercenaryInst1) {
+						if (((MercenaryInst1)mod).isName()) {
+							return Messages.format("ScrolledPropertiesBlock.mercenary.single.fmt", ((MercenaryInst1)mod).getValue());
+						}
+					}
+				}
+				return Messages.getString("ScrolledPropertiesBlock.mercenary.zero.txt");
 			}
 			return obj.toString();
 		}
@@ -537,6 +568,8 @@ public class SummaryList extends MasterDetailsBlock {
 		listFilter.add(Messages.getString("AddDialog.typelist.name"));
 		listFilter.add(Messages.getString("AddDialog.typelist.site"));
 		listFilter.add(Messages.getString("AddDialog.typelist.nation"));
+		listFilter.add(Messages.getString("AddDialog.typelist.mercenary"));
+		listFilter.add(Messages.getString("AddDialog.typelist.poptype"));
 		listFilter.select(0);
 		GridData gd = new GridData(SWT.FILL, SWT.DEFAULT, true, false);
 		gd.horizontalSpan = 2;
@@ -606,6 +639,12 @@ public class SummaryList extends MasterDetailsBlock {
 									break;
 								case NATION:
 									addNation(type, name, id);
+									break;
+								case MERCENARY:
+									addMercenary(type, name, id);
+									break;
+								case POPTYPE:
+									addPoptype(type, name, id);
 									break;
 								}
 							}
@@ -769,6 +808,8 @@ public class SummaryList extends MasterDetailsBlock {
 		detailsPart.registerPage(SelectSiteByNameImpl.class, new SiteDetailsPage(doc, viewer));
 		detailsPart.registerPage(NewSiteImpl.class, new SiteDetailsPage(doc, viewer));
 		detailsPart.registerPage(SelectNameImpl.class, new NameDetailsPage(doc, viewer));
+		detailsPart.registerPage(SelectPoptypeImpl.class, new PoptypeDetailsPage(doc, viewer));
+		detailsPart.registerPage(NewMercenaryImpl.class, new MercenaryDetailsPage(doc, viewer));
 	}
 	
 	public void addArmor(final AddTypes type, final String name, final int id) {
@@ -1054,6 +1095,60 @@ public class SummaryList extends MasterDetailsBlock {
 		viewer.setSelection(new StructuredSelection(new AbstractElementWrapper(null, elements.length)), true);
 	}
 	
+	public void addMercenary(final AddTypes type, final String name, final int id) 
+	{
+		IXtextDocument document = ((XtextEditor)doc).getDocument();
+		try {
+			document.replace(document.getLength(), 0, "\n#newmerc\n#name \"" + name + "\"\n#end\n");
+		} catch (BadLocationException e) {
+			e.printStackTrace();
+		}
+		viewer.refresh();
+		
+		AbstractElement[] elements =  document.readOnly(new IUnitOfWork<AbstractElement[], XtextResource>(){       
+			public AbstractElement[] exec(XtextResource resource) {             
+				Dom4Mod dom4Mod = (Dom4Mod)resource.getContents().get(0);
+				EList<AbstractElement> elist = dom4Mod.getElements();
+				List<AbstractElement> list = new ArrayList<AbstractElement>();
+				for (AbstractElement abstractElement : elist) {
+					if (!(abstractElement instanceof GeneralInst1)) {
+						list.add(abstractElement);
+					}
+				}
+				return list.toArray(new AbstractElement[list.size()]);
+				} 
+			});
+
+		viewer.setSelection(new StructuredSelection(new AbstractElementWrapper(null, elements.length)), true);
+	}
+	
+	public void addPoptype(final AddTypes type, final String name, final int id) 
+	{
+		IXtextDocument document = ((XtextEditor)doc).getDocument();
+		try {	
+			document.replace(document.getLength(), 0, "\n#selectpoptype " + id + "\n#end\n");
+		} catch (BadLocationException e) {
+			e.printStackTrace();
+		}
+		viewer.refresh();
+		
+		AbstractElement[] elements =  document.readOnly(new IUnitOfWork<AbstractElement[], XtextResource>(){       
+			public AbstractElement[] exec(XtextResource resource) {             
+				Dom4Mod dom4Mod = (Dom4Mod)resource.getContents().get(0);
+				EList<AbstractElement> elist = dom4Mod.getElements();
+				List<AbstractElement> list = new ArrayList<AbstractElement>();
+				for (AbstractElement abstractElement : elist) {
+					if (!(abstractElement instanceof GeneralInst1)) {
+						list.add(abstractElement);
+					}
+				}
+				return list.toArray(new AbstractElement[list.size()]);
+				} 
+			});
+
+		viewer.setSelection(new StructuredSelection(new AbstractElementWrapper(null, elements.length)), true);
+	}
+
 	public void deleteNode() {
 		BusyIndicator.showWhile(Display.getDefault(), new Runnable() {
 			@Override

@@ -1641,6 +1641,10 @@ public class Database {
 		return siteName;
 	}
 	
+	public static PoptypeDB getPoptype(int id) {
+		return new PoptypeDB();
+	}
+	
 	private static Connection getConnection() throws IOException, ClassNotFoundException, SQLException {
 		if (connection == null) {
 			Path path = new Path("$nl$/data/dom3db.data");

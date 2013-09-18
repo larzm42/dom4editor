@@ -46,7 +46,9 @@ public class AddDialog extends Dialog {
 		ITEM(Messages.getString("AddDialog.typelist.item")),
 		NAME(Messages.getString("AddDialog.typelist.name")),
 		SITE(Messages.getString("AddDialog.typelist.site")),
-		NATION(Messages.getString("AddDialog.typelist.nation"));
+		NATION(Messages.getString("AddDialog.typelist.nation")),
+		MERCENARY(Messages.getString("AddDialog.typelist.mercenary")),
+		POPTYPE(Messages.getString("AddDialog.typelist.poptype"));
 		String text;
 		TypeToAdd(String text) {
 			this.text = text;
@@ -59,8 +61,8 @@ public class AddDialog extends Dialog {
 	public String id;
 	
 	private Composite[] composites = new Composite[TypeToAdd.values().length];
-	private Button[] selectArmor = new Button[TypeToAdd.values().length];
-	private Button[] newArmor = new Button[TypeToAdd.values().length];
+	private Button[] selectButton = new Button[TypeToAdd.values().length];
+	private Button[] newButton = new Button[TypeToAdd.values().length];
 	private Text[] idText = new Text[TypeToAdd.values().length];
 	private Text[] nameText = new Text[TypeToAdd.values().length];
 	
@@ -103,7 +105,7 @@ public class AddDialog extends Dialog {
 		composite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		
 		final List list = new List(composite, SWT.SINGLE | SWT.BORDER);
-		list.setItems(new String[]{TypeToAdd.ARMOR.text, TypeToAdd.WEAPON.text, TypeToAdd.MONSTER.text, TypeToAdd.SPELL.text, TypeToAdd.ITEM.text, TypeToAdd.NAME.text, TypeToAdd.SITE.text, TypeToAdd.NATION.text});
+		list.setItems(new String[]{TypeToAdd.ARMOR.text, TypeToAdd.WEAPON.text, TypeToAdd.MONSTER.text, TypeToAdd.SPELL.text, TypeToAdd.ITEM.text, TypeToAdd.NAME.text, TypeToAdd.SITE.text, TypeToAdd.NATION.text, TypeToAdd.MERCENARY.text, TypeToAdd.POPTYPE.text});
 		list.setLayoutData(new GridData(SWT.FILL, SWT.TOP, false, false));
 		
 		final PageBook book = new PageBook(composite, SWT.NONE);
@@ -141,6 +143,12 @@ public class AddDialog extends Dialog {
 					} else if (list.getSelection()[0].equals(TypeToAdd.NATION.text)) {
 						book.showPage(composites[TypeToAdd.NATION.ordinal()]);
 						type = TypeToAdd.NATION;
+					} else if (list.getSelection()[0].equals(TypeToAdd.MERCENARY.text)) {
+						book.showPage(composites[TypeToAdd.MERCENARY.ordinal()]);
+						type = TypeToAdd.MERCENARY;
+					} else if (list.getSelection()[0].equals(TypeToAdd.POPTYPE.text)) {
+						book.showPage(composites[TypeToAdd.POPTYPE.ordinal()]);
+						type = TypeToAdd.POPTYPE;
 					}
 				}
 			}
@@ -156,7 +164,7 @@ public class AddDialog extends Dialog {
 		Composite armorComp = composites[add.ordinal()];
 		armorComp.setLayout(new GridLayout(4, false));
 		armorComp.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-		selectArmor[add.ordinal()] = new Button(armorComp, SWT.RADIO);
+		selectButton[add.ordinal()] = new Button(armorComp, SWT.RADIO);
 		String selectStr = "";
 		String newStr = "";
 		switch (add) {
@@ -192,9 +200,17 @@ public class AddDialog extends Dialog {
 			selectStr = Messages.getString("AddDialog.typelist.select.nation");
 			newStr = Messages.getString("AddDialog.typelist.new.nation");
 			break;
+		case MERCENARY:
+			selectStr = Messages.getString("AddDialog.typelist.select.mercenary");
+			newStr = Messages.getString("AddDialog.typelist.new.mercenary");
+			break;
+		case POPTYPE:
+			selectStr = Messages.getString("AddDialog.typelist.select.poptype");
+			newStr = Messages.getString("AddDialog.typelist.new.poptype");
+			break;
 		}
-		selectArmor[add.ordinal()].setText(selectStr);
-		selectArmor[add.ordinal()].setSelection(true);
+		selectButton[add.ordinal()].setText(selectStr);
+		selectButton[add.ordinal()].setSelection(true);
 		
 		Label idLabel = new Label(armorComp, SWT.NONE);
 		idLabel.setText(Messages.getString("AddDialog.search.id"));
@@ -206,7 +222,7 @@ public class AddDialog extends Dialog {
 		idSearch.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				SearchDialog dialog = new SearchDialog(getShell(), selectArmor[add.ordinal()].getSelection(), type);
+				SearchDialog dialog = new SearchDialog(getShell(), selectButton[add.ordinal()].getSelection(), type);
 				if (dialog.open() == Window.OK) {
 					IDNameDB armorDB = dialog.getSelected();
 					idText[add.ordinal()].setText(Integer.toString(armorDB.id));
@@ -214,8 +230,8 @@ public class AddDialog extends Dialog {
 			}
 		});
 		
-		newArmor[add.ordinal()] = new Button(armorComp, SWT.RADIO);
-		newArmor[add.ordinal()].setText(newStr);
+		newButton[add.ordinal()] = new Button(armorComp, SWT.RADIO);
+		newButton[add.ordinal()].setText(newStr);
 
 		Label nameLabel = new Label(armorComp, SWT.NONE);
 		nameLabel.setText(Messages.getString("AddDialog.search.name"));
@@ -226,17 +242,17 @@ public class AddDialog extends Dialog {
 		nameSearch.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				SearchDialog dialog = new SearchDialog(getShell(), selectArmor[add.ordinal()].getSelection(), type);
+				SearchDialog dialog = new SearchDialog(getShell(), selectButton[add.ordinal()].getSelection(), type);
 				if (dialog.open() == Window.OK) {
 					IDNameDB armorDB = dialog.getSelected();
 					nameText[add.ordinal()].setText(armorDB.name);
 				}
 			}
 		});
-		newArmor[add.ordinal()].addSelectionListener(new SelectionAdapter() {
+		newButton[add.ordinal()].addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				if (newArmor[add.ordinal()].getSelection()) {
+				if (newButton[add.ordinal()].getSelection()) {
 					if (add == TypeToAdd.NATION) {
 						idText[add.ordinal()].setText("");
 						idText[add.ordinal()].setEnabled(false);
@@ -252,10 +268,10 @@ public class AddDialog extends Dialog {
 				}
 			}
 		});
-		selectArmor[add.ordinal()].addSelectionListener(new SelectionAdapter() {
+		selectButton[add.ordinal()].addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				if (selectArmor[add.ordinal()].getSelection()) {
+				if (selectButton[add.ordinal()].getSelection()) {
 					if (add == TypeToAdd.NATION) {
 						idText[add.ordinal()].setEnabled(true);
 						idText[add.ordinal()].setText("");
@@ -275,13 +291,13 @@ public class AddDialog extends Dialog {
 		idText[add.ordinal()].addModifyListener(new ModifyListener() {
 			@Override
 			public void modifyText(ModifyEvent e) {
-				if (idText[add.ordinal()].getText().length() > 0 && selectArmor[add.ordinal()].getSelection()) {
+				if (idText[add.ordinal()].getText().length() > 0 && selectButton[add.ordinal()].getSelection()) {
 					if (add != TypeToAdd.NATION) {
 						nameText[add.ordinal()].setEnabled(false);
 						nameSearch.setEnabled(false);
 					}
 				} else {
-					if (selectArmor[type.ordinal()].getSelection()) {
+					if (selectButton[type.ordinal()].getSelection()) {
 						nameText[add.ordinal()].setEnabled(true);
 						nameSearch.setEnabled(true);
 					}
@@ -292,13 +308,14 @@ public class AddDialog extends Dialog {
 		nameText[add.ordinal()].addModifyListener(new ModifyListener() {
 			@Override
 			public void modifyText(ModifyEvent e) {
-				if (nameText[add.ordinal()].getText().length() > 0 && selectArmor[add.ordinal()].getSelection()) {
+				if (nameText[add.ordinal()].getText().length() > 0 && selectButton[add.ordinal()].getSelection()) {
 					if (add != TypeToAdd.NATION) {
 						idText[add.ordinal()].setEnabled(false);
 						idSearch.setEnabled(false);
 					}
 				} else {
-					if (add != TypeToAdd.NATION) {
+					if (add != TypeToAdd.NATION &&
+						add != TypeToAdd.MERCENARY) {
 						idText[add.ordinal()].setEnabled(true);
 						idSearch.setEnabled(true);
 					}
@@ -307,12 +324,23 @@ public class AddDialog extends Dialog {
 			}
 		});
 		if (add == TypeToAdd.NAME) {
-			newArmor[add.ordinal()].setEnabled(false);
+			newButton[add.ordinal()].setEnabled(false);
 			nameText[add.ordinal()].setEnabled(false);
 		}
 		if (add == TypeToAdd.NATION) {
-			//newArmor[add.ordinal()].setEnabled(false);
 			nameText[add.ordinal()].setEnabled(false);
+		}
+		if (add == TypeToAdd.MERCENARY) {
+			newButton[add.ordinal()].setSelection(true);
+			selectButton[add.ordinal()].setSelection(false);
+			selectButton[add.ordinal()].setEnabled(false);
+			idText[add.ordinal()].setEnabled(false);
+			idSearch.setEnabled(false);
+		}
+		if (add == TypeToAdd.POPTYPE) {
+			newButton[add.ordinal()].setEnabled(false);
+			nameText[add.ordinal()].setEnabled(false);
+			nameSearch.setEnabled(false);
 		}
 
 	}
@@ -324,11 +352,11 @@ public class AddDialog extends Dialog {
 	}
 
 	private void setOKEnablement(TypeToAdd add) {
-		if (selectArmor[type.ordinal()].getSelection() && (nameText[type.ordinal()].getText().length() > 0 || idText[type.ordinal()].getText().length() > 0)) {
+		if (selectButton[type.ordinal()].getSelection() && (nameText[type.ordinal()].getText().length() > 0 || idText[type.ordinal()].getText().length() > 0)) {
 			getButton(IDialogConstants.OK_ID).setEnabled(true);
-		} else if (newArmor[type.ordinal()].getSelection() && nameText[type.ordinal()].getText().length() > 0 && idText[type.ordinal()].getText().length() > 0) {
+		} else if (newButton[type.ordinal()].getSelection() && nameText[type.ordinal()].getText().length() > 0 && idText[type.ordinal()].getText().length() > 0) {
 			getButton(IDialogConstants.OK_ID).setEnabled(true);
-		} else if (newArmor[type.ordinal()].getSelection() && nameText[type.ordinal()].getText().length() > 0 && add == TypeToAdd.NATION) {
+		} else if (newButton[type.ordinal()].getSelection() && nameText[type.ordinal()].getText().length() > 0 && (add == TypeToAdd.NATION || add == TypeToAdd.MERCENARY)) {
 			getButton(IDialogConstants.OK_ID).setEnabled(true);
 		} else {
 			getButton(IDialogConstants.OK_ID).setEnabled(false);
@@ -338,7 +366,7 @@ public class AddDialog extends Dialog {
 
 	@Override
 	protected void okPressed() {
-		select = selectArmor[type.ordinal()].getSelection();
+		select = selectButton[type.ordinal()].getSelection();
 		name = nameText[type.ordinal()].getText();
 		id = idText[type.ordinal()].getText();
 		super.okPressed();
