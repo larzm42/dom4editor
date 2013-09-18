@@ -20,16 +20,21 @@ import java.lang.reflect.Field;
 import org.eclipse.emf.ecore.EObject;
 import org.larz.dom4.dm.dm.ArmorMods;
 import org.larz.dom4.dm.dm.Dom4Mod;
+import org.larz.dom4.dm.dm.General;
 import org.larz.dom4.dm.dm.ItemMods;
+import org.larz.dom4.dm.dm.MercenaryMods;
 import org.larz.dom4.dm.dm.MonsterMods;
 import org.larz.dom4.dm.dm.NameMods;
 import org.larz.dom4.dm.dm.NationMods;
 import org.larz.dom4.dm.dm.NewArmor;
 import org.larz.dom4.dm.dm.NewItem;
+import org.larz.dom4.dm.dm.NewMercenary;
 import org.larz.dom4.dm.dm.NewMonster;
+import org.larz.dom4.dm.dm.NewNation;
 import org.larz.dom4.dm.dm.NewSite;
 import org.larz.dom4.dm.dm.NewSpell;
 import org.larz.dom4.dm.dm.NewWeapon;
+import org.larz.dom4.dm.dm.PoptypeMods;
 import org.larz.dom4.dm.dm.SelectArmorById;
 import org.larz.dom4.dm.dm.SelectArmorByName;
 import org.larz.dom4.dm.dm.SelectItemById;
@@ -38,6 +43,7 @@ import org.larz.dom4.dm.dm.SelectMonsterById;
 import org.larz.dom4.dm.dm.SelectMonsterByName;
 import org.larz.dom4.dm.dm.SelectName;
 import org.larz.dom4.dm.dm.SelectNation;
+import org.larz.dom4.dm.dm.SelectPoptype;
 import org.larz.dom4.dm.dm.SelectSiteById;
 import org.larz.dom4.dm.dm.SelectSiteByName;
 import org.larz.dom4.dm.dm.SelectSpellById;
@@ -58,6 +64,8 @@ public abstract class HelpTextHelper {
 	public final static String SITE_CATEGORY = "site";
 	public final static String NATION_CATEGORY = "nation";
 	public final static String GENERAL_CATEGORY = "general";
+	public final static String POPTYPE_CATEGORY = "poptype";
+	public final static String MERCENARY_CATEGORY = "mercenary";
 	
 	public static String getText(EObject obj, String text) {
 		if (obj instanceof SelectWeaponById || obj instanceof SelectWeaponByName) {
@@ -144,8 +152,29 @@ public abstract class HelpTextHelper {
 				return Messages.getString(NATION_CATEGORY + ".selectnation");
 			}
 			return null;
+		} else if (obj instanceof NewNation) {
+			if ("#newnation".equals(text)) {
+				return Messages.getString(NATION_CATEGORY + ".newnation");
+			}
+			return null;
 		} else if (obj instanceof NationMods) {
 			return getHelpString(obj, NATION_CATEGORY);
+		} else if (obj instanceof NewMercenary) {
+			if ("#newmerc".equals(text)) {
+				return Messages.getString(MERCENARY_CATEGORY + ".newmercenary");
+			}
+			return null;
+		} else if (obj instanceof MercenaryMods) {
+			return getHelpString(obj, MERCENARY_CATEGORY);
+		} else if (obj instanceof SelectPoptype) {
+			if ("#selectpoptype".equals(text)) {
+				return Messages.getString(POPTYPE_CATEGORY + ".selectpoptype");
+			}
+			return null;
+		} else if (obj instanceof PoptypeMods) {
+			return getHelpString(obj, POPTYPE_CATEGORY);
+		} else if (obj instanceof General) {
+			return getHelpString(obj, GENERAL_CATEGORY);
 		} else if (obj instanceof Dom4Mod) {
 			return getText(GENERAL_CATEGORY, text.substring(1));
 		}
