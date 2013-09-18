@@ -259,7 +259,8 @@ MonsterInst1:
 	name?='#name' |
 	spr1?='#spr1' |
 	spr2?='#spr2' |
-	descr?='#descr';
+	descr?='#descr' |
+	fixedname?='#fixedname';
 	
 MonsterInst2:	
 	speciallook?='#speciallook' |
@@ -283,7 +284,6 @@ MonsterInst2:
 	eyes?='#eyes' |
 	copystats?='#copystats' |
 	copyspr?='#copyspr' |
-	restrictedgod?='#restrictedgod' |
 	shatteredsoul?='#shatteredsoul' |
 	coldres?='#coldres' |
 	coldres?='#coldresist' |
@@ -339,13 +339,70 @@ MonsterInst2:
 	popkill?='#popkill' |
 	heretic?='#heretic' |
 	itemslots?='#itemslots' |
-	nametype?='#nametype';
+	nametype?='#nametype' |
+	reclimit?='#reclimit' |
+	homerealm?='#homerealm' |
+	patience?='#patience' |
+	falsearmy?='#falsearmy' |
+	foolscouts?='#foolscouts' |
+	autohealer?='#autohealer' |
+	autodishealer?='#autodishealer' |
+	autodisgrinder?='#autodisgrinder' |
+	woundfend?='#woundfend' |
+	damagerev?='#damagerev' |
+	slimer?='#slimer' |
+	deathdisease?='#deathdisease' |
+	chaospower?='#chaospower' |
+	digest?='#digest' |
+	incorporate?='#incorporate' |
+	incprovdef?='#incprovdef' |
+	elegist?='#elegist' |
+	gold?='#gold' |
+	growhp?='#growhp' |
+	shrinkhp?='#shrinkhp' |
+	montag?='#montag' |
+	inspirational?='#inspirational' |
+	beastmaster?='#beastmaster' |
+	taskmaster?='#taskmaster' |
+	formationfighter?='#formationfighter' |
+	bodyguard?='#bodyguard' |
+	divineins?='#divineins' |
+	firerange?='#firerange' |
+	airrange?='#airrange' |
+	waterrange?='#waterrange' |
+	earthrange?='#earthrange' |
+	astralrange?='#astralrange' |
+	deathrange?='#deathrange' |
+	naturerange?='#naturerange' |
+	bloodrange?='#bloodrange' |
+	elementrange?='#elementrange' |
+	sorceryrange?='#sorceryrange' |
+	allrange?='#allrange' |
+	tmpfiregems?='#tmpfiregems' |
+	tmpairgems?='#tmpairgems' |
+	tmpwatergems?='#tmpwatergems' |
+	tmpearthgems?='#tmpearthgems' |
+	tmpastralgems?='#tmpastralgems' |
+	tmpdeathgems?='#tmpdeathgems' |
+	tmpnaturegems?='#tmpnaturegems' |
+	tmpbloodslaves?='#tmpbloodslaves' |
+	makepearls?='#makepearls' |
+	bonusspells?='#bonusspells' |
+	tainted?='#tainted' |
+	fixforgebonus?='#fixforgebonus' |
+	crossbreeder?='#crossbreeder' |
+	deathbanish?='#deathbanish' |
+	kokytosret?='#kokytosret' |
+	infernoret?='#infernoret' |
+	voidret?='#voidret' |
+	allret?='#allret';
 	
 MonsterInst3:	
 	magicskill?='#magicskill' |
 	custommagic?='#custommagic' |
 	magicboost?='#magicboost' |
-	gemprod?='#gemprod';
+	gemprod?='#gemprod' |
+	sailing?='#sailing';
 	
 MonsterInst4:
 	(clear?='#clear') |
@@ -373,7 +430,6 @@ MonsterInst4:
 	(pooramphibian?='#pooramphibian') |
 	(flying?='#flying') |
 	(stormimmune?='#stormimmune') |
-	(sailing?='#sailing') |
 	(forestsurvival?='#forestsurvival') |
 	(mountainsurvival?='#mountainsurvival') |
 	(swampsurvival?='#swampsurvival') |
@@ -410,7 +466,34 @@ MonsterInst4:
 	(okundeadleader?='#okundeadleader') |
 	(goodundeadleader?='#goodundeadleader') |
 	(expertundeadleader?='#expertundeadleader') |
-	(superiorundeadleader?='#superiorundeadleader');
+	(superiorundeadleader?='#superiorundeadleader') |
+	(slowrec?='#slowrec') |
+	(noslowrec?='#noslowrec') |
+	(chaosrec?='#chaosrec') |
+	(singlebattle?='#singlebattle') |
+	(aisinglerec?='#aisinglerec') |
+	(ainorec?='#ainorec') |
+	(lesserhorror?='#lesserhorror') |
+	(greaterhorror?='#greaterhorror') |
+	(doomhorror?='#doomhorror') |
+	(bug?='#bug') |
+	(uwbug?='#uwbug') |
+	(autocompete?='#autocompete') |
+	(float?='#float') |
+	(teleport?='#teleport') |
+	(noriverpass?='#noriverpass') |
+	(unteleportable?='#unteleportable') |
+	(hpoverflow?='#hpoverflow') |
+	(pierceres?='#pierceres') |
+	(slashres?='#slashres') |
+	(bluntres?='#bluntres') |
+	(deathcurse?='#deathcurse') |
+	(trampswallow?='#trampswallow') |
+	(taxcollector?='#taxcollector') |
+	(slave?='#slave') |
+	(undisciplined?='#undisciplined') |
+	(magicimmune?='#magicimmune') |
+	(comslave?='#comslave');
 
 MonsterInst5:
 	weapon?='#weapon' |
@@ -433,7 +516,26 @@ MonsterInst5:
 	makemonster4?='#makemonster4' |
 	makemonster5?='#makemonster5' |
 	summon1?='#summon1' |
-	summon5?='#summon5';
+	summon2?='#summon2' |
+	summon3?='#summon3' |
+	summon4?='#summon4' |
+	summon5?='#summon5' |
+	summon5?='#raredomsummon' |
+	summon5?='#battlesum1' |
+	summon5?='#battlesum2' |
+	summon5?='#battlesum3' |
+	summon5?='#battlesum4' |
+	summon5?='#battlesum5' |
+	summon5?='#batstartsum1' |
+	summon5?='#batstartsum2' |
+	summon5?='#batstartsum3' |
+	summon5?='#batstartsum4' |
+	summon5?='#batstartsum5' |
+	summon5?='#batstartsum1d6' |
+	summon5?='#batstartsum2d6' |
+	summon5?='#batstartsum3d6' |
+	summon5?='#batstartsum4d6' |
+	summon5?='#batstartsum5d6';
 
 MonsterInst6:
 	stealthy?='#stealthy' |
@@ -520,9 +622,9 @@ SpellInst5:
 	nextspell?='#nextspell';
 
 	
-/**************/
+/*************/
 /* Item Mods */
-/**************/
+/*************/
 Item:
 	SelectItemById | SelectItemByName | NewItem;
 	
@@ -572,9 +674,9 @@ ItemInst3:
 	weapon?='#weapon';
 
 
-/**************/
+/*************/
 /* Name Mods */
-/**************/
+/*************/
 Name:
 	SelectName;
 	
@@ -599,9 +701,9 @@ NameInst2:
 	clear?="#clear";
 
 
-/**************/
+/*************/
 /* Site Mods */
-/**************/
+/*************/
 Site:
 	SelectSiteById | SelectSiteByName | NewSite;
 	
