@@ -91,6 +91,8 @@ import org.larz.dom4.image.ImageLoader;
 public class MonsterDetailsPage extends AbstractDetailsPage {
 	private Text name;
 	private Button nameCheck;
+	private Text fixedName;
+	private Button fixedNameCheck;
 	private Text descr;
 	private Button descCheck;
 	private Text spr1;
@@ -101,38 +103,32 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 	private Button spr2Browse;
 	private Label sprite1Label;
 	private Label sprite2Label;
+	private Text specialLook;
+	private Button specialLookCheck;
 
 	enum Inst {
 		NAME (Messages.getString("MonsterDetailsSection.mod.name"), ""),
+		FIXEDNAME (Messages.getString("MonsterDetailsSection.mod.fixedname"), "0"),
 		SPR1 (Messages.getString("MonsterDetailsSection.mod.spr1"), ""),
 		SPR2 (Messages.getString("MonsterDetailsSection.mod.spr2"), ""),
 		SPECIALLOOK (Messages.getString("MonsterDetailsSection.mod.speciallook"), "1"),
 		DESCR (Messages.getString("MonsterDetailsSection.mod.descr"), ""),
-		AP (Messages.getString("MonsterDetailsSection.mod.ap"), "12"),
-		MAPMOVE (Messages.getString("MonsterDetailsSection.mod.mapmove"), "1"),
+		
 		HP (Messages.getString("MonsterDetailsSection.mod.hp"), "10"),
-		PROT (Messages.getString("MonsterDetailsSection.mod.prot"), "0"),
 		SIZE (Messages.getString("MonsterDetailsSection.mod.size"), "2"),
 		RESSIZE (Messages.getString("MonsterDetailsSection.mod.ressize"), "1"),
+		PROT (Messages.getString("MonsterDetailsSection.mod.prot"), "0"),
+		MR (Messages.getString("MonsterDetailsSection.mod.mr"), "10"),
+		MOR (Messages.getString("MonsterDetailsSection.mod.mor"), "10"),
 		STR (Messages.getString("MonsterDetailsSection.mod.str"), "10"),
-		ENC (Messages.getString("MonsterDetailsSection.mod.enc"), "3"),
 		ATT (Messages.getString("MonsterDetailsSection.mod.att"), "10"),
 		DEF (Messages.getString("MonsterDetailsSection.mod.def"), "10"),
 		PREC (Messages.getString("MonsterDetailsSection.mod.prec"), "10"),
-		MR (Messages.getString("MonsterDetailsSection.mod.mr"), "10"),
-		MOR (Messages.getString("MonsterDetailsSection.mod.mor"), "10"),
-		GCOST (Messages.getString("MonsterDetailsSection.mod.gcost"), "10"),
-		RCOST (Messages.getString("MonsterDetailsSection.mod.rcost"), "1"),
-		PATHCOST (Messages.getString("MonsterDetailsSection.mod.pathcost"), "10"),
-		STARTDOM (Messages.getString("MonsterDetailsSection.mod.startdom"), "1"),
-		WEAPON1 (Messages.getString("MonsterDetailsSection.mod.weapon"), "1"),
-		WEAPON2 (Messages.getString("MonsterDetailsSection.mod.weapon"), "2"),
-		WEAPON3 (Messages.getString("MonsterDetailsSection.mod.weapon"), "3"),
-		WEAPON4 (Messages.getString("MonsterDetailsSection.mod.weapon"), "4"),
-		ARMOR1 (Messages.getString("MonsterDetailsSection.mod.armor"), ""),
-		ARMOR2 (Messages.getString("MonsterDetailsSection.mod.armor"), ""),
-		ARMOR3 (Messages.getString("MonsterDetailsSection.mod.armor"), ""),
+		ENC (Messages.getString("MonsterDetailsSection.mod.enc"), "3"),
+		MAPMOVE (Messages.getString("MonsterDetailsSection.mod.mapmove"), "1"),
+		AP (Messages.getString("MonsterDetailsSection.mod.ap"), "12"),
 		EYES (Messages.getString("MonsterDetailsSection.mod.eyes"), "2"),
+
 		CLEAR (Messages.getString("MonsterDetailsSection.mod.clear")),
 		CLEARWEAPONS (Messages.getString("MonsterDetailsSection.mod.clearweapons")),
 		CLEARARMOR (Messages.getString("MonsterDetailsSection.mod.cleararmor")),
@@ -140,6 +136,30 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 		CLEARSPEC (Messages.getString("MonsterDetailsSection.mod.clearspec")),
 		COPYSTATS (Messages.getString("MonsterDetailsSection.mod.copystats"), "0"),
 		COPYSPR (Messages.getString("MonsterDetailsSection.mod.copyspr"), "0"),
+		
+		SLOWREC (Messages.getString("MonsterDetailsSection.mod.slowrec"), "0"),
+		NOSLOWREC (Messages.getString("MonsterDetailsSection.mod.noslowrec"), "0"),
+		RECLIMIT (Messages.getString("MonsterDetailsSection.mod.reclimit"), "0"),
+		CHAOSREC (Messages.getString("MonsterDetailsSection.mod.chaosrec"), "0"),
+		SINGLEBATTLE (Messages.getString("MonsterDetailsSection.mod.singlebattle"), "0"),
+		AISINGLEREC (Messages.getString("MonsterDetailsSection.mod.aisinglerec"), "0"),
+		AINOREC (Messages.getString("MonsterDetailsSection.mod.ainorec"), "0"),
+
+		GCOST (Messages.getString("MonsterDetailsSection.mod.gcost"), "10"),
+		RCOST (Messages.getString("MonsterDetailsSection.mod.rcost"), "1"),
+		
+		WEAPON1 (Messages.getString("MonsterDetailsSection.mod.weapon"), "1"),
+		WEAPON2 (Messages.getString("MonsterDetailsSection.mod.weapon"), "2"),
+		WEAPON3 (Messages.getString("MonsterDetailsSection.mod.weapon"), "3"),
+		WEAPON4 (Messages.getString("MonsterDetailsSection.mod.weapon"), "4"),
+		ARMOR1 (Messages.getString("MonsterDetailsSection.mod.armor"), ""),
+		ARMOR2 (Messages.getString("MonsterDetailsSection.mod.armor"), ""),
+		ARMOR3 (Messages.getString("MonsterDetailsSection.mod.armor"), ""),
+		
+		PATHCOST (Messages.getString("MonsterDetailsSection.mod.pathcost"), "10"),
+		STARTDOM (Messages.getString("MonsterDetailsSection.mod.startdom"), "1"),
+		HOMEREALM (Messages.getString("MonsterDetailsSection.mod.homerealm"), "0"),
+
 		FEMALE (Messages.getString("MonsterDetailsSection.mod.female")),
 		MOUNTED (Messages.getString("MonsterDetailsSection.mod.mounted")),
 		HOLY (Messages.getString("MonsterDetailsSection.mod.holy")),
@@ -151,25 +171,31 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 		INANIMATE (Messages.getString("MonsterDetailsSection.mod.inanimate")),
 		COLDBLOOD (Messages.getString("MonsterDetailsSection.mod.coldblood")),
 		IMMORTAL (Messages.getString("MonsterDetailsSection.mod.immortal")),
+		LESSERHORROR (Messages.getString("MonsterDetailsSection.mod.lesserhorror"), "0"),
+		GREATERHORROR (Messages.getString("MonsterDetailsSection.mod.greaterhorror"), "0"),
+		DOOMHORROR (Messages.getString("MonsterDetailsSection.mod.doomhorror"), "0"),
 		BLIND (Messages.getString("MonsterDetailsSection.mod.blind")),
 		UNIQUE (Messages.getString("MonsterDetailsSection.mod.unique")),
-		SHATTEREDSOUL (Messages.getString("MonsterDetailsSection.mod.shatteredsoul"), "10"),
+		BUG (Messages.getString("MonsterDetailsSection.mod.bug"), "0"),
+		UWBUG (Messages.getString("MonsterDetailsSection.mod.uwbug"), "0"),
+		AUTOCOMPETE (Messages.getString("MonsterDetailsSection.mod.autocompete"), "0"),
+
 		IMMOBILE (Messages.getString("MonsterDetailsSection.mod.immobile")),
 		AQUATIC (Messages.getString("MonsterDetailsSection.mod.aquatic")),
 		AMPHIBIAN (Messages.getString("MonsterDetailsSection.mod.amphibian")),
 		POORAMPHIBIAN (Messages.getString("MonsterDetailsSection.mod.pooramphibian")),
+		FLOAT (Messages.getString("MonsterDetailsSection.mod.float"), "0"),
 		FLYING (Messages.getString("MonsterDetailsSection.mod.flying")),
 		STORMIMMUNE (Messages.getString("MonsterDetailsSection.mod.stormimmune")),
+		TELEPORT (Messages.getString("MonsterDetailsSection.mod.teleport"), "0"),
 		SAILING (Messages.getString("MonsterDetailsSection.mod.sailing"), "999", "2"),
 		FORESTSURVIVAL (Messages.getString("MonsterDetailsSection.mod.forestsurvival")),
 		MOUNTAINSURVIVAL (Messages.getString("MonsterDetailsSection.mod.mountainsurvival")),
 		SWAMPSURVIVAL (Messages.getString("MonsterDetailsSection.mod.swampsurvival")),
 		WASTESURVIVAL (Messages.getString("MonsterDetailsSection.mod.wastesurvival")),
-		COLDRES (Messages.getString("MonsterDetailsSection.mod.coldres"), "100"),
-		FIRERES (Messages.getString("MonsterDetailsSection.mod.fireres"), "100"),
-		POISONRES (Messages.getString("MonsterDetailsSection.mod.poisonres"), "100"),
-		SHOCKRES (Messages.getString("MonsterDetailsSection.mod.shockres"), "100"),
-		DARKVISION (Messages.getString("MonsterDetailsSection.mod.darkvision"), "100"),
+		NORIVERPASS (Messages.getString("MonsterDetailsSection.mod.noriverpass"), "0"),
+		UNTELEPORTABLE (Messages.getString("MonsterDetailsSection.mod.unteleportable"), "0"),
+
 		STEALTHY (Messages.getString("MonsterDetailsSection.mod.stealthy"), "0"),
 		ILLUSION (Messages.getString("MonsterDetailsSection.mod.illusion")),
 		SPY (Messages.getString("MonsterDetailsSection.mod.spy")),
@@ -177,63 +203,172 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 		SEDUCE (Messages.getString("MonsterDetailsSection.mod.seduce"), "10"),
 		SUCCUBUS (Messages.getString("MonsterDetailsSection.mod.succubus"), "10"),
 		BECKON (Messages.getString("MonsterDetailsSection.mod.beckon"), "10"),
+		PATIENCE (Messages.getString("MonsterDetailsSection.mod.patience"), "0"),
+		FALSEARMY (Messages.getString("MonsterDetailsSection.mod.falsearmy"), "0"),
+		FOOLSCOUTS (Messages.getString("MonsterDetailsSection.mod.foolscouts"), "0"),
+
 		STARTAGE (Messages.getString("MonsterDetailsSection.mod.startage"), "20"),
 		MAXAGE (Messages.getString("MonsterDetailsSection.mod.maxage"), "50"),
 		OLDER (Messages.getString("MonsterDetailsSection.mod.older"), "10"),
-		HEALER (Messages.getString("MonsterDetailsSection.mod.healer"), "10"),
 		HEAL (Messages.getString("MonsterDetailsSection.mod.heal")),
 		NOHEAL (Messages.getString("MonsterDetailsSection.mod.noheal")),
+		HEALER (Messages.getString("MonsterDetailsSection.mod.healer"), "10"),
+		AUTOHEALER (Messages.getString("MonsterDetailsSection.mod.autohealer"), "0"),
+		AUTODISHEALER (Messages.getString("MonsterDetailsSection.mod.autodishealer"), "0"),
+		AUTODISGRINDER (Messages.getString("MonsterDetailsSection.mod.autodisgrinder"), "0"),
 		STARTAFF (Messages.getString("MonsterDetailsSection.mod.startaff"), "10"),
-		SUPPLYBONUS (Messages.getString("MonsterDetailsSection.mod.supplybonus"), "10"),
-		NEEDNOTEAT (Messages.getString("MonsterDetailsSection.mod.neednoteat")),
+		WOUNDFEND (Messages.getString("MonsterDetailsSection.mod.woundfend"), "0"),
 		UWDAMAGE (Messages.getString("MonsterDetailsSection.mod.uwdamage"), "10"),
 		HOMESICK (Messages.getString("MonsterDetailsSection.mod.homesick"), "10"),
-		COLDPOWER (Messages.getString("MonsterDetailsSection.mod.coldpower"), "10"),
-		FIREPOWER (Messages.getString("MonsterDetailsSection.mod.firepower"), "10"),
-		STORMPOWER (Messages.getString("MonsterDetailsSection.mod.stormpower"), "10"),
-		DARKPOWER (Messages.getString("MonsterDetailsSection.mod.darkpower"), "10"),
-		SPRINGPOWER (Messages.getString("MonsterDetailsSection.mod.springpower"), "10"),
-		SUMMERPOWER (Messages.getString("MonsterDetailsSection.mod.summerpower"), "10"),
-		FALLPOWER (Messages.getString("MonsterDetailsSection.mod.fallpower"), "10"),
-		WINTERPOWER (Messages.getString("MonsterDetailsSection.mod.winterpower"), "10"),
-		AMBIDEXTROUS (Messages.getString("MonsterDetailsSection.mod.ambidextrous"), "2"),
-		BANEFIRESHIELD (Messages.getString("MonsterDetailsSection.mod.banefireshield"), "8"),
-		BERSERK (Messages.getString("MonsterDetailsSection.mod.berserk"), "3"),
+		HPOVERFLOW (Messages.getString("MonsterDetailsSection.mod.hpoverflow"), "0"),
+
+		PIERCERES (Messages.getString("MonsterDetailsSection.mod.pierceres"), "0"),
+		SLASHRES (Messages.getString("MonsterDetailsSection.mod.slashres"), "0"),
+		BLUNTRES (Messages.getString("MonsterDetailsSection.mod.bluntres"), "0"),
 		ETHEREAL (Messages.getString("MonsterDetailsSection.mod.ethereal")),
-		STANDARD (Messages.getString("MonsterDetailsSection.mod.standard"), "3"),
+		COLDRES (Messages.getString("MonsterDetailsSection.mod.coldres"), "100"),
+		FIRERES (Messages.getString("MonsterDetailsSection.mod.fireres"), "100"),
+		POISONRES (Messages.getString("MonsterDetailsSection.mod.poisonres"), "100"),
+		SHOCKRES (Messages.getString("MonsterDetailsSection.mod.shockres"), "100"),
+		ICEPROT (Messages.getString("MonsterDetailsSection.mod.iceprot"), "2"),
+		REGENERATION (Messages.getString("MonsterDetailsSection.mod.regeneration"), "10"),
+		REINVIGORATION (Messages.getString("MonsterDetailsSection.mod.reinvigoration"), "10"),
+
+		HEAT (Messages.getString("MonsterDetailsSection.mod.heat"), "3"),
+		COLD (Messages.getString("MonsterDetailsSection.mod.cold"), "3"),
+		POISONCLOUD (Messages.getString("MonsterDetailsSection.mod.poisoncloud"), "6"),
+		DISEASECLOUD (Messages.getString("MonsterDetailsSection.mod.diseasecloud"), "6"),
 		ANIMALAWE (Messages.getString("MonsterDetailsSection.mod.animalawe"), "1"),
 		AWE (Messages.getString("MonsterDetailsSection.mod.awe"), "1"),
 		FEAR (Messages.getString("MonsterDetailsSection.mod.fear"), "0"),
-		REGENERATION (Messages.getString("MonsterDetailsSection.mod.regeneration"), "10"),
-		REINVIGORATION (Messages.getString("MonsterDetailsSection.mod.reinvigoration"), "10"),
 		FIRESHIELD (Messages.getString("MonsterDetailsSection.mod.fireshield"), "8"),
-		HEAT (Messages.getString("MonsterDetailsSection.mod.heat"), "3"),
-		COLD (Messages.getString("MonsterDetailsSection.mod.cold"), "3"),
-		ICEPROT (Messages.getString("MonsterDetailsSection.mod.iceprot"), "2"),
-		TRAMPLE (Messages.getString("MonsterDetailsSection.mod.trample")),
+		BANEFIRESHIELD (Messages.getString("MonsterDetailsSection.mod.banefireshield"), "8"),
+		DAMAGEREV (Messages.getString("MonsterDetailsSection.mod.damagerev"), "0"),
+		BLOODVENGEANCE (Messages.getString("MonsterDetailsSection.mod.bloodvengeance"), "1"),
+		SLIMER (Messages.getString("MonsterDetailsSection.mod.slimer"), "0"),
 		ENTANGLE (Messages.getString("MonsterDetailsSection.mod.entangle")),
 		EYELOSS (Messages.getString("MonsterDetailsSection.mod.eyeloss")),
 		HORRORMARK (Messages.getString("MonsterDetailsSection.mod.horrormark")),
 		POISONARMOR (Messages.getString("MonsterDetailsSection.mod.poisonarmor")),
-		POISONCLOUD (Messages.getString("MonsterDetailsSection.mod.poisoncloud"), "6"),
-		DISEASECLOUD (Messages.getString("MonsterDetailsSection.mod.diseasecloud"), "6"),
-		BLOODVENGEANCE (Messages.getString("MonsterDetailsSection.mod.bloodvengeance"), "1"),
+		DEATHCURSE (Messages.getString("MonsterDetailsSection.mod.deathcurse"), "0"),
+		DEATHDISEASE (Messages.getString("MonsterDetailsSection.mod.deathdisease"), "0"),
+
+		CHAOSPOWER (Messages.getString("MonsterDetailsSection.mod.chaospower"), "0"),
+		COLDPOWER (Messages.getString("MonsterDetailsSection.mod.coldpower"), "10"),
+		FIREPOWER (Messages.getString("MonsterDetailsSection.mod.firepower"), "10"),
+		MAGICPOWER (Messages.getString("MonsterDetailsSection.mod.magicpower"), "0"),
+		STORMPOWER (Messages.getString("MonsterDetailsSection.mod.stormpower"), "10"),
+		DARKPOWER (Messages.getString("MonsterDetailsSection.mod.darkpower"), "10"),
+
+		SPRINGPOWER (Messages.getString("MonsterDetailsSection.mod.springpower"), "10"),
+		SUMMERPOWER (Messages.getString("MonsterDetailsSection.mod.summerpower"), "10"),
+		FALLPOWER (Messages.getString("MonsterDetailsSection.mod.fallpower"), "10"),
+		WINTERPOWER (Messages.getString("MonsterDetailsSection.mod.winterpower"), "10"),
+		
+		AMBIDEXTROUS (Messages.getString("MonsterDetailsSection.mod.ambidextrous"), "2"),
+		BERSERK (Messages.getString("MonsterDetailsSection.mod.berserk"), "3"),
+		DARKVISION (Messages.getString("MonsterDetailsSection.mod.darkvision"), "100"),
+		TRAMPLE (Messages.getString("MonsterDetailsSection.mod.trample")),
+		TRAMPSWALLOW (Messages.getString("MonsterDetailsSection.mod.trampswallow"), "0"),
+		DIGEST (Messages.getString("MonsterDetailsSection.mod.digest"), "0"),
+		INCORPORATE (Messages.getString("MonsterDetailsSection.mod.incorporate"), "0"),
+
 		CASTLEDEF (Messages.getString("MonsterDetailsSection.mod.castledef"), "10"),
 		SIEGEBONUS (Messages.getString("MonsterDetailsSection.mod.siegebonus"), "10"),
 		PATROLBONUS (Messages.getString("MonsterDetailsSection.mod.patrolbonus"), "10"),
 		PILLAGEBONUS (Messages.getString("MonsterDetailsSection.mod.pillagebonus"), "10"),
-		RESEARCHBONUS (Messages.getString("MonsterDetailsSection.mod.researchbonus"), "4"),
-		FORGEBONUS (Messages.getString("MonsterDetailsSection.mod.forgebonus"), "10"),
-		DOUSE (Messages.getString("MonsterDetailsSection.mod.douse"), "1"),
+		SUPPLYBONUS (Messages.getString("MonsterDetailsSection.mod.supplybonus"), "10"),
+		NEEDNOTEAT (Messages.getString("MonsterDetailsSection.mod.neednoteat")),
 		NOBADEVENTS (Messages.getString("MonsterDetailsSection.mod.nobadevents"), "10"),
 		INCUNREST (Messages.getString("MonsterDetailsSection.mod.incunrest"), "10"),
-		SPREADDOM (Messages.getString("MonsterDetailsSection.mod.spreaddom"), "10"),
+		INCPROVDEF (Messages.getString("MonsterDetailsSection.mod.incprovdef"), "0"),
 		LEPER (Messages.getString("MonsterDetailsSection.mod.leper"), "10"),
 		POPKILL (Messages.getString("MonsterDetailsSection.mod.popkill"), "10"),
 		INQUISITOR (Messages.getString("MonsterDetailsSection.mod.inquisitor")),
 		HERETIC (Messages.getString("MonsterDetailsSection.mod.heretic"), "1"),
+		ELEGIST (Messages.getString("MonsterDetailsSection.mod.elegist"), "0"),
+		SPREADDOM (Messages.getString("MonsterDetailsSection.mod.spreaddom"), "10"),
+		SHATTEREDSOUL (Messages.getString("MonsterDetailsSection.mod.shatteredsoul"), "10"),
+		TAXCOLLECTOR (Messages.getString("MonsterDetailsSection.mod.taxcollector"), "0"),
+		GOLD (Messages.getString("MonsterDetailsSection.mod.gold"), "0"),
+
+		FIRSTSHAPE (Messages.getString("MonsterDetailsSection.mod.firstshape"), ""),
+		SECONDSHAPE (Messages.getString("MonsterDetailsSection.mod.secondshape"), ""),
+		SECONDTMPSHAPE (Messages.getString("MonsterDetailsSection.mod.secondtmpshape"), ""),
+		SHAPECHANGE (Messages.getString("MonsterDetailsSection.mod.shapechange"), ""),
+		LANDSHAPE (Messages.getString("MonsterDetailsSection.mod.landshape"), ""),
+		WATERSHAPE (Messages.getString("MonsterDetailsSection.mod.watershape"), ""),
+		FORESTSHAPE (Messages.getString("MonsterDetailsSection.mod.forestshape"), ""),
+		PLAINSHAPE (Messages.getString("MonsterDetailsSection.mod.plainshape"), ""),
+		GROWHP (Messages.getString("MonsterDetailsSection.mod.growhp"), "0"),
+		SHRINKHP (Messages.getString("MonsterDetailsSection.mod.shrinkhp"), "0"),
+
 		ITEMSLOTS (Messages.getString("MonsterDetailsSection.mod.itemslots"), "15494"),
 		NOITEM (Messages.getString("MonsterDetailsSection.mod.noitem")),
+		
+		DOMSUMMON (Messages.getString("MonsterDetailsSection.mod.domsummon"), ""),
+		DOMSUMMON2 (Messages.getString("MonsterDetailsSection.mod.domsummon2"), ""),
+		DOMSUMMON20 (Messages.getString("MonsterDetailsSection.mod.domsummon20"), ""),
+		RAREDOMSUMMON (Messages.getString("MonsterDetailsSection.mod.raredomsummon"), "0"),
+		MAKEMONSTER1 (Messages.getString("MonsterDetailsSection.mod.makemonster1"), ""),
+		MAKEMONSTER2 (Messages.getString("MonsterDetailsSection.mod.makemonster2"), ""),
+		MAKEMONSTER3 (Messages.getString("MonsterDetailsSection.mod.makemonster3"), ""),
+		MAKEMONSTER4 (Messages.getString("MonsterDetailsSection.mod.makemonster4"), ""),
+		MAKEMONSTER5 (Messages.getString("MonsterDetailsSection.mod.makemonster5"), ""),
+		SUMMON1 (Messages.getString("MonsterDetailsSection.mod.summon1"), ""),
+		SUMMON2 (Messages.getString("MonsterDetailsSection.mod.summon2"), ""),
+		SUMMON3 (Messages.getString("MonsterDetailsSection.mod.summon3"), ""),
+		SUMMON4 (Messages.getString("MonsterDetailsSection.mod.summon4"), ""),
+		SUMMON5 (Messages.getString("MonsterDetailsSection.mod.summon5"), ""),
+		BATTLESUM1 (Messages.getString("MonsterDetailsSection.mod.battlesum1"), "0"),
+		BATTLESUM2 (Messages.getString("MonsterDetailsSection.mod.battlesum2"), "0"),
+		BATTLESUM3 (Messages.getString("MonsterDetailsSection.mod.battlesum3"), "0"),
+		BATTLESUM4 (Messages.getString("MonsterDetailsSection.mod.battlesum4"), "0"),
+		BATTLESUM5 (Messages.getString("MonsterDetailsSection.mod.battlesum5"), "0"),
+		BATSTARTSUM1 (Messages.getString("MonsterDetailsSection.mod.batstartsum1"), "0"),
+		BATSTARTSUM2 (Messages.getString("MonsterDetailsSection.mod.batstartsum2"), "0"),
+		BATSTARTSUM3 (Messages.getString("MonsterDetailsSection.mod.batstartsum3"), "0"),
+		BATSTARTSUM4 (Messages.getString("MonsterDetailsSection.mod.batstartsum4"), "0"),
+		BATSTARTSUM5 (Messages.getString("MonsterDetailsSection.mod.batstartsum5"), "0"),
+		BATSTARTSUM1D6 (Messages.getString("MonsterDetailsSection.mod.batstartsum1d6"), "0"),
+		BATSTARTSUM2D6 (Messages.getString("MonsterDetailsSection.mod.batstartsum2d6"), "0"),
+		BATSTARTSUM3D6 (Messages.getString("MonsterDetailsSection.mod.batstartsum3d6"), "0"),
+		BATSTARTSUM4D6 (Messages.getString("MonsterDetailsSection.mod.batstartsum4d6"), "0"),
+		BATSTARTSUM5D6 (Messages.getString("MonsterDetailsSection.mod.batstartsum5d6"), "0"),
+		MONTAG (Messages.getString("MonsterDetailsSection.mod.montag"), "0"),
+
+		NAMETYPE (Messages.getString("MonsterDetailsSection.mod.nametype"), "100"),
+
+		NOLEADER (Messages.getString("MonsterDetailsSection.mod.noleader")),
+		POORLEADER (Messages.getString("MonsterDetailsSection.mod.poorleader")),
+		OKLEADER (Messages.getString("MonsterDetailsSection.mod.okleader")),
+		GOODLEADER (Messages.getString("MonsterDetailsSection.mod.goodleader")),
+		EXPERTLEADER (Messages.getString("MonsterDetailsSection.mod.expertleader")),
+		SUPERIORLEADER (Messages.getString("MonsterDetailsSection.mod.superiorleader")),
+
+		NOMAGICLEADER (Messages.getString("MonsterDetailsSection.mod.nomagicleader")),
+		POORMAGICLEADER (Messages.getString("MonsterDetailsSection.mod.poormagicleader")),
+		OKMAGICLEADER (Messages.getString("MonsterDetailsSection.mod.okmagicleader")),
+		GOODMAGICLEADER (Messages.getString("MonsterDetailsSection.mod.goodmagicleader")),
+		EXPERTMAGICLEADER (Messages.getString("MonsterDetailsSection.mod.expertmagicleader")),
+		SUPERIORMAGICLEADER (Messages.getString("MonsterDetailsSection.mod.superiormagicleader")),
+
+		NOUNDEADLEADER (Messages.getString("MonsterDetailsSection.mod.noundeadleader")),
+		POORUNDEADLEADER (Messages.getString("MonsterDetailsSection.mod.poorundeadleader")),
+		OKUNDEADLEADER (Messages.getString("MonsterDetailsSection.mod.okundeadleader")),
+		GOODUNDEADLEADER (Messages.getString("MonsterDetailsSection.mod.goodundeadleader")),
+		EXPERTUNDEADLEADER (Messages.getString("MonsterDetailsSection.mod.expertundeadleader")),
+		SUPERIORUNDEADLEADER (Messages.getString("MonsterDetailsSection.mod.superiorundeadleader")),
+
+		INSPIRATIONAL (Messages.getString("MonsterDetailsSection.mod.inspirational"), "0"),
+		BEASTMASTER (Messages.getString("MonsterDetailsSection.mod.beastmaster"), "0"),
+		TASKMASTER (Messages.getString("MonsterDetailsSection.mod.taskmaster"), "0"),
+		SLAVE (Messages.getString("MonsterDetailsSection.mod.slave"), "0"),
+		UNDISCIPLINED (Messages.getString("MonsterDetailsSection.mod.undisciplined"), "0"),
+		FORMATIONFIGHTER (Messages.getString("MonsterDetailsSection.mod.formationfighter"), "0"),
+		BODYGUARD (Messages.getString("MonsterDetailsSection.mod.bodyguard"), "0"),
+		STANDARD (Messages.getString("MonsterDetailsSection.mod.standard"), "3"),
+
 		MAGICSKILL1 (Messages.getString("MonsterDetailsSection.mod.magicskill"), "0", "1"),
 		CUSTOMMAGIC1 (Messages.getString("MonsterDetailsSection.mod.custommagic"), "128", "100"),
 		MAGICSKILL2 (Messages.getString("MonsterDetailsSection.mod.magicskill"), "0", "1"),
@@ -251,61 +386,64 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 		MAGICSKILL8 (Messages.getString("MonsterDetailsSection.mod.magicskill"), "0", "1"),
 		CUSTOMMAGIC8 (Messages.getString("MonsterDetailsSection.mod.custommagic"), "128", "100"),
 		MAGICBOOST1 (Messages.getString("MonsterDetailsSection.mod.magicboost"), "0", "1"),
-		GEMPROD1 (Messages.getString("MonsterDetailsSection.mod.gemprod"), "0", "1"),
 		MAGICBOOST2 (Messages.getString("MonsterDetailsSection.mod.magicboost"), "0", "1"),
-		GEMPROD2 (Messages.getString("MonsterDetailsSection.mod.gemprod"), "0", "1"),
 		MAGICBOOST3 (Messages.getString("MonsterDetailsSection.mod.magicboost"), "0", "1"),
-		GEMPROD3 (Messages.getString("MonsterDetailsSection.mod.gemprod"), "0", "1"),
 		MAGICBOOST4 (Messages.getString("MonsterDetailsSection.mod.magicboost"), "0", "1"),
-		GEMPROD4 (Messages.getString("MonsterDetailsSection.mod.gemprod"), "0", "1"),
 		MAGICBOOST5 (Messages.getString("MonsterDetailsSection.mod.magicboost"), "0", "1"),
-		GEMPROD5 (Messages.getString("MonsterDetailsSection.mod.gemprod"), "0", "1"),
 		MAGICBOOST6 (Messages.getString("MonsterDetailsSection.mod.magicboost"), "0", "1"),
-		GEMPROD6 (Messages.getString("MonsterDetailsSection.mod.gemprod"), "0", "1"),
 		MAGICBOOST7 (Messages.getString("MonsterDetailsSection.mod.magicboost"), "0", "1"),
-		GEMPROD7 (Messages.getString("MonsterDetailsSection.mod.gemprod"), "0", "1"),
 		MAGICBOOST8 (Messages.getString("MonsterDetailsSection.mod.magicboost"), "0", "1"),
-		GEMPROD8 (Messages.getString("MonsterDetailsSection.mod.gemprod"), "0", "1"),
-		ONEBATTLESPELL (Messages.getString("MonsterDetailsSection.mod.onebattlespell"), ""),
+
+		RESEARCHBONUS (Messages.getString("MonsterDetailsSection.mod.researchbonus"), "4"),
+		DIVINEINS (Messages.getString("MonsterDetailsSection.mod.divineins"), "0"),
 		DRAINIMMUNE (Messages.getString("MonsterDetailsSection.mod.drainimmune"), ""),
-		FIRSTSHAPE (Messages.getString("MonsterDetailsSection.mod.firstshape"), ""),
-		SECONDSHAPE (Messages.getString("MonsterDetailsSection.mod.secondshape"), ""),
-		SECONDTMPSHAPE (Messages.getString("MonsterDetailsSection.mod.secondtmpshape"), ""),
-		SHAPECHANGE (Messages.getString("MonsterDetailsSection.mod.shapechange"), ""),
-		LANDSHAPE (Messages.getString("MonsterDetailsSection.mod.landshape"), ""),
-		WATERSHAPE (Messages.getString("MonsterDetailsSection.mod.watershape"), ""),
-		FORESTSHAPE (Messages.getString("MonsterDetailsSection.mod.forestshape"), ""),
-		PLAINSHAPE (Messages.getString("MonsterDetailsSection.mod.plainshape"), ""),
-		DOMSUMMON (Messages.getString("MonsterDetailsSection.mod.domsummon"), ""),
-		DOMSUMMON2 (Messages.getString("MonsterDetailsSection.mod.domsummon2"), ""),
-		DOMSUMMON20 (Messages.getString("MonsterDetailsSection.mod.domsummon20"), ""),
-		MAKEMONSTER1 (Messages.getString("MonsterDetailsSection.mod.makemonster1"), ""),
-		MAKEMONSTER2 (Messages.getString("MonsterDetailsSection.mod.makemonster2"), ""),
-		MAKEMONSTER3 (Messages.getString("MonsterDetailsSection.mod.makemonster3"), ""),
-		MAKEMONSTER4 (Messages.getString("MonsterDetailsSection.mod.makemonster4"), ""),
-		MAKEMONSTER5 (Messages.getString("MonsterDetailsSection.mod.makemonster5"), ""),
-		SUMMON1 (Messages.getString("MonsterDetailsSection.mod.summon1"), ""),
-		SUMMON5 (Messages.getString("MonsterDetailsSection.mod.summon5"), ""),
-		NAMETYPE (Messages.getString("MonsterDetailsSection.mod.nametype"), "100"),
-		NOLEADER (Messages.getString("MonsterDetailsSection.mod.noleader")),
-		POORLEADER (Messages.getString("MonsterDetailsSection.mod.poorleader")),
-		OKLEADER (Messages.getString("MonsterDetailsSection.mod.okleader")),
-		GOODLEADER (Messages.getString("MonsterDetailsSection.mod.goodleader")),
-		EXPERTLEADER (Messages.getString("MonsterDetailsSection.mod.expertleader")),
-		SUPERIORLEADER (Messages.getString("MonsterDetailsSection.mod.superiorleader")),
-		NOMAGICLEADER (Messages.getString("MonsterDetailsSection.mod.nomagicleader")),
-		POORMAGICLEADER (Messages.getString("MonsterDetailsSection.mod.poormagicleader")),
-		OKMAGICLEADER (Messages.getString("MonsterDetailsSection.mod.okmagicleader")),
-		GOODMAGICLEADER (Messages.getString("MonsterDetailsSection.mod.goodmagicleader")),
-		EXPERTMAGICLEADER (Messages.getString("MonsterDetailsSection.mod.expertmagicleader")),
-		SUPERIORMAGICLEADER (Messages.getString("MonsterDetailsSection.mod.superiormagicleader")),
-		NOUNDEADLEADER (Messages.getString("MonsterDetailsSection.mod.noundeadleader")),
-		POORUNDEADLEADER (Messages.getString("MonsterDetailsSection.mod.poorundeadleader")),
-		OKUNDEADLEADER (Messages.getString("MonsterDetailsSection.mod.okundeadleader")),
-		GOODUNDEADLEADER (Messages.getString("MonsterDetailsSection.mod.goodundeadleader")),
-		EXPERTUNDEADLEADER (Messages.getString("MonsterDetailsSection.mod.expertundeadleader")),
-		SUPERIORUNDEADLEADER (Messages.getString("MonsterDetailsSection.mod.superiorundeadleader"));
-		
+		MAGICIMMUNE (Messages.getString("MonsterDetailsSection.mod.magicimmune"), "0"),
+
+		FIRERANGE (Messages.getString("MonsterDetailsSection.mod.firerange"), "0"),
+		AIRRANGE (Messages.getString("MonsterDetailsSection.mod.airrange"), "0"),
+		WATERRANGE (Messages.getString("MonsterDetailsSection.mod.waterrange"), "0"),
+		EARTHRANGE (Messages.getString("MonsterDetailsSection.mod.earthrange"), "0"),
+		ASTRALRANGE (Messages.getString("MonsterDetailsSection.mod.astralrange"), "0"),
+		DEATHRANGE (Messages.getString("MonsterDetailsSection.mod.deathrange"), "0"),
+		NATURERANGE (Messages.getString("MonsterDetailsSection.mod.naturerange"), "0"),
+		BLOODRANGE (Messages.getString("MonsterDetailsSection.mod.bloodrange"), "0"),
+		ELEMENTRANGE (Messages.getString("MonsterDetailsSection.mod.elementrange"), "0"),
+		SORCERYRANGE (Messages.getString("MonsterDetailsSection.mod.sorceryrange"), "0"),
+		ALLRANGE (Messages.getString("MonsterDetailsSection.mod.allrange"), "0"),
+
+		GEMPROD1 (Messages.getString("MonsterDetailsSection.mod.gemprod"), "0", "1"),
+		GEMPROD2 (Messages.getString("MonsterDetailsSection.mod.gemprod"), "0", "1"),
+		GEMPROD3 (Messages.getString("MonsterDetailsSection.mod.gemprod"), "0", "1"),
+		GEMPROD4 (Messages.getString("MonsterDetailsSection.mod.gemprod"), "0", "1"),
+		GEMPROD5 (Messages.getString("MonsterDetailsSection.mod.gemprod"), "0", "1"),
+		GEMPROD6 (Messages.getString("MonsterDetailsSection.mod.gemprod"), "0", "1"),
+		GEMPROD7 (Messages.getString("MonsterDetailsSection.mod.gemprod"), "0", "1"),
+		GEMPROD8 (Messages.getString("MonsterDetailsSection.mod.gemprod"), "0", "1"),
+		TMPFIREGEMS (Messages.getString("MonsterDetailsSection.mod.tmpfiregems"), "0"),
+		TMPAIRGEMS (Messages.getString("MonsterDetailsSection.mod.tmpairgems"), "0"),
+		TMPWATERGEMS (Messages.getString("MonsterDetailsSection.mod.tmpwatergems"), "0"),
+		TMPEARTHGEMS (Messages.getString("MonsterDetailsSection.mod.tmpearthgems"), "0"),
+		TMPASTRALGEMS (Messages.getString("MonsterDetailsSection.mod.tmpastralgems"), "0"),
+		TMPDEATHGEMS (Messages.getString("MonsterDetailsSection.mod.tmpdeathgems"), "0"),
+		TMPNATUREGEMS (Messages.getString("MonsterDetailsSection.mod.tmpnaturegems"), "0"),
+		TMPBLOODSLAVES (Messages.getString("MonsterDetailsSection.mod.tmpbloodslaves"), "0"),
+		DOUSE (Messages.getString("MonsterDetailsSection.mod.douse"), "1"),
+		MAKEPEARLS (Messages.getString("MonsterDetailsSection.mod.makepearls"), "0"),
+
+		BONUSSPELLS (Messages.getString("MonsterDetailsSection.mod.bonusspells"), "0"),
+		ONEBATTLESPELL (Messages.getString("MonsterDetailsSection.mod.onebattlespell"), ""),
+		RANDOMSPELL (Messages.getString("MonsterDetailsSection.mod.randomspell"), "0"),
+		TAINTED (Messages.getString("MonsterDetailsSection.mod.tainted"), "0"),
+		FORGEBONUS (Messages.getString("MonsterDetailsSection.mod.forgebonus"), "10"),
+		FIXFORGEBONUS (Messages.getString("MonsterDetailsSection.mod.fixforgebonus"), "0"),
+		COMSLAVE (Messages.getString("MonsterDetailsSection.mod.comslave"), "0"),
+		CROSSBREEDER (Messages.getString("MonsterDetailsSection.mod.crossbreeder"), "0"),
+		DEATHBANISH (Messages.getString("MonsterDetailsSection.mod.deathbanish"), "0"),
+		KOKYTOSRET (Messages.getString("MonsterDetailsSection.mod.kokytosret"), "0"),
+		INFERNORET (Messages.getString("MonsterDetailsSection.mod.infernoret"), "0"),
+		VOIDRET (Messages.getString("MonsterDetailsSection.mod.voidret"), "0"),
+		ALLRET (Messages.getString("MonsterDetailsSection.mod.allret"), "0");
+
 		private String label;
 		private String defaultValue;
 		private String defaultValue2;
@@ -388,7 +526,6 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 	
 	public MonsterDetailsPage(XtextEditor doc, TableViewer viewer) {
 		super(doc, viewer);
-		instMap.put(Inst.SPECIALLOOK, new Inst2Fields());
 		instMap.put(Inst.AP, new Inst2Fields());
 		instMap.put(Inst.MAPMOVE, new Inst2Fields());
 		instMap.put(Inst.HP, new Inst2Fields());
@@ -585,8 +722,114 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 		instMap.put(Inst.MAKEMONSTER4, new Inst5Fields());
 		instMap.put(Inst.MAKEMONSTER5, new Inst5Fields());
 		instMap.put(Inst.SUMMON1, new Inst5Fields());
+		instMap.put(Inst.SUMMON2, new Inst5Fields());
+		instMap.put(Inst.SUMMON3, new Inst5Fields());
+		instMap.put(Inst.SUMMON4, new Inst5Fields());
 		instMap.put(Inst.SUMMON5, new Inst5Fields());
 		
+		//instMap.put(Inst.FIXEDNAME, new Inst1Fields());
+		instMap.put(Inst.SLOWREC, new Inst4Fields());
+		instMap.put(Inst.NOSLOWREC, new Inst4Fields());
+		instMap.put(Inst.RECLIMIT, new Inst2Fields());
+		instMap.put(Inst.CHAOSREC, new Inst4Fields());
+		instMap.put(Inst.SINGLEBATTLE, new Inst4Fields());
+		instMap.put(Inst.AISINGLEREC, new Inst4Fields());
+		instMap.put(Inst.AINOREC, new Inst4Fields());
+		instMap.put(Inst.HOMEREALM, new Inst2Fields());
+		instMap.put(Inst.LESSERHORROR, new Inst4Fields());
+		instMap.put(Inst.GREATERHORROR, new Inst4Fields());
+		instMap.put(Inst.DOOMHORROR, new Inst4Fields());
+		instMap.put(Inst.BUG, new Inst4Fields());
+		instMap.put(Inst.UWBUG, new Inst4Fields());
+		instMap.put(Inst.AUTOCOMPETE, new Inst4Fields());
+		instMap.put(Inst.FLOAT, new Inst4Fields());
+		instMap.put(Inst.TELEPORT, new Inst4Fields());
+		instMap.put(Inst.NORIVERPASS, new Inst4Fields());
+		instMap.put(Inst.UNTELEPORTABLE, new Inst4Fields());
+		instMap.put(Inst.PATIENCE, new Inst2Fields());
+		instMap.put(Inst.FALSEARMY, new Inst2Fields());
+		instMap.put(Inst.FOOLSCOUTS, new Inst2Fields());
+		instMap.put(Inst.AUTOHEALER, new Inst2Fields());
+		instMap.put(Inst.AUTODISHEALER, new Inst2Fields());
+		instMap.put(Inst.AUTODISGRINDER, new Inst2Fields());
+		instMap.put(Inst.WOUNDFEND, new Inst2Fields());
+		instMap.put(Inst.HPOVERFLOW, new Inst4Fields());
+		instMap.put(Inst.PIERCERES, new Inst4Fields());
+		instMap.put(Inst.SLASHRES, new Inst4Fields());
+		instMap.put(Inst.BLUNTRES, new Inst4Fields());
+		instMap.put(Inst.DAMAGEREV, new Inst2Fields());
+		instMap.put(Inst.SLIMER, new Inst2Fields());
+		instMap.put(Inst.DEATHCURSE, new Inst4Fields());
+		instMap.put(Inst.DEATHDISEASE, new Inst2Fields());
+		instMap.put(Inst.CHAOSPOWER, new Inst2Fields());
+		instMap.put(Inst.MAGICPOWER, new Inst2Fields());
+		instMap.put(Inst.TRAMPSWALLOW, new Inst4Fields());
+		instMap.put(Inst.DIGEST, new Inst2Fields());
+		instMap.put(Inst.INCORPORATE, new Inst2Fields());
+		instMap.put(Inst.INCPROVDEF, new Inst2Fields());
+		instMap.put(Inst.ELEGIST, new Inst2Fields());
+		instMap.put(Inst.TAXCOLLECTOR, new Inst4Fields());
+		instMap.put(Inst.GOLD, new Inst2Fields());
+		instMap.put(Inst.GROWHP, new Inst2Fields());
+		instMap.put(Inst.SHRINKHP, new Inst2Fields());
+		instMap.put(Inst.RAREDOMSUMMON, new Inst5Fields());
+		instMap.put(Inst.BATTLESUM1, new Inst5Fields());
+		instMap.put(Inst.BATTLESUM2, new Inst5Fields());
+		instMap.put(Inst.BATTLESUM3, new Inst5Fields());
+		instMap.put(Inst.BATTLESUM4, new Inst5Fields());
+		instMap.put(Inst.BATTLESUM5, new Inst5Fields());
+		instMap.put(Inst.BATSTARTSUM1, new Inst5Fields());
+		instMap.put(Inst.BATSTARTSUM2, new Inst5Fields());
+		instMap.put(Inst.BATSTARTSUM3, new Inst5Fields());
+		instMap.put(Inst.BATSTARTSUM4, new Inst5Fields());
+		instMap.put(Inst.BATSTARTSUM5, new Inst5Fields());
+		instMap.put(Inst.BATSTARTSUM1D6, new Inst5Fields());
+		instMap.put(Inst.BATSTARTSUM2D6, new Inst5Fields());
+		instMap.put(Inst.BATSTARTSUM3D6, new Inst5Fields());
+		instMap.put(Inst.BATSTARTSUM4D6, new Inst5Fields());
+		instMap.put(Inst.BATSTARTSUM5D6, new Inst5Fields());
+		instMap.put(Inst.MONTAG, new Inst2Fields());
+		instMap.put(Inst.INSPIRATIONAL, new Inst2Fields());
+		instMap.put(Inst.BEASTMASTER, new Inst2Fields());
+		instMap.put(Inst.TASKMASTER, new Inst2Fields());
+		instMap.put(Inst.SLAVE, new Inst4Fields());
+		instMap.put(Inst.UNDISCIPLINED, new Inst4Fields());
+		instMap.put(Inst.FORMATIONFIGHTER, new Inst2Fields());
+		instMap.put(Inst.BODYGUARD, new Inst2Fields());
+		instMap.put(Inst.DIVINEINS, new Inst2Fields());
+		instMap.put(Inst.MAGICIMMUNE, new Inst4Fields());
+		instMap.put(Inst.FIRERANGE, new Inst2Fields());
+		instMap.put(Inst.AIRRANGE, new Inst2Fields());
+		instMap.put(Inst.WATERRANGE, new Inst2Fields());
+		instMap.put(Inst.EARTHRANGE, new Inst2Fields());
+		instMap.put(Inst.ASTRALRANGE, new Inst2Fields());
+		instMap.put(Inst.DEATHRANGE, new Inst2Fields());
+		instMap.put(Inst.NATURERANGE, new Inst2Fields());
+		instMap.put(Inst.BLOODRANGE, new Inst2Fields());
+		instMap.put(Inst.ELEMENTRANGE, new Inst2Fields());
+		instMap.put(Inst.SORCERYRANGE, new Inst2Fields());
+		instMap.put(Inst.ALLRANGE, new Inst2Fields());
+		instMap.put(Inst.TMPFIREGEMS, new Inst2Fields());
+		instMap.put(Inst.TMPAIRGEMS, new Inst2Fields());
+		instMap.put(Inst.TMPWATERGEMS, new Inst2Fields());
+		instMap.put(Inst.TMPEARTHGEMS, new Inst2Fields());
+		instMap.put(Inst.TMPASTRALGEMS, new Inst2Fields());
+		instMap.put(Inst.TMPDEATHGEMS, new Inst2Fields());
+		instMap.put(Inst.TMPNATUREGEMS, new Inst2Fields());
+		instMap.put(Inst.TMPBLOODSLAVES, new Inst2Fields());
+		instMap.put(Inst.MAKEPEARLS, new Inst2Fields());
+		instMap.put(Inst.BONUSSPELLS, new Inst2Fields());
+		instMap.put(Inst.RANDOMSPELL, new Inst2Fields());
+		instMap.put(Inst.TAINTED, new Inst2Fields());
+		instMap.put(Inst.FIXFORGEBONUS, new Inst2Fields());
+		instMap.put(Inst.COMSLAVE, new Inst4Fields());
+		instMap.put(Inst.CROSSBREEDER, new Inst2Fields());
+		instMap.put(Inst.DEATHBANISH, new Inst2Fields());
+		instMap.put(Inst.KOKYTOSRET, new Inst2Fields());
+		instMap.put(Inst.INFERNORET, new Inst2Fields());
+		instMap.put(Inst.VOIDRET, new Inst2Fields());
+		instMap.put(Inst.ALLRET, new Inst2Fields());
+
 		List<Inst> magicList = new ArrayList<Inst>();
 		magicList.add(Inst.MAGICSKILL1);
 		magicList.add(Inst.MAGICSKILL2);
@@ -658,6 +901,7 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 		final Composite nameComp = toolkit.createComposite(client);
 		glayout = new GridLayout(3, false);
 		glayout.marginHeight = 0;
+		glayout.verticalSpacing = 2;
 		glayout.marginWidth = 0;
 		nameComp.setLayout(glayout);
 		GridData gd = new GridData(SWT.DEFAULT, SWT.FILL, false, false);
@@ -706,6 +950,48 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 						name.setText("");
 					}
 					nameCheck.setFont(normalFont);
+				}
+			}
+		});
+
+		fixedNameCheck = toolkit.createButton(nameComp, Messages.getString("MonsterDetailsSection.mod.fixedname"), SWT.CHECK); //$NON-NLS-1$
+		fixedNameCheck.setToolTipText(HelpTextHelper.getText(HelpTextHelper.MONSTER_CATEGORY, "fixedname"));
+
+		fixedName = toolkit.createText(nameComp, null, SWT.SINGLE | SWT.BORDER); //$NON-NLS-1$
+		fixedName.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				setInst1(Inst.FIXEDNAME, doc, fixedName.getText());
+			}			
+		});
+		fixedName.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.character == '\r') {
+					setInst1(Inst.FIXEDNAME, doc, fixedName.getText());
+				}
+			}
+			
+		});
+		fixedName.setEnabled(false);
+		
+		gd = new GridData(SWT.FILL, SWT.FILL, false, false);
+		gd.widthHint = 500;
+		gd.horizontalSpan = 2;
+		fixedName.setLayoutData(gd);
+		fixedNameCheck.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				if (fixedNameCheck.getSelection()) {
+					addInst1(Inst.FIXEDNAME, doc, "");
+					fixedName.setEnabled(true);
+					fixedName.setText("");
+					fixedNameCheck.setFont(boldFont);
+				} else {
+					removeInst(Inst.FIXEDNAME, doc);
+					fixedName.setEnabled(false);
+					fixedName.setText("");
+					fixedNameCheck.setFont(normalFont);
 				}
 			}
 		});
@@ -901,37 +1187,102 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 			}
 		});
 
+		specialLookCheck = toolkit.createButton(nameComp, Messages.getString("MonsterDetailsSection.mod.speciallook"), SWT.CHECK); //$NON-NLS-1$
+		specialLookCheck.setToolTipText(HelpTextHelper.getText(HelpTextHelper.MONSTER_CATEGORY, "speciallook"));
+
+		specialLook = toolkit.createText(nameComp, null, SWT.SINGLE | SWT.BORDER); //$NON-NLS-1$
+		specialLook.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				setInst2(Inst.SPECIALLOOK, doc, specialLook.getText());
+			}			
+		});
+		specialLook.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.character == '\r') {
+					setInst2(Inst.SPECIALLOOK, doc, specialLook.getText());
+				}
+			}
+			
+		});
+		specialLook.setEnabled(false);
+		
+		gd = new GridData(SWT.BEGINNING, SWT.FILL, false, false);
+		gd.widthHint = DEFAULT_VALUE_WIDTH;
+		specialLook.setLayoutData(gd);
+		specialLookCheck.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				if (specialLookCheck.getSelection()) {
+					addInst2(Inst.SPECIALLOOK, doc, "");
+					specialLook.setEnabled(true);
+					specialLook.setText("");
+					specialLookCheck.setFont(boldFont);
+				} else {
+					removeInst(Inst.SPECIALLOOK, doc);
+					specialLook.setEnabled(false);
+					specialLook.setText("");
+					specialLookCheck.setFont(normalFont);
+				}
+			}
+		});
+
 		Composite leftColumn = null;
 		Composite rightColumn = null;
 		boolean isRight = false;
 		for (final Map.Entry<Inst, InstFields> fields : instMap.entrySet()) {
 			final Inst key = fields.getKey();
 			
-			if (key.equals(Inst.SPECIALLOOK) || 
+			if (key.equals(Inst.HP) || 
 				key.equals(Inst.CLEAR) || 
+				key.equals(Inst.SLOWREC) ||
+				key.equals(Inst.GCOST) ||
+				key.equals(Inst.WEAPON1) ||
+				key.equals(Inst.PATHCOST) ||
 				key.equals(Inst.FEMALE) || 
 				key.equals(Inst.IMMOBILE) || 
-				key.equals(Inst.COLDRES) || 
 				key.equals(Inst.STEALTHY) || 
 				key.equals(Inst.STARTAGE) || 
-				key.equals(Inst.HEALER) || 
-				key.equals(Inst.COLDPOWER) || 
+				key.equals(Inst.PIERCERES) || 
+				key.equals(Inst.HEAT) || 
+				key.equals(Inst.CHAOSPOWER) || 
+				key.equals(Inst.SPRINGPOWER) || 
 				key.equals(Inst.AMBIDEXTROUS) || 
 				key.equals(Inst.CASTLEDEF) || 
-				key.equals(Inst.ITEMSLOTS) || 
-				key.equals(Inst.MAGICSKILL1) || 
 				key.equals(Inst.FIRSTSHAPE) || 
+				key.equals(Inst.ITEMSLOTS) || 
 				key.equals(Inst.DOMSUMMON) || 
 				key.equals(Inst.NAMETYPE) || 
-				key.equals(Inst.NOLEADER)) {
+				key.equals(Inst.NOLEADER) ||
+				key.equals(Inst.NOMAGICLEADER) ||
+				key.equals(Inst.NOUNDEADLEADER) ||
+				key.equals(Inst.INSPIRATIONAL) ||
+				key.equals(Inst.MAGICSKILL1) ||
+				key.equals(Inst.RESEARCHBONUS) ||
+				key.equals(Inst.FIRERANGE) ||
+				key.equals(Inst.GEMPROD1) ||
+				key.equals(Inst.BONUSSPELLS)) {
 				
 				final Section expandable = toolkit.createSection(client, ExpandableComposite.TWISTIE|ExpandableComposite.EXPANDED);
 				switch (key) {
-				case SPECIALLOOK:
+				case HP:
 					expandable.setText(Messages.getString("MonsterDetailsSection.mod.section.basic"));
 					break;
 				case CLEAR:
 					expandable.setText(Messages.getString("MonsterDetailsSection.mod.section.clearing"));
+					break;
+				case SLOWREC:
+					expandable.setText(Messages.getString("MonsterDetailsSection.mod.section.recruit"));
+					break;
+				case GCOST:
+					expandable.setText(Messages.getString("MonsterDetailsSection.mod.section.gcost"));
+					break;
+				case WEAPON1:
+					expandable.setText(Messages.getString("MonsterDetailsSection.mod.section.weapon"));
+					break;
+				case PATHCOST:
+					expandable.setText(Messages.getString("MonsterDetailsSection.mod.section.pretender"));
 					break;
 				case FEMALE:
 					expandable.setText(Messages.getString("MonsterDetailsSection.mod.section.type"));
@@ -939,20 +1290,23 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 				case IMMOBILE:
 					expandable.setText(Messages.getString("MonsterDetailsSection.mod.section.movement"));
 					break;
-				case COLDRES:
-					expandable.setText(Messages.getString("MonsterDetailsSection.mod.section.resistance"));
-					break;
 				case STEALTHY:
 					expandable.setText(Messages.getString("MonsterDetailsSection.mod.section.stealth"));
 					break;
 				case STARTAGE:
 					expandable.setText(Messages.getString("MonsterDetailsSection.mod.section.age"));
 					break;
-				case HEALER:
-					expandable.setText(Messages.getString("MonsterDetailsSection.mod.section.healing"));
+				case PIERCERES:
+					expandable.setText(Messages.getString("MonsterDetailsSection.mod.section.damageReduction"));
 					break;
-				case COLDPOWER:
-					expandable.setText(Messages.getString("MonsterDetailsSection.mod.section.element"));
+				case HEAT:
+					expandable.setText(Messages.getString("MonsterDetailsSection.mod.section.auras"));
+					break;
+				case CHAOSPOWER:
+					expandable.setText(Messages.getString("MonsterDetailsSection.mod.section.elemental"));
+					break;
+				case SPRINGPOWER:
+					expandable.setText(Messages.getString("MonsterDetailsSection.mod.section.seasonal"));
 					break;
 				case AMBIDEXTROUS:
 					expandable.setText(Messages.getString("MonsterDetailsSection.mod.section.combat"));
@@ -962,9 +1316,6 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 					break;
 				case ITEMSLOTS:
 					expandable.setText(Messages.getString("MonsterDetailsSection.mod.section.items"));
-					break;
-				case MAGICSKILL1:
-					expandable.setText(Messages.getString("MonsterDetailsSection.mod.section.magic"));
 					break;
 				case FIRSTSHAPE:
 					expandable.setText(Messages.getString("MonsterDetailsSection.mod.section.shapes"));
@@ -977,6 +1328,30 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 					break;
 				case NOLEADER:
 					expandable.setText(Messages.getString("MonsterDetailsSection.mod.section.leadership"));
+					break;
+				case NOMAGICLEADER:
+					expandable.setText(Messages.getString("MonsterDetailsSection.mod.section.magicleadership"));
+					break;
+				case NOUNDEADLEADER:
+					expandable.setText(Messages.getString("MonsterDetailsSection.mod.section.undeadleadership"));
+					break;
+				case INSPIRATIONAL:
+					expandable.setText(Messages.getString("MonsterDetailsSection.mod.section.morale"));
+					break;
+				case MAGICSKILL1:
+					expandable.setText(Messages.getString("MonsterDetailsSection.mod.section.magicpaths"));
+					break;
+				case RESEARCHBONUS:
+					expandable.setText(Messages.getString("MonsterDetailsSection.mod.section.magicresearch"));
+					break;
+				case FIRERANGE:
+					expandable.setText(Messages.getString("MonsterDetailsSection.mod.section.ritualrange"));
+					break;
+				case GEMPROD1:
+					expandable.setText(Messages.getString("MonsterDetailsSection.mod.section.gems"));
+					break;
+				case BONUSSPELLS:
+					expandable.setText(Messages.getString("MonsterDetailsSection.mod.section.othermagic"));
 					break;
 				}
 				gd = new GridData(SWT.FILL, SWT.FILL, false, false);
@@ -991,7 +1366,7 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 				Composite header1 = toolkit.createComposite(expandable, SWT.BORDER);
 				header1.setLayout(new GridLayout(2, true));
 				expandable.setClient(header1);
-				if (key.equals(Inst.SPECIALLOOK)) {
+				if (key.equals(Inst.HP)) {
 					expandable.setExpanded(true);
 				} else {
 					expandable.setExpanded(false);					
@@ -1774,6 +2149,19 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 				sprite2Label.setImage(null);
 			}
 			
+			String fixedNameString = getInst1(Inst.FIXEDNAME, input);
+			if (fixedNameString != null) {
+				fixedName.setText(fixedNameString);
+				fixedName.setEnabled(true);
+				fixedNameCheck.setSelection(true);
+				fixedNameCheck.setFont(boldFont);
+			} else {
+				fixedName.setText("");
+				fixedName.setEnabled(false);
+				fixedNameCheck.setSelection(false);
+				fixedNameCheck.setFont(normalFont);
+			}
+
 			String description = getInst1(Inst.DESCR, input);
 			final FormToolkit toolkit = mform.getToolkit();
 			if (description != null) {
@@ -3658,6 +4046,33 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 						Inst.SUMMON1.defaultValue = "";
 					}
 					break;
+				case SUMMON2:
+					if (monsterDB.summon2 != null) {
+						((Inst5Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.summon2));
+						Inst.SUMMON2.defaultValue = monsterDB.summon2;
+					} else {
+						((Inst5Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.SUMMON2.defaultValue = "";
+					}
+					break;
+				case SUMMON3:
+					if (monsterDB.summon3 != null) {
+						((Inst5Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.summon3));
+						Inst.SUMMON3.defaultValue = monsterDB.summon3;
+					} else {
+						((Inst5Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.SUMMON3.defaultValue = "";
+					}
+					break;
+				case SUMMON4:
+					if (monsterDB.summon4 != null) {
+						((Inst5Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.summon4));
+						Inst.SUMMON4.defaultValue = monsterDB.summon4;
+					} else {
+						((Inst5Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.SUMMON4.defaultValue = "";
+					}
+					break;
 				case SUMMON5:
 					if (monsterDB.summon5 != null) {
 						((Inst5Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.summon5));
@@ -3665,6 +4080,924 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 					} else {
 						((Inst5Fields)fields.getValue()).defaultLabel.setText("");
 						Inst.SUMMON5.defaultValue = "";
+					}
+					break;
+				case FIXEDNAME:
+					if (monsterDB.fixedname != null) {
+						((Inst1Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.fixedname));
+						Inst.FIXEDNAME.defaultValue = monsterDB.fixedname.toString();
+					} else {
+						((Inst1Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.FIXEDNAME.defaultValue = "";
+					}
+					break;
+				case SLOWREC:
+					if (monsterDB.slowrec != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.slowrec));
+						Inst.SLOWREC.defaultValue = monsterDB.slowrec.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.SLOWREC.defaultValue = "";
+					}
+					break;
+				case NOSLOWREC:
+					if (monsterDB.noslowrec != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.noslowrec));
+						Inst.NOSLOWREC.defaultValue = monsterDB.noslowrec.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.NOSLOWREC.defaultValue = "";
+					}
+					break;
+				case RECLIMIT:
+					if (monsterDB.reclimit != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.reclimit));
+						Inst.RECLIMIT.defaultValue = monsterDB.reclimit.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.RECLIMIT.defaultValue = "0";
+					}
+					break;
+				case CHAOSREC:
+					if (monsterDB.chaosrec != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.chaosrec));
+						Inst.CHAOSREC.defaultValue = monsterDB.chaosrec.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.CHAOSREC.defaultValue = "";
+					}
+					break;
+				case SINGLEBATTLE:
+					if (monsterDB.singlebattle != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.singlebattle));
+						Inst.SINGLEBATTLE.defaultValue = monsterDB.singlebattle.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.SINGLEBATTLE.defaultValue = "";
+					}
+					break;
+				case AISINGLEREC:
+					if (monsterDB.aisinglerec != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.aisinglerec));
+						Inst.AISINGLEREC.defaultValue = monsterDB.aisinglerec.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.AISINGLEREC.defaultValue = "";
+					}
+					break;
+				case AINOREC:
+					if (monsterDB.ainorec != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.ainorec));
+						Inst.AINOREC.defaultValue = monsterDB.ainorec.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.AINOREC.defaultValue = "";
+					}
+					break;
+				case HOMEREALM:
+					if (monsterDB.homerealm != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.homerealm));
+						Inst.HOMEREALM.defaultValue = monsterDB.homerealm.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.HOMEREALM.defaultValue = "0";
+					}
+					break;
+				case LESSERHORROR:
+					if (monsterDB.lesserhorror != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.lesserhorror));
+						Inst.LESSERHORROR.defaultValue = monsterDB.lesserhorror.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.LESSERHORROR.defaultValue = "";
+					}
+					break;
+				case GREATERHORROR:
+					if (monsterDB.greaterhorror != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.greaterhorror));
+						Inst.GREATERHORROR.defaultValue = monsterDB.greaterhorror.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.GREATERHORROR.defaultValue = "";
+					}
+					break;
+				case DOOMHORROR:
+					if (monsterDB.doomhorror != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.doomhorror));
+						Inst.DOOMHORROR.defaultValue = monsterDB.doomhorror.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.DOOMHORROR.defaultValue = "";
+					}
+					break;
+				case BUG:
+					if (monsterDB.bug != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.bug));
+						Inst.BUG.defaultValue = monsterDB.bug.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.BUG.defaultValue = "";
+					}
+					break;
+				case UWBUG:
+					if (monsterDB.uwbug != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.uwbug));
+						Inst.UWBUG.defaultValue = monsterDB.uwbug.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.UWBUG.defaultValue = "";
+					}
+					break;
+				case AUTOCOMPETE:
+					if (monsterDB.autocompete != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.autocompete));
+						Inst.AUTOCOMPETE.defaultValue = monsterDB.autocompete.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.AUTOCOMPETE.defaultValue = "";
+					}
+					break;
+				case FLOAT:
+					if (monsterDB.floatBoolean != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.floatBoolean));
+						Inst.FLOAT.defaultValue = monsterDB.floatBoolean.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.FLOAT.defaultValue = "";
+					}
+					break;
+				case TELEPORT:
+					if (monsterDB.teleport != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.teleport));
+						Inst.TELEPORT.defaultValue = monsterDB.teleport.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.TELEPORT.defaultValue = "";
+					}
+					break;
+				case NORIVERPASS:
+					if (monsterDB.noriverpass != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.noriverpass));
+						Inst.NORIVERPASS.defaultValue = monsterDB.noriverpass.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.NORIVERPASS.defaultValue = "";
+					}
+					break;
+				case UNTELEPORTABLE:
+					if (monsterDB.unteleportable != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.unteleportable));
+						Inst.UNTELEPORTABLE.defaultValue = monsterDB.unteleportable.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.UNTELEPORTABLE.defaultValue = "";
+					}
+					break;
+				case PATIENCE:
+					if (monsterDB.patience != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.patience));
+						Inst.PATIENCE.defaultValue = monsterDB.patience.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.PATIENCE.defaultValue = "0";
+					}
+					break;
+				case FALSEARMY:
+					if (monsterDB.falsearmy != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.falsearmy));
+						Inst.FALSEARMY.defaultValue = monsterDB.falsearmy.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.FALSEARMY.defaultValue = "0";
+					}
+					break;
+				case FOOLSCOUTS:
+					if (monsterDB.foolscouts != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.foolscouts));
+						Inst.FOOLSCOUTS.defaultValue = monsterDB.foolscouts.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.FOOLSCOUTS.defaultValue = "0";
+					}
+					break;
+				case AUTOHEALER:
+					if (monsterDB.autohealer != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.autohealer));
+						Inst.AUTOHEALER.defaultValue = monsterDB.autohealer.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.AUTOHEALER.defaultValue = "0";
+					}
+					break;
+				case AUTODISHEALER:
+					if (monsterDB.autodishealer != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.autodishealer));
+						Inst.AUTODISHEALER.defaultValue = monsterDB.autodishealer.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.AUTODISHEALER.defaultValue = "0";
+					}
+					break;
+				case AUTODISGRINDER:
+					if (monsterDB.autodisgrinder != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.autodisgrinder));
+						Inst.AUTODISGRINDER.defaultValue = monsterDB.autodisgrinder.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.AUTODISGRINDER.defaultValue = "0";
+					}
+					break;
+				case WOUNDFEND:
+					if (monsterDB.woundfend != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.woundfend));
+						Inst.WOUNDFEND.defaultValue = monsterDB.woundfend.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.WOUNDFEND.defaultValue = "0";
+					}
+					break;
+				case HPOVERFLOW:
+					if (monsterDB.hpoverflow != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.hpoverflow));
+						Inst.HPOVERFLOW.defaultValue = monsterDB.hpoverflow.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.HPOVERFLOW.defaultValue = "";
+					}
+					break;
+				case PIERCERES:
+					if (monsterDB.pierceres != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.pierceres));
+						Inst.PIERCERES.defaultValue = monsterDB.pierceres.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.PIERCERES.defaultValue = "";
+					}
+					break;
+				case SLASHRES:
+					if (monsterDB.slashres != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.slashres));
+						Inst.SLASHRES.defaultValue = monsterDB.slashres.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.SLASHRES.defaultValue = "";
+					}
+					break;
+				case BLUNTRES:
+					if (monsterDB.bluntres != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.bluntres));
+						Inst.BLUNTRES.defaultValue = monsterDB.bluntres.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.BLUNTRES.defaultValue = "";
+					}
+					break;
+				case DAMAGEREV:
+					if (monsterDB.damagerev != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.damagerev));
+						Inst.DAMAGEREV.defaultValue = monsterDB.damagerev.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.DAMAGEREV.defaultValue = "0";
+					}
+					break;
+				case SLIMER:
+					if (monsterDB.slimer != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.slimer));
+						Inst.SLIMER.defaultValue = monsterDB.slimer.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.SLIMER.defaultValue = "0";
+					}
+					break;
+				case DEATHCURSE:
+					if (monsterDB.deathcurse != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.deathcurse));
+						Inst.DEATHCURSE.defaultValue = monsterDB.deathcurse.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.DEATHCURSE.defaultValue = "";
+					}
+					break;
+				case DEATHDISEASE:
+					if (monsterDB.deathdisease != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.deathdisease));
+						Inst.DEATHDISEASE.defaultValue = monsterDB.deathdisease.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.DEATHDISEASE.defaultValue = "0";
+					}
+					break;
+				case CHAOSPOWER:
+					if (monsterDB.chaospower != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.chaospower));
+						Inst.CHAOSPOWER.defaultValue = monsterDB.chaospower.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.CHAOSPOWER.defaultValue = "0";
+					}
+					break;
+				case MAGICPOWER:
+					if (monsterDB.magicpower != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.magicpower));
+						Inst.MAGICPOWER.defaultValue = monsterDB.magicpower.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.MAGICPOWER.defaultValue = "0";
+					}
+					break;
+				case TRAMPSWALLOW:
+					if (monsterDB.trampswallow != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.trampswallow));
+						Inst.TRAMPSWALLOW.defaultValue = monsterDB.trampswallow.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.TRAMPSWALLOW.defaultValue = "";
+					}
+					break;
+				case DIGEST:
+					if (monsterDB.digest != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.digest));
+						Inst.DIGEST.defaultValue = monsterDB.digest.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.DIGEST.defaultValue = "0";
+					}
+					break;
+				case INCORPORATE:
+					if (monsterDB.incorporate != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.incorporate));
+						Inst.INCORPORATE.defaultValue = monsterDB.incorporate.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.INCORPORATE.defaultValue = "0";
+					}
+					break;
+				case INCPROVDEF:
+					if (monsterDB.incprovdef != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.incprovdef));
+						Inst.INCPROVDEF.defaultValue = monsterDB.incprovdef.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.INCPROVDEF.defaultValue = "0";
+					}
+					break;
+				case ELEGIST:
+					if (monsterDB.elegist != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.elegist));
+						Inst.ELEGIST.defaultValue = monsterDB.elegist.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.ELEGIST.defaultValue = "0";
+					}
+					break;
+				case TAXCOLLECTOR:
+					if (monsterDB.taxcollector != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.taxcollector));
+						Inst.TAXCOLLECTOR.defaultValue = monsterDB.taxcollector.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.TAXCOLLECTOR.defaultValue = "";
+					}
+					break;
+				case GOLD:
+					if (monsterDB.gold != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.gold));
+						Inst.GOLD.defaultValue = monsterDB.gold.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.GOLD.defaultValue = "0";
+					}
+					break;
+				case GROWHP:
+					if (monsterDB.growhp != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.growhp));
+						Inst.GROWHP.defaultValue = monsterDB.growhp.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.GROWHP.defaultValue = "0";
+					}
+					break;
+				case SHRINKHP:
+					if (monsterDB.shrinkhp != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.shrinkhp));
+						Inst.SHRINKHP.defaultValue = monsterDB.shrinkhp.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.SHRINKHP.defaultValue = "0";
+					}
+					break;
+				case RAREDOMSUMMON:
+					if (monsterDB.raredomsummon != null) {
+						((Inst5Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.raredomsummon));
+						Inst.RAREDOMSUMMON.defaultValue = monsterDB.raredomsummon.toString();
+					} else {
+						((Inst5Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.RAREDOMSUMMON.defaultValue = "";
+					}
+					break;
+				case BATTLESUM1:
+					if (monsterDB.battlesum1 != null) {
+						((Inst5Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.battlesum1));
+						Inst.BATTLESUM1.defaultValue = monsterDB.battlesum1.toString();
+					} else {
+						((Inst5Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.BATTLESUM1.defaultValue = "";
+					}
+					break;
+				case BATTLESUM2:
+					if (monsterDB.battlesum2 != null) {
+						((Inst5Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.battlesum2));
+						Inst.BATTLESUM2.defaultValue = monsterDB.battlesum2.toString();
+					} else {
+						((Inst5Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.BATTLESUM2.defaultValue = "";
+					}
+					break;
+				case BATTLESUM3:
+					if (monsterDB.battlesum3 != null) {
+						((Inst5Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.battlesum3));
+						Inst.BATTLESUM3.defaultValue = monsterDB.battlesum3.toString();
+					} else {
+						((Inst5Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.BATTLESUM3.defaultValue = "";
+					}
+					break;
+				case BATTLESUM4:
+					if (monsterDB.battlesum4 != null) {
+						((Inst5Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.battlesum4));
+						Inst.BATTLESUM4.defaultValue = monsterDB.battlesum4.toString();
+					} else {
+						((Inst5Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.BATTLESUM4.defaultValue = "";
+					}
+					break;
+				case BATTLESUM5:
+					if (monsterDB.battlesum5 != null) {
+						((Inst5Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.battlesum5));
+						Inst.BATTLESUM5.defaultValue = monsterDB.battlesum5.toString();
+					} else {
+						((Inst5Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.BATTLESUM5.defaultValue = "";
+					}
+					break;
+				case BATSTARTSUM1:
+					if (monsterDB.batstartsum1 != null) {
+						((Inst5Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.batstartsum1));
+						Inst.BATSTARTSUM1.defaultValue = monsterDB.batstartsum1.toString();
+					} else {
+						((Inst5Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.BATSTARTSUM1.defaultValue = "";
+					}
+					break;
+				case BATSTARTSUM2:
+					if (monsterDB.batstartsum2 != null) {
+						((Inst5Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.batstartsum2));
+						Inst.BATSTARTSUM2.defaultValue = monsterDB.batstartsum2.toString();
+					} else {
+						((Inst5Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.BATSTARTSUM2.defaultValue = "";
+					}
+					break;
+				case BATSTARTSUM3:
+					if (monsterDB.batstartsum3 != null) {
+						((Inst5Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.batstartsum3));
+						Inst.BATSTARTSUM3.defaultValue = monsterDB.batstartsum3.toString();
+					} else {
+						((Inst5Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.BATSTARTSUM3.defaultValue = "";
+					}
+					break;
+				case BATSTARTSUM4:
+					if (monsterDB.batstartsum4 != null) {
+						((Inst5Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.batstartsum4));
+						Inst.BATSTARTSUM4.defaultValue = monsterDB.batstartsum4.toString();
+					} else {
+						((Inst5Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.BATSTARTSUM4.defaultValue = "";
+					}
+					break;
+				case BATSTARTSUM5:
+					if (monsterDB.batstartsum5 != null) {
+						((Inst5Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.batstartsum5));
+						Inst.BATSTARTSUM5.defaultValue = monsterDB.batstartsum5.toString();
+					} else {
+						((Inst5Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.BATSTARTSUM5.defaultValue = "";
+					}
+					break;
+				case BATSTARTSUM1D6:
+					if (monsterDB.batstartsum1d6 != null) {
+						((Inst5Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.batstartsum1d6));
+						Inst.BATSTARTSUM1D6.defaultValue = monsterDB.batstartsum1d6.toString();
+					} else {
+						((Inst5Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.BATSTARTSUM1D6.defaultValue = "";
+					}
+					break;
+				case BATSTARTSUM2D6:
+					if (monsterDB.batstartsum2d6 != null) {
+						((Inst5Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.batstartsum2d6));
+						Inst.BATSTARTSUM2D6.defaultValue = monsterDB.batstartsum2d6.toString();
+					} else {
+						((Inst5Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.BATSTARTSUM2D6.defaultValue = "";
+					}
+					break;
+				case BATSTARTSUM3D6:
+					if (monsterDB.batstartsum3d6 != null) {
+						((Inst5Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.batstartsum3d6));
+						Inst.BATSTARTSUM3D6.defaultValue = monsterDB.batstartsum3d6.toString();
+					} else {
+						((Inst5Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.BATSTARTSUM3D6.defaultValue = "";
+					}
+					break;
+				case BATSTARTSUM4D6:
+					if (monsterDB.batstartsum4d6 != null) {
+						((Inst5Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.batstartsum4d6));
+						Inst.BATSTARTSUM4D6.defaultValue = monsterDB.batstartsum4d6.toString();
+					} else {
+						((Inst5Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.BATSTARTSUM4D6.defaultValue = "";
+					}
+					break;
+				case BATSTARTSUM5D6:
+					if (monsterDB.batstartsum5d6 != null) {
+						((Inst5Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.batstartsum5d6));
+						Inst.BATSTARTSUM5D6.defaultValue = monsterDB.batstartsum5d6.toString();
+					} else {
+						((Inst5Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.BATSTARTSUM5D6.defaultValue = "";
+					}
+					break;
+				case MONTAG:
+					if (monsterDB.montag != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.montag));
+						Inst.MONTAG.defaultValue = monsterDB.montag.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.MONTAG.defaultValue = "0";
+					}
+					break;
+				case INSPIRATIONAL:
+					if (monsterDB.inspirational != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.inspirational));
+						Inst.INSPIRATIONAL.defaultValue = monsterDB.inspirational.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.INSPIRATIONAL.defaultValue = "0";
+					}
+					break;
+				case BEASTMASTER:
+					if (monsterDB.beastmaster != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.beastmaster));
+						Inst.BEASTMASTER.defaultValue = monsterDB.beastmaster.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.BEASTMASTER.defaultValue = "0";
+					}
+					break;
+				case TASKMASTER:
+					if (monsterDB.taskmaster != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.taskmaster));
+						Inst.TASKMASTER.defaultValue = monsterDB.taskmaster.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.TASKMASTER.defaultValue = "0";
+					}
+					break;
+				case SLAVE:
+					if (monsterDB.slave != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.slave));
+						Inst.SLAVE.defaultValue = monsterDB.slave.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.SLAVE.defaultValue = "";
+					}
+					break;
+				case UNDISCIPLINED:
+					if (monsterDB.undisciplined != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.undisciplined));
+						Inst.UNDISCIPLINED.defaultValue = monsterDB.undisciplined.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.UNDISCIPLINED.defaultValue = "";
+					}
+					break;
+				case FORMATIONFIGHTER:
+					if (monsterDB.formationfighter != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.formationfighter));
+						Inst.FORMATIONFIGHTER.defaultValue = monsterDB.formationfighter.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.FORMATIONFIGHTER.defaultValue = "0";
+					}
+					break;
+				case BODYGUARD:
+					if (monsterDB.bodyguard != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.bodyguard));
+						Inst.BODYGUARD.defaultValue = monsterDB.bodyguard.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.BODYGUARD.defaultValue = "0";
+					}
+					break;
+				case DIVINEINS:
+					if (monsterDB.divineins != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.divineins));
+						Inst.DIVINEINS.defaultValue = monsterDB.divineins.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.DIVINEINS.defaultValue = "0";
+					}
+					break;
+				case MAGICIMMUNE:
+					if (monsterDB.magicimmune != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.magicimmune));
+						Inst.MAGICIMMUNE.defaultValue = monsterDB.magicimmune.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.MAGICIMMUNE.defaultValue = "";
+					}
+					break;
+				case FIRERANGE:
+					if (monsterDB.firerange != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.firerange));
+						Inst.FIRERANGE.defaultValue = monsterDB.firerange.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.FIRERANGE.defaultValue = "0";
+					}
+					break;
+				case AIRRANGE:
+					if (monsterDB.airrange != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.airrange));
+						Inst.AIRRANGE.defaultValue = monsterDB.airrange.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.AIRRANGE.defaultValue = "0";
+					}
+					break;
+				case WATERRANGE:
+					if (monsterDB.waterrange != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.waterrange));
+						Inst.WATERRANGE.defaultValue = monsterDB.waterrange.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.WATERRANGE.defaultValue = "0";
+					}
+					break;
+				case EARTHRANGE:
+					if (monsterDB.earthrange != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.earthrange));
+						Inst.EARTHRANGE.defaultValue = monsterDB.earthrange.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.EARTHRANGE.defaultValue = "0";
+					}
+					break;
+				case ASTRALRANGE:
+					if (monsterDB.astralrange != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.astralrange));
+						Inst.ASTRALRANGE.defaultValue = monsterDB.astralrange.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.ASTRALRANGE.defaultValue = "0";
+					}
+					break;
+				case DEATHRANGE:
+					if (monsterDB.deathrange != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.deathrange));
+						Inst.DEATHRANGE.defaultValue = monsterDB.deathrange.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.DEATHRANGE.defaultValue = "0";
+					}
+					break;
+				case NATURERANGE:
+					if (monsterDB.naturerange != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.naturerange));
+						Inst.NATURERANGE.defaultValue = monsterDB.naturerange.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.NATURERANGE.defaultValue = "0";
+					}
+					break;
+				case BLOODRANGE:
+					if (monsterDB.bloodrange != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.bloodrange));
+						Inst.BLOODRANGE.defaultValue = monsterDB.bloodrange.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.BLOODRANGE.defaultValue = "0";
+					}
+					break;
+				case ELEMENTRANGE:
+					if (monsterDB.elementrange != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.elementrange));
+						Inst.ELEMENTRANGE.defaultValue = monsterDB.elementrange.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.ELEMENTRANGE.defaultValue = "0";
+					}
+					break;
+				case SORCERYRANGE:
+					if (monsterDB.sorceryrange != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.sorceryrange));
+						Inst.SORCERYRANGE.defaultValue = monsterDB.sorceryrange.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.SORCERYRANGE.defaultValue = "0";
+					}
+					break;
+				case ALLRANGE:
+					if (monsterDB.allrange != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.allrange));
+						Inst.ALLRANGE.defaultValue = monsterDB.allrange.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.ALLRANGE.defaultValue = "0";
+					}
+					break;
+				case TMPFIREGEMS:
+					if (monsterDB.tmpfiregems != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.tmpfiregems));
+						Inst.TMPFIREGEMS.defaultValue = monsterDB.tmpfiregems.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.TMPFIREGEMS.defaultValue = "0";
+					}
+					break;
+				case TMPAIRGEMS:
+					if (monsterDB.tmpairgems != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.tmpairgems));
+						Inst.TMPAIRGEMS.defaultValue = monsterDB.tmpairgems.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.TMPAIRGEMS.defaultValue = "0";
+					}
+					break;
+				case TMPWATERGEMS:
+					if (monsterDB.tmpwatergems != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.tmpwatergems));
+						Inst.TMPWATERGEMS.defaultValue = monsterDB.tmpwatergems.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.TMPWATERGEMS.defaultValue = "0";
+					}
+					break;
+				case TMPEARTHGEMS:
+					if (monsterDB.tmpearthgems != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.tmpearthgems));
+						Inst.TMPEARTHGEMS.defaultValue = monsterDB.tmpearthgems.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.TMPEARTHGEMS.defaultValue = "0";
+					}
+					break;
+				case TMPASTRALGEMS:
+					if (monsterDB.tmpastralgems != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.tmpastralgems));
+						Inst.TMPASTRALGEMS.defaultValue = monsterDB.tmpastralgems.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.TMPASTRALGEMS.defaultValue = "0";
+					}
+					break;
+				case TMPDEATHGEMS:
+					if (monsterDB.tmpdeathgems != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.tmpdeathgems));
+						Inst.TMPDEATHGEMS.defaultValue = monsterDB.tmpdeathgems.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.TMPDEATHGEMS.defaultValue = "0";
+					}
+					break;
+				case TMPNATUREGEMS:
+					if (monsterDB.tmpnaturegems != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.tmpnaturegems));
+						Inst.TMPNATUREGEMS.defaultValue = monsterDB.tmpnaturegems.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.TMPNATUREGEMS.defaultValue = "0";
+					}
+					break;
+				case TMPBLOODSLAVES:
+					if (monsterDB.tmpbloodslaves != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.tmpbloodslaves));
+						Inst.TMPBLOODSLAVES.defaultValue = monsterDB.tmpbloodslaves.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.TMPBLOODSLAVES.defaultValue = "0";
+					}
+					break;
+				case MAKEPEARLS:
+					if (monsterDB.makepearls != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.makepearls));
+						Inst.MAKEPEARLS.defaultValue = monsterDB.makepearls.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.MAKEPEARLS.defaultValue = "0";
+					}
+					break;
+				case BONUSSPELLS:
+					if (monsterDB.bonusspells != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.bonusspells));
+						Inst.BONUSSPELLS.defaultValue = monsterDB.bonusspells.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.BONUSSPELLS.defaultValue = "0";
+					}
+					break;
+				case RANDOMSPELL:
+					if (monsterDB.randomspell != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.randomspell));
+						Inst.RANDOMSPELL.defaultValue = monsterDB.randomspell.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.RANDOMSPELL.defaultValue = "0";
+					}
+					break;
+				case TAINTED:
+					if (monsterDB.tainted != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.tainted));
+						Inst.TAINTED.defaultValue = monsterDB.tainted.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.TAINTED.defaultValue = "0";
+					}
+					break;
+				case FIXFORGEBONUS:
+					if (monsterDB.fixforgebonus != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.fixforgebonus));
+						Inst.FIXFORGEBONUS.defaultValue = monsterDB.fixforgebonus.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.FIXFORGEBONUS.defaultValue = "0";
+					}
+					break;
+				case COMSLAVE:
+					if (monsterDB.comslave != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.comslave));
+						Inst.COMSLAVE.defaultValue = monsterDB.comslave.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.COMSLAVE.defaultValue = "";
+					}
+					break;
+				case CROSSBREEDER:
+					if (monsterDB.crossbreeder != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.crossbreeder));
+						Inst.CROSSBREEDER.defaultValue = monsterDB.crossbreeder.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.CROSSBREEDER.defaultValue = "0";
+					}
+					break;
+				case DEATHBANISH:
+					if (monsterDB.deathbanish != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.deathbanish));
+						Inst.DEATHBANISH.defaultValue = monsterDB.deathbanish.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.DEATHBANISH.defaultValue = "0";
+					}
+					break;
+				case KOKYTOSRET:
+					if (monsterDB.kokytosret != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.kokytosret));
+						Inst.KOKYTOSRET.defaultValue = monsterDB.kokytosret.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.KOKYTOSRET.defaultValue = "0";
+					}
+					break;
+				case INFERNORET:
+					if (monsterDB.infernoret != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.infernoret));
+						Inst.INFERNORET.defaultValue = monsterDB.infernoret.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.INFERNORET.defaultValue = "0";
+					}
+					break;
+				case VOIDRET:
+					if (monsterDB.voidret != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.voidret));
+						Inst.VOIDRET.defaultValue = monsterDB.voidret.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.VOIDRET.defaultValue = "0";
+					}
+					break;
+				case ALLRET:
+					if (monsterDB.allret != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.allret));
+						Inst.ALLRET.defaultValue = monsterDB.allret.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.ALLRET.defaultValue = "0";
 					}
 					break;
 				}
@@ -3925,6 +5258,11 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 					break;
 				case DESCR:
 					if (((MonsterInst1)mod).isDescr()){
+						return ((MonsterInst1)mod).getValue();
+					}
+					break;
+				case FIXEDNAME:
+					if (((MonsterInst1)mod).isFixedname()){
 						return ((MonsterInst1)mod).getValue();
 					}
 					break;
@@ -4321,6 +5659,296 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 					break;
 				case NAMETYPE:
 					if (((MonsterInst2)mod).isNametype()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case RECLIMIT:
+					if (((MonsterInst2)mod).isReclimit()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case HOMEREALM:
+					if (((MonsterInst2)mod).isHomerealm()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case PATIENCE:
+					if (((MonsterInst2)mod).isPatience()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case FALSEARMY:
+					if (((MonsterInst2)mod).isFalsearmy()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case FOOLSCOUTS:
+					if (((MonsterInst2)mod).isFoolscouts()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case AUTOHEALER:
+					if (((MonsterInst2)mod).isAutohealer()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case AUTODISHEALER:
+					if (((MonsterInst2)mod).isAutodishealer()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case AUTODISGRINDER:
+					if (((MonsterInst2)mod).isAutodisgrinder()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case WOUNDFEND:
+					if (((MonsterInst2)mod).isWoundfend()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case DAMAGEREV:
+					if (((MonsterInst2)mod).isDamagerev()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case SLIMER:
+					if (((MonsterInst2)mod).isSlimer()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case DEATHDISEASE:
+					if (((MonsterInst2)mod).isDeathdisease()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case CHAOSPOWER:
+					if (((MonsterInst2)mod).isChaospower()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case DIGEST:
+					if (((MonsterInst2)mod).isDigest()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case INCORPORATE:
+					if (((MonsterInst2)mod).isIncorporate()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case INCPROVDEF:
+					if (((MonsterInst2)mod).isIncprovdef()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case ELEGIST:
+					if (((MonsterInst2)mod).isElegist()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case GOLD:
+					if (((MonsterInst2)mod).isGold()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case GROWHP:
+					if (((MonsterInst2)mod).isGrowhp()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case SHRINKHP:
+					if (((MonsterInst2)mod).isShrinkhp()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case MONTAG:
+					if (((MonsterInst2)mod).isMontag()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case INSPIRATIONAL:
+					if (((MonsterInst2)mod).isInspirational()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case BEASTMASTER:
+					if (((MonsterInst2)mod).isBeastmaster()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case TASKMASTER:
+					if (((MonsterInst2)mod).isTaskmaster()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case FORMATIONFIGHTER:
+					if (((MonsterInst2)mod).isFormationfighter()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case BODYGUARD:
+					if (((MonsterInst2)mod).isBodyguard()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case DIVINEINS:
+					if (((MonsterInst2)mod).isDivineins()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case FIRERANGE:
+					if (((MonsterInst2)mod).isFirerange()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case AIRRANGE:
+					if (((MonsterInst2)mod).isAirrange()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case WATERRANGE:
+					if (((MonsterInst2)mod).isWaterrange()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case EARTHRANGE:
+					if (((MonsterInst2)mod).isEarthrange()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case ASTRALRANGE:
+					if (((MonsterInst2)mod).isAstralrange()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case DEATHRANGE:
+					if (((MonsterInst2)mod).isDeathrange()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case NATURERANGE:
+					if (((MonsterInst2)mod).isNaturerange()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case BLOODRANGE:
+					if (((MonsterInst2)mod).isBloodrange()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case ELEMENTRANGE:
+					if (((MonsterInst2)mod).isElementrange()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case SORCERYRANGE:
+					if (((MonsterInst2)mod).isSorceryrange()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case ALLRANGE:
+					if (((MonsterInst2)mod).isAllrange()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case TMPFIREGEMS:
+					if (((MonsterInst2)mod).isTmpfiregems()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case TMPAIRGEMS:
+					if (((MonsterInst2)mod).isTmpairgems()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case TMPWATERGEMS:
+					if (((MonsterInst2)mod).isTmpwatergems()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case TMPEARTHGEMS:
+					if (((MonsterInst2)mod).isTmpearthgems()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case TMPASTRALGEMS:
+					if (((MonsterInst2)mod).isTmpastralgems()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case TMPDEATHGEMS:
+					if (((MonsterInst2)mod).isTmpdeathgems()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case TMPNATUREGEMS:
+					if (((MonsterInst2)mod).isTmpnaturegems()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case TMPBLOODSLAVES:
+					if (((MonsterInst2)mod).isTmpbloodslaves()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case MAKEPEARLS:
+					if (((MonsterInst2)mod).isMakepearls()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case BONUSSPELLS:
+					if (((MonsterInst2)mod).isBonusspells()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case TAINTED:
+					if (((MonsterInst2)mod).isTainted()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case FIXFORGEBONUS:
+					if (((MonsterInst2)mod).isFixforgebonus()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case CROSSBREEDER:
+					if (((MonsterInst2)mod).isCrossbreeder()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case DEATHBANISH:
+					if (((MonsterInst2)mod).isDeathbanish()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case KOKYTOSRET:
+					if (((MonsterInst2)mod).isKokytosret()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case INFERNORET:
+					if (((MonsterInst2)mod).isInfernoret()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case VOIDRET:
+					if (((MonsterInst2)mod).isVoidret()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case ALLRET:
+					if (((MonsterInst2)mod).isAllret()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case MAGICPOWER:
+					if (((MonsterInst2)mod).isMagicpower()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case RANDOMSPELL:
+					if (((MonsterInst2)mod).isRandomspell()){
 						return Integer.valueOf(((MonsterInst2)mod).getValue());
 					}
 					break;
@@ -4916,6 +6544,141 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 						return Boolean.TRUE;
 					}
 					break;
+				case SLOWREC:
+					if (((MonsterInst4)mod).isSlowrec()){
+						return Boolean.TRUE;
+					}
+					break;
+				case NOSLOWREC:
+					if (((MonsterInst4)mod).isNoslowrec()){
+						return Boolean.TRUE;
+					}
+					break;
+				case CHAOSREC:
+					if (((MonsterInst4)mod).isChaosrec()){
+						return Boolean.TRUE;
+					}
+					break;
+				case SINGLEBATTLE:
+					if (((MonsterInst4)mod).isSinglebattle()){
+						return Boolean.TRUE;
+					}
+					break;
+				case AISINGLEREC:
+					if (((MonsterInst4)mod).isAisinglerec()){
+						return Boolean.TRUE;
+					}
+					break;
+				case AINOREC:
+					if (((MonsterInst4)mod).isAinorec()){
+						return Boolean.TRUE;
+					}
+					break;
+				case LESSERHORROR:
+					if (((MonsterInst4)mod).isLesserhorror()){
+						return Boolean.TRUE;
+					}
+					break;
+				case GREATERHORROR:
+					if (((MonsterInst4)mod).isGreaterhorror()){
+						return Boolean.TRUE;
+					}
+					break;
+				case DOOMHORROR:
+					if (((MonsterInst4)mod).isDoomhorror()){
+						return Boolean.TRUE;
+					}
+					break;
+				case BUG:
+					if (((MonsterInst4)mod).isBug()){
+						return Boolean.TRUE;
+					}
+					break;
+				case UWBUG:
+					if (((MonsterInst4)mod).isUwbug()){
+						return Boolean.TRUE;
+					}
+					break;
+				case AUTOCOMPETE:
+					if (((MonsterInst4)mod).isAutocompete()){
+						return Boolean.TRUE;
+					}
+					break;
+				case FLOAT:
+					if (((MonsterInst4)mod).isFloat()){
+						return Boolean.TRUE;
+					}
+					break;
+				case TELEPORT:
+					if (((MonsterInst4)mod).isTeleport()){
+						return Boolean.TRUE;
+					}
+					break;
+				case NORIVERPASS:
+					if (((MonsterInst4)mod).isNoriverpass()){
+						return Boolean.TRUE;
+					}
+					break;
+				case UNTELEPORTABLE:
+					if (((MonsterInst4)mod).isUnteleportable()){
+						return Boolean.TRUE;
+					}
+					break;
+				case HPOVERFLOW:
+					if (((MonsterInst4)mod).isHpoverflow()){
+						return Boolean.TRUE;
+					}
+					break;
+				case PIERCERES:
+					if (((MonsterInst4)mod).isPierceres()){
+						return Boolean.TRUE;
+					}
+					break;
+				case SLASHRES:
+					if (((MonsterInst4)mod).isSlashres()){
+						return Boolean.TRUE;
+					}
+					break;
+				case BLUNTRES:
+					if (((MonsterInst4)mod).isBluntres()){
+						return Boolean.TRUE;
+					}
+					break;
+				case DEATHCURSE:
+					if (((MonsterInst4)mod).isDeathcurse()){
+						return Boolean.TRUE;
+					}
+					break;
+				case TRAMPSWALLOW:
+					if (((MonsterInst4)mod).isTrampswallow()){
+						return Boolean.TRUE;
+					}
+					break;
+				case TAXCOLLECTOR:
+					if (((MonsterInst4)mod).isTaxcollector()){
+						return Boolean.TRUE;
+					}
+					break;
+				case SLAVE:
+					if (((MonsterInst4)mod).isSlave()){
+						return Boolean.TRUE;
+					}
+					break;
+				case UNDISCIPLINED:
+					if (((MonsterInst4)mod).isUndisciplined()){
+						return Boolean.TRUE;
+					}
+					break;
+				case MAGICIMMUNE:
+					if (((MonsterInst4)mod).isMagicimmune()){
+						return Boolean.TRUE;
+					}
+					break;
+				case COMSLAVE:
+					if (((MonsterInst4)mod).isComslave()){
+						return Boolean.TRUE;
+					}
+					break;
 				}
 			}
 		}
@@ -5200,8 +6963,198 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 						return intVal;
 					}
 					break;
+				case SUMMON2:
+					if (((MonsterInst5)mod).isSummon2()){
+						String strVal = ((MonsterInst5)mod).getValue1();
+						Integer intVal = ((MonsterInst5)mod).getValue2();
+						if (strVal != null) {
+							return strVal;
+						}
+						return intVal;
+					}
+					break;
+				case SUMMON3:
+					if (((MonsterInst5)mod).isSummon3()){
+						String strVal = ((MonsterInst5)mod).getValue1();
+						Integer intVal = ((MonsterInst5)mod).getValue2();
+						if (strVal != null) {
+							return strVal;
+						}
+						return intVal;
+					}
+					break;
+				case SUMMON4:
+					if (((MonsterInst5)mod).isSummon4()){
+						String strVal = ((MonsterInst5)mod).getValue1();
+						Integer intVal = ((MonsterInst5)mod).getValue2();
+						if (strVal != null) {
+							return strVal;
+						}
+						return intVal;
+					}
+					break;
 				case SUMMON5:
 					if (((MonsterInst5)mod).isSummon5()){
+						String strVal = ((MonsterInst5)mod).getValue1();
+						Integer intVal = ((MonsterInst5)mod).getValue2();
+						if (strVal != null) {
+							return strVal;
+						}
+						return intVal;
+					}
+					break;
+				case RAREDOMSUMMON:
+					if (((MonsterInst5)mod).isRaredomsummon()){
+						String strVal = ((MonsterInst5)mod).getValue1();
+						Integer intVal = ((MonsterInst5)mod).getValue2();
+						if (strVal != null) {
+							return strVal;
+						}
+						return intVal;
+					}
+					break;
+				case BATTLESUM1:
+					if (((MonsterInst5)mod).isBattlesum1()){
+						String strVal = ((MonsterInst5)mod).getValue1();
+						Integer intVal = ((MonsterInst5)mod).getValue2();
+						if (strVal != null) {
+							return strVal;
+						}
+						return intVal;
+					}
+					break;
+				case BATTLESUM2:
+					if (((MonsterInst5)mod).isBattlesum2()){
+						String strVal = ((MonsterInst5)mod).getValue1();
+						Integer intVal = ((MonsterInst5)mod).getValue2();
+						if (strVal != null) {
+							return strVal;
+						}
+						return intVal;
+					}
+					break;
+				case BATTLESUM3:
+					if (((MonsterInst5)mod).isBattlesum3()){
+						String strVal = ((MonsterInst5)mod).getValue1();
+						Integer intVal = ((MonsterInst5)mod).getValue2();
+						if (strVal != null) {
+							return strVal;
+						}
+						return intVal;
+					}
+					break;
+				case BATTLESUM4:
+					if (((MonsterInst5)mod).isBattlesum4()){
+						String strVal = ((MonsterInst5)mod).getValue1();
+						Integer intVal = ((MonsterInst5)mod).getValue2();
+						if (strVal != null) {
+							return strVal;
+						}
+						return intVal;
+					}
+					break;
+				case BATTLESUM5:
+					if (((MonsterInst5)mod).isBattlesum5()){
+						String strVal = ((MonsterInst5)mod).getValue1();
+						Integer intVal = ((MonsterInst5)mod).getValue2();
+						if (strVal != null) {
+							return strVal;
+						}
+						return intVal;
+					}
+					break;
+				case BATSTARTSUM1:
+					if (((MonsterInst5)mod).isBatstartsum1()){
+						String strVal = ((MonsterInst5)mod).getValue1();
+						Integer intVal = ((MonsterInst5)mod).getValue2();
+						if (strVal != null) {
+							return strVal;
+						}
+						return intVal;
+					}
+					break;
+				case BATSTARTSUM2:
+					if (((MonsterInst5)mod).isBatstartsum2()){
+						String strVal = ((MonsterInst5)mod).getValue1();
+						Integer intVal = ((MonsterInst5)mod).getValue2();
+						if (strVal != null) {
+							return strVal;
+						}
+						return intVal;
+					}
+					break;
+				case BATSTARTSUM3:
+					if (((MonsterInst5)mod).isBatstartsum3()){
+						String strVal = ((MonsterInst5)mod).getValue1();
+						Integer intVal = ((MonsterInst5)mod).getValue2();
+						if (strVal != null) {
+							return strVal;
+						}
+						return intVal;
+					}
+					break;
+				case BATSTARTSUM4:
+					if (((MonsterInst5)mod).isBatstartsum4()){
+						String strVal = ((MonsterInst5)mod).getValue1();
+						Integer intVal = ((MonsterInst5)mod).getValue2();
+						if (strVal != null) {
+							return strVal;
+						}
+						return intVal;
+					}
+					break;
+				case BATSTARTSUM5:
+					if (((MonsterInst5)mod).isBatstartsum5()){
+						String strVal = ((MonsterInst5)mod).getValue1();
+						Integer intVal = ((MonsterInst5)mod).getValue2();
+						if (strVal != null) {
+							return strVal;
+						}
+						return intVal;
+					}
+					break;
+				case BATSTARTSUM1D6:
+					if (((MonsterInst5)mod).isBatstartsum1d6()){
+						String strVal = ((MonsterInst5)mod).getValue1();
+						Integer intVal = ((MonsterInst5)mod).getValue2();
+						if (strVal != null) {
+							return strVal;
+						}
+						return intVal;
+					}
+					break;
+				case BATSTARTSUM2D6:
+					if (((MonsterInst5)mod).isBatstartsum2d6()){
+						String strVal = ((MonsterInst5)mod).getValue1();
+						Integer intVal = ((MonsterInst5)mod).getValue2();
+						if (strVal != null) {
+							return strVal;
+						}
+						return intVal;
+					}
+					break;
+				case BATSTARTSUM3D6:
+					if (((MonsterInst5)mod).isBatstartsum3d6()){
+						String strVal = ((MonsterInst5)mod).getValue1();
+						Integer intVal = ((MonsterInst5)mod).getValue2();
+						if (strVal != null) {
+							return strVal;
+						}
+						return intVal;
+					}
+					break;
+				case BATSTARTSUM4D6:
+					if (((MonsterInst5)mod).isBatstartsum4d6()){
+						String strVal = ((MonsterInst5)mod).getValue1();
+						Integer intVal = ((MonsterInst5)mod).getValue2();
+						if (strVal != null) {
+							return strVal;
+						}
+						return intVal;
+					}
+					break;
+				case BATSTARTSUM5D6:
+					if (((MonsterInst5)mod).isBatstartsum5d6()){
 						String strVal = ((MonsterInst5)mod).getValue1();
 						Integer intVal = ((MonsterInst5)mod).getValue2();
 						if (strVal != null) {
@@ -5265,6 +7218,11 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 							break;
 						case DESCR:
 							if (((MonsterInst1)mod).isDescr()) {
+								((MonsterInst1)mod).setValue(newName);
+							}
+							break;
+						case FIXEDNAME:
+							if (((MonsterInst1)mod).isFixedname()) {
 								((MonsterInst1)mod).setValue(newName);
 							}
 							break;
@@ -5667,6 +7625,296 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 							break;
 						case NAMETYPE:
 							if (((MonsterInst2)mod).isNametype()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case RECLIMIT:
+							if (((MonsterInst2)mod).isReclimit()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case HOMEREALM:
+							if (((MonsterInst2)mod).isHomerealm()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case PATIENCE:
+							if (((MonsterInst2)mod).isPatience()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case FALSEARMY:
+							if (((MonsterInst2)mod).isFalsearmy()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case FOOLSCOUTS:
+							if (((MonsterInst2)mod).isFoolscouts()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case AUTOHEALER:
+							if (((MonsterInst2)mod).isAutohealer()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case AUTODISHEALER:
+							if (((MonsterInst2)mod).isAutodishealer()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case AUTODISGRINDER:
+							if (((MonsterInst2)mod).isAutodisgrinder()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case WOUNDFEND:
+							if (((MonsterInst2)mod).isWoundfend()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case DAMAGEREV:
+							if (((MonsterInst2)mod).isDamagerev()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case SLIMER:
+							if (((MonsterInst2)mod).isSlimer()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case DEATHDISEASE:
+							if (((MonsterInst2)mod).isDeathdisease()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case CHAOSPOWER:
+							if (((MonsterInst2)mod).isChaospower()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case DIGEST:
+							if (((MonsterInst2)mod).isDigest()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case INCORPORATE:
+							if (((MonsterInst2)mod).isIncorporate()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case INCPROVDEF:
+							if (((MonsterInst2)mod).isIncprovdef()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case ELEGIST:
+							if (((MonsterInst2)mod).isElegist()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case GOLD:
+							if (((MonsterInst2)mod).isGold()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case GROWHP:
+							if (((MonsterInst2)mod).isGrowhp()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case SHRINKHP:
+							if (((MonsterInst2)mod).isShrinkhp()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case MONTAG:
+							if (((MonsterInst2)mod).isMontag()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case INSPIRATIONAL:
+							if (((MonsterInst2)mod).isInspirational()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case BEASTMASTER:
+							if (((MonsterInst2)mod).isBeastmaster()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case TASKMASTER:
+							if (((MonsterInst2)mod).isTaskmaster()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case FORMATIONFIGHTER:
+							if (((MonsterInst2)mod).isFormationfighter()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case BODYGUARD:
+							if (((MonsterInst2)mod).isBodyguard()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case DIVINEINS:
+							if (((MonsterInst2)mod).isDivineins()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case FIRERANGE:
+							if (((MonsterInst2)mod).isFirerange()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case AIRRANGE:
+							if (((MonsterInst2)mod).isAirrange()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case WATERRANGE:
+							if (((MonsterInst2)mod).isWaterrange()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case EARTHRANGE:
+							if (((MonsterInst2)mod).isEarthrange()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case ASTRALRANGE:
+							if (((MonsterInst2)mod).isAstralrange()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case DEATHRANGE:
+							if (((MonsterInst2)mod).isDeathrange()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case NATURERANGE:
+							if (((MonsterInst2)mod).isNaturerange()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case BLOODRANGE:
+							if (((MonsterInst2)mod).isBloodrange()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case ELEMENTRANGE:
+							if (((MonsterInst2)mod).isElementrange()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case SORCERYRANGE:
+							if (((MonsterInst2)mod).isSorceryrange()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case ALLRANGE:
+							if (((MonsterInst2)mod).isAllrange()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case TMPFIREGEMS:
+							if (((MonsterInst2)mod).isTmpfiregems()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case TMPAIRGEMS:
+							if (((MonsterInst2)mod).isTmpairgems()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case TMPWATERGEMS:
+							if (((MonsterInst2)mod).isTmpwatergems()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case TMPEARTHGEMS:
+							if (((MonsterInst2)mod).isTmpearthgems()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case TMPASTRALGEMS:
+							if (((MonsterInst2)mod).isTmpastralgems()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case TMPDEATHGEMS:
+							if (((MonsterInst2)mod).isTmpdeathgems()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case TMPNATUREGEMS:
+							if (((MonsterInst2)mod).isTmpnaturegems()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case TMPBLOODSLAVES:
+							if (((MonsterInst2)mod).isTmpbloodslaves()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case MAKEPEARLS:
+							if (((MonsterInst2)mod).isMakepearls()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case BONUSSPELLS:
+							if (((MonsterInst2)mod).isBonusspells()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case TAINTED:
+							if (((MonsterInst2)mod).isTainted()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case FIXFORGEBONUS:
+							if (((MonsterInst2)mod).isFixforgebonus()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case CROSSBREEDER:
+							if (((MonsterInst2)mod).isCrossbreeder()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case DEATHBANISH:
+							if (((MonsterInst2)mod).isDeathbanish()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case KOKYTOSRET:
+							if (((MonsterInst2)mod).isKokytosret()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case INFERNORET:
+							if (((MonsterInst2)mod).isInfernoret()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case VOIDRET:
+							if (((MonsterInst2)mod).isVoidret()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case ALLRET:
+							if (((MonsterInst2)mod).isAllret()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case MAGICPOWER:
+							if (((MonsterInst2)mod).isMagicpower()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case RANDOMSPELL:
+							if (((MonsterInst2)mod).isRandomspell()){
 								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
 							}
 							break;
@@ -6523,7 +8771,214 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 								modsToAdd.add(newMod);
 							}
 							break;
-						}
+						case RAREDOMSUMMON:
+							if (((MonsterInst5)mod).isRaredomsummon()){
+								modsToRemove.add(mod);
+								MonsterInst5 newMod = DmFactory.eINSTANCE.createMonsterInst5();
+								newMod.setRaredomsummon(true);
+								if (newValue != null) {
+									newMod.setValue2(Integer.parseInt(newName));
+								} else {
+									newMod.setValue1(newName);
+								}
+								modsToAdd.add(newMod);
+							}
+							break;
+						case BATTLESUM1:
+							if (((MonsterInst5)mod).isBattlesum1()){
+								modsToRemove.add(mod);
+								MonsterInst5 newMod = DmFactory.eINSTANCE.createMonsterInst5();
+								newMod.setBattlesum1(true);
+								if (newValue != null) {
+									newMod.setValue2(Integer.parseInt(newName));
+								} else {
+									newMod.setValue1(newName);
+								}
+								modsToAdd.add(newMod);
+							}
+							break;
+						case BATTLESUM2:
+							if (((MonsterInst5)mod).isBattlesum2()){
+								modsToRemove.add(mod);
+								MonsterInst5 newMod = DmFactory.eINSTANCE.createMonsterInst5();
+								newMod.setBattlesum2(true);
+								if (newValue != null) {
+									newMod.setValue2(Integer.parseInt(newName));
+								} else {
+									newMod.setValue1(newName);
+								}
+								modsToAdd.add(newMod);
+							}
+							break;
+						case BATTLESUM3:
+							if (((MonsterInst5)mod).isBattlesum3()){
+								modsToRemove.add(mod);
+								MonsterInst5 newMod = DmFactory.eINSTANCE.createMonsterInst5();
+								newMod.setBattlesum3(true);
+								if (newValue != null) {
+									newMod.setValue2(Integer.parseInt(newName));
+								} else {
+									newMod.setValue1(newName);
+								}
+								modsToAdd.add(newMod);
+							}
+							break;
+						case BATTLESUM4:
+							if (((MonsterInst5)mod).isBattlesum4()){
+								modsToRemove.add(mod);
+								MonsterInst5 newMod = DmFactory.eINSTANCE.createMonsterInst5();
+								newMod.setBattlesum4(true);
+								if (newValue != null) {
+									newMod.setValue2(Integer.parseInt(newName));
+								} else {
+									newMod.setValue1(newName);
+								}
+								modsToAdd.add(newMod);
+							}
+							break;
+						case BATTLESUM5:
+							if (((MonsterInst5)mod).isBattlesum5()){
+								modsToRemove.add(mod);
+								MonsterInst5 newMod = DmFactory.eINSTANCE.createMonsterInst5();
+								newMod.setBattlesum5(true);
+								if (newValue != null) {
+									newMod.setValue2(Integer.parseInt(newName));
+								} else {
+									newMod.setValue1(newName);
+								}
+								modsToAdd.add(newMod);
+							}
+							break;
+						case BATSTARTSUM1:
+							if (((MonsterInst5)mod).isBatstartsum1()){
+								modsToRemove.add(mod);
+								MonsterInst5 newMod = DmFactory.eINSTANCE.createMonsterInst5();
+								newMod.setBatstartsum1(true);
+								if (newValue != null) {
+									newMod.setValue2(Integer.parseInt(newName));
+								} else {
+									newMod.setValue1(newName);
+								}
+								modsToAdd.add(newMod);
+							}
+							break;
+						case BATSTARTSUM2:
+							if (((MonsterInst5)mod).isBatstartsum2()){
+								modsToRemove.add(mod);
+								MonsterInst5 newMod = DmFactory.eINSTANCE.createMonsterInst5();
+								newMod.setBatstartsum2(true);
+								if (newValue != null) {
+									newMod.setValue2(Integer.parseInt(newName));
+								} else {
+									newMod.setValue1(newName);
+								}
+								modsToAdd.add(newMod);
+							}
+							break;
+						case BATSTARTSUM3:
+							if (((MonsterInst5)mod).isBatstartsum3()){
+								modsToRemove.add(mod);
+								MonsterInst5 newMod = DmFactory.eINSTANCE.createMonsterInst5();
+								newMod.setBatstartsum3(true);
+								if (newValue != null) {
+									newMod.setValue2(Integer.parseInt(newName));
+								} else {
+									newMod.setValue1(newName);
+								}
+								modsToAdd.add(newMod);
+							}
+							break;
+						case BATSTARTSUM4:
+							if (((MonsterInst5)mod).isBatstartsum4()){
+								modsToRemove.add(mod);
+								MonsterInst5 newMod = DmFactory.eINSTANCE.createMonsterInst5();
+								newMod.setBatstartsum4(true);
+								if (newValue != null) {
+									newMod.setValue2(Integer.parseInt(newName));
+								} else {
+									newMod.setValue1(newName);
+								}
+								modsToAdd.add(newMod);
+							}
+							break;
+						case BATSTARTSUM5:
+							if (((MonsterInst5)mod).isBatstartsum5()){
+								modsToRemove.add(mod);
+								MonsterInst5 newMod = DmFactory.eINSTANCE.createMonsterInst5();
+								newMod.setBatstartsum5(true);
+								if (newValue != null) {
+									newMod.setValue2(Integer.parseInt(newName));
+								} else {
+									newMod.setValue1(newName);
+								}
+								modsToAdd.add(newMod);
+							}
+							break;
+						case BATSTARTSUM1D6:
+							if (((MonsterInst5)mod).isBatstartsum1d6()){
+								modsToRemove.add(mod);
+								MonsterInst5 newMod = DmFactory.eINSTANCE.createMonsterInst5();
+								newMod.setBatstartsum1d6(true);
+								if (newValue != null) {
+									newMod.setValue2(Integer.parseInt(newName));
+								} else {
+									newMod.setValue1(newName);
+								}
+								modsToAdd.add(newMod);
+							}
+							break;
+						case BATSTARTSUM2D6:
+							if (((MonsterInst5)mod).isBatstartsum2d6()){
+								modsToRemove.add(mod);
+								MonsterInst5 newMod = DmFactory.eINSTANCE.createMonsterInst5();
+								newMod.setBatstartsum2d6(true);
+								if (newValue != null) {
+									newMod.setValue2(Integer.parseInt(newName));
+								} else {
+									newMod.setValue1(newName);
+								}
+								modsToAdd.add(newMod);
+							}
+							break;
+						case BATSTARTSUM3D6:
+							if (((MonsterInst5)mod).isBatstartsum3d6()){
+								modsToRemove.add(mod);
+								MonsterInst5 newMod = DmFactory.eINSTANCE.createMonsterInst5();
+								newMod.setBatstartsum3d6(true);
+								if (newValue != null) {
+									newMod.setValue2(Integer.parseInt(newName));
+								} else {
+									newMod.setValue1(newName);
+								}
+								modsToAdd.add(newMod);
+							}
+							break;
+						case BATSTARTSUM4D6:
+							if (((MonsterInst5)mod).isBatstartsum4d6()){
+								modsToRemove.add(mod);
+								MonsterInst5 newMod = DmFactory.eINSTANCE.createMonsterInst5();
+								newMod.setBatstartsum4d6(true);
+								if (newValue != null) {
+									newMod.setValue2(Integer.parseInt(newName));
+								} else {
+									newMod.setValue1(newName);
+								}
+								modsToAdd.add(newMod);
+							}
+							break;
+						case BATSTARTSUM5D6:
+							if (((MonsterInst5)mod).isBatstartsum5d6()){
+								modsToRemove.add(mod);
+								MonsterInst5 newMod = DmFactory.eINSTANCE.createMonsterInst5();
+								newMod.setBatstartsum5d6(true);
+								if (newValue != null) {
+									newMod.setValue2(Integer.parseInt(newName));
+								} else {
+									newMod.setValue1(newName);
+								}
+								modsToAdd.add(newMod);
+							}
+							break;						}
 					}
 				}
 				mods.removeAll(modsToRemove);
@@ -6620,6 +9075,9 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 							break;
 						case DESCR:
 							type.setDescr(true);
+							break;
+						case FIXEDNAME:
+							type.setFixedname(true);
 							break;
 						}
 						type.setValue(newName);
@@ -6867,6 +9325,180 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 							break;
 						case NAMETYPE:
 							type.setNametype(true);
+							break;				
+						case RECLIMIT:
+							type.setReclimit(true);
+							break;				
+						case PATIENCE:
+							type.setPatience(true);
+							break;				
+						case FALSEARMY:
+							type.setFalsearmy(true);
+							break;				
+						case FOOLSCOUTS:
+							type.setFoolscouts(true);
+							break;				
+						case AUTOHEALER:
+							type.setAutohealer(true);
+							break;				
+						case AUTODISHEALER:
+							type.setAutodishealer(true);
+							break;				
+						case AUTODISGRINDER:
+							type.setAutodisgrinder(true);
+							break;				
+						case WOUNDFEND:
+							type.setWoundfend(true);
+							break;				
+						case DAMAGEREV:
+							type.setDamagerev(true);
+							break;				
+						case SLIMER:
+							type.setSlimer(true);
+							break;				
+						case DEATHDISEASE:
+							type.setDeathdisease(true);
+							break;				
+						case CHAOSPOWER:
+							type.setChaospower(true);
+							break;				
+						case DIGEST:
+							type.setDigest(true);
+							break;				
+						case INCORPORATE:
+							type.setIncorporate(true);
+							break;				
+						case INCPROVDEF:
+							type.setIncprovdef(true);
+							break;				
+						case ELEGIST:
+							type.setElegist(true);
+							break;				
+						case GOLD:
+							type.setGold(true);
+							break;				
+						case GROWHP:
+							type.setGrowhp(true);
+							break;				
+						case SHRINKHP:
+							type.setShrinkhp(true);
+							break;				
+						case MONTAG:
+							type.setMontag(true);
+							break;				
+						case INSPIRATIONAL:
+							type.setInspirational(true);
+							break;				
+						case BEASTMASTER:
+							type.setBeastmaster(true);
+							break;				
+						case TASKMASTER:
+							type.setTaskmaster(true);
+							break;				
+						case FORMATIONFIGHTER:
+							type.setFormationfighter(true);
+							break;				
+						case BODYGUARD:
+							type.setBodyguard(true);
+							break;				
+						case DIVINEINS:
+							type.setDivineins(true);
+							break;				
+						case FIRERANGE:
+							type.setFirerange(true);
+							break;				
+						case AIRRANGE:
+							type.setAirrange(true);
+							break;				
+						case WATERRANGE:
+							type.setWaterrange(true);
+							break;				
+						case EARTHRANGE:
+							type.setEarthrange(true);
+							break;				
+						case ASTRALRANGE:
+							type.setAstralrange(true);
+							break;				
+						case DEATHRANGE:
+							type.setDeathrange(true);
+							break;				
+						case NATURERANGE:
+							type.setNaturerange(true);
+							break;				
+						case BLOODRANGE:
+							type.setBloodrange(true);
+							break;				
+						case ELEMENTRANGE:
+							type.setElementrange(true);
+							break;				
+						case SORCERYRANGE:
+							type.setSorceryrange(true);
+							break;				
+						case ALLRANGE:
+							type.setAllrange(true);
+							break;				
+						case TMPFIREGEMS:
+							type.setTmpfiregems(true);
+							break;				
+						case TMPAIRGEMS:
+							type.setTmpairgems(true);
+							break;				
+						case TMPWATERGEMS:
+							type.setTmpwatergems(true);
+							break;				
+						case TMPEARTHGEMS:
+							type.setTmpearthgems(true);
+							break;				
+						case TMPASTRALGEMS:
+							type.setTmpastralgems(true);
+							break;				
+						case TMPDEATHGEMS:
+							type.setTmpdeathgems(true);
+							break;				
+						case TMPNATUREGEMS:
+							type.setTmpnaturegems(true);
+							break;				
+						case TMPBLOODSLAVES:
+							type.setTmpbloodslaves(true);
+							break;				
+						case MAKEPEARLS:
+							type.setMakepearls(true);
+							break;				
+						case BONUSSPELLS:
+							type.setBonusspells(true);
+							break;				
+						case TAINTED:
+							type.setTainted(true);
+							break;				
+						case FIXFORGEBONUS:
+							type.setFixforgebonus(true);
+							break;				
+						case CROSSBREEDER:
+							type.setCrossbreeder(true);
+							break;				
+						case DEATHBANISH:
+							type.setDeathbanish(true);
+							break;				
+						case KOKYTOSRET:
+							type.setKokytosret(true);
+							break;				
+						case INFERNORET:
+							type.setInfernoret(true);
+							break;				
+						case VOIDRET:
+							type.setVoidret(true);
+							break;				
+						case ALLRET:
+							type.setAllret(true);
+							break;				
+						case MAGICPOWER:
+							type.setMagicpower(true);
+							break;				
+						case RANDOMSPELL:
+							type.setRandomspell(true);
+							break;				
+						case HOMEREALM:
+							type.setHomerealm(true);
 							break;				
 						}
 						type.setValue(Integer.valueOf(newName));
@@ -7200,6 +9832,87 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 						case SUPERIORUNDEADLEADER:
 							type.setSuperiorundeadleader(true);
 							break;				
+						case SLOWREC:
+							type.setSlowrec(true);
+							break;				
+						case NOSLOWREC:
+							type.setNoslowrec(true);
+							break;				
+						case CHAOSREC:
+							type.setChaosrec(true);
+							break;				
+						case SINGLEBATTLE:
+							type.setSinglebattle(true);
+							break;				
+						case AISINGLEREC:
+							type.setAisinglerec(true);
+							break;				
+						case AINOREC:
+							type.setAinorec(true);
+							break;				
+						case LESSERHORROR:
+							type.setLesserhorror(true);
+							break;				
+						case GREATERHORROR:
+							type.setGreaterhorror(true);
+							break;				
+						case DOOMHORROR:
+							type.setDoomhorror(true);
+							break;				
+						case BUG:
+							type.setBug(true);
+							break;				
+						case UWBUG:
+							type.setUwbug(true);
+							break;				
+						case AUTOCOMPETE:
+							type.setAutocompete(true);
+							break;				
+						case FLOAT:
+							type.setFloat(true);
+							break;				
+						case TELEPORT:
+							type.setTeleport(true);
+							break;				
+						case NORIVERPASS:
+							type.setNoriverpass(true);
+							break;				
+						case UNTELEPORTABLE:
+							type.setUnteleportable(true);
+							break;				
+						case HPOVERFLOW:
+							type.setHpoverflow(true);
+							break;				
+						case PIERCERES:
+							type.setPierceres(true);
+							break;				
+						case SLASHRES:
+							type.setSlashres(true);
+							break;				
+						case BLUNTRES:
+							type.setBluntres(true);
+							break;				
+						case DEATHCURSE:
+							type.setDeathcurse(true);
+							break;				
+						case TRAMPSWALLOW:
+							type.setTrampswallow(true);
+							break;				
+						case TAXCOLLECTOR:
+							type.setTaxcollector(true);
+							break;				
+						case SLAVE:
+							type.setSlave(true);
+							break;				
+						case UNDISCIPLINED:
+							type.setUndisciplined(true);
+							break;				
+						case MAGICIMMUNE:
+							type.setMagicimmune(true);
+							break;				
+						case COMSLAVE:
+							type.setComslave(true);
+							break;				
 						}
 						mods.add(type);
 					}  
@@ -7296,8 +10009,65 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 						case SUMMON1:
 							type.setSummon1(true);
 							break;
+						case SUMMON2:
+							type.setSummon2(true);
+							break;
+						case SUMMON3:
+							type.setSummon3(true);
+							break;
+						case SUMMON4:
+							type.setSummon4(true);
+							break;
 						case SUMMON5:
 							type.setSummon5(true);
+							break;
+						case RAREDOMSUMMON:
+							type.setRaredomsummon(true);
+							break;
+						case BATTLESUM1:
+							type.setBattlesum1(true);
+							break;
+						case BATTLESUM2:
+							type.setBattlesum2(true);
+							break;
+						case BATTLESUM3:
+							type.setBattlesum3(true);
+							break;
+						case BATTLESUM4:
+							type.setBattlesum4(true);
+							break;
+						case BATTLESUM5:
+							type.setBattlesum5(true);
+							break;
+						case BATSTARTSUM1:
+							type.setBatstartsum1(true);
+							break;
+						case BATSTARTSUM2:
+							type.setBatstartsum2(true);
+							break;
+						case BATSTARTSUM3:
+							type.setBatstartsum3(true);
+							break;
+						case BATSTARTSUM4:
+							type.setBatstartsum4(true);
+							break;
+						case BATSTARTSUM5:
+							type.setBatstartsum5(true);
+							break;
+						case BATSTARTSUM1D6:
+							type.setBatstartsum1d6(true);
+							break;
+						case BATSTARTSUM2D6:
+							type.setBatstartsum2d6(true);
+							break;
+						case BATSTARTSUM3D6:
+							type.setBatstartsum3d6(true);
+							break;
+						case BATSTARTSUM4D6:
+							type.setBatstartsum4d6(true);
+							break;
+						case BATSTARTSUM5D6:
+							type.setBatstartsum5d6(true);
 							break;
 						}
 						Integer newValue = null;
@@ -7387,6 +10157,11 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 									break;
 								case DESCR:
 									if (((MonsterInst1)mod).isDescr()){
+										modToRemove = mod;
+									}
+									break;
+								case FIXEDNAME:
+									if (((MonsterInst1)mod).isFixedname()){
 										modToRemove = mod;
 									}
 									break;
@@ -7766,6 +10541,296 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 									break;
 								case NAMETYPE:
 									if (((MonsterInst2)mod).isNametype()){
+										modToRemove = mod;
+									}
+									break;
+								case RECLIMIT:
+									if (((MonsterInst2)mod).isReclimit()){
+										modToRemove = mod;
+									}
+									break;
+								case HOMEREALM:
+									if (((MonsterInst2)mod).isHomerealm()){
+										modToRemove = mod;
+									}
+									break;
+								case PATIENCE:
+									if (((MonsterInst2)mod).isPatience()){
+										modToRemove = mod;
+									}
+									break;
+								case FALSEARMY:
+									if (((MonsterInst2)mod).isFalsearmy()){
+										modToRemove = mod;
+									}
+									break;
+								case FOOLSCOUTS:
+									if (((MonsterInst2)mod).isFoolscouts()){
+										modToRemove = mod;
+									}
+									break;
+								case AUTOHEALER:
+									if (((MonsterInst2)mod).isAutohealer()){
+										modToRemove = mod;
+									}
+									break;
+								case AUTODISHEALER:
+									if (((MonsterInst2)mod).isAutodishealer()){
+										modToRemove = mod;
+									}
+									break;
+								case AUTODISGRINDER:
+									if (((MonsterInst2)mod).isAutodisgrinder()){
+										modToRemove = mod;
+									}
+									break;
+								case WOUNDFEND:
+									if (((MonsterInst2)mod).isWoundfend()){
+										modToRemove = mod;
+									}
+									break;
+								case DAMAGEREV:
+									if (((MonsterInst2)mod).isDamagerev()){
+										modToRemove = mod;
+									}
+									break;
+								case SLIMER:
+									if (((MonsterInst2)mod).isSlimer()){
+										modToRemove = mod;
+									}
+									break;
+								case DEATHDISEASE:
+									if (((MonsterInst2)mod).isDeathdisease()){
+										modToRemove = mod;
+									}
+									break;
+								case CHAOSPOWER:
+									if (((MonsterInst2)mod).isChaospower()){
+										modToRemove = mod;
+									}
+									break;
+								case MAGICPOWER:
+									if (((MonsterInst2)mod).isMagicpower()){
+										modToRemove = mod;
+									}
+									break;
+								case DIGEST:
+									if (((MonsterInst2)mod).isDigest()){
+										modToRemove = mod;
+									}
+									break;
+								case INCORPORATE:
+									if (((MonsterInst2)mod).isIncorporate()){
+										modToRemove = mod;
+									}
+									break;
+								case INCPROVDEF:
+									if (((MonsterInst2)mod).isIncprovdef()){
+										modToRemove = mod;
+									}
+									break;
+								case ELEGIST:
+									if (((MonsterInst2)mod).isElegist()){
+										modToRemove = mod;
+									}
+									break;
+								case GOLD:
+									if (((MonsterInst2)mod).isGold()){
+										modToRemove = mod;
+									}
+									break;
+								case GROWHP:
+									if (((MonsterInst2)mod).isGrowhp()){
+										modToRemove = mod;
+									}
+									break;
+								case SHRINKHP:
+									if (((MonsterInst2)mod).isShrinkhp()){
+										modToRemove = mod;
+									}
+									break;
+								case MONTAG:
+									if (((MonsterInst2)mod).isMontag()){
+										modToRemove = mod;
+									}
+									break;
+								case INSPIRATIONAL:
+									if (((MonsterInst2)mod).isInspirational()){
+										modToRemove = mod;
+									}
+									break;
+								case BEASTMASTER:
+									if (((MonsterInst2)mod).isBeastmaster()){
+										modToRemove = mod;
+									}
+									break;
+								case TASKMASTER:
+									if (((MonsterInst2)mod).isTaskmaster()){
+										modToRemove = mod;
+									}
+									break;
+								case FORMATIONFIGHTER:
+									if (((MonsterInst2)mod).isFormationfighter()){
+										modToRemove = mod;
+									}
+									break;
+								case BODYGUARD:
+									if (((MonsterInst2)mod).isBodyguard()){
+										modToRemove = mod;
+									}
+									break;
+								case DIVINEINS:
+									if (((MonsterInst2)mod).isDivineins()){
+										modToRemove = mod;
+									}
+									break;
+								case FIRERANGE:
+									if (((MonsterInst2)mod).isFirerange()){
+										modToRemove = mod;
+									}
+									break;
+								case AIRRANGE:
+									if (((MonsterInst2)mod).isAirrange()){
+										modToRemove = mod;
+									}
+									break;
+								case WATERRANGE:
+									if (((MonsterInst2)mod).isWaterrange()){
+										modToRemove = mod;
+									}
+									break;
+								case EARTHRANGE:
+									if (((MonsterInst2)mod).isEarthrange()){
+										modToRemove = mod;
+									}
+									break;
+								case ASTRALRANGE:
+									if (((MonsterInst2)mod).isAstralrange()){
+										modToRemove = mod;
+									}
+									break;
+								case DEATHRANGE:
+									if (((MonsterInst2)mod).isDeathrange()){
+										modToRemove = mod;
+									}
+									break;
+								case NATURERANGE:
+									if (((MonsterInst2)mod).isNaturerange()){
+										modToRemove = mod;
+									}
+									break;
+								case BLOODRANGE:
+									if (((MonsterInst2)mod).isBloodrange()){
+										modToRemove = mod;
+									}
+									break;
+								case ELEMENTRANGE:
+									if (((MonsterInst2)mod).isElementrange()){
+										modToRemove = mod;
+									}
+									break;
+								case SORCERYRANGE:
+									if (((MonsterInst2)mod).isSorceryrange()){
+										modToRemove = mod;
+									}
+									break;
+								case ALLRANGE:
+									if (((MonsterInst2)mod).isAllrange()){
+										modToRemove = mod;
+									}
+									break;
+								case TMPFIREGEMS:
+									if (((MonsterInst2)mod).isTmpfiregems()){
+										modToRemove = mod;
+									}
+									break;
+								case TMPAIRGEMS:
+									if (((MonsterInst2)mod).isTmpairgems()){
+										modToRemove = mod;
+									}
+									break;
+								case TMPWATERGEMS:
+									if (((MonsterInst2)mod).isTmpwatergems()){
+										modToRemove = mod;
+									}
+									break;
+								case TMPEARTHGEMS:
+									if (((MonsterInst2)mod).isTmpearthgems()){
+										modToRemove = mod;
+									}
+									break;
+								case TMPASTRALGEMS:
+									if (((MonsterInst2)mod).isTmpastralgems()){
+										modToRemove = mod;
+									}
+									break;
+								case TMPDEATHGEMS:
+									if (((MonsterInst2)mod).isTmpdeathgems()){
+										modToRemove = mod;
+									}
+									break;
+								case TMPNATUREGEMS:
+									if (((MonsterInst2)mod).isTmpnaturegems()){
+										modToRemove = mod;
+									}
+									break;
+								case TMPBLOODSLAVES:
+									if (((MonsterInst2)mod).isTmpbloodslaves()){
+										modToRemove = mod;
+									}
+									break;
+								case MAKEPEARLS:
+									if (((MonsterInst2)mod).isMakepearls()){
+										modToRemove = mod;
+									}
+									break;
+								case BONUSSPELLS:
+									if (((MonsterInst2)mod).isBonusspells()){
+										modToRemove = mod;
+									}
+									break;
+								case RANDOMSPELL:
+									if (((MonsterInst2)mod).isRandomspell()){
+										modToRemove = mod;
+									}
+									break;
+								case TAINTED:
+									if (((MonsterInst2)mod).isTainted()){
+										modToRemove = mod;
+									}
+									break;
+								case FIXFORGEBONUS:
+									if (((MonsterInst2)mod).isFixforgebonus()){
+										modToRemove = mod;
+									}
+									break;
+								case CROSSBREEDER:
+									if (((MonsterInst2)mod).isCrossbreeder()){
+										modToRemove = mod;
+									}
+									break;
+								case DEATHBANISH:
+									if (((MonsterInst2)mod).isDeathbanish()){
+										modToRemove = mod;
+									}
+									break;
+								case KOKYTOSRET:
+									if (((MonsterInst2)mod).isKokytosret()){
+										modToRemove = mod;
+									}
+									break;
+								case INFERNORET:
+									if (((MonsterInst2)mod).isInfernoret()){
+										modToRemove = mod;
+									}
+									break;
+								case VOIDRET:
+									if (((MonsterInst2)mod).isVoidret()){
+										modToRemove = mod;
+									}
+									break;
+								case ALLRET:
+									if (((MonsterInst2)mod).isAllret()){
 										modToRemove = mod;
 									}
 									break;
@@ -8343,6 +11408,141 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 										modToRemove = mod;
 									}
 									break;
+								case SLOWREC:
+									if (((MonsterInst4)mod).isSlowrec()){
+										modToRemove = mod;
+									}
+									break;
+								case NOSLOWREC:
+									if (((MonsterInst4)mod).isNoslowrec()){
+										modToRemove = mod;
+									}
+									break;
+								case CHAOSREC:
+									if (((MonsterInst4)mod).isChaosrec()){
+										modToRemove = mod;
+									}
+									break;
+								case SINGLEBATTLE:
+									if (((MonsterInst4)mod).isSinglebattle()){
+										modToRemove = mod;
+									}
+									break;
+								case AISINGLEREC:
+									if (((MonsterInst4)mod).isAisinglerec()){
+										modToRemove = mod;
+									}
+									break;
+								case AINOREC:
+									if (((MonsterInst4)mod).isAinorec()){
+										modToRemove = mod;
+									}
+									break;
+								case LESSERHORROR:
+									if (((MonsterInst4)mod).isLesserhorror()){
+										modToRemove = mod;
+									}
+									break;
+								case GREATERHORROR:
+									if (((MonsterInst4)mod).isGreaterhorror()){
+										modToRemove = mod;
+									}
+									break;
+								case DOOMHORROR:
+									if (((MonsterInst4)mod).isDoomhorror()){
+										modToRemove = mod;
+									}
+									break;
+								case BUG:
+									if (((MonsterInst4)mod).isBug()){
+										modToRemove = mod;
+									}
+									break;
+								case UWBUG:
+									if (((MonsterInst4)mod).isUwbug()){
+										modToRemove = mod;
+									}
+									break;
+								case AUTOCOMPETE:
+									if (((MonsterInst4)mod).isAutocompete()){
+										modToRemove = mod;
+									}
+									break;
+								case FLOAT:
+									if (((MonsterInst4)mod).isFloat()){
+										modToRemove = mod;
+									}
+									break;
+								case TELEPORT:
+									if (((MonsterInst4)mod).isTeleport()){
+										modToRemove = mod;
+									}
+									break;
+								case NORIVERPASS:
+									if (((MonsterInst4)mod).isNoriverpass()){
+										modToRemove = mod;
+									}
+									break;
+								case UNTELEPORTABLE:
+									if (((MonsterInst4)mod).isUnteleportable()){
+										modToRemove = mod;
+									}
+									break;
+								case HPOVERFLOW:
+									if (((MonsterInst4)mod).isHpoverflow()){
+										modToRemove = mod;
+									}
+									break;
+								case PIERCERES:
+									if (((MonsterInst4)mod).isPierceres()){
+										modToRemove = mod;
+									}
+									break;
+								case SLASHRES:
+									if (((MonsterInst4)mod).isSlashres()){
+										modToRemove = mod;
+									}
+									break;
+								case BLUNTRES:
+									if (((MonsterInst4)mod).isBluntres()){
+										modToRemove = mod;
+									}
+									break;
+								case DEATHCURSE:
+									if (((MonsterInst4)mod).isDeathcurse()){
+										modToRemove = mod;
+									}
+									break;
+								case TRAMPSWALLOW:
+									if (((MonsterInst4)mod).isTrampswallow()){
+										modToRemove = mod;
+									}
+									break;
+								case TAXCOLLECTOR:
+									if (((MonsterInst4)mod).isTaxcollector()){
+										modToRemove = mod;
+									}
+									break;
+								case SLAVE:
+									if (((MonsterInst4)mod).isSlave()){
+										modToRemove = mod;
+									}
+									break;
+								case UNDISCIPLINED:
+									if (((MonsterInst4)mod).isUndisciplined()){
+										modToRemove = mod;
+									}
+									break;
+								case MAGICIMMUNE:
+									if (((MonsterInst4)mod).isMagicimmune()){
+										modToRemove = mod;
+									}
+									break;
+								case COMSLAVE:
+									if (((MonsterInst4)mod).isComslave()){
+										modToRemove = mod;
+									}
+									break;
 								}
 							}
 							if (mod instanceof MonsterInst5) {
@@ -8493,8 +11693,103 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 										modToRemove = mod;
 									}
 									break;
+								case SUMMON2:
+									if (((MonsterInst5)mod).isSummon2()){
+										modToRemove = mod;
+									}
+									break;
+								case SUMMON3:
+									if (((MonsterInst5)mod).isSummon3()){
+										modToRemove = mod;
+									}
+									break;
+								case SUMMON4:
+									if (((MonsterInst5)mod).isSummon4()){
+										modToRemove = mod;
+									}
+									break;
 								case SUMMON5:
 									if (((MonsterInst5)mod).isSummon5()){
+										modToRemove = mod;
+									}
+									break;
+								case RAREDOMSUMMON:
+									if (((MonsterInst5)mod).isRaredomsummon()){
+										modToRemove = mod;
+									}
+									break;
+								case BATTLESUM1:
+									if (((MonsterInst5)mod).isBattlesum1()){
+										modToRemove = mod;
+									}
+									break;
+								case BATTLESUM2:
+									if (((MonsterInst5)mod).isBattlesum2()){
+										modToRemove = mod;
+									}
+									break;
+								case BATTLESUM3:
+									if (((MonsterInst5)mod).isBattlesum3()){
+										modToRemove = mod;
+									}
+									break;
+								case BATTLESUM4:
+									if (((MonsterInst5)mod).isBattlesum4()){
+										modToRemove = mod;
+									}
+									break;
+								case BATTLESUM5:
+									if (((MonsterInst5)mod).isBattlesum5()){
+										modToRemove = mod;
+									}
+									break;
+								case BATSTARTSUM1:
+									if (((MonsterInst5)mod).isBatstartsum1()){
+										modToRemove = mod;
+									}
+									break;
+								case BATSTARTSUM2:
+									if (((MonsterInst5)mod).isBatstartsum2()){
+										modToRemove = mod;
+									}
+									break;
+								case BATSTARTSUM3:
+									if (((MonsterInst5)mod).isBatstartsum3()){
+										modToRemove = mod;
+									}
+									break;
+								case BATSTARTSUM4:
+									if (((MonsterInst5)mod).isBatstartsum4()){
+										modToRemove = mod;
+									}
+									break;
+								case BATSTARTSUM5:
+									if (((MonsterInst5)mod).isBatstartsum5()){
+										modToRemove = mod;
+									}
+									break;
+								case BATSTARTSUM1D6:
+									if (((MonsterInst5)mod).isBatstartsum1d6()){
+										modToRemove = mod;
+									}
+									break;
+								case BATSTARTSUM2D6:
+									if (((MonsterInst5)mod).isBatstartsum2d6()){
+										modToRemove = mod;
+									}
+									break;
+								case BATSTARTSUM3D6:
+									if (((MonsterInst5)mod).isBatstartsum3d6()){
+										modToRemove = mod;
+									}
+									break;
+								case BATSTARTSUM4D6:
+									if (((MonsterInst5)mod).isBatstartsum4d6()){
+										modToRemove = mod;
+									}
+									break;
+								case BATSTARTSUM5D6:
+									if (((MonsterInst5)mod).isBatstartsum5d6()){
 										modToRemove = mod;
 									}
 									break;

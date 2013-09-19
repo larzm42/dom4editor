@@ -356,7 +356,7 @@ public class AddDialog extends Dialog {
 			getButton(IDialogConstants.OK_ID).setEnabled(true);
 		} else if (newButton[type.ordinal()].getSelection() && nameText[type.ordinal()].getText().length() > 0 && idText[type.ordinal()].getText().length() > 0) {
 			getButton(IDialogConstants.OK_ID).setEnabled(true);
-		} else if (newButton[type.ordinal()].getSelection() && nameText[type.ordinal()].getText().length() > 0 && (add == TypeToAdd.NATION || add == TypeToAdd.MERCENARY)) {
+		} else if (newButton[type.ordinal()].getSelection() && nameText[type.ordinal()].getText().length() > 0 && (add == TypeToAdd.NATION || add == TypeToAdd.MERCENARY || add == TypeToAdd.MONSTER)) {
 			getButton(IDialogConstants.OK_ID).setEnabled(true);
 		} else {
 			getButton(IDialogConstants.OK_ID).setEnabled(false);

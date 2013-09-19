@@ -376,7 +376,11 @@ public class SummaryList extends MasterDetailsBlock {
 				for (MonsterMods mod : list) {
 					if (mod instanceof MonsterInst1) {
 						if (((MonsterInst1)mod).isName()) {
-							return Messages.format("ScrolledPropertiesBlock.monster.double.fmt", ((MonsterInst1)mod).getValue(), ((NewMonster)element).getValue());
+							if (((NewMonster)element).getValue() != 0) {
+								return Messages.format("ScrolledPropertiesBlock.monster.double.fmt", ((MonsterInst1)mod).getValue(), ((NewMonster)element).getValue());
+							} else {
+								return Messages.format("ScrolledPropertiesBlock.monster.single.fmt", ((MonsterInst1)mod).getValue());
+							}
 						}
 					}
 				}
