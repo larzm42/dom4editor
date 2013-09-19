@@ -230,7 +230,7 @@ SelectMonsterByName:
 	'#end';
 	
 NewMonster:
-	'#newmonster' value=INT (FREE_FORM_COMMENT)*
+	'#newmonster' (value=INT)? (FREE_FORM_COMMENT)*
 	mods+=MonsterMods*
 	'#end';
 
@@ -340,6 +340,8 @@ MonsterInst2:
 	heretic?='#heretic' |
 	itemslots?='#itemslots' |
 	nametype?='#nametype' |
+	magicpower?='#magicpower' |
+	randomspell?='#randomspell' |
 	reclimit?='#reclimit' |
 	homerealm?='#homerealm' |
 	patience?='#patience' |
@@ -520,22 +522,22 @@ MonsterInst5:
 	summon3?='#summon3' |
 	summon4?='#summon4' |
 	summon5?='#summon5' |
-	summon5?='#raredomsummon' |
-	summon5?='#battlesum1' |
-	summon5?='#battlesum2' |
-	summon5?='#battlesum3' |
-	summon5?='#battlesum4' |
-	summon5?='#battlesum5' |
-	summon5?='#batstartsum1' |
-	summon5?='#batstartsum2' |
-	summon5?='#batstartsum3' |
-	summon5?='#batstartsum4' |
-	summon5?='#batstartsum5' |
-	summon5?='#batstartsum1d6' |
-	summon5?='#batstartsum2d6' |
-	summon5?='#batstartsum3d6' |
-	summon5?='#batstartsum4d6' |
-	summon5?='#batstartsum5d6';
+	raredomsummon?='#raredomsummon' |
+	battlesum1?='#battlesum1' |
+	battlesum2?='#battlesum2' |
+	battlesum3?='#battlesum3' |
+	battlesum4?='#battlesum4' |
+	battlesum5?='#battlesum5' |
+	batstartsum1?='#batstartsum1' |
+	batstartsum2?='#batstartsum2' |
+	batstartsum3?='#batstartsum3' |
+	batstartsum4?='#batstartsum4' |
+	batstartsum5?='#batstartsum5' |
+	batstartsum1d6?='#batstartsum1d6' |
+	batstartsum2d6?='#batstartsum2d6' |
+	batstartsum3d6?='#batstartsum3d6' |
+	batstartsum4d6?='#batstartsum4d6' |
+	batstartsum5d6?='#batstartsum5d6';
 
 MonsterInst6:
 	stealthy?='#stealthy' |
