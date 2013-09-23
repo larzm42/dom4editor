@@ -726,8 +726,6 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 		instMap.put(Inst.SUMMON3, new Inst5Fields());
 		instMap.put(Inst.SUMMON4, new Inst5Fields());
 		instMap.put(Inst.SUMMON5, new Inst5Fields());
-		
-		//instMap.put(Inst.FIXEDNAME, new Inst1Fields());
 		instMap.put(Inst.SLOWREC, new Inst4Fields());
 		instMap.put(Inst.NOSLOWREC, new Inst4Fields());
 		instMap.put(Inst.RECLIMIT, new Inst2Fields());
@@ -1953,6 +1951,16 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 				((Inst8Fields)field).defaultLabel = defaultLabel1;
 			}
 
+			if (fields.getKey() == Inst.MAGICBOOST1 ||
+				fields.getKey() == Inst.MAGICBOOST2 ||
+				fields.getKey() == Inst.MAGICBOOST3 ||
+				fields.getKey() == Inst.MAGICBOOST4 ||
+				fields.getKey() == Inst.MAGICBOOST5 ||
+				fields.getKey() == Inst.MAGICBOOST6 ||
+				fields.getKey() == Inst.MAGICBOOST7 ||
+				fields.getKey() == Inst.MAGICBOOST8) {
+				isRight = !isRight;
+			}
 			isRight = !isRight;
 		}
 	}
