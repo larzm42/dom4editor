@@ -646,7 +646,7 @@ NewItem:
 	'#end';
 
 ItemMods:
-	ItemPattern1 | ItemPattern2 | ItemPattern3;
+	ItemPattern1 | ItemPattern2 | ItemPattern3 | ItemPattern4 | ItemPattern5;
 	
 ItemPattern1:
 	ItemInst1 value=STRING (FREE_FORM_COMMENT)*;
@@ -657,11 +657,19 @@ ItemPattern2:
 ItemPattern3:
 	ItemInst3 (value1=STRING | value2=INT) (FREE_FORM_COMMENT)*;
 
+ItemPattern4:
+	ItemInst4 (FREE_FORM_COMMENT)*;
+
+ItemPattern5:
+	ItemInst5 value1=INT value2=INT (FREE_FORM_COMMENT)*;
 
 ItemInst1:
 	name?='#name' |
 	descr?='#descr' |
-	armor?='#armor';
+	armor?='#armor' |
+	spr?='#spr' |
+	spell?='#spell' |
+	autospell?='#autospell';
 	
 ItemInst2:
 	constlevel?='#constlevel' |
@@ -669,11 +677,213 @@ ItemInst2:
 	mainlevel?='#mainlevel' |
 	secondarypath?='#secondarypath' |
 	secondarylevel?='#secondarylevel' |
-	type?='#type';
-	
+	type?='#type' |
+	str?='#str' |
+	att?='#att' |
+	def?='#def' |
+	prec?='#prec' |
+	mr?='#mr' |
+	morale?='#morale' |
+	fireres?='#fireres' |
+	coldres?='#coldres' |
+	shockres?='#shockres' |
+	poisonres?='#poisonres' |
+	restricted?='#restricted' |
+	pen?='#pen' |
+	autospellrepeat?='#autospellrepeat' |
+	randomspell?='#randomspell' |
+	mapspeed?='#mapspeed' |
+	tainted?='#tainted' |
+	speciallook?='#speciallook' |
+	seduce?='#seduce' |
+	succubus?='#succubus' |
+	beckon?='#beckon' |
+	falsearmy?='#falsearmy' |
+	foolscouts?='#foolscouts' |
+	iceprot?='#iceprot' |
+	healer?='#healer' |
+	autohealer?='#autohealer' |
+	autodishealer?='#autodishealer' |
+	autodisgrinder?='#autodisgrinder' |
+	homesick?='#homesick' |
+	uwdamage?='#uwdamage' |
+	regeneration?='#regeneration' |
+	reinvigoration?='#reinvigoration' |
+	woundfend?='#woundfend' |
+	poisoncloud?='#poisoncloud' |
+	diseasecloud?='#diseasecloud' |
+	animalawe?='#animalawe' |
+	awe?='#awe' |
+	fear?='#fear' |
+	fireshield?='#fireshield' |
+	banefireshield?='#banefireshield' |
+	damagerev?='#damagerev' |
+	bloodvengeance?='#bloodvengeance' |
+	slimer?='#slimer' |
+	deathdisease?='#deathdisease' |
+	chaospower?='#chaospower' |
+	firepower?='#firepower' |
+	coldpower?='#coldpower' |
+	magicpower?='#magicpower' |
+	stormpower?='#stormpower' |
+	darkpower?='#darkpower' |
+	springpower?='#springpower' |
+	summerpower?='#summerpower' |
+	fallpower?='#fallpower' |
+	winterpower?='#winterpower' |
+	ambidextrous?='#ambidextrous' |
+	berserk?='#berserk' |
+	darkvision?='#darkvision' |
+	digest?='#digest' |
+	incorporate?='#incorporate' |
+	castledef?='#castledef' |
+	siegebonus?='#siegebonus' |
+	patrolbonus?='#patrolbonus' |
+	pillagebonus?='#pillagebonus' |
+	supplybonus?='#supplybonus' |
+	nobadevents?='#nobadevents' |
+	incprovdef?='#incprovdef' |
+	incunrest?='#incunrest' |
+	leper?='#leper' |
+	popkill?='#popkill' |
+	heretic?='#heretic' |
+	elegist?='#elegist' |
+	spreaddom?='#spreaddom' |
+	shatteredsoul?='#shatteredsoul' |
+	gold?='#gold' |
+	inspirational?='#inspirational' |
+	beastmaster?='#beastmaster' |
+	taskmaster?='#taskmaster' |
+	formationfighter?='#formationfighter' |
+	bodyguard?='#bodyguard' |
+	standard?='#standard' |
+	douse?='#douse' |
+	researchbonus?='#researchbonus' |
+	divineins?='#divineins' |
+	forgebonus?='#forgebonus' |
+	fixforgebonus?='#fixforgebonus' |
+	crossbreeder?='#crossbreeder' |
+	bonusspells?='#bonusspells' |
+	deathbanish?='#deathbanish' |
+	kokytosret?='#kokytosret' |
+	infernoret?='#infernoret' |
+	voidret?='#voidret' |
+	allret?='#allret' |
+	firerange?='#firerange' |
+	airrange?='#airrange' |
+	waterrange?='#waterrange' |
+	earthrange?='#earthrange' |
+	astralrange?='#astralrange' |
+	deathrange?='#deathrange' |
+	naturerange?='#naturerange' |
+	bloodrange?='#bloodrange' |
+	elementrange?='#elementrange' |
+	sorceryrange?='#sorceryrange' |
+	allrange?='#allrange' |
+	makepearls?='#makepearls' |
+	tmpfiregems?='#tmpfiregems' |
+	tmpairgems?='#tmpairgems' |
+	tmpwatergems?='#tmpwatergems' |
+	tmpearthgems?='#tmpearthgems' |
+	tmpastralgems?='#tmpastralgems' |
+	tmpdeathgems?='#tmpdeathgems' |
+	tmpnaturegems?='#tmpnaturegems' |
+	tmpbloodslaves?='#tmpbloodslaves';
+		
 ItemInst3:
 	copyspr?='#copyspr' |
-	weapon?='#weapon';
+	weapon?='#weapon' |
+	copyitem?='#copyitem' |
+	domsummon?='#domsummon' |
+	domsummon2?='#domsummon2' |
+	domsummon20?='#domsummon20' |
+	raredomsummon?='#raredomsummon' |
+	summon1?='#summon1' |
+	summon2?='#summon2' |
+	summon3?='#summon3' |
+	summon4?='#summon4' |
+	summon5?='#summon5' |
+	makemonsters1?='#makemonsters1' |
+	makemonsters2?='#makemonsters2' |
+	makemonsters3?='#makemonsters3' |
+	makemonsters4?='#makemonsters4' |
+	makemonsters5?='#makemonsters5' |
+	battlesum1?='#battlesum1' |
+	battlesum2?='#battlesum2' |
+	battlesum3?='#battlesum3' |
+	battlesum4?='#battlesum4' |
+	battlesum5?='#battlesum5' |
+	batstartsum1?='#batstartsum1' |
+	batstartsum2?='#batstartsum2' |
+	batstartsum3?='#batstartsum3' |
+	batstartsum4?='#batstartsum4' |
+	batstartsum5?='#batstartsum5' |
+	batstartsum1d6?='#batstartsum1d6' |
+	batstartsum2d6?='#batstartsum2d6' |
+	batstartsum3d6?='#batstartsum3d6' |
+	batstartsum4d6?='#batstartsum4d6' |
+	batstartsum5d6?='#batstartsum5d6';
+
+ItemInst4:
+	ethereal?='#ethereal' |
+	nomounted?='#nomounted' |
+	nocoldblood?='#nocoldblood' |
+	nodemon?='#nodemon' |
+	noundead?='#noundead' |
+	noinanim?='#noinanim' |
+	nofemale?='#nofemale' |
+	onlymounted?='#onlymounted' |
+	onlycoldblood?='#onlycoldblood' |
+	onlydemon?='#onlydemon' |
+	onlyundead?='#onlyundead' |
+	onlyinanim?='#onlyinanim' |
+	onlyfemale?='#onlyfemale' |
+	reqeyes?='#reqeyes' |
+	nofind?='#nofind' |
+	luck?='#luck' |
+	quickness?='#quickness' |
+	bless?='#bless' |
+	barkskin?='#barkskin' |
+	stoneskin?='#stoneskin' |
+	ironskin?='#ironskin' |
+	float?='#float' |
+	fly?='#fly' |
+	stormimmune?='#stormimmune' |
+	run?='#run' |
+	trample?='#trample' |
+	bers?='#bers' |
+	extralife?='#extralife' |
+	champprize?='#champprize' |
+	autocompete?='#autocompete' |
+	cursed?='#cursed' |
+	curse?='#curse' |
+	disease?='#disease' |
+	chestwound?='#chestwound' |
+	feeblemind?='#feeblemind' |
+	mute?='#mute' |
+	nhwound?='#nhwound' |
+	crippled?='#crippled' |
+	loseeye?='#loseeye' |
+	singlebattle?='#singlebattle' |
+	chaosrec?='#chaosrec' |
+	stonebeing?='#stonebeing' |
+	noriverpass?='#noriverpass' |
+	unteleportable?='#unteleportable' |
+	slashres?='#slashres' |
+	pierceres?='#pierceres' |
+	bluntres?='#bluntres' |
+	hpoverflow?='#hpoverflow' |
+	deathcurse?='#deathcurse' |
+	trampswallow?='#trampswallow' |
+	inquisitor?='#inquisitor' |
+	taxcollector?='#taxcollector' |
+	undisciplined?='#undisciplined' |
+	drainimmune?='#drainimmune' |
+	magicimmune?='#magicimmune' |
+	comslave?='#comslave';
+
+ItemInst5:
+	magicboost?='#magicboost';
 
 
 /*************/
