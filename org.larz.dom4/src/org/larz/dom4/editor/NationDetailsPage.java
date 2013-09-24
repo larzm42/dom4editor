@@ -1011,7 +1011,7 @@ public class NationDetailsPage extends AbstractDetailsPage {
 				key.equals(Inst.FORTERA) || 
 				key.equals(Inst.CLEARSITES)) {
 
-				final Section expandable = toolkit.createSection(client, ExpandableComposite.TWISTIE|ExpandableComposite.EXPANDED);
+				final Section expandable = toolkit.createSection(client, ExpandableComposite.TWISTIE | ExpandableComposite.TITLE_BAR);
 				switch (key) {
 				case CLEARNATION:
 					expandable.setText(Messages.getString("NationDetailsSection.mod.section.general"));
@@ -1052,8 +1052,6 @@ public class NationDetailsPage extends AbstractDetailsPage {
 				expandable.setClient(header1);
 				if (key.equals(Inst.CLEARNATION)) {
 					expandable.setExpanded(true);
-				} else {
-					expandable.setExpanded(false);					
 				}
 
 				leftColumn = toolkit.createComposite(header1);
@@ -1629,7 +1627,7 @@ public class NationDetailsPage extends AbstractDetailsPage {
 				}
 			}
 		}
-		name.getParent().getParent().layout(true, true);
+		name.getParent().getParent().getParent().layout(true, true);
 	}
 	
 	private void setNationname(final XtextEditor editor, final String newName) 

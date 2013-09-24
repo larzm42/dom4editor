@@ -483,22 +483,8 @@ public class SiteDetailsPage extends AbstractDetailsPage {
 			}
 		});
 
-		Composite leftColumn = toolkit.createComposite(client);
-		glayout = new GridLayout(5, false);
-		glayout.marginHeight = 0;
-		glayout.marginWidth = 0;
-		glayout.verticalSpacing = 0;
-		leftColumn.setLayout(glayout);
-		leftColumn.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-		
-		Composite rightColumn = toolkit.createComposite(client);
-		glayout = new GridLayout(5, false);
-		glayout.marginHeight = 0;
-		glayout.marginWidth = 0;
-		glayout.verticalSpacing = 0;
-		rightColumn.setLayout(glayout);
-		rightColumn.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-
+		Composite leftColumn = null;
+		Composite rightColumn = null;
 		boolean isRight = false;
 		for (final Map.Entry<Inst, InstFields> fields : instMap.entrySet()) {
 			final Inst key = fields.getKey();
@@ -512,7 +498,7 @@ public class SiteDetailsPage extends AbstractDetailsPage {
 				key.equals(Inst.HEAL) ||
 				key.equals(Inst.CLAIM)) {
 
-				final Section expandable = toolkit.createSection(client, ExpandableComposite.TWISTIE|ExpandableComposite.EXPANDED);
+				final Section expandable = toolkit.createSection(client, ExpandableComposite.TWISTIE | ExpandableComposite.TITLE_BAR);
 				switch (key) {
 				case CLEAR:
 					expandable.setText(Messages.getString("SiteDetailsSection.mod.section.basic"));
@@ -553,8 +539,6 @@ public class SiteDetailsPage extends AbstractDetailsPage {
 				expandable.setClient(header1);
 				if (key.equals(Inst.CLEAR)) {
 					expandable.setExpanded(true);
-				} else {
-					expandable.setExpanded(false);					
 				}
 
 				leftColumn = toolkit.createComposite(header1);
@@ -574,7 +558,6 @@ public class SiteDetailsPage extends AbstractDetailsPage {
 				rightColumn.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 				isRight = false;
 			}
-
 
 			final InstFields field = fields.getValue();
 			final Button check = new DynamicButton(isRight?rightColumn:leftColumn, SWT.CHECK);

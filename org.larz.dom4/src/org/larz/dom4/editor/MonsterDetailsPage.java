@@ -1262,7 +1262,7 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 				key.equals(Inst.GEMPROD1) ||
 				key.equals(Inst.BONUSSPELLS)) {
 				
-				final Section expandable = toolkit.createSection(client, ExpandableComposite.TWISTIE|ExpandableComposite.EXPANDED);
+				final Section expandable = toolkit.createSection(client, ExpandableComposite.TWISTIE | ExpandableComposite.TITLE_BAR);
 				switch (key) {
 				case HP:
 					expandable.setText(Messages.getString("MonsterDetailsSection.mod.section.basic"));
@@ -1366,8 +1366,6 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 				expandable.setClient(header1);
 				if (key.equals(Inst.HP)) {
 					expandable.setExpanded(true);
-				} else {
-					expandable.setExpanded(false);					
 				}
 
 				leftColumn = toolkit.createComposite(header1);

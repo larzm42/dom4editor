@@ -108,8 +108,10 @@ public abstract class AbstractDetailsPage implements IDetailsPage {
 	 * @see org.eclipse.ui.forms.IDetailsPage#inputChanged(org.eclipse.jface.viewers.IStructuredSelection)
 	 */
 	public void selectionChanged(IFormPart part, ISelection selection) {
-		setInputFromSelection((IStructuredSelection)selection);
-		update();
+		if (input != ((AbstractElementWrapper)((IStructuredSelection)selection).getFirstElement()).getElement()) {
+			setInputFromSelection((IStructuredSelection)selection);
+			update();
+		}
 	}
 	
 	/**

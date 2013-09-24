@@ -157,6 +157,8 @@ public class SummaryList extends MasterDetailsBlock {
 	private static final Image NATION_IMAGE = Activator.getImageDescriptor("icons/nation.png").createImage();
 	private static final Image MONSTER_IMAGE = Activator.getImageDescriptor("icons/monster.png").createImage();
 	private static final Image NAME_IMAGE = Activator.getImageDescriptor("icons/name.png").createImage();
+	private static final Image POPTYPE_IMAGE = Activator.getImageDescriptor("icons/poptype.png").createImage();
+	private static final Image MERC_IMAGE = Activator.getImageDescriptor("icons/merc.png").createImage();
 	
 	enum AddTypes {
 		BY_NAME, BY_ID, NEW
@@ -536,6 +538,12 @@ public class SummaryList extends MasterDetailsBlock {
 			}
 			if (element instanceof SelectName) {
 				return NAME_IMAGE;
+			}
+			if (element instanceof SelectPoptype) {
+				return POPTYPE_IMAGE;
+			}
+			if (element instanceof NewMercenary) {
+				return MERC_IMAGE;
 			}
 			return null;
 		}

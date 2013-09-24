@@ -746,22 +746,8 @@ public class ItemDetailsPage extends AbstractDetailsPage {
 
 		spriteLabel = toolkit.createLabel(nameComp, "", SWT.NONE);
 
-		Composite leftColumn = toolkit.createComposite(client);
-		glayout = new GridLayout(5, false);
-		glayout.marginHeight = 0;
-		glayout.marginWidth = 0;
-		glayout.verticalSpacing = 0;
-		leftColumn.setLayout(glayout);
-		leftColumn.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-		
-		Composite rightColumn = toolkit.createComposite(client);
-		glayout = new GridLayout(5, false);
-		glayout.marginHeight = 0;
-		glayout.marginWidth = 0;
-		glayout.verticalSpacing = 0;
-		rightColumn.setLayout(glayout);
-		rightColumn.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-
+		Composite leftColumn = null;
+		Composite rightColumn = null;
 		boolean isRight = false;
 		for (final Map.Entry<Inst, InstFields> fields : instMap.entrySet()) {
 			final Inst key = fields.getKey();
@@ -789,7 +775,7 @@ public class ItemDetailsPage extends AbstractDetailsPage {
 				key.equals(Inst.MAKEPEARLS) ||
 				key.equals(Inst.DOMSUMMON)){
 
-				final Section expandable = toolkit.createSection(client, ExpandableComposite.TWISTIE|ExpandableComposite.EXPANDED);
+				final Section expandable = toolkit.createSection(client, ExpandableComposite.TWISTIE | ExpandableComposite.TITLE_BAR);
 				switch (key) {
 				case COPYITEM:
 					expandable.setText(Messages.getString("ItemDetailsSection.mod.section.basic"));
@@ -872,8 +858,6 @@ public class ItemDetailsPage extends AbstractDetailsPage {
 				expandable.setClient(header1);
 				if (key.equals(Inst.COPYITEM)) {
 					expandable.setExpanded(true);
-				} else {
-					expandable.setExpanded(false);					
 				}
 
 				leftColumn = toolkit.createComposite(header1);

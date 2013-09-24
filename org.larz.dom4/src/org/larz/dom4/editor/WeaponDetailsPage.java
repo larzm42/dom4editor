@@ -39,6 +39,9 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.forms.events.ExpansionAdapter;
+import org.eclipse.ui.forms.events.ExpansionEvent;
+import org.eclipse.ui.forms.widgets.ExpandableComposite;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Section;
 import org.eclipse.ui.forms.widgets.TableWrapData;
@@ -318,25 +321,66 @@ public class WeaponDetailsPage extends AbstractDetailsPage {
 		gd.widthHint = 400;
 		name.setLayoutData(gd);
 		
-		Composite leftColumn = toolkit.createComposite(client);
-		glayout = new GridLayout(5, false);
-		glayout.marginHeight = 0;
-		glayout.marginWidth = 0;
-		glayout.verticalSpacing = 0;
-		leftColumn.setLayout(glayout);
-		leftColumn.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-		
-		Composite rightColumn = toolkit.createComposite(client);
-		glayout = new GridLayout(5, false);
-		glayout.marginHeight = 0;
-		glayout.marginWidth = 0;
-		glayout.verticalSpacing = 0;
-		rightColumn.setLayout(glayout);
-		rightColumn.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-
+		Composite leftColumn = null;
+		Composite rightColumn = null;
 		boolean isRight = false;
 		for (final Map.Entry<Inst, InstFields> fields : instMap.entrySet()) {
 			final Inst key = fields.getKey();
+			
+			if (key.equals(Inst.DMG) || 
+				key.equals(Inst.SLASH) || 
+				key.equals(Inst.ARMORPIERCING) || 
+				key.equals(Inst.AOE)) {
+
+				final Section expandable = toolkit.createSection(client, ExpandableComposite.TWISTIE | ExpandableComposite.TITLE_BAR);
+				switch (key) {
+				case DMG:
+					expandable.setText(Messages.getString("WeaponDetailsSection.mod.section.basic"));
+					break;
+				case SLASH:
+					expandable.setText(Messages.getString("WeaponDetailsSection.mod.section.damage"));
+					break;
+				case ARMORPIERCING:
+					expandable.setText(Messages.getString("WeaponDetailsSection.mod.section.qualifiers"));
+					break;
+				case AOE:
+					expandable.setText(Messages.getString("WeaponDetailsSection.mod.section.properties"));
+					break;
+				}
+				gd = new GridData(SWT.FILL, SWT.FILL, false, false);
+				gd.horizontalSpan = 2;
+				expandable.setLayoutData(gd);
+				expandable.addExpansionListener(new ExpansionAdapter() {
+					public void expansionStateChanged(ExpansionEvent e) {
+						mform.getForm().reflow(true);
+					}
+				});
+
+				Composite header1 = toolkit.createComposite(expandable, SWT.BORDER);
+				header1.setLayout(new GridLayout(2, true));
+				expandable.setClient(header1);
+				if (key.equals(Inst.DMG)) {
+					expandable.setExpanded(true);
+				}
+
+				leftColumn = toolkit.createComposite(header1);
+				glayout = new GridLayout(5, false);
+				glayout.marginHeight = 0;
+				glayout.marginWidth = 0;
+				glayout.verticalSpacing = 0;
+				leftColumn.setLayout(glayout);
+				leftColumn.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+
+				rightColumn = toolkit.createComposite(header1);
+				glayout = new GridLayout(5, false);
+				glayout.marginHeight = 0;
+				glayout.marginWidth = 0;
+				glayout.verticalSpacing = 0;
+				rightColumn.setLayout(glayout);
+				rightColumn.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+				isRight = false;
+			}
+						
 			final InstFields field = fields.getValue();
 			final Button check = toolkit.createButton(isRight?rightColumn:leftColumn, key.label, SWT.CHECK);
 			check.addSelectionListener(new SelectionAdapter() {
@@ -965,6 +1009,7 @@ public class WeaponDetailsPage extends AbstractDetailsPage {
 				}
 			}
 		}
+		name.getParent().getParent().getParent().layout(true, true);
 	}
 	
 	private String getWeaponname(Object weapon) {
