@@ -179,6 +179,12 @@ WeaponInst4:
 	(dt_large?='#dt_large') |
 	(dt_constructonly?='#dt_constructonly') |
 	(dt_raise?='#dt_raise') |
+	(dt_sizestun?='#dt_sizestun') |
+	(demonundead?='#demonundead') |
+	(dt_weakness?='#dt_weakness') |
+	(dt_drain?='#dt_drain') |
+	(dt_weapondrain?='#dt_weapondrain') |
+	(sacredonly?='#sacredonly') |
 	(mind?='#mind') |
 	(cold?='#cold') |
 	(fire?='#fire') |
@@ -343,6 +349,7 @@ MonsterInst2:
 	magicpower?='#magicpower' |
 	randomspell?='#randomspell' |
 	reclimit?='#reclimit' |
+	chaosrec?='#chaosrec' |
 	homerealm?='#homerealm' |
 	patience?='#patience' |
 	falsearmy?='#falsearmy' |
@@ -471,7 +478,6 @@ MonsterInst4:
 	(superiorundeadleader?='#superiorundeadleader') |
 	(slowrec?='#slowrec') |
 	(noslowrec?='#noslowrec') |
-	(chaosrec?='#chaosrec') |
 	(singlebattle?='#singlebattle') |
 	(aisinglerec?='#aisinglerec') |
 	(ainorec?='#ainorec') |
@@ -512,11 +518,11 @@ MonsterInst5:
 	domsummon?='#domsummon' |
 	domsummon2?='#domsummon2' |
 	domsummon20?='#domsummon20' |
-	makemonster1?='#makemonster1' |
-	makemonster2?='#makemonster2' |
-	makemonster3?='#makemonster3' |
-	makemonster4?='#makemonster4' |
-	makemonster5?='#makemonster5' |
+	makemonsters1?='#makemonsters1' |
+	makemonsters2?='#makemonsters2' |
+	makemonsters3?='#makemonsters3' |
+	makemonsters4?='#makemonsters4' |
+	makemonsters5?='#makemonsters5' |
 	summon1?='#summon1' |
 	summon2?='#summon2' |
 	summon3?='#summon3' |
@@ -1086,6 +1092,7 @@ NationInst1:
 	
 NationInst2:
 	era?='#era' |
+	likesterr?='#likesterr' |
 	labcost?='#labcost' |
 	templecost?='#templecost' |
 	templepic?='#templepic' |
