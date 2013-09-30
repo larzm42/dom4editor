@@ -89,10 +89,7 @@ public class WeaponDetailsPage extends AbstractDetailsPage {
 		MAGIC (Messages.getString("WeaponDetailsSection.mod.magic")),
 		POISON (Messages.getString("WeaponDetailsSection.mod.poison")),
 		ACID (Messages.getString("WeaponDetailsSection.mod.acid")),
-		DT_NORMAL (Messages.getString("WeaponDetailsSection.mod.dt_normal")),
-		DT_STUN (Messages.getString("WeaponDetailsSection.mod.dt_stun")),
-		DT_PARALYZE (Messages.getString("WeaponDetailsSection.mod.dt_paralyze")),
-		DT_POISON (Messages.getString("WeaponDetailsSection.mod.dt_poison")),
+		DT_NORMAL (Messages.getString("WeaponDetailsSection.mod.dt_normal")),		
 		ARMORPIERCING (Messages.getString("WeaponDetailsSection.mod.armorpiercing")),
 		ARMORNEGATING (Messages.getString("WeaponDetailsSection.mod.armornegating")),
 		NOSTR (Messages.getString("WeaponDetailsSection.mod.nostr")),
@@ -108,14 +105,23 @@ public class WeaponDetailsPage extends AbstractDetailsPage {
 		FRIENDLYIMMUNE (Messages.getString("WeaponDetailsSection.mod.friendlyimmune")),
 		UNDEADONLY (Messages.getString("WeaponDetailsSection.mod.undeadonly")),
 		DT_CAP (Messages.getString("WeaponDetailsSection.mod.dt_cap")),
+		DT_STUN (Messages.getString("WeaponDetailsSection.mod.dt_stun")),
+		DT_SIZESTUN (Messages.getString("WeaponDetailsSection.mod.dt_sizestun")),
+		DT_PARALYZE (Messages.getString("WeaponDetailsSection.mod.dt_paralyze")),
+		DT_POISON (Messages.getString("WeaponDetailsSection.mod.dt_poison")),
+		DT_HOLY (Messages.getString("WeaponDetailsSection.mod.dt_holy")),
 		DT_DEMON (Messages.getString("WeaponDetailsSection.mod.dt_demon")),
 		DT_DEMONONLY (Messages.getString("WeaponDetailsSection.mod.dt_demononly")),
-		DT_HOLY (Messages.getString("WeaponDetailsSection.mod.dt_holy")),
+		DEMONUNDEAD (Messages.getString("WeaponDetailsSection.mod.demonundead")),
 		DT_MAGIC (Messages.getString("WeaponDetailsSection.mod.dt_magic")),
 		DT_SMALL (Messages.getString("WeaponDetailsSection.mod.dt_small")),
 		DT_LARGE (Messages.getString("WeaponDetailsSection.mod.dt_large")),
 		DT_CONSTRUCTONLY (Messages.getString("WeaponDetailsSection.mod.dt_constructonly")),
 		DT_RAISE (Messages.getString("WeaponDetailsSection.mod.dt_raise")),
+		DT_WEAKNESS (Messages.getString("WeaponDetailsSection.mod.dt_weakness")),
+		DT_DRAIN (Messages.getString("WeaponDetailsSection.mod.dt_drain")),
+		DT_WEAPONDRAIN (Messages.getString("WeaponDetailsSection.mod.dt_weapondrain")),
+		SACREDONLY (Messages.getString("WeaponDetailsSection.mod.sacredonly")),
 		AOE (Messages.getString("WeaponDetailsSection.mod.aoe"), "10"),
 		BONUS (Messages.getString("WeaponDetailsSection.mod.bonus")),
 		SECONDARYEFFECT (Messages.getString("WeaponDetailsSection.mod.secondaryeffect"), "0"),
@@ -240,7 +246,12 @@ public class WeaponDetailsPage extends AbstractDetailsPage {
 		instMap.put(Inst.SKIP2, new Inst4Fields());
 		instMap.put(Inst.FLYSPR, new Inst3Fields());
 		instMap.put(Inst.EXPLSPR, new Inst2Fields());
-
+		instMap.put(Inst.DT_WEAKNESS, new Inst4Fields());
+		instMap.put(Inst.DT_DRAIN, new Inst4Fields());
+		instMap.put(Inst.DT_WEAPONDRAIN, new Inst4Fields());
+		instMap.put(Inst.SACREDONLY, new Inst4Fields());
+		instMap.put(Inst.DT_SIZESTUN, new Inst4Fields());
+		instMap.put(Inst.DEMONUNDEAD, new Inst4Fields());
 	}
 	
 	/* (non-Javadoc)
@@ -1006,6 +1017,42 @@ public class WeaponDetailsPage extends AbstractDetailsPage {
 						Inst.SKIP2.defaultValue = weaponDB.skip2.toString();
 					}
 					break;
+				case DT_WEAKNESS:
+					if (weaponDB.dt_weakness != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.dt_weakness));
+						Inst.DT_WEAKNESS.defaultValue = weaponDB.dt_weakness.toString();
+					}
+					break;
+				case DT_DRAIN:
+					if (weaponDB.dt_drain != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.dt_drain));
+						Inst.DT_DRAIN.defaultValue = weaponDB.dt_drain.toString();
+					}
+					break;
+				case DT_WEAPONDRAIN:
+					if (weaponDB.dt_weapondrain != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.dt_weapondrain));
+						Inst.DT_WEAPONDRAIN.defaultValue = weaponDB.dt_weapondrain.toString();
+					}
+					break;
+				case SACREDONLY:
+					if (weaponDB.sacredonly != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.sacredonly));
+						Inst.SACREDONLY.defaultValue = weaponDB.sacredonly.toString();
+					}
+					break;
+				case DT_SIZESTUN:
+					if (weaponDB.dt_sizestun != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.dt_sizestun));
+						Inst.DT_SIZESTUN.defaultValue = weaponDB.dt_sizestun.toString();
+					}
+					break;
+				case DEMONUNDEAD:
+					if (weaponDB.demonundead != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.demonundead));
+						Inst.DEMONUNDEAD.defaultValue = weaponDB.demonundead.toString();
+					}
+					break;
 				}
 			}
 		}
@@ -1402,6 +1449,36 @@ public class WeaponDetailsPage extends AbstractDetailsPage {
 					break;
 				case SKIP2:
 					if (((WeaponInst4)mod).isSkip2()) {
+						return Boolean.TRUE;
+					}
+					break;
+				case DT_WEAKNESS:
+					if (((WeaponInst4)mod).isDt_weakness()) {
+						return Boolean.TRUE;
+					}
+					break;
+				case DT_DRAIN:
+					if (((WeaponInst4)mod).isDt_drain()) {
+						return Boolean.TRUE;
+					}
+					break;
+				case DT_WEAPONDRAIN:
+					if (((WeaponInst4)mod).isDt_weapondrain()) {
+						return Boolean.TRUE;
+					}
+					break;
+				case SACREDONLY:
+					if (((WeaponInst4)mod).isSacredonly()) {
+						return Boolean.TRUE;
+					}
+					break;
+				case DT_SIZESTUN:
+					if (((WeaponInst4)mod).isDt_sizestun()) {
+						return Boolean.TRUE;
+					}
+					break;
+				case DEMONUNDEAD:
+					if (((WeaponInst4)mod).isDemonundead()) {
 						return Boolean.TRUE;
 					}
 					break;
@@ -1817,6 +1894,24 @@ public class WeaponDetailsPage extends AbstractDetailsPage {
 						case SKIP2:
 							type.setSkip2(true);
 							break;
+						case DT_WEAKNESS:
+							type.setDt_weakness(true);
+							break;
+						case DT_DRAIN:
+							type.setDt_drain(true);
+							break;
+						case DT_WEAPONDRAIN:
+							type.setDt_weapondrain(true);
+							break;
+						case SACREDONLY:
+							type.setSacredonly(true);
+							break;
+						case DT_SIZESTUN:
+							type.setDt_sizestun(true);
+							break;
+						case DEMONUNDEAD:
+							type.setDemonundead(true);
+							break;
 						}
 						mods.add(type);
 					}  
@@ -2154,6 +2249,36 @@ public class WeaponDetailsPage extends AbstractDetailsPage {
 									break;
 								case SKIP2:
 									if (((WeaponInst4)mod).isSkip2()) {
+										modToRemove = mod;
+									}
+									break;
+								case DT_WEAKNESS:
+									if (((WeaponInst4)mod).isDt_weakness()) {
+										modToRemove = mod;
+									}
+									break;
+								case DT_DRAIN:
+									if (((WeaponInst4)mod).isDt_drain()) {
+										modToRemove = mod;
+									}
+									break;
+								case DT_WEAPONDRAIN:
+									if (((WeaponInst4)mod).isDt_weapondrain()) {
+										modToRemove = mod;
+									}
+									break;
+								case SACREDONLY:
+									if (((WeaponInst4)mod).isSacredonly()) {
+										modToRemove = mod;
+									}
+									break;
+								case DT_SIZESTUN:
+									if (((WeaponInst4)mod).isDt_sizestun()) {
+										modToRemove = mod;
+									}
+									break;
+								case DEMONUNDEAD:
+									if (((WeaponInst4)mod).isDemonundead()) {
 										modToRemove = mod;
 									}
 									break;

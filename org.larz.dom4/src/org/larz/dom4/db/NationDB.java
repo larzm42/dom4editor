@@ -25,6 +25,7 @@ public class NationDB {
 	public String startsite3;
 	public String startsite4;
 	public Integer era;
+	public Integer likesterr;
 	
 	public Integer hero1;
 	public Integer hero2;

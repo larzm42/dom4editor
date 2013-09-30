@@ -15,6 +15,7 @@
  */
 package org.larz.dom4.db;
 
+
 public class WeaponDB {
 	public Integer id;
 	public String name;
@@ -81,5 +82,10 @@ public class WeaponDB {
 	public Boolean melee50;
 	public Boolean skip;
 	public Boolean skip2;
-
+	public Boolean dt_weakness;
+	public Boolean dt_drain;
+	public Boolean dt_weapondrain;
+	public Boolean sacredonly;
+	public Boolean dt_sizestun;
+	public Boolean demonundead;
 }

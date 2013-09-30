@@ -92,6 +92,7 @@ public class NationDetailsPage extends AbstractDetailsPage {
 		COLOR (Messages.getString("NationDetailsSection.mod.color"), "0.0", "0.0", "0.0"),
 		SECONDARYCOLOR (Messages.getString("NationDetailsSection.mod.secondarycolor"), "0.0", "0.0", "0.0"),
 		FLAG (Messages.getString("NationDetailsSection.mod.flag"), ""),
+		LIKESTERR (Messages.getString("NationDetailsSection.mod.likesterr"), ""),
 		CLEARREC (Messages.getString("NationDetailsSection.mod.clearrec")),
 		STARTCOM (Messages.getString("NationDetailsSection.mod.startcom"), "0"),
 		STARTSCOUT (Messages.getString("NationDetailsSection.mod.startscout"), "0"),
@@ -364,6 +365,7 @@ public class NationDetailsPage extends AbstractDetailsPage {
 		super(doc, viewer);
 		instMap.put(Inst.EPITHET, new Inst1Fields());
 		instMap.put(Inst.FLAG, new Inst1Fields());
+		instMap.put(Inst.LIKESTERR, new Inst2Fields());
 		instMap.put(Inst.STARTSITE1, new Inst1Fields());
 		instMap.put(Inst.STARTSITE2, new Inst1Fields());
 		instMap.put(Inst.STARTSITE3, new Inst1Fields());
@@ -1624,6 +1626,12 @@ public class NationDetailsPage extends AbstractDetailsPage {
 						Inst.ERA.defaultValue = nationDB.era.toString();
 					}
 					break;
+				case LIKESTERR:
+					if (nationDB.likesterr != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", nationDB.likesterr));
+						Inst.LIKESTERR.defaultValue = nationDB.likesterr.toString();
+					}
+					break;
 				}
 			}
 		}
@@ -1769,6 +1777,11 @@ public class NationDetailsPage extends AbstractDetailsPage {
 				switch (inst2) {
 				case ERA:
 					if (((NationInst2)mod).isEra()){
+						return Integer.valueOf(((NationInst2)mod).getValue());
+					}
+					break;
+				case LIKESTERR:
+					if (((NationInst2)mod).isLikesterr()){
 						return Integer.valueOf(((NationInst2)mod).getValue());
 					}
 					break;
@@ -4114,6 +4127,11 @@ public class NationDetailsPage extends AbstractDetailsPage {
 						switch (inst2) {
 						case ERA:
 							if (((NationInst2)mod).isEra()){
+								((NationInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case LIKESTERR:
+							if (((NationInst2)mod).isLikesterr()){
 								((NationInst2)mod).setValue(Integer.parseInt(newName));
 							}
 							break;
@@ -6880,6 +6898,9 @@ public class NationDetailsPage extends AbstractDetailsPage {
 						case ERA:
 							type.setEra(true);
 							break;
+						case LIKESTERR:
+							type.setLikesterr(true);
+							break;
 						case LABCOST:
 							type.setLabcost(true);
 							break;
@@ -7682,6 +7703,11 @@ public class NationDetailsPage extends AbstractDetailsPage {
 								switch (inst) {
 								case ERA:
 									if (((NationInst2)mod).isEra()){
+										modToRemove = mod;
+									}
+									break;
+								case LIKESTERR:
+									if (((NationInst2)mod).isLikesterr()){
 										modToRemove = mod;
 									}
 									break;

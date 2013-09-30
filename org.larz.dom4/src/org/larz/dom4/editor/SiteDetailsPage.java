@@ -1318,7 +1318,7 @@ public class SiteDetailsPage extends AbstractDetailsPage {
 				}
 			}
 		}
-		name.getParent().getParent().layout(true, true);
+		name.getParent().getParent().getParent().layout(true, true);
 	}
 	
 	private String getSelectSitename(Object site) {

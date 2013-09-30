@@ -628,11 +628,11 @@ public class DmEditor extends FormEditor implements IMenuListener, IGotoMarker {
 												((MonsterInst5)mod).isDomsummon() ||
 												((MonsterInst5)mod).isDomsummon2() ||
 												((MonsterInst5)mod).isDomsummon20() ||
-												((MonsterInst5)mod).isMakemonster1() ||
-												((MonsterInst5)mod).isMakemonster2() ||
-												((MonsterInst5)mod).isMakemonster3() ||
-												((MonsterInst5)mod).isMakemonster4() ||
-												((MonsterInst5)mod).isMakemonster5() ||
+												((MonsterInst5)mod).isMakemonsters1() ||
+												((MonsterInst5)mod).isMakemonsters2() ||
+												((MonsterInst5)mod).isMakemonsters3() ||
+												((MonsterInst5)mod).isMakemonsters4() ||
+												((MonsterInst5)mod).isMakemonsters5() ||
 												((MonsterInst5)mod).isSummon1() ||
 												((MonsterInst5)mod).isSummon5())) {
 												if (((MonsterInst5)mod).getValue2() == oldValue) {

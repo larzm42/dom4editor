@@ -206,11 +206,11 @@ public class MonsterDB {
 	public String domsummon;
 	public String domsummon2;
 	public String domsummon20;
-	public String makemonster1;
-	public String makemonster2;
-	public String makemonster3;
-	public String makemonster4;
-	public String makemonster5;
+	public String makemonsters1;
+	public String makemonsters2;
+	public String makemonsters3;
+	public String makemonsters4;
+	public String makemonsters5;
 	public String summon1;
 	public String summon2;
 	public String summon3;

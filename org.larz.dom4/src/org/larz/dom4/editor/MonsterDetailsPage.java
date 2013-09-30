@@ -310,11 +310,11 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 		DOMSUMMON2 (Messages.getString("MonsterDetailsSection.mod.domsummon2"), ""),
 		DOMSUMMON20 (Messages.getString("MonsterDetailsSection.mod.domsummon20"), ""),
 		RAREDOMSUMMON (Messages.getString("MonsterDetailsSection.mod.raredomsummon"), "0"),
-		MAKEMONSTER1 (Messages.getString("MonsterDetailsSection.mod.makemonster1"), ""),
-		MAKEMONSTER2 (Messages.getString("MonsterDetailsSection.mod.makemonster2"), ""),
-		MAKEMONSTER3 (Messages.getString("MonsterDetailsSection.mod.makemonster3"), ""),
-		MAKEMONSTER4 (Messages.getString("MonsterDetailsSection.mod.makemonster4"), ""),
-		MAKEMONSTER5 (Messages.getString("MonsterDetailsSection.mod.makemonster5"), ""),
+		MAKEMONSTERS1 (Messages.getString("MonsterDetailsSection.mod.makemonsters1"), ""),
+		MAKEMONSTERS2 (Messages.getString("MonsterDetailsSection.mod.makemonsters2"), ""),
+		MAKEMONSTERS3 (Messages.getString("MonsterDetailsSection.mod.makemonsters3"), ""),
+		MAKEMONSTERS4 (Messages.getString("MonsterDetailsSection.mod.makemonsters4"), ""),
+		MAKEMONSTERS5 (Messages.getString("MonsterDetailsSection.mod.makemonsters5"), ""),
 		SUMMON1 (Messages.getString("MonsterDetailsSection.mod.summon1"), ""),
 		SUMMON2 (Messages.getString("MonsterDetailsSection.mod.summon2"), ""),
 		SUMMON3 (Messages.getString("MonsterDetailsSection.mod.summon3"), ""),
@@ -716,11 +716,11 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 		instMap.put(Inst.DOMSUMMON, new Inst5Fields());
 		instMap.put(Inst.DOMSUMMON2, new Inst5Fields());
 		instMap.put(Inst.DOMSUMMON20, new Inst5Fields());
-		instMap.put(Inst.MAKEMONSTER1, new Inst5Fields());
-		instMap.put(Inst.MAKEMONSTER2, new Inst5Fields());
-		instMap.put(Inst.MAKEMONSTER3, new Inst5Fields());
-		instMap.put(Inst.MAKEMONSTER4, new Inst5Fields());
-		instMap.put(Inst.MAKEMONSTER5, new Inst5Fields());
+		instMap.put(Inst.MAKEMONSTERS1, new Inst5Fields());
+		instMap.put(Inst.MAKEMONSTERS2, new Inst5Fields());
+		instMap.put(Inst.MAKEMONSTERS3, new Inst5Fields());
+		instMap.put(Inst.MAKEMONSTERS4, new Inst5Fields());
+		instMap.put(Inst.MAKEMONSTERS5, new Inst5Fields());
 		instMap.put(Inst.SUMMON1, new Inst5Fields());
 		instMap.put(Inst.SUMMON2, new Inst5Fields());
 		instMap.put(Inst.SUMMON3, new Inst5Fields());
@@ -729,7 +729,7 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 		instMap.put(Inst.SLOWREC, new Inst4Fields());
 		instMap.put(Inst.NOSLOWREC, new Inst4Fields());
 		instMap.put(Inst.RECLIMIT, new Inst2Fields());
-		instMap.put(Inst.CHAOSREC, new Inst4Fields());
+		instMap.put(Inst.CHAOSREC, new Inst2Fields());
 		instMap.put(Inst.SINGLEBATTLE, new Inst4Fields());
 		instMap.put(Inst.AISINGLEREC, new Inst4Fields());
 		instMap.put(Inst.AINOREC, new Inst4Fields());
@@ -3998,49 +3998,49 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 						Inst.DOMSUMMON20.defaultValue = "";
 					}
 					break;
-				case MAKEMONSTER1:
-					if (monsterDB.makemonster1 != null) {
-						((Inst5Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.makemonster1));
-						Inst.MAKEMONSTER1.defaultValue = monsterDB.makemonster1;
+				case MAKEMONSTERS1:
+					if (monsterDB.makemonsters1 != null) {
+						((Inst5Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.makemonsters1));
+						Inst.MAKEMONSTERS1.defaultValue = monsterDB.makemonsters1;
 					} else {
 						((Inst5Fields)fields.getValue()).defaultLabel.setText("");
-						Inst.MAKEMONSTER1.defaultValue = "";
+						Inst.MAKEMONSTERS1.defaultValue = "";
 					}
 					break;
-				case MAKEMONSTER2:
-					if (monsterDB.makemonster2 != null) {
-						((Inst5Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.makemonster2));
-						Inst.MAKEMONSTER2.defaultValue = monsterDB.makemonster2;
+				case MAKEMONSTERS2:
+					if (monsterDB.makemonsters2 != null) {
+						((Inst5Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.makemonsters2));
+						Inst.MAKEMONSTERS2.defaultValue = monsterDB.makemonsters2;
 					} else {
 						((Inst5Fields)fields.getValue()).defaultLabel.setText("");
-						Inst.MAKEMONSTER2.defaultValue = "";
+						Inst.MAKEMONSTERS2.defaultValue = "";
 					}
 					break;
-				case MAKEMONSTER3:
-					if (monsterDB.makemonster3 != null) {
-						((Inst5Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.makemonster3));
-						Inst.MAKEMONSTER3.defaultValue = monsterDB.makemonster3;
+				case MAKEMONSTERS3:
+					if (monsterDB.makemonsters3 != null) {
+						((Inst5Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.makemonsters3));
+						Inst.MAKEMONSTERS3.defaultValue = monsterDB.makemonsters3;
 					} else {
 						((Inst5Fields)fields.getValue()).defaultLabel.setText("");
-						Inst.MAKEMONSTER3.defaultValue = "";
+						Inst.MAKEMONSTERS3.defaultValue = "";
 					}
 					break;
-				case MAKEMONSTER4:
-					if (monsterDB.makemonster4 != null) {
-						((Inst5Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.makemonster4));
-						Inst.MAKEMONSTER4.defaultValue = monsterDB.makemonster4;
+				case MAKEMONSTERS4:
+					if (monsterDB.makemonsters4 != null) {
+						((Inst5Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.makemonsters4));
+						Inst.MAKEMONSTERS4.defaultValue = monsterDB.makemonsters4;
 					} else {
 						((Inst5Fields)fields.getValue()).defaultLabel.setText("");
-						Inst.MAKEMONSTER4.defaultValue = "";
+						Inst.MAKEMONSTERS4.defaultValue = "";
 					}
 					break;
-				case MAKEMONSTER5:
-					if (monsterDB.makemonster5 != null) {
-						((Inst5Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.makemonster5));
-						Inst.MAKEMONSTER5.defaultValue = monsterDB.makemonster5;
+				case MAKEMONSTERS5:
+					if (monsterDB.makemonsters5 != null) {
+						((Inst5Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.makemonsters5));
+						Inst.MAKEMONSTERS5.defaultValue = monsterDB.makemonsters5;
 					} else {
 						((Inst5Fields)fields.getValue()).defaultLabel.setText("");
-						Inst.MAKEMONSTER5.defaultValue = "";
+						Inst.MAKEMONSTERS5.defaultValue = "";
 					}
 					break;
 				case SUMMON1:
@@ -4126,10 +4126,10 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 					break;
 				case CHAOSREC:
 					if (monsterDB.chaosrec != null) {
-						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.chaosrec));
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.chaosrec));
 						Inst.CHAOSREC.defaultValue = monsterDB.chaosrec.toString();
 					} else {
-						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
 						Inst.CHAOSREC.defaultValue = "";
 					}
 					break;
@@ -5958,6 +5958,11 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 						return Integer.valueOf(((MonsterInst2)mod).getValue());
 					}
 					break;
+				case CHAOSREC:
+					if (((MonsterInst2)mod).isChaosrec()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
 				}
 			}
 		}
@@ -6560,11 +6565,6 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 						return Boolean.TRUE;
 					}
 					break;
-				case CHAOSREC:
-					if (((MonsterInst4)mod).isChaosrec()){
-						return Boolean.TRUE;
-					}
-					break;
 				case SINGLEBATTLE:
 					if (((MonsterInst4)mod).isSinglebattle()){
 						return Boolean.TRUE;
@@ -6909,8 +6909,8 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 						return intVal;
 					}
 					break;
-				case MAKEMONSTER1:
-					if (((MonsterInst5)mod).isMakemonster1()){
+				case MAKEMONSTERS1:
+					if (((MonsterInst5)mod).isMakemonsters1()){
 						String strVal = ((MonsterInst5)mod).getValue1();
 						Integer intVal = ((MonsterInst5)mod).getValue2();
 						if (strVal != null) {
@@ -6919,8 +6919,8 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 						return intVal;
 					}
 					break;
-				case MAKEMONSTER2:
-					if (((MonsterInst5)mod).isMakemonster2()){
+				case MAKEMONSTERS2:
+					if (((MonsterInst5)mod).isMakemonsters2()){
 						String strVal = ((MonsterInst5)mod).getValue1();
 						Integer intVal = ((MonsterInst5)mod).getValue2();
 						if (strVal != null) {
@@ -6929,8 +6929,8 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 						return intVal;
 					}
 					break;
-				case MAKEMONSTER3:
-					if (((MonsterInst5)mod).isMakemonster3()){
+				case MAKEMONSTERS3:
+					if (((MonsterInst5)mod).isMakemonsters3()){
 						String strVal = ((MonsterInst5)mod).getValue1();
 						Integer intVal = ((MonsterInst5)mod).getValue2();
 						if (strVal != null) {
@@ -6939,8 +6939,8 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 						return intVal;
 					}
 					break;
-				case MAKEMONSTER4:
-					if (((MonsterInst5)mod).isMakemonster4()){
+				case MAKEMONSTERS4:
+					if (((MonsterInst5)mod).isMakemonsters4()){
 						String strVal = ((MonsterInst5)mod).getValue1();
 						Integer intVal = ((MonsterInst5)mod).getValue2();
 						if (strVal != null) {
@@ -6949,8 +6949,8 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 						return intVal;
 					}
 					break;
-				case MAKEMONSTER5:
-					if (((MonsterInst5)mod).isMakemonster5()){
+				case MAKEMONSTERS5:
+					if (((MonsterInst5)mod).isMakemonsters5()){
 						String strVal = ((MonsterInst5)mod).getValue1();
 						Integer intVal = ((MonsterInst5)mod).getValue2();
 						if (strVal != null) {
@@ -8686,11 +8686,11 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 								modsToAdd.add(newMod);
 							}
 							break;
-						case MAKEMONSTER1:
-							if (((MonsterInst5)mod).isMakemonster1()){
+						case MAKEMONSTERS1:
+							if (((MonsterInst5)mod).isMakemonsters1()){
 								modsToRemove.add(mod);
 								MonsterInst5 newMod = DmFactory.eINSTANCE.createMonsterInst5();
-								newMod.setMakemonster1(true);
+								newMod.setMakemonsters1(true);
 								if (newValue != null) {
 									newMod.setValue2(Integer.parseInt(newName));
 								} else {
@@ -8699,11 +8699,11 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 								modsToAdd.add(newMod);
 							}
 							break;
-						case MAKEMONSTER2:
-							if (((MonsterInst5)mod).isMakemonster2()){
+						case MAKEMONSTERS2:
+							if (((MonsterInst5)mod).isMakemonsters2()){
 								modsToRemove.add(mod);
 								MonsterInst5 newMod = DmFactory.eINSTANCE.createMonsterInst5();
-								newMod.setMakemonster2(true);
+								newMod.setMakemonsters2(true);
 								if (newValue != null) {
 									newMod.setValue2(Integer.parseInt(newName));
 								} else {
@@ -8712,11 +8712,11 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 								modsToAdd.add(newMod);
 							}
 							break;
-						case MAKEMONSTER3:
-							if (((MonsterInst5)mod).isMakemonster3()){
+						case MAKEMONSTERS3:
+							if (((MonsterInst5)mod).isMakemonsters3()){
 								modsToRemove.add(mod);
 								MonsterInst5 newMod = DmFactory.eINSTANCE.createMonsterInst5();
-								newMod.setMakemonster3(true);
+								newMod.setMakemonsters3(true);
 								if (newValue != null) {
 									newMod.setValue2(Integer.parseInt(newName));
 								} else {
@@ -8725,11 +8725,11 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 								modsToAdd.add(newMod);
 							}
 							break;
-						case MAKEMONSTER4:
-							if (((MonsterInst5)mod).isMakemonster4()){
+						case MAKEMONSTERS4:
+							if (((MonsterInst5)mod).isMakemonsters4()){
 								modsToRemove.add(mod);
 								MonsterInst5 newMod = DmFactory.eINSTANCE.createMonsterInst5();
-								newMod.setMakemonster4(true);
+								newMod.setMakemonsters4(true);
 								if (newValue != null) {
 									newMod.setValue2(Integer.parseInt(newName));
 								} else {
@@ -8738,11 +8738,11 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 								modsToAdd.add(newMod);
 							}
 							break;
-						case MAKEMONSTER5:
-							if (((MonsterInst5)mod).isMakemonster5()){
+						case MAKEMONSTERS5:
+							if (((MonsterInst5)mod).isMakemonsters5()){
 								modsToRemove.add(mod);
 								MonsterInst5 newMod = DmFactory.eINSTANCE.createMonsterInst5();
-								newMod.setMakemonster5(true);
+								newMod.setMakemonsters5(true);
 								if (newValue != null) {
 									newMod.setValue2(Integer.parseInt(newName));
 								} else {
@@ -9506,6 +9506,9 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 						case HOMEREALM:
 							type.setHomerealm(true);
 							break;				
+						case CHAOSREC:
+							type.setChaosrec(true);
+							break;				
 						}
 						type.setValue(Integer.valueOf(newName));
 						// copystats should be the first command
@@ -9844,9 +9847,6 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 						case NOSLOWREC:
 							type.setNoslowrec(true);
 							break;				
-						case CHAOSREC:
-							type.setChaosrec(true);
-							break;				
 						case SINGLEBATTLE:
 							type.setSinglebattle(true);
 							break;				
@@ -9997,20 +9997,20 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 						case DOMSUMMON20:
 							type.setDomsummon20(true);
 							break;
-						case MAKEMONSTER1:
-							type.setMakemonster1(true);
+						case MAKEMONSTERS1:
+							type.setMakemonsters1(true);
 							break;
-						case MAKEMONSTER2:
-							type.setMakemonster2(true);
+						case MAKEMONSTERS2:
+							type.setMakemonsters2(true);
 							break;
-						case MAKEMONSTER3:
-							type.setMakemonster3(true);
+						case MAKEMONSTERS3:
+							type.setMakemonsters3(true);
 							break;
-						case MAKEMONSTER4:
-							type.setMakemonster4(true);
+						case MAKEMONSTERS4:
+							type.setMakemonsters4(true);
 							break;
-						case MAKEMONSTER5:
-							type.setMakemonster5(true);
+						case MAKEMONSTERS5:
+							type.setMakemonsters5(true);
 							break;
 						case SUMMON1:
 							type.setSummon1(true);
@@ -10840,7 +10840,11 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 										modToRemove = mod;
 									}
 									break;
-								}
+								case CHAOSREC:
+									if (((MonsterInst2)mod).isChaosrec()){
+										modToRemove = mod;
+									}
+									break;								}
 							}
 							if (mod instanceof MonsterInst3) {
 								switch (inst2) {
@@ -11424,11 +11428,6 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 										modToRemove = mod;
 									}
 									break;
-								case CHAOSREC:
-									if (((MonsterInst4)mod).isChaosrec()){
-										modToRemove = mod;
-									}
-									break;
 								case SINGLEBATTLE:
 									if (((MonsterInst4)mod).isSinglebattle()){
 										modToRemove = mod;
@@ -11669,28 +11668,28 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 										modToRemove = mod;
 									}
 									break;
-								case MAKEMONSTER1:
-									if (((MonsterInst5)mod).isMakemonster1()){
+								case MAKEMONSTERS1:
+									if (((MonsterInst5)mod).isMakemonsters1()){
 										modToRemove = mod;
 									}
 									break;
-								case MAKEMONSTER2:
-									if (((MonsterInst5)mod).isMakemonster2()){
+								case MAKEMONSTERS2:
+									if (((MonsterInst5)mod).isMakemonsters2()){
 										modToRemove = mod;
 									}
 									break;
-								case MAKEMONSTER3:
-									if (((MonsterInst5)mod).isMakemonster3()){
+								case MAKEMONSTERS3:
+									if (((MonsterInst5)mod).isMakemonsters3()){
 										modToRemove = mod;
 									}
 									break;
-								case MAKEMONSTER4:
-									if (((MonsterInst5)mod).isMakemonster4()){
+								case MAKEMONSTERS4:
+									if (((MonsterInst5)mod).isMakemonsters4()){
 										modToRemove = mod;
 									}
 									break;
-								case MAKEMONSTER5:
-									if (((MonsterInst5)mod).isMakemonster5()){
+								case MAKEMONSTERS5:
+									if (((MonsterInst5)mod).isMakemonsters5()){
 										modToRemove = mod;
 									}
 									break;

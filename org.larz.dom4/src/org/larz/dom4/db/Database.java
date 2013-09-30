@@ -1170,15 +1170,15 @@ public class Database {
 			
 			int mmNum = rs.getInt("n_makemonster");
 			if (mmNum == 1) {
-				monster.makemonster1 = Integer.toString(rs.getInt("makemonster"));
+				monster.makemonsters1 = Integer.toString(rs.getInt("makemonster"));
 			} else if (mmNum == 2) {
-				monster.makemonster2 = Integer.toString(rs.getInt("makemonster"));
+				monster.makemonsters2 = Integer.toString(rs.getInt("makemonster"));
 			} else if (mmNum == 3) {
-				monster.makemonster3 = Integer.toString(rs.getInt("makemonster"));
+				monster.makemonsters3 = Integer.toString(rs.getInt("makemonster"));
 			} else if (mmNum == 4) {
-				monster.makemonster4 = Integer.toString(rs.getInt("makemonster"));
+				monster.makemonsters4 = Integer.toString(rs.getInt("makemonster"));
 			} else if (mmNum == 5) {
-				monster.makemonster5 = Integer.toString(rs.getInt("makemonster"));
+				monster.makemonsters5 = Integer.toString(rs.getInt("makemonster"));
 			}
 			
 			int sumNum = rs.getInt("n_summon");
