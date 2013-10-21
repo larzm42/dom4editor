@@ -70,7 +70,6 @@ import org.larz.dom4.dm.dm.ItemMods;
 import org.larz.dom4.dm.dm.SelectItemById;
 import org.larz.dom4.dm.dm.SelectItemByName;
 import org.larz.dom4.dm.ui.help.HelpTextHelper;
-import org.larz.dom4.editor.SiteDetailsPage.Inst;
 
 @SuppressWarnings("incomplete-switch")
 public class ItemDetailsPage extends AbstractDetailsPage {
@@ -100,6 +99,7 @@ public class ItemDetailsPage extends AbstractDetailsPage {
 		PREC (Messages.getString("ItemDetailsSection.mod.prec"), "0"),
 		MR (Messages.getString("ItemDetailsSection.mod.mr"), "0"),
 		MORALE (Messages.getString("ItemDetailsSection.mod.morale"), "0"),
+		VOIDSANITY (Messages.getString("ItemDetailsSection.mod.voidsanity"), "0"),
 		FIRERES (Messages.getString("ItemDetailsSection.mod.fireres"), "0"),
 		COLDRES (Messages.getString("ItemDetailsSection.mod.coldres"), "0"),
 		SHOCKRES (Messages.getString("ItemDetailsSection.mod.shockres"), "0"),
@@ -140,6 +140,7 @@ public class ItemDetailsPage extends AbstractDetailsPage {
 		STONESKIN (Messages.getString("ItemDetailsSection.mod.stoneskin")),
 		IRONSKIN (Messages.getString("ItemDetailsSection.mod.ironskin")),
 		MAPSPEED (Messages.getString("ItemDetailsSection.mod.mapspeed"), "0"),
+		WATERBREATHING (Messages.getString("ItemDetailsSection.mod.waterbreathing")),
 		FLOAT (Messages.getString("ItemDetailsSection.mod.float")),
 		FLY (Messages.getString("ItemDetailsSection.mod.fly")),
 		STORMIMMUNE (Messages.getString("ItemDetailsSection.mod.stormimmune")),
@@ -167,7 +168,8 @@ public class ItemDetailsPage extends AbstractDetailsPage {
 
 		NORIVERPASS (Messages.getString("ItemDetailsSection.mod.noriverpass")),
 		UNTELEPORTABLE (Messages.getString("ItemDetailsSection.mod.unteleportable")),
-
+		GIFTOFWATER (Messages.getString("ItemDetailsSection.mod.giftofwater")),
+		
 		SEDUCE (Messages.getString("ItemDetailsSection.mod.seduce"), "0"),
 		SUCCUBUS (Messages.getString("ItemDetailsSection.mod.succubus"), "0"),
 		BECKON (Messages.getString("ItemDetailsSection.mod.beckon"), "0"),
@@ -178,6 +180,7 @@ public class ItemDetailsPage extends AbstractDetailsPage {
 		PIERCERES (Messages.getString("ItemDetailsSection.mod.pierceres")),
 		BLUNTRES (Messages.getString("ItemDetailsSection.mod.bluntres")),
 		ICEPROT (Messages.getString("ItemDetailsSection.mod.iceprot"), "0"),
+		INVULNERABLE (Messages.getString("ItemDetailsSection.mod.invulnerable"), "0"),
 
 		HEALER (Messages.getString("ItemDetailsSection.mod.healer"), "0"),
 		AUTOHEALER (Messages.getString("ItemDetailsSection.mod.autohealer"), "0"),
@@ -250,6 +253,7 @@ public class ItemDetailsPage extends AbstractDetailsPage {
 		
 		DOUSE (Messages.getString("ItemDetailsSection.mod.douse"), "0"),
 		RESEARCHBONUS (Messages.getString("ItemDetailsSection.mod.researchbonus"), "0"),
+		INSPIRINGRES (Messages.getString("ItemDetailsSection.mod.inspiringres"), "0"),
 		DIVINEINS (Messages.getString("ItemDetailsSection.mod.divineins"), "0"),
 		DRAINIMMUNE (Messages.getString("ItemDetailsSection.mod.drainimmune")),
 		MAGICIMMUNE (Messages.getString("ItemDetailsSection.mod.magicimmune")),
@@ -398,6 +402,10 @@ public class ItemDetailsPage extends AbstractDetailsPage {
 		instMap.put(Inst.PREC, new Inst2Fields());
 		instMap.put(Inst.MR, new Inst2Fields());
 		instMap.put(Inst.MORALE, new Inst2Fields());
+		instMap.put(Inst.VOIDSANITY, new Inst2Fields());
+		instMap.put(Inst.GIFTOFWATER, new Inst2Fields());
+		instMap.put(Inst.INVULNERABLE, new Inst2Fields());
+		instMap.put(Inst.INSPIRINGRES, new Inst2Fields());
 		instMap.put(Inst.FIRERES, new Inst2Fields());
 		instMap.put(Inst.COLDRES, new Inst2Fields());
 		instMap.put(Inst.SHOCKRES, new Inst2Fields());
@@ -438,6 +446,7 @@ public class ItemDetailsPage extends AbstractDetailsPage {
 		instMap.put(Inst.STONESKIN, new Inst4Fields());
 		instMap.put(Inst.IRONSKIN, new Inst4Fields());
 		instMap.put(Inst.MAPSPEED, new Inst2Fields());
+		instMap.put(Inst.WATERBREATHING, new Inst4Fields());
 		instMap.put(Inst.FLOAT, new Inst4Fields());
 		instMap.put(Inst.FLY, new Inst4Fields());
 		instMap.put(Inst.STORMIMMUNE, new Inst4Fields());
@@ -993,6 +1002,7 @@ public class ItemDetailsPage extends AbstractDetailsPage {
 				myInst5Value1 = value;
 				
 				check.addSelectionListener(new SelectionAdapter() {
+					@SuppressWarnings("unchecked")
 					@Override
 					public void widgetSelected(SelectionEvent e) {
 						if (check.getSelection()) {
@@ -1654,6 +1664,42 @@ public class ItemDetailsPage extends AbstractDetailsPage {
 					} else {
 						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
 						Inst.MORALE.defaultValue = "0";
+					}
+					break;
+				case VOIDSANITY:
+					if (itemDB.voidsanity != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", itemDB.voidsanity.toString()));
+						Inst.VOIDSANITY.defaultValue = itemDB.voidsanity.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.VOIDSANITY.defaultValue = "0";
+					}
+					break;
+				case GIFTOFWATER:
+					if (itemDB.giftofwater != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", itemDB.giftofwater.toString()));
+						Inst.GIFTOFWATER.defaultValue = itemDB.giftofwater.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.GIFTOFWATER.defaultValue = "0";
+					}
+					break;
+				case INVULNERABLE:
+					if (itemDB.invulnerable != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", itemDB.invulnerable.toString()));
+						Inst.INVULNERABLE.defaultValue = itemDB.invulnerable.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.INVULNERABLE.defaultValue = "0";
+					}
+					break;
+				case INSPIRINGRES:
+					if (itemDB.inspiringres != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", itemDB.inspiringres.toString()));
+						Inst.INSPIRINGRES.defaultValue = itemDB.inspiringres.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.INSPIRINGRES.defaultValue = "0";
 					}
 					break;
 				case FIRERES:
@@ -3071,6 +3117,15 @@ public class ItemDetailsPage extends AbstractDetailsPage {
 						Inst.IRONSKIN.defaultValue = "";
 					}
 					break;
+				case WATERBREATHING:
+					if (itemDB.waterbreathing != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", itemDB.waterbreathing));
+						Inst.WATERBREATHING.defaultValue = itemDB.waterbreathing.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.WATERBREATHING.defaultValue = "";
+					}
+					break;
 				case FLOAT:
 					if (itemDB.floatBoolean != null) {
 						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", itemDB.floatBoolean));
@@ -3637,6 +3692,26 @@ public class ItemDetailsPage extends AbstractDetailsPage {
 					break;
 				case MORALE:
 					if (((ItemInst2)mod).isMorale()){
+						return Integer.valueOf(((ItemInst2)mod).getValue());
+					}
+					break;					
+				case VOIDSANITY:
+					if (((ItemInst2)mod).isVoidsanity()){
+						return Integer.valueOf(((ItemInst2)mod).getValue());
+					}
+					break;
+				case GIFTOFWATER:
+					if (((ItemInst2)mod).isGiftofwater()){
+						return Integer.valueOf(((ItemInst2)mod).getValue());
+					}
+					break;
+				case INVULNERABLE:
+					if (((ItemInst2)mod).isInvulnerable()){
+						return Integer.valueOf(((ItemInst2)mod).getValue());
+					}
+					break;
+				case INSPIRINGRES:
+					if (((ItemInst2)mod).isInspiringres()){
 						return Integer.valueOf(((ItemInst2)mod).getValue());
 					}
 					break;
@@ -4552,6 +4627,11 @@ public class ItemDetailsPage extends AbstractDetailsPage {
 						return Boolean.TRUE;
 					}
 					break;
+				case WATERBREATHING:
+					if (((ItemInst4)mod).isWaterbreathing()){
+						return Boolean.TRUE;
+					}
+					break;
 				case FLOAT:
 					if (((ItemInst4)mod).isFloat()){
 						return Boolean.TRUE;
@@ -4994,6 +5074,26 @@ public class ItemDetailsPage extends AbstractDetailsPage {
 							break;
 						case MORALE:
 							if (((ItemInst2)mod).isMorale()){
+								((ItemInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;							
+						case VOIDSANITY:
+							if (((ItemInst2)mod).isVoidsanity()){
+								((ItemInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case GIFTOFWATER:
+							if (((ItemInst2)mod).isGiftofwater()){
+								((ItemInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case INVULNERABLE:
+							if (((ItemInst2)mod).isInvulnerable()){
+								((ItemInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case INSPIRINGRES:
+							if (((ItemInst2)mod).isInspiringres()){
 								((ItemInst2)mod).setValue(Integer.parseInt(newName));
 							}
 							break;
@@ -6202,7 +6302,19 @@ public class ItemDetailsPage extends AbstractDetailsPage {
 							break;
 						case MORALE:
 							type.setMorale(true);
+							break;							
+						case VOIDSANITY:
+							type.setVoidsanity(true);
 							break;
+						case GIFTOFWATER:
+							type.setGiftofwater(true);
+							break;
+						case INVULNERABLE:
+							type.setInvulnerable(true);
+							break;
+						case INSPIRINGRES:
+							type.setInspiringres(true);
+							break;							
 						case FIRERES:
 							type.setFireres(true);
 							break;
@@ -6699,6 +6811,9 @@ public class ItemDetailsPage extends AbstractDetailsPage {
 						case AUTOCOMPETE:
 							type.setAutocompete(true);
 							break;				
+						case WATERBREATHING:
+							type.setWaterbreathing(true);
+							break;				
 						case FLOAT:
 							type.setFloat(true);
 							break;				
@@ -7002,6 +7117,26 @@ public class ItemDetailsPage extends AbstractDetailsPage {
 									break;
 								case MORALE:
 									if (((ItemInst2)mod).isMorale()){
+										modToRemove = mod;
+									}
+									break;									
+								case VOIDSANITY:
+									if (((ItemInst2)mod).isVoidsanity()){
+										modToRemove = mod;
+									}
+									break;
+								case GIFTOFWATER:
+									if (((ItemInst2)mod).isGiftofwater()){
+										modToRemove = mod;
+									}
+									break;
+								case INVULNERABLE:
+									if (((ItemInst2)mod).isInvulnerable()){
+										modToRemove = mod;
+									}
+									break;
+								case INSPIRINGRES:
+									if (((ItemInst2)mod).isInspiringres()){
 										modToRemove = mod;
 									}
 									break;
@@ -7800,6 +7935,11 @@ public class ItemDetailsPage extends AbstractDetailsPage {
 									break;
 								case IRONSKIN:
 									if (((ItemInst4)mod).isIronskin()){
+										modToRemove = mod;
+									}
+									break;
+								case WATERBREATHING:
+									if (((ItemInst4)mod).isWaterbreathing()){
 										modToRemove = mod;
 									}
 									break;

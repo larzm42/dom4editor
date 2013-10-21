@@ -37,6 +37,10 @@ public class ItemDB {
 	public Integer prec;
 	public Integer mr;
 	public Integer morale;
+	public Integer voidsanity;
+	public Integer giftofwater;
+	public Integer invulnerable;
+	public Integer inspiringres;
 	public Integer fireres;
 	public Integer coldres;
 	public Integer shockres;
@@ -193,6 +197,7 @@ public class ItemDB {
 	public Boolean barkskin;
 	public Boolean stoneskin;
 	public Boolean ironskin;
+	public Boolean waterbreathing;
 	public Boolean floatBoolean;
 	public Boolean fly;
 	public Boolean stormimmune;

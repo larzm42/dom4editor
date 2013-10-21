@@ -92,7 +92,21 @@ public class NationDetailsPage extends AbstractDetailsPage {
 		COLOR (Messages.getString("NationDetailsSection.mod.color"), "0.0", "0.0", "0.0"),
 		SECONDARYCOLOR (Messages.getString("NationDetailsSection.mod.secondarycolor"), "0.0", "0.0", "0.0"),
 		FLAG (Messages.getString("NationDetailsSection.mod.flag"), ""),
-		LIKESTERR (Messages.getString("NationDetailsSection.mod.likesterr"), ""),
+		
+		CLEARSITES (Messages.getString("NationDetailsSection.mod.clearsites")),
+		STARTSITE1 (Messages.getString("NationDetailsSection.mod.startsite"), "0"),
+		STARTSITE2 (Messages.getString("NationDetailsSection.mod.startsite"), "0"),
+		STARTSITE3 (Messages.getString("NationDetailsSection.mod.startsite"), "0"),
+		STARTSITE4 (Messages.getString("NationDetailsSection.mod.startsite"), "0"),
+		UWNATION (Messages.getString("NationDetailsSection.mod.uwnation")),
+		IDEALCOLD (Messages.getString("NationDetailsSection.mod.idealcold"), "0"),
+		LIKESTERR (Messages.getString("NationDetailsSection.mod.likesterr"), "0"),
+		HATESTERR (Messages.getString("NationDetailsSection.mod.hatesterr"), "0"),
+
+		AIHOLDGOD (Messages.getString("NationDetailsSection.mod.aiholdgod")),
+		AIAWAKE (Messages.getString("NationDetailsSection.mod.aiawake"), "0"),
+		BLOODNATION (Messages.getString("NationDetailsSection.mod.bloodnation")),
+
 		CLEARREC (Messages.getString("NationDetailsSection.mod.clearrec")),
 		STARTCOM (Messages.getString("NationDetailsSection.mod.startcom"), "0"),
 		STARTSCOUT (Messages.getString("NationDetailsSection.mod.startscout"), "0"),
@@ -138,6 +152,11 @@ public class NationDetailsPage extends AbstractDetailsPage {
 		UWCOM3 (Messages.getString("NationDetailsSection.mod.uwcom3"), "0"),
 		UWCOM4 (Messages.getString("NationDetailsSection.mod.uwcom4"), "0"),
 		UWCOM5 (Messages.getString("NationDetailsSection.mod.uwcom5"), "0"),
+		COASTUNIT1 (Messages.getString("NationDetailsSection.mod.coastunit1"), "0"),
+		COASTUNIT2 (Messages.getString("NationDetailsSection.mod.coastunit2"), "0"),
+		COASTUNIT3 (Messages.getString("NationDetailsSection.mod.coastunit3"), "0"),
+		COASTCOM1 (Messages.getString("NationDetailsSection.mod.coastcom1"), "0"),
+		COASTCOM2 (Messages.getString("NationDetailsSection.mod.coastcom2"), "0"),
 		ADDFOREIGNUNIT1 (Messages.getString("NationDetailsSection.mod.addforeignunit"), "0"),
 		ADDFOREIGNCOM1 (Messages.getString("NationDetailsSection.mod.addforeigncom"), "0"),
 		ADDFOREIGNUNIT2 (Messages.getString("NationDetailsSection.mod.addforeignunit"), "0"),
@@ -225,6 +244,7 @@ public class NationDetailsPage extends AbstractDetailsPage {
 		MULTIHERO1 (Messages.getString("NationDetailsSection.mod.multihero1"), "0"),
 		MULTIHERO2 (Messages.getString("NationDetailsSection.mod.multihero2"), "0"),
 		MERCCOST (Messages.getString("NationDetailsSection.mod.merccost"), "0"),
+		
 		CLEARGODS (Messages.getString("NationDetailsSection.mod.cleargods")),
 		HOMEREALM (Messages.getString("NationDetailsSection.mod.homerealm"), "10"),
 		ADDGOD1 (Messages.getString("NationDetailsSection.mod.addgod"), "0"),
@@ -255,6 +275,8 @@ public class NationDetailsPage extends AbstractDetailsPage {
 		DELGOD13 (Messages.getString("NationDetailsSection.mod.delgod"), "0"),
 		ADDGOD14 (Messages.getString("NationDetailsSection.mod.addgod"), "0"),
 		DELGOD14 (Messages.getString("NationDetailsSection.mod.delgod"), "0"),
+		GODREBIRTH (Messages.getString("NationDetailsSection.mod.godrebirth")),
+		
 		DEFCOM1 (Messages.getString("NationDetailsSection.mod.defcom1"), "0"),
 		DEFCOM2 (Messages.getString("NationDetailsSection.mod.defcom2"), "0"),
 		DEFUNIT1 (Messages.getString("NationDetailsSection.mod.defunit1"), "0"),
@@ -266,33 +288,29 @@ public class NationDetailsPage extends AbstractDetailsPage {
 		DEFMULT2 (Messages.getString("NationDetailsSection.mod.defmult2"), "0"),
 		DEFMULT2B (Messages.getString("NationDetailsSection.mod.defmult2b"), "0"),
 		LIKESPOP (Messages.getString("NationDetailsSection.mod.likespop"), "0"),
+		
 		FORTERA (Messages.getString("NationDetailsSection.mod.fortera"), "0"),
 		FORTCOST (Messages.getString("NationDetailsSection.mod.fortcost"), "0"),
 		LABCOST (Messages.getString("NationDetailsSection.mod.labcost"), "0"),
 		TEMPLECOST (Messages.getString("NationDetailsSection.mod.templecost"), "0"),
 		TEMPLEPIC (Messages.getString("NationDetailsSection.mod.templepic"), "0"),
-		CLEARSITES (Messages.getString("NationDetailsSection.mod.clearsites")),
-		STARTSITE1 (Messages.getString("NationDetailsSection.mod.startsite"), "0"),
-		STARTSITE2 (Messages.getString("NationDetailsSection.mod.startsite"), "0"),
-		STARTSITE3 (Messages.getString("NationDetailsSection.mod.startsite"), "0"),
-		STARTSITE4 (Messages.getString("NationDetailsSection.mod.startsite"), "0"),
-		UWNATION (Messages.getString("NationDetailsSection.mod.uwnation")),
-		BLOODNATION (Messages.getString("NationDetailsSection.mod.bloodnation")),
-		NOPREACH (Messages.getString("NationDetailsSection.mod.nopreach")),
-		DYINGDOM (Messages.getString("NationDetailsSection.mod.dyingdom")),
-		SACRIFICEDOM (Messages.getString("NationDetailsSection.mod.sacrificedom")),
+		
+		NODEATHSUPPLY (Messages.getString("NationDetailsSection.mod.nodeathsupply")),
+		CASTLEPROD (Messages.getString("NationDetailsSection.mod.castleprod"), "0"),
+		TRADECOAST (Messages.getString("NationDetailsSection.mod.tradecoast"), "0"),
+		GOLEMHP (Messages.getString("NationDetailsSection.mod.golemhp"), "0"),
 		SPREADCOLD (Messages.getString("NationDetailsSection.mod.spreadcold"), "0"),
 		SPREADHEAT (Messages.getString("NationDetailsSection.mod.spreadheat"), "0"),
 		SPREADCHAOS (Messages.getString("NationDetailsSection.mod.spreadchaos"), "0"),
 		SPREADLAZY (Messages.getString("NationDetailsSection.mod.spreadlazy"), "0"),
 		SPREADDEATH (Messages.getString("NationDetailsSection.mod.spreaddeath"), "0"),
-		GOLEMHP (Messages.getString("NationDetailsSection.mod.golemhp"), "0"),
-		NODEATHSUPPLY (Messages.getString("NationDetailsSection.mod.nodeathsupply")),
-		IDEALCOLD (Messages.getString("NationDetailsSection.mod.idealcold"), "0"),
-		CASTLEPROD (Messages.getString("NationDetailsSection.mod.castleprod"), "0"),
+		NOPREACH (Messages.getString("NationDetailsSection.mod.nopreach")),
+		DYINGDOM (Messages.getString("NationDetailsSection.mod.dyingdom")),
+		SACRIFICEDOM (Messages.getString("NationDetailsSection.mod.sacrificedom")),
 		DOMKILL (Messages.getString("NationDetailsSection.mod.domkill"), "0"),
 		DOMUNREST (Messages.getString("NationDetailsSection.mod.domunrest"), "0"),
 		AUTOUNDEAD (Messages.getString("NationDetailsSection.mod.autoundead")),
+
 		ZOMBIEREANIM (Messages.getString("NationDetailsSection.mod.zombiereanim")),
 		HORSEREANIM (Messages.getString("NationDetailsSection.mod.horsereanim")),
 		WIGHTREANIM (Messages.getString("NationDetailsSection.mod.wightreanim")),
@@ -392,6 +410,9 @@ public class NationDetailsPage extends AbstractDetailsPage {
 		instMap.put(Inst.CASTLEPROD, new Inst2Fields());
 		instMap.put(Inst.DOMKILL, new Inst2Fields());
 		instMap.put(Inst.DOMUNREST, new Inst2Fields());
+		instMap.put(Inst.HATESTERR, new Inst2Fields());
+		instMap.put(Inst.AIAWAKE, new Inst2Fields());
+		instMap.put(Inst.TRADECOAST, new Inst2Fields());
 		instMap.put(Inst.CLEARNATION, new Inst3Fields());
 		instMap.put(Inst.CLEARREC, new Inst3Fields());
 		instMap.put(Inst.CLEARSITES, new Inst3Fields());
@@ -407,6 +428,8 @@ public class NationDetailsPage extends AbstractDetailsPage {
 		instMap.put(Inst.WIGHTREANIM, new Inst3Fields());
 		instMap.put(Inst.MANIKINREANIM, new Inst3Fields());
 		instMap.put(Inst.TOMBWYRMREANIM, new Inst3Fields());
+		instMap.put(Inst.AIHOLDGOD, new Inst3Fields());
+		instMap.put(Inst.GODREBIRTH, new Inst3Fields());
 		instMap.put(Inst.STARTCOM, new Inst4Fields());
 		instMap.put(Inst.STARTSCOUT, new Inst4Fields());
 		instMap.put(Inst.STARTUNITTYPE1, new Inst4Fields());
@@ -566,6 +589,11 @@ public class NationDetailsPage extends AbstractDetailsPage {
 		instMap.put(Inst.DELGOD12, new Inst4Fields());
 		instMap.put(Inst.DELGOD13, new Inst4Fields());
 		instMap.put(Inst.DELGOD14, new Inst4Fields());
+		instMap.put(Inst.COASTUNIT1, new Inst4Fields());
+		instMap.put(Inst.COASTUNIT2, new Inst4Fields());
+		instMap.put(Inst.COASTUNIT3, new Inst4Fields());
+		instMap.put(Inst.COASTCOM1, new Inst4Fields());
+		instMap.put(Inst.COASTCOM2, new Inst4Fields());
 		instMap.put(Inst.LIKESPOP, new Inst2Fields());
 		instMap.put(Inst.FORTERA, new Inst2Fields());
 		instMap.put(Inst.FORTCOST, new Inst2Fields());
@@ -757,8 +785,8 @@ public class NationDetailsPage extends AbstractDetailsPage {
 		delGodList.add(Inst.DELGOD13);
 		delGodList.add(Inst.DELGOD14);
 		dynamicFields.add(delGodList);
-
-}
+		
+	}
 	
 	/* (non-Javadoc)
 	 * @see org.eclipse.ui.forms.IDetailsPage#createContents(org.eclipse.swt.widgets.Composite)
@@ -1006,12 +1034,15 @@ public class NationDetailsPage extends AbstractDetailsPage {
 		for (final Map.Entry<Inst, InstFields> fields : instMap.entrySet()) {
 			final Inst key = fields.getKey();
 			
-			if (key.equals(Inst.CLEARNATION) || 
+			if (key.equals(Inst.CLEARNATION) ||
+				key.equals(Inst.CLEARSITES) ||
+				key.equals(Inst.AIHOLDGOD) ||
 				key.equals(Inst.CLEARREC) || 
 				key.equals(Inst.CLEARGODS) || 
 				key.equals(Inst.DEFCOM1) || 
-				key.equals(Inst.FORTERA) || 
-				key.equals(Inst.CLEARSITES)) {
+				key.equals(Inst.FORTERA) ||
+				key.equals(Inst.NODEATHSUPPLY) ||
+				key.equals(Inst.ZOMBIEREANIM)) {
 
 				final Section expandable = toolkit.createSection(client, ExpandableComposite.TWISTIE | ExpandableComposite.TITLE_BAR);
 				switch (key) {
@@ -1019,9 +1050,15 @@ public class NationDetailsPage extends AbstractDetailsPage {
 					expandable.setText(Messages.getString("NationDetailsSection.mod.section.general"));
 					inGeneral = true;
 					break;
+				case CLEARSITES:
+					expandable.setText(Messages.getString("NationDetailsSection.mod.section.sites"));
+					inGeneral = false;
+					break;
+				case AIHOLDGOD:
+					expandable.setText(Messages.getString("NationDetailsSection.mod.section.ai"));
+					break;
 				case CLEARREC:
 					expandable.setText(Messages.getString("NationDetailsSection.mod.section.units"));
-					inGeneral = false;
 					break;
 				case CLEARGODS:
 					expandable.setText(Messages.getString("NationDetailsSection.mod.section.gods"));
@@ -1032,8 +1069,11 @@ public class NationDetailsPage extends AbstractDetailsPage {
 				case FORTERA:
 					expandable.setText(Messages.getString("NationDetailsSection.mod.section.forts"));
 					break;
-				case CLEARSITES:
-					expandable.setText(Messages.getString("NationDetailsSection.mod.section.sites"));
+				case NODEATHSUPPLY:
+					expandable.setText(Messages.getString("NationDetailsSection.mod.section.dominion"));
+					break;
+				case ZOMBIEREANIM:
+					expandable.setText(Messages.getString("NationDetailsSection.mod.section.reanim"));
 					break;
 				}
 				gd = new GridData(SWT.FILL, SWT.FILL, false, false);
@@ -1125,6 +1165,7 @@ public class NationDetailsPage extends AbstractDetailsPage {
 					});
 				}
 				check.addSelectionListener(new SelectionAdapter() {
+					@SuppressWarnings("unchecked")
 					@Override
 					public void widgetSelected(SelectionEvent e) {
 						if (check.getSelection()) {
@@ -1890,6 +1931,21 @@ public class NationDetailsPage extends AbstractDetailsPage {
 						return Integer.valueOf(((NationInst2)mod).getValue());
 					}
 					break;
+				case HATESTERR:
+					if (((NationInst2)mod).isHatesterr()){
+						return Integer.valueOf(((NationInst2)mod).getValue());
+					}
+					break;
+				case AIAWAKE:
+					if (((NationInst2)mod).isAiawake()){
+						return Integer.valueOf(((NationInst2)mod).getValue());
+					}
+					break;
+				case TRADECOAST:
+					if (((NationInst2)mod).isTradecoast()){
+						return Integer.valueOf(((NationInst2)mod).getValue());
+					}
+					break;
 				case MERCCOST:
 					if (((NationInst2)mod).isMerccost()){
 						return Integer.valueOf(((NationInst2)mod).getValue());
@@ -2033,6 +2089,16 @@ public class NationDetailsPage extends AbstractDetailsPage {
 					break;
 				case TOMBWYRMREANIM:
 					if (((NationInst3)mod).isTombwyrmreanim()){
+						return Boolean.TRUE;
+					}
+					break;
+				case AIHOLDGOD:
+					if (((NationInst3)mod).isAiholdgod()){
+						return Boolean.TRUE;
+					}
+					break;
+				case GODREBIRTH:
+					if (((NationInst3)mod).isGodrebirth()){
 						return Boolean.TRUE;
 					}
 					break;
@@ -2567,6 +2633,57 @@ public class NationDetailsPage extends AbstractDetailsPage {
 						return intVal;
 					}
 					break;
+				case COASTUNIT1:
+					if (((NationInst4)mod).isCoastunit1()){
+						String strVal = ((NationInst4)mod).getValue1();
+						Integer intVal = ((NationInst4)mod).getValue2();
+						if (strVal != null) {
+							return strVal;
+						}
+						return intVal;
+					}
+					break;
+				case COASTUNIT2:
+					if (((NationInst4)mod).isCoastunit2()){
+						String strVal = ((NationInst4)mod).getValue1();
+						Integer intVal = ((NationInst4)mod).getValue2();
+						if (strVal != null) {
+							return strVal;
+						}
+						return intVal;
+					}
+					break;
+				case COASTUNIT3:
+					if (((NationInst4)mod).isCoastunit3()){
+						String strVal = ((NationInst4)mod).getValue1();
+						Integer intVal = ((NationInst4)mod).getValue2();
+						if (strVal != null) {
+							return strVal;
+						}
+						return intVal;
+					}
+					break;
+				case COASTCOM1:
+					if (((NationInst4)mod).isCoastcom1()){
+						String strVal = ((NationInst4)mod).getValue1();
+						Integer intVal = ((NationInst4)mod).getValue2();
+						if (strVal != null) {
+							return strVal;
+						}
+						return intVal;
+					}
+					break;
+				case COASTCOM2:
+					if (((NationInst4)mod).isCoastcom2()){
+						String strVal = ((NationInst4)mod).getValue1();
+						Integer intVal = ((NationInst4)mod).getValue2();
+						if (strVal != null) {
+							return strVal;
+						}
+						return intVal;
+					}
+					break;
+
 				case DEFCOM1:
 					if (((NationInst4)mod).isDefcom1()){
 						String strVal = ((NationInst4)mod).getValue1();
@@ -4240,6 +4357,21 @@ public class NationDetailsPage extends AbstractDetailsPage {
 								((NationInst2)mod).setValue(Integer.parseInt(newName));
 							}
 							break;
+						case HATESTERR:
+							if (((NationInst2)mod).isHatesterr()){
+								((NationInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case AIAWAKE:
+							if (((NationInst2)mod).isAiawake()){
+								((NationInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case TRADECOAST:
+							if (((NationInst2)mod).isTradecoast()){
+								((NationInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
 						case MERCCOST:
 							if (((NationInst2)mod).isMerccost()){
 								((NationInst2)mod).setValue(Integer.parseInt(newName));
@@ -4963,6 +5095,71 @@ public class NationDetailsPage extends AbstractDetailsPage {
 								modsToRemove.add(mod);
 								NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
 								newMod.setUwcom5(true);
+								if (newValue != null) {
+									newMod.setValue2(Integer.parseInt(newName));
+								} else {
+									newMod.setValue1(newName);
+								}
+								modsToAdd.add(newMod);
+							}
+							break;
+						case COASTUNIT1:
+							if (((NationInst4)mod).isCoastunit1()){
+								modsToRemove.add(mod);
+								NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+								newMod.setCoastunit1(true);
+								if (newValue != null) {
+									newMod.setValue2(Integer.parseInt(newName));
+								} else {
+									newMod.setValue1(newName);
+								}
+								modsToAdd.add(newMod);
+							}
+							break;
+						case COASTUNIT2:
+							if (((NationInst4)mod).isCoastunit2()){
+								modsToRemove.add(mod);
+								NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+								newMod.setCoastunit2(true);
+								if (newValue != null) {
+									newMod.setValue2(Integer.parseInt(newName));
+								} else {
+									newMod.setValue1(newName);
+								}
+								modsToAdd.add(newMod);
+							}
+							break;
+						case COASTUNIT3:
+							if (((NationInst4)mod).isCoastunit3()){
+								modsToRemove.add(mod);
+								NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+								newMod.setCoastunit3(true);
+								if (newValue != null) {
+									newMod.setValue2(Integer.parseInt(newName));
+								} else {
+									newMod.setValue1(newName);
+								}
+								modsToAdd.add(newMod);
+							}
+							break;
+						case COASTCOM1:
+							if (((NationInst4)mod).isCoastcom1()){
+								modsToRemove.add(mod);
+								NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+								newMod.setCoastcom1(true);
+								if (newValue != null) {
+									newMod.setValue2(Integer.parseInt(newName));
+								} else {
+									newMod.setValue1(newName);
+								}
+								modsToAdd.add(newMod);
+							}
+							break;
+						case COASTCOM2:
+							if (((NationInst4)mod).isCoastcom2()){
+								modsToRemove.add(mod);
+								NationInst4 newMod = DmFactory.eINSTANCE.createNationInst4();
+								newMod.setCoastcom2(true);
 								if (newValue != null) {
 									newMod.setValue2(Integer.parseInt(newName));
 								} else {
@@ -6964,6 +7161,15 @@ public class NationDetailsPage extends AbstractDetailsPage {
 						case DOMUNREST:
 							type.setDomunrest(true);
 							break;
+						case HATESTERR:
+							type.setHatesterr(true);
+							break;
+						case AIAWAKE:
+							type.setAiawake(true);
+							break;
+						case TRADECOAST:
+							type.setTradecoast(true);
+							break;
 						case MERCCOST:
 							type.setMerccost(true);
 							break;
@@ -7067,6 +7273,12 @@ public class NationDetailsPage extends AbstractDetailsPage {
 							break;
 						case TOMBWYRMREANIM:
 							type.setTombwyrmreanim(true);
+							break;
+						case AIHOLDGOD:
+							type.setAiholdgod(true);
+							break;
+						case GODREBIRTH:
+							type.setGodrebirth(true);
 							break;
 						case CLEARGODS:
 							type.setCleargods(true);
@@ -7217,6 +7429,21 @@ public class NationDetailsPage extends AbstractDetailsPage {
 							break;
 						case UWCOM5:
 							type.setUwcom5(true);
+							break;
+						case COASTUNIT1:
+							type.setCoastunit1(true);
+							break;
+						case COASTUNIT2:
+							type.setCoastunit2(true);
+							break;
+						case COASTUNIT3:
+							type.setCoastunit3(true);
+							break;
+						case COASTCOM1:
+							type.setCoastcom1(true);
+							break;
+						case COASTCOM2:
+							type.setCoastcom2(true);
 							break;
 						case DEFCOM1:
 							type.setDefcom1(true);
@@ -7816,6 +8043,21 @@ public class NationDetailsPage extends AbstractDetailsPage {
 										modToRemove = mod;
 									}
 									break;
+								case HATESTERR:
+									if (((NationInst2)mod).isHatesterr()){
+										modToRemove = mod;
+									}
+									break;
+								case AIAWAKE:
+									if (((NationInst2)mod).isAiawake()){
+										modToRemove = mod;
+									}
+									break;
+								case TRADECOAST:
+									if (((NationInst2)mod).isTradecoast()){
+										modToRemove = mod;
+									}
+									break;
 								case MERCCOST:
 									if (((NationInst2)mod).isMerccost()){
 										modToRemove = mod;
@@ -7952,6 +8194,16 @@ public class NationDetailsPage extends AbstractDetailsPage {
 									break;
 								case TOMBWYRMREANIM:
 									if (((NationInst3)mod).isTombwyrmreanim()){
+										modToRemove = mod;
+									}
+									break;
+								case AIHOLDGOD:
+									if (((NationInst3)mod).isAiholdgod()){
+										modToRemove = mod;
+									}
+									break;
+								case GODREBIRTH:
+									if (((NationInst3)mod).isGodrebirth()){
 										modToRemove = mod;
 									}
 									break;
@@ -8250,6 +8502,31 @@ public class NationDetailsPage extends AbstractDetailsPage {
 									break;
 								case UWCOM5:
 									if (((NationInst4)mod).isUwcom5()){
+										modToRemove = mod;
+									}
+									break;
+								case COASTUNIT1:
+									if (((NationInst4)mod).isCoastunit1()){
+										modToRemove = mod;
+									}
+									break;
+								case COASTUNIT2:
+									if (((NationInst4)mod).isCoastunit2()){
+										modToRemove = mod;
+									}
+									break;
+								case COASTUNIT3:
+									if (((NationInst4)mod).isCoastunit3()){
+										modToRemove = mod;
+									}
+									break;
+								case COASTCOM1:
+									if (((NationInst4)mod).isCoastcom1()){
+										modToRemove = mod;
+									}
+									break;
+								case COASTCOM2:
+									if (((NationInst4)mod).isCoastcom2()){
 										modToRemove = mod;
 									}
 									break;

@@ -43,6 +43,7 @@ public class MonsterDB {
 	public Integer pathcost;
 	public Integer startdom;
 	public Integer eyes;
+	public Integer voidsanity;
 	public Integer copystats;
 	public Integer copyspr;
 	public Integer shatteredsoul;
@@ -83,6 +84,7 @@ public class MonsterDB {
 	public Integer heat;
 	public Integer cold;
 	public Integer iceprot;
+	public Integer invulnerable;
 	public Integer poisoncloud;
 	public Integer diseasecloud;
 	public Integer bloodvengeance;
@@ -90,7 +92,9 @@ public class MonsterDB {
 	public Integer siegebonus;
 	public Integer patrolbonus;
 	public Integer pillagebonus;
+	public Integer masterrit;
 	public Integer researchbonus;
+	public Integer inspiringres;
 	public Integer forgebonus;
 	public Integer douse;
 	public Integer nobadevents;
@@ -235,6 +239,7 @@ public class MonsterDB {
 	public Boolean teleport;
 	public Boolean noriverpass;
 	public Boolean unteleportable;
+	public Integer giftofwater;
 	public Integer patience;
 	public Integer falsearmy;
 	public Integer foolscouts;
@@ -311,6 +316,7 @@ public class MonsterDB {
 	public Integer randomspell;
 	public Integer tainted;
 	public Integer fixforgebonus;
+	public Integer mastersmith;
 	public Boolean comslave;
 	public Integer crossbreeder;
 	public Integer deathbanish;
