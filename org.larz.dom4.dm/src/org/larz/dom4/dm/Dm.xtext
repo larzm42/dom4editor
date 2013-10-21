@@ -288,6 +288,7 @@ MonsterInst2:
 	pathcost?='#pathcost' |
 	startdom?='#startdom' |
 	eyes?='#eyes' |
+	voidsanity?='#voidsanity' |
 	copystats?='#copystats' |
 	copyspr?='#copyspr' |
 	shatteredsoul?='#shatteredsoul' |
@@ -328,6 +329,7 @@ MonsterInst2:
 	reinvigoration?='#reinvigoration' |
 	fireshield?='#fireshield' |
 	iceprot?='#iceprot' |
+	invulnerable?='#invulnerable' |
 	poisoncloud?='#poisoncloud' |
 	diseasecloud?='#diseasecloud' |
 	bloodvengeance?='#bloodvengeance' |
@@ -351,6 +353,7 @@ MonsterInst2:
 	reclimit?='#reclimit' |
 	chaosrec?='#chaosrec' |
 	homerealm?='#homerealm' |
+	giftofwater?='#giftofwater' |
 	patience?='#patience' |
 	falsearmy?='#falsearmy' |
 	foolscouts?='#foolscouts' |
@@ -375,6 +378,8 @@ MonsterInst2:
 	taskmaster?='#taskmaster' |
 	formationfighter?='#formationfighter' |
 	bodyguard?='#bodyguard' |
+	masterrit?='#masterrit' |
+	inspiringres?='#inspiringres' |
 	divineins?='#divineins' |
 	firerange?='#firerange' |
 	airrange?='#airrange' |
@@ -399,6 +404,7 @@ MonsterInst2:
 	bonusspells?='#bonusspells' |
 	tainted?='#tainted' |
 	fixforgebonus?='#fixforgebonus' |
+	mastersmith?='#mastersmith' |
 	crossbreeder?='#crossbreeder' |
 	deathbanish?='#deathbanish' |
 	kokytosret?='#kokytosret' |
@@ -690,6 +696,7 @@ ItemInst2:
 	prec?='#prec' |
 	mr?='#mr' |
 	morale?='#morale' |
+	voidsanity?='#voidsanity' |
 	fireres?='#fireres' |
 	coldres?='#coldres' |
 	shockres?='#shockres' |
@@ -701,12 +708,14 @@ ItemInst2:
 	mapspeed?='#mapspeed' |
 	tainted?='#tainted' |
 	speciallook?='#speciallook' |
+	giftofwater?='#giftofwater' |
 	seduce?='#seduce' |
 	succubus?='#succubus' |
 	beckon?='#beckon' |
 	falsearmy?='#falsearmy' |
 	foolscouts?='#foolscouts' |
 	iceprot?='#iceprot' |
+	invulnerable?='#invulnerable' |
 	healer?='#healer' |
 	autohealer?='#autohealer' |
 	autodishealer?='#autodishealer' |
@@ -765,6 +774,7 @@ ItemInst2:
 	standard?='#standard' |
 	douse?='#douse' |
 	researchbonus?='#researchbonus' |
+	inspiringres?='#inspiringres' |
 	divineins?='#divineins' |
 	forgebonus?='#forgebonus' |
 	fixforgebonus?='#fixforgebonus' |
@@ -852,6 +862,7 @@ ItemInst4:
 	barkskin?='#barkskin' |
 	stoneskin?='#stoneskin' |
 	ironskin?='#ironskin' |
+	waterbreathing?='#waterbreathing' |
 	float?='#float' |
 	fly?='#fly' |
 	stormimmune?='#stormimmune' |
@@ -1093,6 +1104,8 @@ NationInst1:
 NationInst2:
 	era?='#era' |
 	likesterr?='#likesterr' |
+	hatesterr?='#hatesterr' |
+	aiawake?='#aiawake' |
 	labcost?='#labcost' |
 	templecost?='#templecost' |
 	templepic?='#templepic' |
@@ -1124,7 +1137,8 @@ NationInst2:
 	spreadchaos?='#spreadchaos' |
 	spreadlazy?='#spreadlazy' |
 	spreaddeath?='#spreaddeath' |
-	golemhp?='#golemhp';	
+	golemhp?='#golemhp' |
+	tradecoast?='#tradecoast';	
 
 NationInst3:
 	clearnation?='#clearnation' |
@@ -1132,6 +1146,7 @@ NationInst3:
 	clearsites?='#clearsites' |
 	uwnation?='#uwnation' |
 	bloodnation?='#bloodnation' |
+	aiholdgod?='#aiholdgod' |
 	nopreach?='#nopreach' |
 	dyingdom?='#dyingdom' |
 	sacrificedom?='#sacrificedom' |
@@ -1142,7 +1157,8 @@ NationInst3:
 	wightreanim?='#wightreanim' |
 	manikinreanim?='#manikinreanim' |
 	tombwyrmreanim?='#tombwyrmreanim' |
-	cleargods?='#cleargods';
+	cleargods?='#cleargods' |
+	godrebirth?='#godrebirth';
 	
 NationInst4:
 	startcom?='#startcom' |
@@ -1161,6 +1177,11 @@ NationInst4:
 	uwcom3?='#uwcom3' |
 	uwcom4?='#uwcom4' |
 	uwcom5?='#uwcom5' |
+	coastunit1?='#coastunit1' |
+	coastunit2?='#coastunit2' |
+	coastunit3?='#coastunit3' |
+	coastcom1?='#coastcom1' |
+	coastcom2?='#coastcom2' |
 	defcom1?='#defcom1' |
 	defcom2?='#defcom2' |
 	defunit1?='#defunit1' |
