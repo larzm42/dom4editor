@@ -205,6 +205,8 @@ public class ItemDetailsPage extends AbstractDetailsPage {
 		SLIMER (Messages.getString("ItemDetailsSection.mod.slimer"), "0"),
 		DEATHCURSE (Messages.getString("ItemDetailsSection.mod.deathcurse")),
 		DEATHDISEASE (Messages.getString("ItemDetailsSection.mod.deathdisease"), "0"),
+		DEATHPARALYZE (Messages.getString("ItemDetailsSection.mod.deathparalyze"), "0"),
+		DEATHFIRE (Messages.getString("ItemDetailsSection.mod.deathfire"), "0"),
 		
 		CHAOSPOWER (Messages.getString("ItemDetailsSection.mod.chaospower"), "0"),
 		FIREPOWER (Messages.getString("ItemDetailsSection.mod.firepower"), "0"),
@@ -503,6 +505,8 @@ public class ItemDetailsPage extends AbstractDetailsPage {
 		instMap.put(Inst.SLIMER, new Inst2Fields());
 		instMap.put(Inst.DEATHCURSE, new Inst4Fields());
 		instMap.put(Inst.DEATHDISEASE, new Inst2Fields());
+		instMap.put(Inst.DEATHPARALYZE, new Inst2Fields());
+		instMap.put(Inst.DEATHFIRE, new Inst2Fields());
 		instMap.put(Inst.CHAOSPOWER, new Inst2Fields());
 		instMap.put(Inst.FIREPOWER, new Inst2Fields());
 		instMap.put(Inst.COLDPOWER, new Inst2Fields());
@@ -2033,6 +2037,24 @@ public class ItemDetailsPage extends AbstractDetailsPage {
 					} else {
 						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
 						Inst.DEATHDISEASE.defaultValue = "0";
+					}
+					break;
+				case DEATHPARALYZE:
+					if (itemDB.deathparalyze != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", itemDB.deathparalyze.toString()));
+						Inst.DEATHPARALYZE.defaultValue = itemDB.deathparalyze.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.DEATHPARALYZE.defaultValue = "0";
+					}
+					break;
+				case DEATHFIRE:
+					if (itemDB.deathfire != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", itemDB.deathfire.toString()));
+						Inst.DEATHFIRE.defaultValue = itemDB.deathfire.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.DEATHFIRE.defaultValue = "0";
 					}
 					break;
 				case CHAOSPOWER:
@@ -3900,6 +3922,16 @@ public class ItemDetailsPage extends AbstractDetailsPage {
 						return Integer.valueOf(((ItemInst2)mod).getValue());
 					}
 					break;
+				case DEATHPARALYZE:
+					if (((ItemInst2)mod).isDeathparalyze()){
+						return Integer.valueOf(((ItemInst2)mod).getValue());
+					}
+					break;
+				case DEATHFIRE:
+					if (((ItemInst2)mod).isDeathfire()){
+						return Integer.valueOf(((ItemInst2)mod).getValue());
+					}
+					break;
 				case CHAOSPOWER:
 					if (((ItemInst2)mod).isChaospower()){
 						return Integer.valueOf(((ItemInst2)mod).getValue());
@@ -5282,6 +5314,16 @@ public class ItemDetailsPage extends AbstractDetailsPage {
 								((ItemInst2)mod).setValue(Integer.parseInt(newName));
 							}
 							break;
+						case DEATHPARALYZE:
+							if (((ItemInst2)mod).isDeathparalyze()){
+								((ItemInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case DEATHFIRE:
+							if (((ItemInst2)mod).isDeathfire()){
+								((ItemInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
 						case CHAOSPOWER:
 							if (((ItemInst2)mod).isChaospower()){
 								((ItemInst2)mod).setValue(Integer.parseInt(newName));
@@ -6426,6 +6468,12 @@ public class ItemDetailsPage extends AbstractDetailsPage {
 						case DEATHDISEASE:
 							type.setDeathdisease(true);
 							break;
+						case DEATHPARALYZE:
+							type.setDeathparalyze(true);
+							break;
+						case DEATHFIRE:
+							type.setDeathfire(true);
+							break;
 						case CHAOSPOWER:
 							type.setChaospower(true);
 							break;
@@ -7322,6 +7370,16 @@ public class ItemDetailsPage extends AbstractDetailsPage {
 									break;
 								case DEATHDISEASE:
 									if (((ItemInst2)mod).isDeathdisease()){
+										modToRemove = mod;
+									}
+									break;
+								case DEATHPARALYZE:
+									if (((ItemInst2)mod).isDeathparalyze()){
+										modToRemove = mod;
+									}
+									break;
+								case DEATHFIRE:
+									if (((ItemInst2)mod).isDeathfire()){
 										modToRemove = mod;
 									}
 									break;

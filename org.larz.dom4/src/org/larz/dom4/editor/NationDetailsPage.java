@@ -1461,7 +1461,7 @@ public class NationDetailsPage extends AbstractDetailsPage {
 
 			if (sprite != null) {
 				if (fromZip) {
-					spriteLabel.setImage(getSpriteFromZip(sprite, "flags"));
+					//spriteLabel.setImage(getSpriteFromZip(sprite, "flags"));
 				} else {
 					spriteLabel.setImage(getSprite(sprite));
 				}

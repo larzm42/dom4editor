@@ -202,6 +202,7 @@ public class MonsterDB {
 	public String firstshape;
 	public String secondshape;
 	public String secondtmpshape;
+	public Boolean cleanshape;
 	public String shapechange;
 	public String landshape;
 	public String watershape;
@@ -224,6 +225,8 @@ public class MonsterDB {
 	public Boolean slowrec;
 	public Boolean noslowrec;
 	public Integer reclimit;
+	public Boolean reqlab;
+	public Boolean reqtemple;
 	public Boolean chaosrec;
 	public Boolean singlebattle;
 	public Boolean aisinglerec;
@@ -240,9 +243,13 @@ public class MonsterDB {
 	public Boolean noriverpass;
 	public Boolean unteleportable;
 	public Integer giftofwater;
+	public Integer indepmove;
 	public Integer patience;
 	public Integer falsearmy;
 	public Integer foolscouts;
+	public Integer deserter;
+	public Integer horrordeserter;
+	public Integer defector;
 	public Integer autohealer;
 	public Integer autodishealer;
 	public Integer autodisgrinder;
@@ -255,6 +262,8 @@ public class MonsterDB {
 	public Integer slimer;
 	public Boolean deathcurse;
 	public Integer deathdisease;
+	public Integer deathparalyze;
+	public Integer deathfire;
 	public Integer chaospower;
 	public Integer magicpower;
 	public Boolean trampswallow;
@@ -264,8 +273,10 @@ public class MonsterDB {
 	public Integer elegist;
 	public Boolean taxcollector;
 	public Integer gold;
+	public Boolean nohof;
 	public Integer growhp;
 	public Integer shrinkhp;
+	public Integer reanimator;
 	public String raredomsummon;
 	public String battlesum1;
 	public String battlesum2;

@@ -141,8 +141,9 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 		SLOWREC (Messages.getString("MonsterDetailsSection.mod.slowrec"), "0"),
 		NOSLOWREC (Messages.getString("MonsterDetailsSection.mod.noslowrec"), "0"),
 		RECLIMIT (Messages.getString("MonsterDetailsSection.mod.reclimit"), "0"),
+		REQLAB (Messages.getString("MonsterDetailsSection.mod.reqlab"), "0"),
+		REQTEMPLE (Messages.getString("MonsterDetailsSection.mod.reqtemple"), "0"),
 		CHAOSREC (Messages.getString("MonsterDetailsSection.mod.chaosrec"), "0"),
-		SINGLEBATTLE (Messages.getString("MonsterDetailsSection.mod.singlebattle"), "0"),
 		AISINGLEREC (Messages.getString("MonsterDetailsSection.mod.aisinglerec"), "0"),
 		AINOREC (Messages.getString("MonsterDetailsSection.mod.ainorec"), "0"),
 
@@ -197,6 +198,7 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 		WASTESURVIVAL (Messages.getString("MonsterDetailsSection.mod.wastesurvival")),
 		SAILING (Messages.getString("MonsterDetailsSection.mod.sailing"), "999", "2"),
 		GIFTOFWATER (Messages.getString("MonsterDetailsSection.mod.giftofwater"), "0"),
+		INDEPMOVE (Messages.getString("MonsterDetailsSection.mod.indepmove"), "0"),
 
 		STEALTHY (Messages.getString("MonsterDetailsSection.mod.stealthy"), "0"),
 		ILLUSION (Messages.getString("MonsterDetailsSection.mod.illusion")),
@@ -209,6 +211,11 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 		FALSEARMY (Messages.getString("MonsterDetailsSection.mod.falsearmy"), "0"),
 		FOOLSCOUTS (Messages.getString("MonsterDetailsSection.mod.foolscouts"), "0"),
 
+		SINGLEBATTLE (Messages.getString("MonsterDetailsSection.mod.singlebattle"), "0"),
+		DESERTER (Messages.getString("MonsterDetailsSection.mod.deserter"), "0"),
+		HORRORDESERTER (Messages.getString("MonsterDetailsSection.mod.horrordeserter"), "0"),
+		DEFECTOR (Messages.getString("MonsterDetailsSection.mod.defector"), "0"),
+		
 		STARTAGE (Messages.getString("MonsterDetailsSection.mod.startage"), "20"),
 		MAXAGE (Messages.getString("MonsterDetailsSection.mod.maxage"), "50"),
 		OLDER (Messages.getString("MonsterDetailsSection.mod.older"), "10"),
@@ -253,8 +260,6 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 		EYELOSS (Messages.getString("MonsterDetailsSection.mod.eyeloss")),
 		HORRORMARK (Messages.getString("MonsterDetailsSection.mod.horrormark")),
 		POISONARMOR (Messages.getString("MonsterDetailsSection.mod.poisonarmor")),
-		DEATHCURSE (Messages.getString("MonsterDetailsSection.mod.deathcurse"), "0"),
-		DEATHDISEASE (Messages.getString("MonsterDetailsSection.mod.deathdisease"), "0"),
 
 		CHAOSPOWER (Messages.getString("MonsterDetailsSection.mod.chaospower"), "0"),
 		COLDPOWER (Messages.getString("MonsterDetailsSection.mod.coldpower"), "10"),
@@ -275,6 +280,10 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 		TRAMPSWALLOW (Messages.getString("MonsterDetailsSection.mod.trampswallow"), "0"),
 		DIGEST (Messages.getString("MonsterDetailsSection.mod.digest"), "0"),
 		INCORPORATE (Messages.getString("MonsterDetailsSection.mod.incorporate"), "0"),
+		DEATHCURSE (Messages.getString("MonsterDetailsSection.mod.deathcurse"), "0"),
+		DEATHDISEASE (Messages.getString("MonsterDetailsSection.mod.deathdisease"), "0"),
+		DEATHPARALYZE (Messages.getString("MonsterDetailsSection.mod.deathparalyze"), "0"),
+		DEATHFIRE (Messages.getString("MonsterDetailsSection.mod.deathfire"), "0"),
 
 		CASTLEDEF (Messages.getString("MonsterDetailsSection.mod.castledef"), "10"),
 		SIEGEBONUS (Messages.getString("MonsterDetailsSection.mod.siegebonus"), "10"),
@@ -294,10 +303,12 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 		SHATTEREDSOUL (Messages.getString("MonsterDetailsSection.mod.shatteredsoul"), "10"),
 		TAXCOLLECTOR (Messages.getString("MonsterDetailsSection.mod.taxcollector"), "0"),
 		GOLD (Messages.getString("MonsterDetailsSection.mod.gold"), "0"),
+		NOHOF (Messages.getString("MonsterDetailsSection.mod.nohof"), "0"),
 
 		FIRSTSHAPE (Messages.getString("MonsterDetailsSection.mod.firstshape"), ""),
 		SECONDSHAPE (Messages.getString("MonsterDetailsSection.mod.secondshape"), ""),
 		SECONDTMPSHAPE (Messages.getString("MonsterDetailsSection.mod.secondtmpshape"), ""),
+		CLEANSHAPE (Messages.getString("MonsterDetailsSection.mod.cleanshape"), "0"),
 		SHAPECHANGE (Messages.getString("MonsterDetailsSection.mod.shapechange"), ""),
 		LANDSHAPE (Messages.getString("MonsterDetailsSection.mod.landshape"), ""),
 		WATERSHAPE (Messages.getString("MonsterDetailsSection.mod.watershape"), ""),
@@ -305,10 +316,8 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 		PLAINSHAPE (Messages.getString("MonsterDetailsSection.mod.plainshape"), ""),
 		GROWHP (Messages.getString("MonsterDetailsSection.mod.growhp"), "0"),
 		SHRINKHP (Messages.getString("MonsterDetailsSection.mod.shrinkhp"), "0"),
-
-		ITEMSLOTS (Messages.getString("MonsterDetailsSection.mod.itemslots"), "15494"),
-		NOITEM (Messages.getString("MonsterDetailsSection.mod.noitem")),
 		
+		REANIMATOR (Messages.getString("MonsterDetailsSection.mod.reanimator"), "0"),
 		DOMSUMMON (Messages.getString("MonsterDetailsSection.mod.domsummon"), ""),
 		DOMSUMMON2 (Messages.getString("MonsterDetailsSection.mod.domsummon2"), ""),
 		DOMSUMMON20 (Messages.getString("MonsterDetailsSection.mod.domsummon20"), ""),
@@ -341,6 +350,9 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 		MONTAG (Messages.getString("MonsterDetailsSection.mod.montag"), "0"),
 
 		NAMETYPE (Messages.getString("MonsterDetailsSection.mod.nametype"), "100"),
+
+		ITEMSLOTS (Messages.getString("MonsterDetailsSection.mod.itemslots"), "15494"),
+		NOITEM (Messages.getString("MonsterDetailsSection.mod.noitem")),
 
 		NOLEADER (Messages.getString("MonsterDetailsSection.mod.noleader")),
 		POORLEADER (Messages.getString("MonsterDetailsSection.mod.poorleader")),
@@ -718,6 +730,7 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 		instMap.put(Inst.FIRSTSHAPE, new Inst5Fields());
 		instMap.put(Inst.SECONDSHAPE, new Inst5Fields());
 		instMap.put(Inst.SECONDTMPSHAPE, new Inst5Fields());
+		instMap.put(Inst.CLEANSHAPE, new Inst4Fields());
 		instMap.put(Inst.SHAPECHANGE, new Inst5Fields());
 		instMap.put(Inst.LANDSHAPE, new Inst5Fields());
 		instMap.put(Inst.WATERSHAPE, new Inst5Fields());
@@ -739,6 +752,8 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 		instMap.put(Inst.SLOWREC, new Inst4Fields());
 		instMap.put(Inst.NOSLOWREC, new Inst4Fields());
 		instMap.put(Inst.RECLIMIT, new Inst2Fields());
+		instMap.put(Inst.REQLAB, new Inst4Fields());
+		instMap.put(Inst.REQTEMPLE, new Inst4Fields());
 		instMap.put(Inst.CHAOSREC, new Inst2Fields());
 		instMap.put(Inst.SINGLEBATTLE, new Inst4Fields());
 		instMap.put(Inst.AISINGLEREC, new Inst4Fields());
@@ -755,9 +770,13 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 		instMap.put(Inst.NORIVERPASS, new Inst4Fields());
 		instMap.put(Inst.UNTELEPORTABLE, new Inst4Fields());
 		instMap.put(Inst.GIFTOFWATER, new Inst2Fields());
+		instMap.put(Inst.INDEPMOVE, new Inst2Fields());
 		instMap.put(Inst.PATIENCE, new Inst2Fields());
 		instMap.put(Inst.FALSEARMY, new Inst2Fields());
 		instMap.put(Inst.FOOLSCOUTS, new Inst2Fields());
+		instMap.put(Inst.DESERTER, new Inst2Fields());
+		instMap.put(Inst.HORRORDESERTER, new Inst2Fields());
+		instMap.put(Inst.DEFECTOR, new Inst2Fields());
 		instMap.put(Inst.AUTOHEALER, new Inst2Fields());
 		instMap.put(Inst.AUTODISHEALER, new Inst2Fields());
 		instMap.put(Inst.AUTODISGRINDER, new Inst2Fields());
@@ -770,6 +789,8 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 		instMap.put(Inst.SLIMER, new Inst2Fields());
 		instMap.put(Inst.DEATHCURSE, new Inst4Fields());
 		instMap.put(Inst.DEATHDISEASE, new Inst2Fields());
+		instMap.put(Inst.DEATHPARALYZE, new Inst2Fields());
+		instMap.put(Inst.DEATHFIRE, new Inst2Fields());
 		instMap.put(Inst.CHAOSPOWER, new Inst2Fields());
 		instMap.put(Inst.MAGICPOWER, new Inst2Fields());
 		instMap.put(Inst.TRAMPSWALLOW, new Inst4Fields());
@@ -779,8 +800,10 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 		instMap.put(Inst.ELEGIST, new Inst2Fields());
 		instMap.put(Inst.TAXCOLLECTOR, new Inst4Fields());
 		instMap.put(Inst.GOLD, new Inst2Fields());
+		instMap.put(Inst.NOHOF, new Inst4Fields());
 		instMap.put(Inst.GROWHP, new Inst2Fields());
 		instMap.put(Inst.SHRINKHP, new Inst2Fields());
+		instMap.put(Inst.REANIMATOR, new Inst2Fields());
 		instMap.put(Inst.RAREDOMSUMMON, new Inst5Fields());
 		instMap.put(Inst.BATTLESUM1, new Inst5Fields());
 		instMap.put(Inst.BATTLESUM2, new Inst5Fields());
@@ -1253,6 +1276,7 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 				key.equals(Inst.FEMALE) || 
 				key.equals(Inst.IMMOBILE) || 
 				key.equals(Inst.STEALTHY) || 
+				key.equals(Inst.SINGLEBATTLE) || 
 				key.equals(Inst.STARTAGE) || 
 				key.equals(Inst.PIERCERES) || 
 				key.equals(Inst.HEAT) || 
@@ -1261,9 +1285,9 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 				key.equals(Inst.AMBIDEXTROUS) || 
 				key.equals(Inst.CASTLEDEF) || 
 				key.equals(Inst.FIRSTSHAPE) || 
-				key.equals(Inst.ITEMSLOTS) || 
-				key.equals(Inst.DOMSUMMON) || 
+				key.equals(Inst.REANIMATOR) || 
 				key.equals(Inst.NAMETYPE) || 
+				key.equals(Inst.ITEMSLOTS) || 
 				key.equals(Inst.NOLEADER) ||
 				key.equals(Inst.NOMAGICLEADER) ||
 				key.equals(Inst.NOUNDEADLEADER) ||
@@ -1303,6 +1327,9 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 				case STEALTHY:
 					expandable.setText(Messages.getString("MonsterDetailsSection.mod.section.stealth"));
 					break;
+				case SINGLEBATTLE:
+					expandable.setText(Messages.getString("MonsterDetailsSection.mod.section.desertion"));
+					break;
 				case STARTAGE:
 					expandable.setText(Messages.getString("MonsterDetailsSection.mod.section.age"));
 					break;
@@ -1330,7 +1357,7 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 				case FIRSTSHAPE:
 					expandable.setText(Messages.getString("MonsterDetailsSection.mod.section.shapes"));
 					break;
-				case DOMSUMMON:
+				case REANIMATOR:
 					expandable.setText(Messages.getString("MonsterDetailsSection.mod.section.summons"));
 					break;
 				case NAMETYPE:
@@ -3976,6 +4003,15 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 						Inst.SECONDTMPSHAPE.defaultValue = "";
 					}
 					break;
+				case CLEANSHAPE:
+					if (monsterDB.cleanshape != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.cleanshape));
+						Inst.CLEANSHAPE.defaultValue = monsterDB.cleanshape.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.CLEANSHAPE.defaultValue = "";
+					}
+					break;
 				case SHAPECHANGE:
 					if (monsterDB.shapechange != null) {
 						((Inst5Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.shapechange));
@@ -4174,6 +4210,24 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 						Inst.RECLIMIT.defaultValue = "0";
 					}
 					break;
+				case REQLAB:
+					if (monsterDB.reqlab != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.reqlab));
+						Inst.REQLAB.defaultValue = monsterDB.reqlab.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.REQLAB.defaultValue = "";
+					}
+					break;
+				case REQTEMPLE:
+					if (monsterDB.reqtemple != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.reqtemple));
+						Inst.REQTEMPLE.defaultValue = monsterDB.reqtemple.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.REQTEMPLE.defaultValue = "";
+					}
+					break;
 				case CHAOSREC:
 					if (monsterDB.chaosrec != null) {
 						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.chaosrec));
@@ -4318,6 +4372,15 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 						Inst.GIFTOFWATER.defaultValue = "0";
 					}
 					break;
+				case INDEPMOVE:
+					if (monsterDB.indepmove != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.indepmove));
+						Inst.INDEPMOVE.defaultValue = monsterDB.indepmove.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.INDEPMOVE.defaultValue = "0";
+					}
+					break;
 				case PATIENCE:
 					if (monsterDB.patience != null) {
 						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.patience));
@@ -4343,6 +4406,33 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 					} else {
 						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
 						Inst.FOOLSCOUTS.defaultValue = "0";
+					}
+					break;
+				case DESERTER:
+					if (monsterDB.deserter != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.deserter));
+						Inst.DESERTER.defaultValue = monsterDB.deserter.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.DESERTER.defaultValue = "0";
+					}
+					break;
+				case HORRORDESERTER:
+					if (monsterDB.horrordeserter != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.horrordeserter));
+						Inst.HORRORDESERTER.defaultValue = monsterDB.horrordeserter.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.HORRORDESERTER.defaultValue = "0";
+					}
+					break;
+				case DEFECTOR:
+					if (monsterDB.defector != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.defector));
+						Inst.DEFECTOR.defaultValue = monsterDB.defector.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.DEFECTOR.defaultValue = "0";
 					}
 					break;
 				case AUTOHEALER:
@@ -4453,6 +4543,24 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 						Inst.DEATHDISEASE.defaultValue = "0";
 					}
 					break;
+				case DEATHPARALYZE:
+					if (monsterDB.deathparalyze != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.deathparalyze));
+						Inst.DEATHPARALYZE.defaultValue = monsterDB.deathparalyze.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.DEATHPARALYZE.defaultValue = "0";
+					}
+					break;
+				case DEATHFIRE:
+					if (monsterDB.deathfire != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.deathfire));
+						Inst.DEATHFIRE.defaultValue = monsterDB.deathfire.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.DEATHFIRE.defaultValue = "0";
+					}
+					break;
 				case CHAOSPOWER:
 					if (monsterDB.chaospower != null) {
 						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.chaospower));
@@ -4534,6 +4642,15 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 						Inst.GOLD.defaultValue = "0";
 					}
 					break;
+				case NOHOF:
+					if (monsterDB.nohof != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.nohof));
+						Inst.NOHOF.defaultValue = monsterDB.nohof.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.NOHOF.defaultValue = "";
+					}
+					break;
 				case GROWHP:
 					if (monsterDB.growhp != null) {
 						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.growhp));
@@ -4550,6 +4667,15 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 					} else {
 						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
 						Inst.SHRINKHP.defaultValue = "0";
+					}
+					break;
+				case REANIMATOR:
+					if (monsterDB.reanimator != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.reanimator));
+						Inst.REANIMATOR.defaultValue = monsterDB.reanimator.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.REANIMATOR.defaultValue = "0";
 					}
 					break;
 				case RAREDOMSUMMON:
@@ -5771,6 +5897,11 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 						return Integer.valueOf(((MonsterInst2)mod).getValue());
 					}
 					break;
+				case INDEPMOVE:
+					if (((MonsterInst2)mod).isIndepmove()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
 				case PATIENCE:
 					if (((MonsterInst2)mod).isPatience()){
 						return Integer.valueOf(((MonsterInst2)mod).getValue());
@@ -5783,6 +5914,21 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 					break;
 				case FOOLSCOUTS:
 					if (((MonsterInst2)mod).isFoolscouts()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case DESERTER:
+					if (((MonsterInst2)mod).isDeserter()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case HORRORDESERTER:
+					if (((MonsterInst2)mod).isHorrordeserter()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case DEFECTOR:
+					if (((MonsterInst2)mod).isDefector()){
 						return Integer.valueOf(((MonsterInst2)mod).getValue());
 					}
 					break;
@@ -5818,6 +5964,16 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 					break;
 				case DEATHDISEASE:
 					if (((MonsterInst2)mod).isDeathdisease()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case DEATHPARALYZE:
+					if (((MonsterInst2)mod).isDeathparalyze()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case DEATHFIRE:
+					if (((MonsterInst2)mod).isDeathfire()){
 						return Integer.valueOf(((MonsterInst2)mod).getValue());
 					}
 					break;
@@ -5858,6 +6014,11 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 					break;
 				case SHRINKHP:
 					if (((MonsterInst2)mod).isShrinkhp()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
+				case REANIMATOR:
+					if (((MonsterInst2)mod).isReanimator()){
 						return Integer.valueOf(((MonsterInst2)mod).getValue());
 					}
 					break;
@@ -6663,6 +6824,16 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 						return Boolean.TRUE;
 					}
 					break;
+				case REQLAB:
+					if (((MonsterInst4)mod).isReqlab()){
+						return Boolean.TRUE;
+					}
+					break;
+				case REQTEMPLE:
+					if (((MonsterInst4)mod).isReqtemple()){
+						return Boolean.TRUE;
+					}
+					break;
 				case SINGLEBATTLE:
 					if (((MonsterInst4)mod).isSinglebattle()){
 						return Boolean.TRUE;
@@ -6760,6 +6931,16 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 					break;
 				case TAXCOLLECTOR:
 					if (((MonsterInst4)mod).isTaxcollector()){
+						return Boolean.TRUE;
+					}
+					break;
+				case NOHOF:
+					if (((MonsterInst4)mod).isNohof()){
+						return Boolean.TRUE;
+					}
+					break;
+				case CLEANSHAPE:
+					if (((MonsterInst4)mod).isCleanshape()){
 						return Boolean.TRUE;
 					}
 					break;
@@ -7767,6 +7948,11 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
 							}
 							break;
+						case INDEPMOVE:
+							if (((MonsterInst2)mod).isIndepmove()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
 						case PATIENCE:
 							if (((MonsterInst2)mod).isPatience()){
 								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
@@ -7779,6 +7965,21 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 							break;
 						case FOOLSCOUTS:
 							if (((MonsterInst2)mod).isFoolscouts()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case DESERTER:
+							if (((MonsterInst2)mod).isDeserter()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case HORRORDESERTER:
+							if (((MonsterInst2)mod).isHorrordeserter()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case DEFECTOR:
+							if (((MonsterInst2)mod).isDefector()){
 								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
 							}
 							break;
@@ -7814,6 +8015,16 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 							break;
 						case DEATHDISEASE:
 							if (((MonsterInst2)mod).isDeathdisease()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case DEATHPARALYZE:
+							if (((MonsterInst2)mod).isDeathparalyze()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case DEATHFIRE:
+							if (((MonsterInst2)mod).isDeathfire()){
 								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
 							}
 							break;
@@ -7854,6 +8065,11 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 							break;
 						case SHRINKHP:
 							if (((MonsterInst2)mod).isShrinkhp()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case REANIMATOR:
+							if (((MonsterInst2)mod).isReanimator()){
 								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
 							}
 							break;
@@ -9478,6 +9694,9 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 						case GIFTOFWATER:
 							type.setGiftofwater(true);
 							break;				
+						case INDEPMOVE:
+							type.setIndepmove(true);
+							break;				
 						case PATIENCE:
 							type.setPatience(true);
 							break;				
@@ -9486,6 +9705,15 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 							break;				
 						case FOOLSCOUTS:
 							type.setFoolscouts(true);
+							break;				
+						case DESERTER:
+							type.setDeserter(true);
+							break;				
+						case HORRORDESERTER:
+							type.setHorrordeserter(true);
+							break;				
+						case DEFECTOR:
+							type.setDefector(true);
 							break;				
 						case AUTOHEALER:
 							type.setAutohealer(true);
@@ -9507,6 +9735,12 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 							break;				
 						case DEATHDISEASE:
 							type.setDeathdisease(true);
+							break;				
+						case DEATHPARALYZE:
+							type.setDeathparalyze(true);
+							break;				
+						case DEATHFIRE:
+							type.setDeathfire(true);
 							break;				
 						case CHAOSPOWER:
 							type.setChaospower(true);
@@ -9531,6 +9765,9 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 							break;				
 						case SHRINKHP:
 							type.setShrinkhp(true);
+							break;				
+						case REANIMATOR:
+							type.setReanimator(true);
 							break;				
 						case MONTAG:
 							type.setMontag(true);
@@ -9993,6 +10230,12 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 						case NOSLOWREC:
 							type.setNoslowrec(true);
 							break;				
+						case REQLAB:
+							type.setReqlab(true);
+							break;				
+						case REQTEMPLE:
+							type.setReqtemple(true);
+							break;				
 						case SINGLEBATTLE:
 							type.setSinglebattle(true);
 							break;				
@@ -10052,6 +10295,12 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 							break;				
 						case TAXCOLLECTOR:
 							type.setTaxcollector(true);
+							break;				
+						case NOHOF:
+							type.setNohof(true);
+							break;				
+						case CLEANSHAPE:
+							type.setCleanshape(true);
 							break;				
 						case SLAVE:
 							type.setSlave(true);
@@ -10731,6 +10980,11 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 										modToRemove = mod;
 									}
 									break;
+								case INDEPMOVE:
+									if (((MonsterInst2)mod).isIndepmove()){
+										modToRemove = mod;
+									}
+									break;
 								case PATIENCE:
 									if (((MonsterInst2)mod).isPatience()){
 										modToRemove = mod;
@@ -10743,6 +10997,21 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 									break;
 								case FOOLSCOUTS:
 									if (((MonsterInst2)mod).isFoolscouts()){
+										modToRemove = mod;
+									}
+									break;
+								case DESERTER:
+									if (((MonsterInst2)mod).isDeserter()){
+										modToRemove = mod;
+									}
+									break;
+								case HORRORDESERTER:
+									if (((MonsterInst2)mod).isHorrordeserter()){
+										modToRemove = mod;
+									}
+									break;
+								case DEFECTOR:
+									if (((MonsterInst2)mod).isDefector()){
 										modToRemove = mod;
 									}
 									break;
@@ -10778,6 +11047,16 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 									break;
 								case DEATHDISEASE:
 									if (((MonsterInst2)mod).isDeathdisease()){
+										modToRemove = mod;
+									}
+									break;
+								case DEATHPARALYZE:
+									if (((MonsterInst2)mod).isDeathparalyze()){
+										modToRemove = mod;
+									}
+									break;
+								case DEATHFIRE:
+									if (((MonsterInst2)mod).isDeathfire()){
 										modToRemove = mod;
 									}
 									break;
@@ -10823,6 +11102,11 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 									break;
 								case SHRINKHP:
 									if (((MonsterInst2)mod).isShrinkhp()){
+										modToRemove = mod;
+									}
+									break;
+								case REANIMATOR:
+									if (((MonsterInst2)mod).isReanimator()){
 										modToRemove = mod;
 									}
 									break;
@@ -11604,6 +11888,16 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 										modToRemove = mod;
 									}
 									break;
+								case REQLAB:
+									if (((MonsterInst4)mod).isReqlab()){
+										modToRemove = mod;
+									}
+									break;
+								case REQTEMPLE:
+									if (((MonsterInst4)mod).isReqtemple()){
+										modToRemove = mod;
+									}
+									break;
 								case SINGLEBATTLE:
 									if (((MonsterInst4)mod).isSinglebattle()){
 										modToRemove = mod;
@@ -11701,6 +11995,16 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 									break;
 								case TAXCOLLECTOR:
 									if (((MonsterInst4)mod).isTaxcollector()){
+										modToRemove = mod;
+									}
+									break;
+								case NOHOF:
+									if (((MonsterInst4)mod).isNohof()){
+										modToRemove = mod;
+									}
+									break;
+								case CLEANSHAPE:
+									if (((MonsterInst4)mod).isCleanshape()){
 										modToRemove = mod;
 									}
 									break;

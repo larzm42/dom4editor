@@ -78,6 +78,8 @@ public class ItemDB {
 	public Integer bloodvengeance;
 	public Integer slimer;
 	public Integer deathdisease;
+	public Integer deathparalyze;
+	public Integer deathfire;
 	public Integer chaospower;
 	public Integer firepower;
 	public Integer coldpower;
