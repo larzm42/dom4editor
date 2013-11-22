@@ -1,1 +1,1 @@
-<p>This spear is enchanted with accuracy and quickness.</p>
+This spear is enchanted with accuracy and quickness.

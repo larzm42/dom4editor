@@ -1,1 +1,1 @@
-<p>Light infantry are armed with spear and javelin.</p>
+Light infantry are armed with spear and javelin.

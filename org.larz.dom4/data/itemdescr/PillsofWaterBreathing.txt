@@ -1,1 +1,1 @@
-<p>These pills grant waterbreathing abilities to 10 soldiers.</p>
+These pills grant waterbreathing ability to 10 soldiers.

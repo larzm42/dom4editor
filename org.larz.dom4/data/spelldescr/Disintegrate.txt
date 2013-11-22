@@ -1,2 +1,1 @@
-<p>The necromancer points a bony finger at a target, who instantly turns to dust.
-</p>
+The necromancer points a bony finger at a target, who instantly turns to dust.

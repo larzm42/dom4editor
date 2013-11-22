@@ -1,2 +1,1 @@
-<p>This spell makes the caster more powerful in all paths of magic (magic bonus: 1).
-</p>
+This spell makes the caster more powerful in all paths of magic (magic bonus: 1).

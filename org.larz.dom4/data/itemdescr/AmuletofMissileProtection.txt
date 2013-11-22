@@ -1,1 +1,1 @@
-<p>This amulet protects its wearer from incoming missiles.</p>
+This amulet protects its wearer from incoming missiles.

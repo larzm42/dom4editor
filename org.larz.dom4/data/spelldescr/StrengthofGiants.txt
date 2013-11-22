@@ -1,2 +1,1 @@
-<p>Gives an entire squad increased strength.
-</p>
+Gives an entire squad increased strength.

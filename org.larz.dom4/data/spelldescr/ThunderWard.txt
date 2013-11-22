@@ -1,2 +1,1 @@
-<p>This spell makes units resistant to the damage and stun effects caused by lightning.
-</p>
+This spell protects units from the damage and stun effects caused by lightning and thunder.

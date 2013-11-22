@@ -1,2 +1,1 @@
-<p>The caster shoots a storm of enchanted Vine Arrows against his enemies. The arrows will come alive and entangle anyone who is hit.
-</p>
+The caster shoots a storm of enchanted Vine Arrows against his enemies. The arrows will come alive and entangle anyone who is hit.

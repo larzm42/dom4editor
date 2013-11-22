@@ -1,2 +1,1 @@
-<p>The caster changes his future fate. He will have a fifty percent chance of not being wounded by blows or magic that would otherwise hurt him.
-</p>
+The caster changes his future fate. He will have very good chance of escaping blows or magic that would otherwise have killed him. Luck does not affect undead or inanimate creatures as they are dead already.

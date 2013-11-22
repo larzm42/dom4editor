@@ -1,2 +1,1 @@
-<p>Increases resistance to fire, cold and lightning.
-</p>
+Increases resistance to fire, cold and lightning.

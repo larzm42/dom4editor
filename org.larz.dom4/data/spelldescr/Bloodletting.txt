@@ -1,2 +1,1 @@
-<p>With this arduous spell, the mage tries to drain blood from everyone in the vicinity. All drained blood will be added to the mage's life force.
-</p>
+With this arduous spell, the mage tries to drain blood from everyone in the vicinity. All drained blood will be added to the mage's life force.

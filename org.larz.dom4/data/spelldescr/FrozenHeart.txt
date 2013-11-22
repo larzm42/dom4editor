@@ -1,2 +1,1 @@
-<p>The victim's heart is instantly frozen.
-</p>
+The victim's heart is instantly frozen.

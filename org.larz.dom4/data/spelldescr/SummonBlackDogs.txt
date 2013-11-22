@@ -1,2 +1,1 @@
-<p>The caster summons a pack of Black Dogs. Black Dogs are large, black fay hounds that roam desolate highlands.
-</p>
+The caster summons a pack of Black Dogs. Black Dogs are large, black fay hounds that roam desolate highlands.

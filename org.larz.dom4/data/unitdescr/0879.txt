@@ -1,1 +1,1 @@
-<p>Archers are armed with bows.</p>
+Archers are armed with bows.

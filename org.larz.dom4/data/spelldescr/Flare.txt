@@ -1,2 +1,1 @@
-<p>With this spell, a mage can send a ball of flame towards his enemies. The flare can hit several targets.
-</p>
+With this spell, a mage can send a ball of flame towards his enemies. The flare can hit several targets.

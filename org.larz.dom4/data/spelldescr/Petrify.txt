@@ -1,2 +1,1 @@
-<p>The caster transforms some targets permanently into stone. If the targets resist, they still get paralyzed for a short time.
-</p>
+The caster transforms some targets permanently into stone. If the targets resist, they still get paralyzed for a short time.

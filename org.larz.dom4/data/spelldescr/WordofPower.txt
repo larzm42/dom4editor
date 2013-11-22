@@ -1,2 +1,1 @@
-<p>The priest utters a word most holy. The target is struck by divine power and paralyzed.
-</p>
+The priest utters a word most holy. The target is struck by divine power and paralyzed.

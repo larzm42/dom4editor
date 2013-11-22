@@ -1,2 +1,1 @@
-<p>Soldiers' morale is increased the help of this prayer.
-</p>
+Soldiers' morale is increased with the help of this prayer.

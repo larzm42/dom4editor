@@ -1,2 +1,1 @@
-<p>This spell enchants the caster's whole army. All beings become resistant to cold. It also reduces the chill effect of some creatures, such as Wights and Winter Wolves.
-</p>
+This spell transforms the caster's entire army into a legion of half-frozen apparitions. All beings in the army become pale and cold to the touch. The half-frozen warriors are highly resistant heat and flames. It also reduces the heat effects from fiery creatures, such as Abysians and Salamanders.

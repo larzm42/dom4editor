@@ -1,2 +1,1 @@
-<p>This spell-song reinvigorates the caster and nearby friends.
-</p>
+This spell-song reinvigorates the caster and nearby friends.

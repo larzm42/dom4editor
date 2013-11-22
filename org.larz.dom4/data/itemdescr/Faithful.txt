@@ -1,1 +1,1 @@
-<p>This short sword will grant its wielder luck in battle.</p>
+This short sword will grant its wielder luck in battle.

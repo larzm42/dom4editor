@@ -1,2 +1,1 @@
-<p>The caster binds an enemy soul to his service.
-</p>
+The caster binds an enemy soul to his service.

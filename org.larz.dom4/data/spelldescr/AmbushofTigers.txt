@@ -1,1 +1,1 @@
-<p>The caster summons an ambush of Tigers and binds them to service.</p>
+The caster summons an ambush of Tigers and binds them to service.

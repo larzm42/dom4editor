@@ -1,2 +1,1 @@
-<p>Creates one Lumber Construct, a magically animated wooden construction resembling a human. The construct will fall apart if left on the battlefield without magical leadership.
-</p>
+Creates one Lumber Construct, a magically animated wooden construction resembling a human. The construct will fall apart if left on the battlefield without magical leadership.

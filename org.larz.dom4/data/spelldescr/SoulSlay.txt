@@ -1,2 +1,1 @@
-<p>The caster attempts to rip the target's mind from his body. If successful, the spell will slay the target.
-</p>
+The caster attempts to rip the target's mind from his body. If successful, the spell will slay the target.

@@ -1,1 +1,1 @@
-<p>This sword is enchanted with accuracy and quickness.</p>
+This sword is enchanted with accuracy and quickness.

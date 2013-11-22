@@ -1,2 +1,1 @@
-<p>The winner of the arena death match will receive this trident. The Champion will have to defend the trident in upcoming death matches until it finally passes along to a new Champion.
-</p>
+The winner of the arena death match may receive this trident. The Champion will have to defend this prize in upcoming death matches until it finally passes along to a new Champion.

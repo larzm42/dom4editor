@@ -1,1 +1,1 @@
-<p>The pyromancer is a mage of flame and Fire.</p>
+The pyromancer is a mage of flame and Fire.

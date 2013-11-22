@@ -1,2 +1,1 @@
-<p>The caster of this spell will have his magic resistance increased for the duration of the battle.
-</p>
+The caster of this spell will have his magic resistance increased for the duration of the battle.

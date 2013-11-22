@@ -1,2 +1,1 @@
-<p>Grants the caster the ability to fly.
-</p>
+Grants the caster the ability to fly.

@@ -1,2 +1,1 @@
-<p>Grants a few units the ability to fly.
-</p>
+Grants a few units the ability to fly.

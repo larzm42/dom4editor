@@ -1,1 +1,1 @@
-<p>A large dog.</p>
+A large dog.

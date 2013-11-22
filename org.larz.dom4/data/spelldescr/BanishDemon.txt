@@ -1,2 +1,1 @@
-<p>The caster banishes one demon back to Hell.
-</p>
+The caster banishes one demon back to Hell.

@@ -1,1 +1,1 @@
-<p>This pike is enchanted with accuracy and quickness.</p>
+This pike is enchanted with accuracy and quickness.

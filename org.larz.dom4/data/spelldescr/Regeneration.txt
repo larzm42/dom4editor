@@ -1,2 +1,1 @@
-<p>This spell gives a small number of targets regenerative powers. It does not work on lifeless targets.
-</p>
+This spell gives a small number of targets regenerative powers. It does not work on lifeless targets.

@@ -1,2 +1,1 @@
-<p>A large number of soldiers are given quick feet. Movement is doubled.
-</p>
+A large number of soldiers are given quick feet. Movement is doubled.

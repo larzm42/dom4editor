@@ -1,2 +1,1 @@
-<p>This is the same as the Blessing prayer, except that it affects all holy units on the entire battlefield.
-</p>
+This is the same as the Blessing prayer, except that it affects all holy units on the entire battlefield.

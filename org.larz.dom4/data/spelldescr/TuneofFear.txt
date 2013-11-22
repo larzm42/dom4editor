@@ -1,2 +1,1 @@
-<p>This sinister tune frightens nearby enemies.
-</p>
+This sinister tune frightens nearby enemies.
