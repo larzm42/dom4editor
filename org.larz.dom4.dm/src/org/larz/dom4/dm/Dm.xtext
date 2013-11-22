@@ -354,9 +354,13 @@ MonsterInst2:
 	chaosrec?='#chaosrec' |
 	homerealm?='#homerealm' |
 	giftofwater?='#giftofwater' |
+	indepmove?='#indepmove' |
 	patience?='#patience' |
 	falsearmy?='#falsearmy' |
 	foolscouts?='#foolscouts' |
+	deserter?='#deserter' |
+	horrordeserter?='#horrordeserter' |
+	defector?='#defector' |
 	autohealer?='#autohealer' |
 	autodishealer?='#autodishealer' |
 	autodisgrinder?='#autodisgrinder' |
@@ -364,6 +368,8 @@ MonsterInst2:
 	damagerev?='#damagerev' |
 	slimer?='#slimer' |
 	deathdisease?='#deathdisease' |
+	deathparalyze?='#deathparalyze' |
+	deathfire?='#deathfire' |
 	chaospower?='#chaospower' |
 	digest?='#digest' |
 	incorporate?='#incorporate' |
@@ -372,6 +378,7 @@ MonsterInst2:
 	gold?='#gold' |
 	growhp?='#growhp' |
 	shrinkhp?='#shrinkhp' |
+	reanimator?='#reanimator' |
 	montag?='#montag' |
 	inspirational?='#inspirational' |
 	beastmaster?='#beastmaster' |
@@ -484,6 +491,8 @@ MonsterInst4:
 	(superiorundeadleader?='#superiorundeadleader') |
 	(slowrec?='#slowrec') |
 	(noslowrec?='#noslowrec') |
+	(reqlab?='#reqlab') |
+	(reqtemple?='#reqtemple') |
 	(singlebattle?='#singlebattle') |
 	(aisinglerec?='#aisinglerec') |
 	(ainorec?='#ainorec') |
@@ -504,6 +513,8 @@ MonsterInst4:
 	(deathcurse?='#deathcurse') |
 	(trampswallow?='#trampswallow') |
 	(taxcollector?='#taxcollector') |
+	(nohof?='#nohof') |
+	(cleanshape?='#cleanshape') |
 	(slave?='#slave') |
 	(undisciplined?='#undisciplined') |
 	(magicimmune?='#magicimmune') |
@@ -736,6 +747,8 @@ ItemInst2:
 	bloodvengeance?='#bloodvengeance' |
 	slimer?='#slimer' |
 	deathdisease?='#deathdisease' |
+	deathparalyze?='#deathparalyze' |
+	deathfire?='#deathfire' |
 	chaospower?='#chaospower' |
 	firepower?='#firepower' |
 	coldpower?='#coldpower' |
