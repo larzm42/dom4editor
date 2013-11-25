@@ -225,7 +225,9 @@ public class AddDialog extends Dialog {
 				SearchDialog dialog = new SearchDialog(getShell(), selectButton[add.ordinal()].getSelection(), type);
 				if (dialog.open() == Window.OK) {
 					IDNameDB armorDB = dialog.getSelected();
-					idText[add.ordinal()].setText(Integer.toString(armorDB.id));
+					if (armorDB != null) {
+						idText[add.ordinal()].setText(Integer.toString(armorDB.id));
+					}
 				}
 			}
 		});
