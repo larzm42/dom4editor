@@ -61,13 +61,13 @@
             name="Syntax Coloring">
             <keywordReference id="org.larz.dom4.dm.ui.keyword_Dm"/>
         </page>
-        <page
+        <!--page
             category="org.larz.dom4.dm.Dm"
             class="org.larz.dom4.dm.ui.DmExecutableExtensionFactory:org.eclipse.xtext.ui.editor.templates.XtextTemplatePreferencePage"
             id="org.larz.dom4.dm.Dm.templates"
             name="Templates">
             <keywordReference id="org.larz.dom4.dm.ui.keyword_Dm"/>
-        </page>
+        </page-->
     </extension>
     <extension
         point="org.eclipse.ui.keywords">
