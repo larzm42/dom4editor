@@ -486,7 +486,12 @@ public class SummaryList extends MasterDetailsBlock {
 			} else if (element instanceof SelectName) {
 				return Messages.format("ScrolledPropertiesBlock.nametype.single.fmt", ((SelectName)element).getValue());
 			} else if (element instanceof SelectPoptype) {
-				return Messages.format("ScrolledPropertiesBlock.poptype.single.fmt", ((SelectPoptype)element).getValue());
+				String name = Database.getPoptypeName(((SelectPoptype)element).getValue());
+				if (name != null) {
+					return Messages.format("ScrolledPropertiesBlock.poptype.double.fmt", ((SelectPoptype)element).getValue(), name);
+				} else {
+					return Messages.format("ScrolledPropertiesBlock.poptype.single.fmt", ((SelectPoptype)element).getValue());
+				}
 			} else if (element instanceof NewMercenary) {
 				EList<MercenaryMods> list = ((NewMercenary)element).getMods();
 				for (MercenaryMods mod : list) {

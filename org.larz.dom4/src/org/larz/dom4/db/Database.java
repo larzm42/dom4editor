@@ -71,6 +71,8 @@ public class Database {
 	private static Map<Integer, String> nationNameMap = new HashMap<Integer, String>();
 	private static Map<Integer, NationDB> nationDBIdMap = new HashMap<Integer, NationDB>();
 
+	private static Map<Integer, String> poptypeNameMap = new HashMap<Integer, String>();
+
 	private static Format numberFormat = new DecimalFormat("0000");
 
 	public static List<IDNameDB> getAllArmor() {
@@ -241,6 +243,32 @@ public class Database {
 				spell.id = rs.getInt("id");
 				spell.name = rs.getString("name");
 				list.add(spell);
+			}
+
+			statement.close();
+
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		} catch (ClassNotFoundException ex) {
+			ex.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	public static List<IDNameDB> getAllPoptype() {
+		List<IDNameDB> list = new ArrayList<IDNameDB>();
+		try {
+			Statement statement = getConnection().createStatement();
+			ResultSet rs = statement.executeQuery("SELECT \"id\", \"type\" FROM \"poptypes\"");
+
+			while (rs.next())
+			{
+				IDNameDB poptype = new IDNameDB();
+				poptype.id = rs.getInt("id");
+				poptype.name = rs.getString("type");
+				list.add(poptype);
 			}
 
 			statement.close();
@@ -875,10 +903,7 @@ public class Database {
 			monster.prec = rs.getInt("prec");
 			monster.mr = rs.getInt("mr");
 			monster.mor = rs.getInt("mor");
-			
-			// TODO gold cost
 			monster.gcost = rs.getInt("basecost");
-			
 			monster.rcost = rs.getInt("rsrc");
 			monster.pathcost = rs.getInt("path");
 			monster.startdom = rs.getInt("dom");
@@ -1131,30 +1156,30 @@ public class Database {
 //					monster.magicboost2 = magicboost;
 //				}
 //			}
-//			
-//			int gemprod = rs.getInt("n_gemprod");
-//			if (gemprod != 0) {
-//				String path = rs.getString("gemprod");
-//				if (path.equals("F")) {
-//					monster.gemprod1 = 0;
-//				} else if (path.equals("W")) {
-//					monster.gemprod1 = 2;
-//				} else if (path.equals("E")) {
-//					monster.gemprod1 = 3;
-//				} else if (path.equals("S")) {
-//					monster.gemprod1 = 4;
-//				} else if (path.equals("N")) {
-//					monster.gemprod1 = 6;
-//				} else if (path.equals("A")) {
-//					monster.gemprod1 = 1;
-//				} else if (path.equals("D")) {
-//					monster.gemprod1 = 5;
-//				} else if (path.equals("B")) {
-//					monster.gemprod1 = 7;
-//				}
-//
-//				monster.gemprod2 = gemprod;
-//			}
+			String gemgen = rs.getString("gemgen");
+			if (gemgen != null) {
+				int gemprod = Integer.valueOf(gemgen.substring(0, 1));
+				String path = gemgen.substring(1, 2);
+				if (path.equals("F")) {
+					monster.gemprod1 = 0;
+				} else if (path.equals("W")) {
+					monster.gemprod1 = 2;
+				} else if (path.equals("E")) {
+					monster.gemprod1 = 3;
+				} else if (path.equals("S")) {
+					monster.gemprod1 = 4;
+				} else if (path.equals("N")) {
+					monster.gemprod1 = 6;
+				} else if (path.equals("A")) {
+					monster.gemprod1 = 1;
+				} else if (path.equals("D")) {
+					monster.gemprod1 = 5;
+				} else if (path.equals("B")) {
+					monster.gemprod1 = 7;
+				}
+
+				monster.gemprod2 = gemprod;
+			}
 			
 //			monster.clear = rs.getInt("clear") == 1;
 //			monster.clearmagic = rs.getInt("clearmagic") == 1;
@@ -1775,6 +1800,31 @@ public class Database {
 			}
 		}
 		return weaponName;
+	}
+	
+	public static String getPoptypeName(int id) {
+		String poptypeName = poptypeNameMap.get(Integer.valueOf(id));
+		if (poptypeName == null) {
+			try {
+				Statement statement = getConnection().createStatement();
+				ResultSet rs = statement.executeQuery("SELECT \"type\" FROM \"poptypes\" where \"id\"="+id);
+
+				while (rs.next()) {			
+					poptypeName = rs.getString("type");
+				}
+
+				statement.close();
+				poptypeNameMap.put(Integer.valueOf(id), poptypeName);
+
+			} catch (SQLException ex) {
+				ex.printStackTrace();
+			} catch (ClassNotFoundException ex) {
+				ex.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return poptypeName;
 	}
 	
 	public static String getMonsterName(int id) {

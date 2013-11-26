@@ -2686,7 +2686,7 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 						Inst.EYES.defaultValue = monsterDB.eyes.toString();
 					} else {
 						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
-						Inst.EYES.defaultValue = "";
+						Inst.EYES.defaultValue = "2";
 					}
 					break;
 				case VOIDSANITY:
@@ -2797,7 +2797,7 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 						Inst.BECKON.defaultValue = monsterDB.beckon.toString();
 					} else {
 						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
-						Inst.BECKON.defaultValue = "";
+						Inst.BECKON.defaultValue = "10";
 					}
 					break;
 				case STARTAGE:
@@ -3085,7 +3085,7 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 						Inst.BLOODVENGEANCE.defaultValue = monsterDB.bloodvengeance.toString();
 					} else {
 						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
-						Inst.BLOODVENGEANCE.defaultValue = "";
+						Inst.BLOODVENGEANCE.defaultValue = "1";
 					}
 					break;
 				case CASTLEDEF:
@@ -3193,7 +3193,7 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 						Inst.SPREADDOM.defaultValue = monsterDB.spreaddom.toString();
 					} else {
 						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
-						Inst.SPREADDOM.defaultValue = "";
+						Inst.SPREADDOM.defaultValue = "10";
 					}
 					break;
 				case LEPER:
@@ -3202,7 +3202,7 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 						Inst.LEPER.defaultValue = monsterDB.leper.toString();
 					} else {
 						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
-						Inst.LEPER.defaultValue = "";
+						Inst.LEPER.defaultValue = "0";
 					}
 					break;
 				case POPKILL:
@@ -4234,7 +4234,7 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 						Inst.CHAOSREC.defaultValue = monsterDB.chaosrec.toString();
 					} else {
 						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
-						Inst.CHAOSREC.defaultValue = "";
+						Inst.CHAOSREC.defaultValue = "0";
 					}
 					break;
 				case SINGLEBATTLE:

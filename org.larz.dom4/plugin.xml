@@ -39,7 +39,7 @@
          </property>
          <property
                name="aboutText"
-               value="This is the Dominions 4 Mod File Editor.&#x0A;Project home: http://code.google.com/p/dom4editor/&#x0A;License: http://www.gnu.org/licenses/gpl.txt&#x0A;&#x0A;Release 1.0 - October 1, 2013.">
+               value="This is the Dominions 4 Mod File Editor.&#x0A;Project home: http://code.google.com/p/dom4editor/&#x0A;License: http://www.gnu.org/licenses/gpl.txt&#x0A;&#x0A;Release 1.0 - December 5, 2013.">
          </property>
          <property
                name="startupForegroundColor"
@@ -277,7 +277,7 @@
                   </with>
                </visibleWhen>
             </command>
-            <command
+            <!--command
                   commandId="org.larz.dom4.GenerateReport"
                   icon="icons/pdf.gif"
                   label="Generate Report"
@@ -291,7 +291,7 @@
                      </equals>
                   </with>
                </visibleWhen>
-            </command>
+            </command-->
          </toolbar>
       </menuContribution>
    </extension>

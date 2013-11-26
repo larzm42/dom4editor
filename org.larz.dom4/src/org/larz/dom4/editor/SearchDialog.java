@@ -135,6 +135,9 @@ public class SearchDialog extends Dialog {
 			case SPELL:
 				viewer.setInput(Database.getAllSpell().toArray());
 				break;
+			case POPTYPE:
+				viewer.setInput(Database.getAllPoptype().toArray());
+				break;
 			case NAME:
 				List<IDNameDB> ids = new ArrayList<IDNameDB>();
 				for (int i = 100; i <= 200; i++) {
