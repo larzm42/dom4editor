@@ -1,4 +1,4 @@
-id	name	school	researchlevel	path1	pathlevel1	path2	pathlevel2	fatiguecost	type	subtype	rng_prov	rng_bat	rng+	aoe_p	aoe_s	aoe+	nreff	eff+	precision	dmg	dmg+	dt	ap	an	stun	heal	mrneg	extra_eff	explanation	comsummon	summon	uw	land	target_uw	target_land	target_enemy	target_friend	anonym	nat_x	national	other
+id	name	school	researchlevel	path1	pathlevel1	path2	pathlevel2	fatiguecost	type	subtype	rng_prov	rng_bat	rngplus	aoe_p	aoe_s	aoeplus	nreff	effplus	precision	dmg	dmgplus	dt	ap	an	stun	heal	mrneg	extra_eff	explanation	comsummon	summon	uw	land	target_uw	target_land	target_enemy	target_friend	anonym	nat_x	national	other
 150	Banishment	7	0	8	1			0	Combat	Damage																															
 151	Blessing	7	0	8	1			0	Combat	Buff																															
 152	Sermon of Courage	7	0	8	2			0	Combat	Buff																															

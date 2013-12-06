@@ -500,20 +500,20 @@ div.overlay-main table.wpn-table {
 .armor-table,
 .item .overlay-table .protbody, .item .overlay-table .prothead, .item .overlay-table .protshield,
 .item .overlay-table:not(.wpn-table) .def, .item .overlay-table .enc, .item .overlay-table .parry {
-	background: #e3d151;	
+	background: #ded0b7;	
 }
 
 
 /*  */
 .unit .overlay-table .enc, .unit .overlay-table .ap { 
-	border-bottom: 2px dashed #ded0b7; /*dashed #ffd635;*/
+	border-bottom: 2px dashed #ffd635;*/
 }
 
 div.spell table.spell-effect th, div.spell table.spell-effect td.widecell {
 	padding-left: 1em;
 }
 div.spell table.spell-effect.nextspell {
-	border-top: 2px dashed #ded0b7; /*dashed #ffd635;*/
+	border-top: 2px dashed #ffd635;*/
 }
 
 .overlay-table tr[title] {

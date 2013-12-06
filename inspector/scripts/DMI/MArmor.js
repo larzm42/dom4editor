@@ -44,7 +44,7 @@ MArmor.prepareData_PostMod = function() {
 				o.protshield = o.prot;
 				delete o.prot;
 			}
-			o.parry = o.def;
+			//o.parry = o.def;
 			o.def = Utils.negative(o.enc);
 		}
 		else if (o.type=="helm" && o.prot) {
@@ -117,11 +117,11 @@ var formats = {};
 var displayorder = DMI.Utils.cutDisplayOrder(aliases, formats,
 [
 	'prot',		'basic protection',
-	'protbody',	'protection, body',
-	'prothead',	'protection, head',
-	'protshield',	'protection, shield',
+	'body',	'protection, body',
+	'head',	'protection, head',
+	'shield',	'protection, shield',
 	'def',		'defence',		Format.Signed,
-	'parry',	'parry',
+	'par',	'parry',
 	'enc',		'encumbrance'
 ]);
 
@@ -141,6 +141,7 @@ var ignorekeys = {
 	id:1,
 	name:1,
 	type:1,
+	dispname:1,
 
 	searchable:1,renderOverlay:1, matchProperty:1
 };

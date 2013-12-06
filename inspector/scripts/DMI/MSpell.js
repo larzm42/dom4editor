@@ -29,6 +29,14 @@ MSpell.prepareData_PreMod = function() {
 			o.school = '-1';
 		
 		o.nations = Utils.keyListToTable(o, 'restricted') || [];
+
+		if (o.mrneg == 'normal') {
+			o.mrneg_norm = 1;
+		}
+		if (o.mrneg == 'easy') {
+			o.mrneg_easy = 1;
+		}
+			
 	}
 }
 
@@ -101,12 +109,12 @@ MSpell.prepareData_PostMod = function() {
 		 	o.gemcost = String(Math.floor(o.fatiguecost/100)) + o.path1;
 		
 		//combat fatiguecost
-		if (parseInt(o.effect) > 10000){
+		/*if (parseInt(o.effect) > 10000){
 			o.type = 'ritual';
 			delete o.fatiguecost;
 		}
 		else
-			o.type = 'combat spell';
+			o.type = 'combat spell';*/
 	
 
 		//log cloud effects		
@@ -158,13 +166,17 @@ MSpell.prepareData_PostMod = function() {
 //////////////////////////////////////////////////////////////////////////
 
 function spellNameFormatter(row, cell, value, columnDef, dataContext) {
-	if (dataContext.nations)
+	if (dataContext.nat_x)
 		return '<div class="national-spell">'+value+'</div>';	
 	return value;
 }
 
 function fatigueFormatter(row, cell, value, columnDef, dataContext) {
-	if (value) return String(value)+'-';
+	if (value) {
+		if (value < 1000) {
+	       		return String(value)+'-';
+		}
+	}
 	return '';
 }
 function spellCostFormatter(row, cell, value, columnDef, dataContext) {
@@ -375,6 +387,29 @@ MSpell.matchProperty = function(o, key, comp, val) {
 		return DMI.MSpell.matchProperty(o.nextspell, key, comp, val);
 }
 
+MSpell.formatDmgType = function(v,o) {
+	if (o.dt == 'n') {
+		return 'normal';
+	}
+	if (o.dt == 'm') {
+		return 'magic';
+	}
+	if (o.dt == 'f') {
+		return 'fire';
+	}
+	if (o.dt == 'c') {
+		return 'cold';
+	}
+	if (o.dt == 's') {
+		return 'shock';
+	}
+	if (o.dt == 'p') {
+		return 'poison';
+	}
+	if (o.dt == 'a') {
+		return 'acid';
+	}
+}
 
 
 //////////////////////////////////////////////////////////////////////////
@@ -392,24 +427,34 @@ var moddingkeys = Utils.cutDisplayOrder(aliases, formats,
 	'effect',	'effect',	function(v,o){ return v + ' (damage:'+o.damage+')'; },
 	'nextspell',	'nextspell',	function(v,o){ return v.id; },
 	'spec_original',	'special',
-	'aoe', 'aoe',
-	'nreff', 'nreff'
+	'extra_eff',	'effect',
+	'explanation',	'explanation',
+	'other',	'other'
 ]);
 var displayorder = Utils.cutDisplayOrder(aliases, formats,
 [
 	'fatiguecost',	'fatigue cost',		function(v){ return v+'-'; },
 	'gemcost',	'gems required',	Format.Gems,
 
-	'range',	'range', 		MSpell.format.range,
-//	'aoe',		'area of effect', 	formatSpellAOE,
+	'rng_bat',	'range', 		function(v,o){ return o.rngplus ? v+'+' : v; },
+	'rng_prov',	'range', 		function(v,o){ return o.rng_prov == 1 ? v+' province' : v+' provinces' },
+	'aoe_s',	'area of effect', 	function(v,o){ return o.aoeplus ? v+'+' : v; },
+	'nreff', 	'number of effects',	function(v,o){ return o.effplus ? v+'+' : v; },
 
-	'precision',	'precision',	{0: '0 '}
+	'precision',	'precision',	{0: '0 '},
+	'dmg',		'damage', 	function(v,o){ return o.dmgplus ? v+'+' : v; },
+	'dt',		'damage type', 	MSpell.formatDmgType,
+	'heal',		'heal',
+	'summon',	'summons', 	Utils.spellRef
 	
-//	'nreff',	'nreff of effects', 	formatNumEffects,
 ]);
 var flagorder = Utils.cutDisplayOrder(aliases, formats,
 [
 //	dbase key	displayed key		function/dict to format value
+	'ap',		'armor piercing',
+	'an',		'armor negating',
+	'mrneg_norm',	'magic resistence negates',
+	'mrneg_easy',	'magic resistence negates easily'
 
 ]);
 var ignorekeys = {
@@ -422,6 +467,15 @@ var ignorekeys = {
 	type:1,		
 	mpath:1,
 	fatiguecost:1,gemcost:1,
+	rngplus:1,
+	aoeplus:1,
+	dmgplus:1,
+	effplus:1,
+	subtype:1,
+	uw:1,
+	land:1,
+	mrneg:1,
+	aoe_p:1,
 
 	// aoe:1, nreff:1,
 	summonsunits:1,	nations:1, eracodes:1, nationname:1,
@@ -487,7 +541,7 @@ MSpell.renderOverlay = function(o) {
 	h+=		MSpell.renderSpellTable(o);
 	
 	//special flags; casting requirements (cannot be cast underwater etc..)
-	var specflags = Utils.renderFlags( MSpell.bitfieldValues(o.spec, MSpell.masks_final) );
+	var specflags = Utils.renderFlags( MSpell.landValues(o) );
 	if (specflags)
 		h+=	'<p>'+specflags+'</p>';	
 
@@ -551,7 +605,7 @@ MSpell.renderSpellTable = function(o, original_effect) {
 	
 	//effect
 	h+='		<table class="overlay-table spell-effect '+cssclasses+'"> ';
-	h+=			renderEffect(o, original_effect);
+	//h+=			renderEffect(o, original_effect);
 	//special
 	var specflags = Utils.renderFlags( MSpell.bitfieldValues(o.spec, MSpell.masks_special) );
 	if (specflags)
@@ -588,6 +642,19 @@ MSpell.bitfieldValues = function(bitfield, masks_dict) {
 	}
 	return values;
 }
+
+MSpell.landValues = function(o) {
+	var values=[];
+
+	if (o.uw != 'y') {
+		values.push('cannot be cast underwater');
+	}
+	if (o.land == 'n' && o.uw == 'y') {
+		values.push('only works underwater');
+	}
+	return values;
+}
+
 
 function renderEffect(o, o_parent) {
 	//format basic spell values
