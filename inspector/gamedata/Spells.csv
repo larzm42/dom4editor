@@ -1,0 +1,863 @@
+id	name	school	researchlevel	path1	pathlevel1	path2	pathlevel2	fatiguecost	type	subtype	rng_prov	rng_bat	rng+	aoe_p	aoe_s	aoe+	nreff	eff+	precision	dmg	dmg+	dt	ap	an	stun	heal	mrneg	extra_eff	explanation	comsummon	summon	uw	land	target_uw	target_land	target_enemy	target_friend	anonym	nat_x	national	other
+150	Banishment	7	0	8	1			0	Combat	Damage																															
+151	Blessing	7	0	8	1			0	Combat	Buff																															
+152	Sermon of Courage	7	0	8	2			0	Combat	Buff																															
+153	Smite Demon	7	0	8	2			0	Combat	Damage																															
+154	Holy Avenger	7	0	8	2			0	Combat	Buff																															
+155	Divine Blessing	7	0	8	3			0	Combat	Buff																															
+156	Smite	7	0	8	3			0	Combat	Damage																															
+157	Fanaticism	7	0	8	4			0	Combat	Buff																															
+158	Word of Power	7	0	8	4			0	Combat	Damage																															
+159	Divine Channeling	7	0	8	5			90	Combat	Enchantment																															
+160	Fire Flies	2	0	0	1			20	Combat	Damage		25	x	1			6		-1	6		f	1									n									
+161	Air Shield	1	0	1	1			10	Combat	Buff		1		1			1			9	x	c							air shield 80%												
+162	Freezing Touch	1	0	2	1			10	Combat	Damage		1		1			1			9	x	c		1																	
+163	Flying Shards	2	0	3	1			30	Combat	Damage		25	x	1			4	x		10																					
+164	Twist Fate	2	0	4	1			20	Combat	Buff				caster															Twist Fate												
+165	Hand of Dust	1	0	5	1			10	Combat	Damage		1		1						6	x	m		1																	
+166	Sleep Touch	5	0	6	1			10	Combat	Damage		1		1						115	x				1		normal														doesn't affect mindless beings
+167	Bleed	6	0	7	1			100	Combat	Damage		25	x	1													normal		bleeding injury												
+168	Monster Boar	0	5	6	3			1000	Ritual	Com Summon	5						1													Monster Boar									x	"Marverni, Sauromatia, Pan EA, MA, LA, Arco MA, LA"	
+169	Orgy	6	1	7	1	6	1	100	Ritual	Com Summon							1											6 Maenads		Satyr									x	Pythium LA	
+170	Daughter of Typhon	0	9	6	5	5	2	3000	Ritual	Summon																													x	"Sauromatia, Pythium LA"	
+171	Call Sirrush	0	5	4	1	6	1	1000	Ritual	Summon							1														Sirrush								x	Pythium LA	
+172	Sounder of Boars	0	3	6	2			2000	Ritual	Summon							20														Great Boar								x	Marverni	
+173	Contact Boar of Carnutes	0	3	6	1	3	1	700	Ritual	Com Summon							1													Great Boar of Carnutes									x	Marverni	
+174	Contact Huli Jing	0	6	6	2			3000	Ritual	Com Summon							1													Huli Jing									x	T'ien Ch'i EA	
+175	Thousand Year Ginseng	3	5	6	1			800	Ritual	Buff																													x	T'ien Ch'i MA	
+176	Internal Alchemy	1	5	2	2	4	1	1000	Ritual	Buff																													x	"T'ien Ch'i EA, MA, LA"	
+177	End of Culture	5	6	0	2			100	Combat	Buff					bf																								x	Yomi	
+178	End of Weakness	1	6	3	2			100	Combat	Buff																															
+179	Teaching Sign	7	0	8	1	6	1	0	Combat	Buff																															
+180	Fear-not Sign	7	0	8	1	1	1	0	Combat	Buff																															
+181	Welcome Sign	7	0	8	1	0	1	0	Combat	Buff																															
+182	Earth-touching Sign	7	0	8	1	3	1	0	Combat																																
+183	Meditation Sign	7	0	8	1	2	1	0	Combat																																
+184	Summon Shikome	0	4	5	2			800	Ritual	Summon							8														Shikome								x	Yomi	
+185	Contact Jigami	0	4	6	1			1000	Ritual	Com Summon							1													Jigami									x	Jomon	
+186	Contact Mori-no-kami	0	5	6	3			2100	Ritual	Com Summon							1													Mori-no-kami									x	Jomon	forest only
+187	Summon Ujigami	0	5	3	1	4	1	800	Ritual	Com Summon							1													Ujigami									x	Jomon	
+188	Contact Kaijin	0	5	2	3			2500	Ritual	Com Summon							1													Kaijin									x	Jomon	
+189	Contact Tatsu	0	6	3	3			1900	Ritual	Com Summon							1													Tatsu									x	Jomon	
+190	Summon Kenzoku	0	6	4	1	3	1	900	Ritual	Com Summon							1													Kenzoku									x	Jomon	
+191	Summon Gozu Mezu	0	6	5	3			700	Ritual	Summon							1														Horse Face + Ox-head								x	"Yomi, Shinuyama, Jomon"	
+192	Contact Yama-no-kami	0	7	3	4			2800	Ritual	Com Summon							1													Yama-no-kami									x	Jomon	mountains and border mountains only
+193	Summon Abysian Ancestors	0	2	5	1	0	1	500	Ritual	Summon							5														Smoulderghost								x	Abysia LA	
+194	Reawaken Fossil	4	5	3	2	5	1	1000	Ritual	Summon							5	x													Fossilized Giant								x	Abysia LA	
+195	Summon Spectral Infantry	0	2	5	1	0	1	500	Ritual	Summon	0						5														Smoulderghost								x	"Abysia EA, MA"	
+196	Contact Scorpion Man	0	8	3	1	0	1	1200	Ritual	Summon							1														Scorpion Man								x	"Abysia EA, MA, LA"	
+197	Inner Furnace	4	5	0	3			100	Combat	Enchantment					bf																								x	"Abysia EA, MA, LA"	
+198	Summon Simargl	0	2	1	1			100	Ritual	Summon							1														Simargl								x	Bogarus	
+199	Summon Firebird	0	3	0	1	4	1	200	Ritual	Summon							1														Firebird								x	Bogarus	
+200	Send Lady Midday	0	5	1	1	5	1	1000	Ritual	Assassin	5						1													Lady Midday		n	y	n					x	Bogarus	
+201	Contact Sirin	0	3	4	2			800	Ritual	Com Summon							1													Sirin									x	Bogarus	
+202	Send Vodyanoy	0	4	2	2			2000	Ritual	Remote Attack	4						1													Vodyanoi									x	Bogarus	
+203	Summon Rusalka	0	4	2	1	5	1	1600	Ritual	Com Summon							1													Rusalka									x	Bogarus	
+204	Summon Likho	0	4	5	1			1000	Ritual	Com Summon							1													Likho									x	Bogarus	
+205	Contact Alkonost	0	4	4	2			1500	Ritual	Com Summon							1													Alkonost									x	Bogarus	
+206	Summon Zmey	0	5	0	2			800	Ritual	Summon							1													Zmey									x	Bogarus	
+207	Send Bukavac	0	5	2	4			500	Ritual	Remote Attack	4						1													Bukavac									x	Bogarus	
+208	Contact Gamayun	0	5	4	3			2500	Ritual	Com Summon							1													Gamayun									x	Bogarus	
+209	Contact Beregina	0	6	2	3	3	1	3500	Ritual	Com Summon							1													Beregina									x	Bogarus	
+210	Contact Mountain Vila	0	7	6	4			4000	Ritual	Com Summon							1													Mountain Vila									x	Bogarus	mountains and border mountains only
+211	Contact Cloud Vila	0	7	1	4			4000	Ritual	Com Summon							1													Cloud Vila									x	Bogarus	mountains and border mountains only
+212	Contact Leshiy	0	8	6	6			6000	Ritual	Com Summon							1													Leshiy									x	Bogarus	forest only
+213	Sacred Crocodile	0	5	6	2	2	2	800	Ritual	Summon							1														Sacred Crocodile								x	"C'tis EA, MA, LA"	
+214	Summon Scorpion Man	0	8	3	1	0	1	1200	Ritual	Summon							1														Scorpion Man								x	"C'tis EA, MA, LA"	
+215	Herd of Elephants	0	3	6	2			3000	Ritual	Summon							5	x													Elephant (2398)								x		
+216	Call Melqart	6	6	7	3	0	2	9900	Ritual	Com Summon							1													Melqart									x	Berytos	
+217	Strange Fire	2	4	4	2	0	1	20	Combat	Damage	20	35	x		3				1	8			1									n							x	"Ashdod, Gath"	3x damage vs undead and demons
+218	Memories of Stone	4	5	5	2	3	1	1000	Ritual	Summon							5	x													Fossil Warrior								x	Gath	waste only
+219	Dirge for the Dead	0	6	5	3	8	1	2500	Ritual	Com Summon							1													Ditanu (2045)									x	Ashdod	
+220	Banquet for the Dead	0	8	5	4	8	1	5500	Ritual	Com Summon							1											4 Ditanu		Malik (2039)									x	Ashdod	
+221	Summon Se'irim	6	3	7	2			3300	Ritual	Summon							8														Se'ir								x	"Hinnom, Berytos, Ashdod, Gath"	waste only
+222	Summon Shedim	6	4	7	3	1	1	3200	Ritual	Summon							3														Shed								x	"Hinnom, Berytos, Ashdod, Gath"	waste only
+223	Call Malakh	0	4	4	2			900	Ritual	Com Summon							1													Malakh									x	"Ashdod, Gath"	
+224	Call Hashmal	0	6	4	3	0	1	2100	Ritual	Com Summon							1													Hashmal									x	"Ashdod, Gath"	
+225	Call Arel	0	7	4	4	6	1	3900	Ritual	Com Summon							1													Arel									x	"Ashdod, Gath"	
+226	Call Ophan	0	8	4	5	0	2	4900	Ritual	Com Summon							1													Ophan									x	"Ashdod, Gath"	
+227	Call Merkavah	0	9	4	7	0	3	22200	Ritual	Com Summon							1											4 Wheels		Chaoyt									x	"Ashdod, Gath"	
+228	Release Lord of Civilization	6	9	7	8			17700	Ritual	Com Summon							1													Grigori									x	Hinnom	
+229	Summon Mazzikim	0	3	6	1			300	Ritual	Summon							8														Mazzik	n	y						x	"Hinnom, Berytos, Ashdod, Gath"	
+230	Summon Lilot	0	5	6	4			2500	Ritual	Com Summon							1													Lilot		n	y						x	"Hinnom, Berytos, Ashdod, Gath"	
+231	Summon Monster Fish	0	6	2	3			1000	Ritual	Summon							1														Monster Fish	y	n						x	"Atlantis EA, MA, LA"	
+232	Send Tupilak	4	5	5	3	2	1	500	Ritual	Assassin	5						1															n	y	n					x	Atlantis LA	
+233	Unholy Command	7	0	8	1			0	Combat	Damage		5		1					0	enslave				1			easy												x	"Ermor MA, Sceleria, Lemuria"	only affects undead beings
+234	Unholy Protection	7	0	8	1			0	Combat	Buff		15			1				100																				x	"Ermor MA, Sceleria, Lemuria"	
+235	Unholy Blessing	7	0	8	1			0	Combat	Buff		15			1				100																				x	"Ermor MA, Sceleria, Lemuria"	
+236	Unholy Power	7	0	8	1			0	Combat	Buff		15			1				100																				x	"Ermor MA, Sceleria, Lemuria"	
+237	Anathema	7	0	8	2			0	Combat	Damage		50			1				100																				x	"Ermor MA, Sceleria, Lemuria"	
+238	Unholy Protection	7	0	8	2			0	Combat	Buff		5			10				100																				x	"Ermor MA, Sceleria, Lemuria"	
+239	Unholy Blessing	7	0	8	2			0	Combat	Buff		5			10				100																				x	"Ermor MA, Sceleria, Lemuria"	
+240	Apostasy	7	0	8	3			0	Combat	Damage		50							100	charm							easy														only affects sacred units
+241	Unholy Power	7	0	8	3			0	Combat	Buff		5			5				100																				x	"Ermor MA, Sceleria, Lemuria"	
+242	Unholy Blessing	7	0	8	3			0	Combat	Buff					bf																								x	"Ermor MA, Sceleria, Lemuria"	
+243	Protection of the Sepulchre	7	0	8	3			0	Combat	Buff					bf																								x	"Ermor MA, Sceleria, Lemuria"	
+244	Power of the Sepulchre	7	0	8	4			0	Combat	Buff					bf																								x	"Ermor MA, Sceleria, Lemuria"	
+245	Revive Lictor	0	0	5	2			300	Ritual	Summon																					Lictor	n	y						x	Ermor MA	
+246	Revive Censor	0	0	5	2			400	Ritual	Com Summon							1													Censor		n	y						x	Ermor MA	
+247	Revive Acolyte	0	0	5	2			1000	Ritual	Com Summon							1													Acolyte of Eldregate		n	y						x	Ermor MA	
+248	Revive Bishop	0	0	5	2			1600	Ritual	Com Summon							1													Bishop of Eldregate		n	y						x	Ermor MA	
+249	Revive Arch Bishop	0	0	5	3			2300	Ritual	Com Summon							1													Arch Bishop of Eldregate		n	y						x	Ermor MA	
+250	Revive Spectator	0	0	5	2			1200	Ritual	Com Summon							1													Spectator		y	y						x	Ermor MA	
+251	Revive Dusk Elder	0	0	5	3			2000	Ritual	Com Summon							1													Dusk Elder		y	y						x	Ermor MA	
+252	Revive Wailing Lady	0	2	5	2			1500	Ritual	Summon							1														Wailing Lady	y	y						x	Ermor MA	
+253	Lictorian Guard	0	3	5	2			1000	Ritual	Summon							5														Lictor	n	y						x	Ermor MA	
+254	Lamentation	0	5	5	3			5000	Ritual	Summon							5														Wailing Lady	y	y						x	Ermor MA	
+255	Great Lamentation	0	7	5	5			6600	Ritual	Summon							14														Wailing Lady	y	y						x	Ermor MA	
+256	Lictorian Legion	0	8	5	4			3500	Ritual	Summon							25														Lictor	n	y						x	Ermor MA	
+257	Ermorian Legion	4	6	5	4			1500	Ritual	Summon							50														Longdead Legionnaire	n	y						x	Ermor MA	
+258	Revive Shadow Tribune	0	0	5	1			800	Ritual	Com Summon							1													Shadow Tribune									x	Lemuria	
+259	Revive Lemur Centurion	0	0	5	3			500	Ritual	Com Summon							1													Lemuria Centurion									x	Lemuria	
+260	Revive Lemur Senator	0	6	5	4			1500	Ritual	Com Summon							1													Lemuria Senator									x	Lemuria	
+261	Revive Lemur Consul	0	7	5	5			2500	Ritual	Com Summon							1													Lemuria Consul									x	Lemuria	
+262	Revive Lemur Acolyte	0	0	5	3			1500	Ritual	Com Summon							1													Lemuria Acolyte									x	"Ermor MA, Sceleria, Lemuria"	
+263	Revive Lemur Thaumaturg	0	0	5	3			3000	Ritual	Com Summon							1													Lemuria Thaumaturg									x	"Ermor MA, Sceleria, Lemuria"	
+264	Revive Grand Lemur	0	0	5	3			4500	Ritual	Com Summon							1													Grand Lemuria									x	"Ermor MA, Sceleria, Lemuria"	
+265	Unholy Command	7	0	8	1			0	Combat	Damage		5		1					0	enslave				1			easy												x	Lemuria	only affects undead beings
+266	Unholy Protection	7	0	8	1			0	Combat	Buff		15			1				100																				x	Lemuria	
+267	Unholy Blessing	7	0	8	1			0	Combat	Buff		15			1				100																				x	Lemuria	
+268	Unholy Power	7	0	8	1			0	Combat	Buff		15			1				100																				x	Lemuria	
+269	Anathema	7	0	8	2			0	Combat	Damage		50			1				100																				x	Lemuria	
+270	Unholy Protection	7	0	8	2			0	Combat	Buff		5			10				100																				x	Lemuria	
+271	Unholy Blessing	7	0	8	2			0	Combat	Buff		5			10				100																				x	Lemuria	
+272	Apostasy	7	0	8	3			0	Combat	Damage		50							100	charm							easy													Lemuria	only affects sacred units
+273	Unholy Power	7	0	8	3			0	Combat	Buff		5			5				100																				x	Lemuria	
+274	Unholy Blessing	7	0	8	3			0	Combat	Buff					bf																								x	Lemuria	
+275	Protection of the Shadelands	7	0	8	3			0	Combat	Buff					bf																								x	Lemuria	
+276	Power of the Shadelands	7	0	8	4			0	Combat	Buff					bf																								x	Lemuria	
+277	Revive Grave Consort	4	0	5	1			1000	Ritual	Com Summon							1													Grave Consort									x	C'tis LA	
+278	Revive Tomb Priest	4	0	5	2			1600	Ritual	Com Summon							1													Tomb Priest									x	C'tis LA	
+279	Revive Tomb King	4	0	5	3			2300	Ritual	Com Summon							1													Tomb King									x	C'tis LA	
+280	Protection of the Grave	7	0	8	1			0	Combat	Buff		15			1				100																						
+281	Power of the Grave	7	0	8	1			0	Combat	Buff		15			1				100																				x	C'tis LA	
+282	Protection of the Grave	7	0	8	2			0	Combat	Buff		5			10				100																				x	C'tis LA	"effects are the same, but aoe and range vary for H1 and H2 versions"
+283	Royal Power	7	0	8	3			0	Combat	Buff		5			5				100																				x	C'tis LA	
+284	Royal Protection	7	0	8	3			0	Combat	Buff					bf																								x	C'tis LA	
+285	Power of the Reborn King	7	0	8	4			0	Combat	Buff					bf																								x	C'tis LA	
+286	Divination	Hidden	-1	8	3				Ritual																																
+287	Tune of Fear	4	0	6	1			5	Combat	Damage					15																								x	"Pan EA, MA, LA"	
+288	Tune of Growth	4	0	6	1			5	Combat	Damage					15																								x	"Pan EA, MA, LA"	
+289	Tune of Dancing Death	4	0	6	1			5	Combat	Damage					15			x		31				1	1		normal												x	"Pan EA, MA, LA"	doesn't affect mindless beings
+290	Carrion Centaur	4	1	6	1	5	1	1000	Ritual	Summon							1													Carrion Centaur									x	"Pan EA, MA, LA, Asphodel"	level 0 for asphodel
+291	Carrion Lady	4	4	6	1	5	1	1600	Ritual	Summon							1													Carrion Lady									x	"Pan EA, MA, LA, Asphodel"	level 0 for asphodel
+292	Carrion Lord	4	6	6	3	5	2	2500	Ritual	Summon							1													Carrion Lord									x	"Pan EA, MA, LA, Asphodel"	level 0 for asphodel
+293	Quick Roots	4	1	8	1			0	Combat	Buff		10	x		1				0																				x	"Pan EA, MA, LA, Asphodel"	level 0 for asphodel
+294	Regrowth	4	4	8	2			0	Combat	Buff		10	x		1				100																				x	"Pan EA, MA, LA, Asphodel"	level 0 for asphodel
+295	Mend the Dead	4	6	8	3			0	Combat	Buff				1					100	50				1		1													x	"Pan EA, MA, LA, Asphodel"	"level 0 for asphodel, only affects undead beings"
+296	Puppet Mastery	4	6	8	3			0	Combat	Buff					bf																								x	"Pan EA, MA, LA, Asphodel"	level 0 for asphodel
+297	Carrion Growth	4	8	8	4			0	Combat	Buff					bf																								x	"Pan EA, MA, LA, Asphodel"	level 0 for asphodel
+298	Song of Bravery	4	0	6	1			5	Combat	Buff					10																								x	"Tir, Man MA, Eriu"	
+299	Soothing Song	4	0	6	1			5	Combat	Buff					10																								x	"Tir, Man MA, Eriu"	
+300	Healing Song	4	0	6	1			5	Combat	Buff					10									1		1													x	"Tir, Man MA, Eriu"	doesn't affect mindless beings
+301	Summon Black Dogs	0	2	5	2			1000	Ritual	Summon							20														Black Dog	n	y						x	"Fomoria, Man MA, LA"	
+302	Summon Cu Sidhe	0	3	6	2			1000	Ritual	Summon							7														Cu Sidhe								x	"Man MA, LA"	
+303	Contact Cu Sidhe	0	3	6	2			1000	Ritual	Summon							7														Cu Sidhe								x	"Tir, Eriu"	
+304	Summon Barghests	0	4	5	2			1300	Ritual	Summon							9														Barghest	n	y						x	"Fomoria, Man MA, LA"	
+305	Summon Bean Sidhe	0	5	5	1			2500	Ritual	Com Summon																													x	Man LA	
+306	Summon Morrigan	0	6	5	2	1	1	400	Ritual	Summon							1														Morrigan	n	y						x	Fomoria	
+307	Dance of the Morrigans	0	8	5	5	1	2	400	Combat	Enchantment					bf																	n	y						x	Fomoria	
+308	Iron Darts	2	3	3	1	8	1	10	Combat	Damage		35		1			3	x	5	13			1																x	"Ulm MA, LA"	double damage on magic beings
+309	Iron Blizzard	2	6	3	1	8	1	30	Combat	Damage		25		1			30	x	3	10			1																x	"Ulm MA, LA"	double damage on magic beings
+310	Contact Iron Angel	0	8	3	5	4	2	2500	Ritual	Summon							1													Iron Angel									x	Ulm MA	
+311	Tempering the Will	5	5	3	3			20	Combat	Buff					bf																								x	"Ulm MA, LA"	
+313	Sanguine Heritage	6	0	7	3	5	3	4400	Ritual	Com Summon							1													Vampire Count									x	Ulm LA	
+314	Summon Monster Toads	0	5	6	2			800	Ritual	Summon							3														Monster Toad								x	"C'tis EA, MA"	
+316	Contact Couatl	0	6	6	1	4	1	4000	Ritual	Com Summon							1													Couatl		n	y						x	"Mictlan EA, MA, LA, C'tis EA, MA, LA"	
+317	Summon Yazatas	0	5	4	2			1800	Ritual	Summon							6														Yazad								x	"Caelum EA, MA, LA"	
+318	Call Amesha Spenta	0	8	4	5			6000	Ritual	Com Summon							1													Amesha Spenta									x	"Caelum EA, MA, LA"	
+319	Contact Harbinger	0	6	4	4			2500	Ritual	Com Summon							1													Harbinger									x	"Pythium MA, Marignon MA, LA"	
+320	Angelic Host	0	7	4	5			5000	Ritual	Summon							6																						x	"Pythium MA, Marignon MA, LA"	
+321	Heavenly Wrath	0	7	4	3	0	1	3500	Ritual	Com Summon							1													Angel of Fury									x	"Pythium MA, Marignon MA, LA"	
+322	Heavenly Choir	0	9	4	7	0	2	14400	Ritual	Com Summon							1											Angels of the Choir		Seraph									x	"Pythium MA, Marignon MA, LA"	
+323	Bind Harlequin	6	1	7	1			100	Ritual	Summon							1														Demon Jester								x	Marignon LA	
+324	Reascendance	6	1	7	4	4	1	8800	Ritual	Com Summon							1													Fallen Angel									x	Marignon LA	
+325	Summon Valkyries	0	6	1	3	5	1	100	Combat	Summon		1					7														Valkyrie	n	y						x	"Vanheim EA, MA, Helheim, Midgård"	
+326	Awaken Draugar	0	3	5	2			1200	Ritual	Summon							3														Draug	n	y						x	"Vanheim EA, MA, Helheim, Niefelheim, Jotunheim, Utgård, Midgård"	
+327	Summon Glosos	0	3	5	2			1300	Ritual	Summon							9														Gloso	n	y								
+328	Brood of Garm	0	2	6	2			700	Ritual	Summon							10														Wolf	n	y						x	"Helheim, Niefelheim, Jotunheim, Utgård"	
+329	Illwinter	6	6	7	5	2	3	120	Ritual	Global																						n	y						x	"Niefelheim, Jotunheim, Utgård"	
+330	Summon Jaguar Toad	0	1	6	1			100	Ritual	Summon							1														Jaguar Toad	n	y						x	"Mictlan EA, MA, LA"	
+331	Summon Jaguars	0	3	6	2			2500	Ritual	Summon							17														Jaguar	n	y						x	"Mictlan EA, MA, LA"	
+332	Summon Jade Serpent	0	4	2	2			500	Ritual	Summon							1														Jade Serpent	n	y						x	"Mictlan EA, MA, LA"	
+333	Summon Monster Toad	0	5	6	2			200	Ritual	Summon							1														Monster Toad	n	y						x	"Mictlan EA, MA, LA"	
+334	Contact Couatl	0	6	6	1	4	1	4000	Ritual	Com Summon							1													Couatl		n	y						x	"Mictlan EA, MA, LA, C'tis EA, MA, LA"	
+335	Summon Tlaloque	0	7	2	4			6000	Ritual	Com Summon							1													Tlaloque		n	y						x	"Mictlan EA, MA, LA"	
+336	Bind Beast Bats	6	2	7	1			800	Ritual	Summon							3														Beast Bat	n	y						x	"Mictlan EA, MA, LA"	
+337	Bind Jaguar Fiends	6	4	7	1	0	1	1300	Ritual	Summon							3														Ozelotl	n	y						x	"Mictlan EA, MA, LA"	
+338	Contact Civateteo	6	5	7	2	5	2	2500	Ritual	Com Summon							1													Civateteo		n	y						x	"Mictlan EA, MA, LA"	
+339	Bind Tzitzimitl	6	6	7	2	4	2	1000	Ritual	Summon							1														Tzitzimitl	n	y						x	"Mictlan EA, LA"	
+340	Contact Tlahuelpuchi	6	6	7	2			2500	Ritual	Com Summon							1													Tlahuelpuci		n	y						x	"Mictlan EA, MA, LA"	
+341	Contact Onaqui	6	7	7	4			10100	Ritual	Com Summon							1											Beast Bats		Onaqui		n	y						x	"Mictlan EA, MA, LA"	
+342	Rain of Jaguars	6	8	7	6	0	2	4000	Ritual	Summon							14	x													Ozelotl	n	y						x	"Mictlan EA, MA, LA"	
+343	Celestial Servant	0	1	3	1	4	1	300	Ritual	Summon							1														Celestial Servant	n	y	n	y	n	y	n	x	"T'ien Ch'i EA, MA, LA"	
+344	Heavenly Rivers	0	3	2	1	4	1	1200	Ritual	Summon							3														Demon of Heavenly Rivers	n	y	n	y	n	y	n	x	T'ien Ch'i EA	
+345	Celestial Hounds	0	4	1	1	4	1	500	Ritual	Summon							2														Celestial Hound	n	y	n	y	n	y	n	x	"T'ien Ch'i EA, MA, LA"	
+346	Heavenly Fires	0	5	0	1	4	1	1000	Ritual	Summon							3														Demon of Heavenly Fires	n	y						x	T'ien Ch'i EA	
+347	Call Celestial Soldiers	0	6	1	2	4	1	1500	Ritual	Summon							5														Celestial Soldier	n	y						x	"T'ien Ch'i EA, MA, LA"	
+348	Call Ancestor	0	1	5	1			20	Combat	Summon		1					1														Ancestral Spirit	n	y						x	"T'ien Ch'i EA, LA, Sauromatia"	
+349	Wrath of the Ancestors	0	7	5	1			100	Combat	Summon		1					20	x													Ancestral Spirit	n	y						x	"T'ien Ch'i EA, LA, Sauromatia"	
+350	Summon Nagas	0	3	2	2	3	1	2000	Ritual	Summon							6														Naga Warrior	n							x	"Bandar Log, Patala"	
+351	Summon Apsaras	0	3	4	2			300	Ritual	Summon							3														Apsara	n	y						x	"Kailasa, Bandar Log, Patala"	
+352	Contact Yaksha	0	4	6	2	3	1	2500	Ritual	Com Summon							1													Yaksha		n	y						x	"Kailasa, Bandar Log, Patala"	
+353	Contact Yakshini	0	4	6	2	2	1	2500	Ritual	Com Summon							1													Yakshini		n	y						x	"Kailasa, Bandar Log, Patala"	
+354	Contact Nagini	0	4	2	2	3	1	2500	Ritual	Com Summon							1													Nagini		n							x	Bandar Log	
+355	Summon Gandharvas	0	5	4	2			1800	Ritual	Summon							6														Gandharva	n	y						x	"Kailasa, Bandar Log, Patala"	
+356	Contact Nagaraja	0	5	2	2	3	2	3000	Ritual	Com Summon							1													Nagaraja		n							x	Bandar Log	
+357	Summon Kinnara	0	6	4	3			2500	Ritual	Com Summon							1													Kinnara		n	y						x	"Kailasa, Bandar Log, Patala"	
+358	Contact Nagarishi	0	6	2	3	3	3	4000	Ritual	Com Summon							1													Nagarishi		n							x	Bandar Log	
+359	Summon Siddha	0	7	4	4			3500	Ritual	Com Summon							1													Siddha		n	y						x	"Kailasa, Bandar Log, Patala"	
+360	Summon Devata	0	8	4	5			4500	Ritual	Com Summon							1													Devata		n	y						x	"Kailasa, Bandar Log, Patala"	
+361	Summon Devala	0	9	4	5			5500	Ritual	Com Summon							1													Devala		n	y						x	"Kailasa, Bandar Log, Patala"	
+362	Summon Rudra	0	9	4	5			5500	Ritual	Com Summon							1													Rudra		n	y						x	"Kailasa, Bandar Log, Patala"	
+363	Celestial Music	5	6	4	3			100	Combat	Buff		15			bf																	n	y						x	"Kailasa, Bandar Log"	
+364	Summon Rakshasas	6	1	7	1			1000	Ritual	Summon							3														Rakshasa	n							x	"Lanka, Bandar Log, Patala"	
+365	Feast of Flesh	6	2	7	1	6	1	5000	Ritual	Summon							15														Praghasa	n							x	"Lanka, Bandar Log, Patala"	
+366	Summon Asrapas	6	3	7	2			1100	Ritual	Summon							5														Asrapa	n							x	"Lanka, Bandar Log, Patala"	
+367	Summon Rakshasa Warriors	6	4	7	2			2500	Ritual	Summon							5														Rakshasa Warrior	n							x	"Lanka, Bandar Log, Patala"	
+368	Summon Sandhyabalas	6	5	7	2	5	1	3000	Ritual	Summon							3														Sandhyabala	n							x	"Lanka, Bandar Log, Patala"	
+369	Summon Dakini	6	6	7	2	1	1	5000	Ritual	Com Summon							1													Dakini		n							x	"Lanka, Bandar Log, Patala"	
+370	Summon Samanishada	6	7	7	3	5	1	3500	Ritual	Com Summon							1													Samanishada		n							x	"Lanka, Bandar Log, Patala"	
+371	Summon Mandeha	6	8	7	5	5	2	13300	Ritual	Com Summon							1													Mandeha		n							x	"Lanka, Bandar Log, Patala"	
+372	Summon Danavas	6	8	7	5			7500	Ritual	Summon							3														Danava	n							x	"Lanka, Bandar Log, Patala"	
+373	Host of Ganas	0	2	5	1			1200	Ritual	Summon							20														Gana	n							x	"Lanka, Bandar Log, Patala"	
+374	Summon Vetalas	0	5	5	2			1000	Ritual	Summon							10														Possessed Corpse	n							x	"Lanka, Bandar Log, Patala"	
+375	Summon Ko-Oni	0	1	5	1			700	Ritual	Summon							5	x													Ko-Oni	n							x	"Shinuyama, Jomon"	
+376	Summon Kappa	0	1	2	1	6	1	300	Ritual	Summon							3														Kappa	n							x	"Yomi, Jomon"	
+377	Summon Ao-Oni	0	2	2	1	5	1	1000	Ritual	Summon							5	x													Ao-Oni	n							x	"Shinuyama, Jomon"	
+378	Summon Karasu Tengus	0	2	6	1	1	1	300	Ritual	Summon							3														Karasu Tengu	n							x	"Yomi, Shinuyama, Jomon"	
+379	Summon Aka-Oni	0	3	0	1	5	1	1000	Ritual	Summon							4	x													Aka-Oni	n							x	"Shinuyama, Jomon"	
+380	Summon Konoha Tengus	0	3	1	1	3	1	500	Ritual	Summon							5	x													Konoha Tengu	n							x	"Yomi, Shinuyama, Jomon"	
+381	Ghost General	0	4	5	3			1000	Ritual	Com Summon							1													Shura		n							x	"Yomi, Shinuyama, Jomon"	
+382	Summon Oni	0	4	3	1	5	1	1200	Ritual	Summon							5	x													Oni	n							x	"Shinuyama, Jomon"	
+383	Contact Dai Tengu	0	5	1	2	3	1	5500	Ritual	Com Summon							1											10		Dai Tengu	Tengu Warrior	n							x	"Yomi, Shinuyama, Jomon"	
+384	Contact Nushi	0	5	2	2	6	1	2500	Ritual	Com Summon							1													Nushi		n							x	"Yomi, Shinuyama, Jomon"	only in swamps
+385	Summon Kuro-Oni	0	5	5	2	0	1	1000	Ritual	Summon							4														Kuro-Oni	n							x	"Shinuyama, Jomon"	
+386	Summon Oni General	0	6	5	2	0	1	2000	Ritual	Com Summon							1													Oni General		n							x	"Shinuyama, Jomon"	
+387	Contact Kitsune	0	6	6	2			3000	Ritual	Com Summon							1													Kitsune		n							x	"Shinuyama, Jomon"	
+388	Summon Dai Oni	0	8	5	4	0	1	4500	Ritual	Com Summon							1													Dai-Oni		n							x	"Shinuyama, Jomon"	
+389	Summon Umbrals	0	5	5	1	3	1	200	Ritual	Summon							1														Umbral	n							x	"Agartha EA, MA, LA"	
+391	Rhuax Pact	0	3	0	1	3	1	200	Ritual	Summon							5														Magma Child								x	Agartha EA	
+392	Barathrus Pact	0	3	3	2			200	Ritual	Summon							1														Earth Elemental								x	Agartha EA	
+393	Attentive Statues	4	3	3	2			800	Ritual	Summon							2														Attentive Statue								x	"Agartha MA, LA"	
+394	Enliven Sentinel	4	4	3	2			400	Ritual	Summon							1														Sentinel								x	"Agartha MA, LA"	
+395	Enliven Granite Guard	4	5	3	3			1200	Ritual	Summon							1														Granite Guardian								x	"Agartha MA, LA"	
+396	Enliven Marble Oracle	4	6	3	3	5	1	4500	Ritual	Com Summon							1													Marble Oracle									x	"Agartha MA, LA"	
+397	Iron Corpse Reanimation	4	3	3	1	5	1	400	Ritual	Summon							3														Iron Corpse								x	Agartha LA	
+398	Reanimate Ancestor	4	3	3	2	5	2	500	Ritual	Com Summon							1													Iron Ancestor									x	Agartha LA	
+399	Flame Corpse Construction	4	5	5	1	0	1	100	Ritual	Summon							1														Flame Corpse								x	Agartha LA	
+400	Ktonian Legion	4	6	3	2	5	2	2000	Ritual	Summon							17														Iron Corpse								x	Agartha LA	
+401	Awaken Cavern Wights	0	3	5	1	3	1	2000	Ritual	Summon							5	x													Cavern Wight								x	"Agartha EA, MA, LA"	
+402	Awaken Sepulchral	0	4	5	2	3	1	400	Ritual	Summon							1														Sepulchral								x	Agartha LA	
+403	Awaken Tomb Oracle	0	6	5	3	3	2	3000	Ritual	Com Summon							1													Tomb Oracle									x	Agartha LA	
+404	Hall of the Dead	0	8	5	5	3	1	3000	Ritual	Summon							20														Cavern Wight								x	Agartha LA	
+405	Iron Marionettes	1	5	3	3			100	Combat	Damage		25			25																								x	Agartha LA	
+406	Contact Void Spectre	0	6	4	3			2500	Ritual	Com Summon							1													Void Spectre									x	R'lyeh LA	
+407	Dreams of R'lyeh	5	6	4	4			400	Ritual	Province	100																												x	R'lyeh LA	
+410	Burning Hands	2	1	0	1			5	Combat	Damage		1			1					13		f	1																		
+411	Fire Darts	2	1	0	1			20	Combat	Damage		25	x	1			3	x	4	10		f	1																		
+412	Flame Bolt	2	1	0	2			20	Combat	Damage		40	x	1			1		2	22	x	f																			
+413	Shocking Grasp	2	1	1	1			3	Combat	Damage		1		1						18	x			1				Area Minor Stun Shock													
+414	Slime	2	1	2	1			20	Combat	Damage		25	x		1				2																						
+415	Cold Bolt	2	1	2	2			20	Combat	Damage		45	x	1			1		2	19	x	c																			
+416	Geyser	2	1	2	1	0	1	5	Combat	Damage		15	x		1				3	6	x	f	1									y	y								
+417	Acid Spray	2	1	2	1	0	1	20	Combat	Damage		2			3				0	10		a	1					Area Rust				n	y								
+418	Astral Projection	2	1	4	1			200	Ritual	Intel	7																														
+419	Star Fires	2	1	4	1			20	Combat	Damage		30		1			2		2	5	x	m		1																	
+420	Arcane Bolt	2	1	4	2			20	Combat	Damage		35	x	1					3	10	x	m		1																	only affects magic beings
+421	Fire Blast	2	2	0	2			20	Combat	Damage		5			1				0	14	x	f	1					Large Area Heat Shock													
+422	Flare	2	2	0	3			50	Combat	Damage		40	x		1				1	19	x	f	1					Large Area Heat Shock													
+423	Sulphur Haze	2	2	0	2	1	1	20	Combat	Damage		25			4	x			0			p							effect remains for 3 rounds												
+424	Cold Blast	2	2	2	2			20	Combat	Damage		5			1				0	19	x	c																			
+425	Rain	2	2	2	2			100	Combat	Enchantment																															
+426	Lightning Bolt	2	2	1	2			10	Combat	Damage		35	x	1					4	14	x	s		1				Area Minor Stun Shock													
+427	Shock Wave	2	2	1	2			10	Combat	Damage		2			6				0			s																			
+428	Rust Mist	2	2	3	2	2	1	30	Combat	Damage		25			6	x			0										"effect remains for 4 rounds, break armor"												
+429	Solar Rays	2	2	4	2			20	Combat	Damage		35	x		1				100	12	x	m	1																		only affects undead beings
+430	Vine Arrow	2	2	6	1			20	Combat	Damage		25	x	1					0	14	x							Entangle													
+431	Fireball	2	3	0	2			20	Combat	Damage		30	x		1				1			f	1																		
+432	Fires from Afar	2	3	0	3			1000	Ritual	Remote Attack	3						10	x				f																			
+433	Mist	2	3	1	3			100	Combat	Enchantment																															
+434	Freezing Mist	2	3	2	3	1	1	20	Combat	Damage		25			4	x			1	1		c		1				Minor Chill Stun													
+435	Acid Bolt	2	3	2	2	0	1	30	Combat	Damage		30	x		1				3	16	x	a	1					Area Rust													
+436	Magma Bolts	2	3	3	1	0	1	20	Combat	Damage		25	x	1			3		2	25	x	m																			
+437	Arcane Probing	2	3	4	1			300	Ritual	Radar	4																		reveal astral sites			y	y	y	y	n	y				
+438	Magic Duel	2	3	4	1			100	Combat	Damage		100		1					100																						"doesn't affect mindless beings, cannot be used by mindless beings"
+439	Healing Light	2	3	4	1	6	1	20	Combat	Buff		25	x		1				100	10				1		1															doesn't affect mindless or lifeless beings
+440	Shadow Bolt	2	3	5	2			20	Combat	Damage		30	x	1					3	20		m		1			normal														
+441	Sleep Cloud	2	3	6	2			20	Combat	Damage		25			3	x			3	46	x			1	1		normal														
+442	Holy Pyre	2	4	0	2			20	Combat	Damage		35	x		3				1	7	x	f	1																x	"Marignon MA, LA"	3x damage vs undead and demons
+443	Fire Cloud	2	4	0	3			20	Combat	Damage		25			3	x			1																						
+444	Fate of Oedipus	2	4	0	4			7500	Ritual	Global																															
+445	Thunder Strike	2	4	1	3			50	Combat	Damage		100			1				2									Thunder Shock													
+446	Hurricane	2	4	1	3			500	Ritual	Province	5																					n	y	n							
+447	Water Strike	2	1	2	1			20	Combat	Damage		30	x	1					2	13	x	m										y	n								
+448	Acid Rain	2	4	2	3	0	1	30	Combat	Damage		25			4	x			3									Area Rust													
+449	Blade Wind	2	4	3	3			80	Combat	Damage		30		1			40	x	0	14		n																			
+450	Nether Bolt	2	4	4	1	5	1	15	Combat	Damage		30			1				2	20	x	m						Area Feeble Mind													
+451	Bolt of Unlife	2	2	5	2			20	Combat	Damage		25	x	1			1		1	20	x	m		1			normal	dt_raise													doesn't affect mindless beings
+452	Bane Fire Dart	2	4	5	1	0	1	20	Combat	Damage		25		1					4	15	x	m	1					Area Decay													
+453	Breath of the Dragon	2	4	6	2			20	Combat	Damage		15			3				-1			p																			
+454	Falling Fires	2	5	0	3			20	Combat	Damage		25			3	x			1	15		f	1																		
+455	Falling Frost	2	5	2	3			20	Combat	Damage		25			5	x			0	17	x	c																			
+456	Orb Lightning	2	5	1	1			10	Combat	Damage		15		1		x			2	10		s		1				Area Minor Stun Shock													
+457	Storm	2	5	1	3			100	Combat	Enchantment																															
+458	Earthquake	2	5	3	4			300	Combat	Damage																															
+459	Gifts from Heaven	2	5	3	3	4	1	50	Combat	Damage		100			1		3		-3	8		m	1					Cave Collapse													Doesn't affect flying  / floating beings
+460	Stellar Cascades	2	5	4	2			20	Combat	Damage		30			5				100	25		m	1		1																
+461	Astral Geyser	2	5	4	3			20	Combat	Damage		45	x		1				0	horrormark				1			normal	Minor Paralysis													
+462	Celestial Chastisement	2	5	4	3			20	Combat	Damage				1				x	100	8				1															x	"T'ien Ch'i EA, MA, LA"	only affects magic beings
+463	Shadow Blast	2	5	5	2			100	Combat	Damage		30	x		6	x			0			m																			
+464	Poison Cloud	2	5	6	3			20	Combat	Damage		25			4	x			-1			p							effect remains for 2 rounds												
+465	Healing Mists	2	5	6	3	1	1	20	Combat	Buff		25			9	x			3	3				1		1			effect remains for 3 rounds												
+466	Flame Eruption	2	6	0	2			30	Combat	Damage		5			15					14	x	f	1																		
+467	Wrathful Skies	2	6	1	5			200	Combat	Damage												s							lightning strikes all across the battlefield												
+468	Perpetual Storm	2	6	1	5			7000	Ritual	Global																															
+469	Cleansing Water	2	6	2	2			20	Combat	Damage		25	x		4	x				5	x	m		1																	only affects demons and undead
+470	Magma Eruption	2	6	3	3	0	1	30	Combat	Damage		25			5	x				23	x							Lingering Heat													
+471	Mind Hunt	2	6	4	4			200	Ritual	Assassin	6																normal		"remote assassination attack, mind burn or soul slay"												
+472	Astral Fires	2	6	4	3	0	1	20	Combat	Damage		40	x		4	x				10		m		1			normal														
+473	The Wrath of God	2	6	4	5	1	3	7000	Ritual	Global																			lightning strikes all across the strategic map												
+474	Blast of Unlife	2	5	5	3			20	Combat	Damage		25	x		1				0	15	x	m		1			normal	dt_raise													doesn't affect mindless beings
+475	Bane Fire	2	6	5	3	0	1	30	Combat	Damage		40	x		1				1	55	x	m	1					Large Area Decay													
+476	Wailing Winds	2	6	5	4	1	1	100	Combat	Enchantment																			reduces morale												
+477	Stream of Life	2	6	6	3			20	Combat	Damage		35	x		1				2										target either dies or is healed												
+478	Fire Storm	2	7	0	5			500	Combat	Enchantment												f																			
+479	Ice Strike	2	7	2	2			20	Combat	Damage		25			2	x			1	18		m																			
+480	Murdering Winter	2	7	2	5			5000	Ritual	Remote Attack	4																														
+481	Acid Storm	2	7	2	4	0	1	300	Combat	Enchantment																															
+482	Shimmering Fields	2	7	1	6			200	Combat	Damage		20			50				0	10	x	s		1				Area Minor Stun Shock													
+483	Rain of Stones	2	7	3	3	1	1	100	Combat	Damage					bf					14																					
+484	Storm of Thorns	2	7	6	2			20	Combat	Damage		30	x	1			7	x	0	15	x	m						Entangle													
+485	Nether Darts	2	7	4	1	5	1	15	Combat	Damage		25	x						0	15		m	1				normal	Area Feeble Mind													
+486	Cloud of Death	2	7	5	4			10	Combat	Damage		25			9	x			-3	9	x	m		1			normal		effect remains for 2 rounds												
+487	Wind of Death	2	7	5	4	1	1	100	Combat	Damage					bf					decay							normal														
+488	Pillar of Fire	2	8	0	2			20	Combat	Damage		100			1				0	34	x	f	1					Large Area Heat Shock													
+489	Second Sun	2	8	0	8			8000	Ritual	Global																															
+490	Maelstrom	2	8	2	6			8000	Ritual	Global																															
+491	Astral Tempest	2	8	4	5			200	Combat	Enchantment												m																			
+492	Vortex of Unlife	2	9	5	5			20	Combat	Damage		25	x		5	x			0	16	x	m		1			normal	dt_raise													doesn't affect mindless beings
+493	Flames from the Sky	2	9	0	5			3500	Ritual	Remote Attack	3											f										n	y	n	y						
+494	Flame Storm	2	9	0	5			100	Combat	Damage		35	x		40				0	15	x	f	1																		
+495	Volcanic Eruption	2	9	0	3	3	3	1500	Ritual	Province	6																														
+496	Niefel Flames	2	9	2	5			200	Combat	Damage		35	x		25	x			0	10		c		1																	
+497	Tidal Wave	2	9	2	5			1500	Ritual	Province	6																														
+498	Strands of Arcane Power	2	9	4	7			7000	Ritual	Global																															
+499	Distill Gold	1	1	0	1			100	Ritual	Other																															
+500	Charge Body	1	1	1	1			5	Combat	Buff				caster																											
+501	Aim	1	1	1	1			5	Combat	Buff		5	x		1				5																						
+502	False Fetters	1	1	1	2			10	Combat	Damage		10			2	x			0																						
+503	Fists of Iron	1	1	3	1			30	Combat	Damage		1		1			1	x		16	x																				strength of caster added to damage
+504	Earth Grip	1	1	3	1			10	Combat	Buff		15		1					5																						
+505	Earth Might	1	1	3	2			20	Combat	Buff		15		1					0										+ strength												
+506	Hand of Death	1	1	5	1			5	Combat	Damage		1		1						40	x			1																	
+507	Skeletal Body	1	1	5	1			20	Combat	Buff				caster															Pierce Resistance												
+508	Eagle Eyes	1	1	6	1			5	Combat	Buff				caster															Precision +8												
+509	Poison Touch	1	1	6	1			5	Combat	Damage		1		1								p		1																	
+510	Resist Poison	1	1	6	1			5	Combat	Buff				caster															poisonres +10												
+511	Barkskin	1	1	6	1			5	Combat	Buff				caster																											
+512	Personal Luck	1	1	4	1			20	Combat	Buff				caster															Luck												
+513	Combustion	1	2	0	1			10	Combat	Damage		25		1					100										sets target on fire												
+514	Resist Cold	1	2	0	1			10	Combat	Buff																			coldres +10												
+515	Phantasmal Warrior	1	2	1	1			10	Combat	Summon		5					1		0												Phantasmal Warrior										
+516	Mirror Image	1	2	1	1			20	Combat	Buff				caster																											
+517	Resist Fire	1	2	2	1			10	Combat	Buff				caster															fireres +10												
+518	Quicken Self	1	2	2	1			20	Combat	Buff				caster															Quickness			n									
+519	Ice Shield	1	2	2	1			20	Combat	Buff				caster															Protective Force (20)			y	n								
+520	Resist Lightning	1	2	3	1			10	Combat	Buff																			shockres +10												
+521	Alchemical Transmutation	1	2	3	1			100	Ritual	Other																															
+522	Stoneskin	1	2	3	1			10	Combat	Buff				caster																											
+523	Armor of Achilles	1	2	3	1			40	Combat	Damage		15			1				3										break armor												
+524	Earth Meld	1	2	3	2			60	Combat	Damage		20			5				3																						
+525	Cheat Fate	1	2	4	1			20	Combat	Buff																															
+526	Weakness	1	2	5	1			20	Combat	Damage		20		1					3																						
+527	Enlarge	1	2	6	2			20	Combat	Buff		5			1				0																						
+528	Immolation	1	3	0	2			20	Combat	Damage					7					12			1																		
+529	Inner Sun	1	3	0	1	4	1	100	Ritual	Perma-bonus				caster																											
+530	Mistform	1	3	1	2			10	Combat	Buff				caster																											
+531	Ghost Wolves	1	3	1	3			10	Combat	Summon		5					2		0												Ghost Wolf										
+532	Numbness	1	3	2	2			20	Combat	Damage		20			1				100																						
+533	Iron Skin	1	3	3	1			20	Combat	Buff				caster																											
+534	Protection	1	3	6	1			20	Combat	Buff		15			1				100																						
+535	Mossbody	1	3	6	1	2	1	20	Combat	Buff		1			1																										
+536	Luck	1	3	4	1			20	Combat	Buff		5			1				2																						
+537	Breath of the Desert	1	4	0	3	1	1	500	Ritual	Province	5																					n	y	m	y	y	y	y			
+538	Wind Guide	1	4	1	2			100	Combat	Buff					bf																										
+539	Liquid Body	1	4	2	1			20	Combat	Buff				caster																											
+540	Quickness	1	4	2	2			20	Combat	Buff		15			1				1																						
+541	Encase in Ice	1	4	2	2			20	Combat	Damage		20			1				100													y	n								
+542	Wolven Winter	1	4	2	3			500	Ritual	Province	5																														
+543	Temper Flesh	1	4	3	1			20	Combat	Buff				caster																											
+544	Destruction	1	4	3	3			40	Combat	Damage		25			6				3																						
+545	Curse of Stones	1	4	3	3			300	Combat	Damage					bf																										
+546	Blight	1	4	3	2	5	1	500	Ritual	Province	5																														
+547	Arouse Hunger	1	4	5	3			500	Ritual	Remote Attack	5						9	x																							
+548	Elemental Fortitude	1	4	6	1			10	Combat	Buff				caster															"fireres +10, coldres +10, shockres +10"												
+549	Swarm	1	4	6	1			100	Combat	Summon							20	x																							
+550	Body Ethereal	1	4	4	1			30	Combat	Buff		1			1																										
+551	Stygian Skin	1	4	2	1	5	1	20	Combat	Buff				caster															Invulnerability (15)												
+552	Shrink	1	4	6	2			20	Combat	Damage		15	x		1				0																						
+553	Transmute Fire	1	5	0	2			100	Ritual	Other																															
+554	Cold Resistance	1	5	0	3			100	Combat	Buff		5			15				0																						
+555	Incinerate	1	5	0	3			20	Combat	Damage		25		1					100	18	x			1																	
+556	Solar Eclipse	1	5	0	3	4	1	100	Combat	Enchantment																						n									
+557	Phantasmal Army	1	5	1	4			100	Combat	Summon		4	x				25	x	0												Phantasmal Warrior										
+558	Fire Resistance	1	5	2	3			100	Combat	Buff		5			15				0																						
+559	Bone Melter	1	5	2	3	6	2	20	Combat	Damage		20			1				3	999							normal														
+560	Lightning Resistance	1	5	3	3			100	Combat	Buff		5			15				0																						
+561	Maws of the Earth	1	5	3	3			100	Combat	Damage		25	x		7	x			3	15	x		1					Earth Grip													Doesn't affect flying  / floating beings
+562	Iron Warriors	1	5	3	2			40	Combat	Buff		10			1				2																						
+563	Shatter	1	5	3	3			20	Combat	Damage		10		1					100	35	x			1				Extra Limp													only damages inanimate beings
+564	Baleful Star	1	5	4	3			700	Ritual	Province	7																														
+565	Enfeeble	1	5	5	2			100	Combat	Damage		20			6	x			3																						
+566	Invulnerability	1	5	5	3			20	Combat	Buff				caster															Invulnerability (25)												
+567	Drain Life	1	5	5	4			10	Combat	Damage		25		1					100	14	x			1																	
+568	Wooden Warriors	1	5	6	2			50	Combat	Buff		5			5				0																						
+569	Mother Oak	1	5	6	5			5000	Ritual	Global																															
+570	Blindness	1	6	0	1			20	Combat	Damage		15		1					100										blind												
+571	Boil	1	6	0	3	2	1	20	Combat	Damage		25			1				100	9	x	f		1								y	n								
+572	False Horror	1	6	1	3			10	Combat	Summon		5					1		0												False Horror										
+573	Frozen Heart	1	6	2	1			20	Combat	Damage		20	x	1					100	10	x			1																	
+574	Wave Warriors	1	6	2	3			100	Combat	Buff		10			5				0																						
+575	Manifest Vitriol	1	6	2	2	0	1	200	Ritual	Summon																					Green Lion										
+576	Earth Gem Alchemy	1	6	3	2			100	Ritual	Other																															
+577	Iron Bane	1	6	3	3			100	Combat	Damage					bf														break armor												
+578	Petrify	1	6	3	5			40	Combat	Damage		25			1					spc							normal	petrify paralyze													
+579	Iron Pigs	1	6	3	3	6	1	1000	Ritual	Summon							7														Iron Pig										
+580	Control	1	6	4	3			100	Combat	Damage		20		1					100	enslave							normal														only affects magic beings
+581	Battle Fortune	1	6	4	3			100	Combat	Buff		10			5				5										Luck												
+582	Skeletal Legion	1	6	5	4			100	Combat	Buff					bf														Pierce Resistance												
+583	Soul Vortex	1	6	5	3			40	Combat	Buff				caster																											
+584	Darkness	1	6	5	4			400	Combat	Enchantment																															
+585	Army of Giants	1	6	6	3			100	Combat	Buff					10														enlarges targets												
+586	Phoenix Pyre	1	7	0	2			20	Combat	Buff				caster																											
+587	Phantasmal Attack	1	7	1	4			800	Ritual	Remote Attack	4						25	x																							
+588	Fog Warriors	1	7	1	5			300	Combat	Buff					bf																										
+589	Liquify	1	8	2	4			20	Combat	Damage		25				3			100	999							easy	Area Cripple													
+590	Prison of Sedna	1	7	2	3			100	Combat	Damage		20			6	x			100																						
+591	Sea of Ice	1	7	2	6			8000	Ritual	Global																															
+592	Marble Warriors	1	7	3	3			100	Combat	Buff		10			25				0																						
+593	Iron Walls	1	7	3	5			1000	Ritual	Province																															
+594	Doom	1	7	4	4			100	Combat	Damage					bf					curse									Curse												
+595	Bone Grinding	1	7	5	7			100	Combat	Damage					bf					3				1				Extra Limp													
+596	Curse of the Frog Prince	1	7	6	2			20	Combat	Damage				1					100																						
+597	Creeping Doom	1	7	6	3			100	Combat	Summon							70	x																							
+598	Transformation	1	7	6	3			800	Ritual	Other																															
+599	Mass Protection	1	7	6	3			100	Combat	Buff		5			bf																										
+600	Conflagration	1	8	0	2			20	Combat	Damage		25			10				100										sets target on fire												
+601	Warriors of Muspelheim	1	8	0	4			200	Combat	Buff					bf																										
+602	Fata Morgana	1	8	1	7			9000	Ritual	Global																															
+603	Quickening	1	8	2	2			100	Combat	Buff		15			9	x																									
+604	Warriors of Niefelheim	1	8	2	4			200	Combat	Buff					bf																										
+605	Wizard's Tower	1	8	3	4			5000	Ritual	Province	4																					y	y	n		n	y				
+606	Crumble	1	6	3	5			2000	Ritual	Province	4																														
+607	Ground Army	1	8	3	4			200	Combat	Buff					bf																										
+608	Will of the Fates	1	8	4	4			400	Combat	Buff					bf																										
+609	Disintegrate	1	8	5	2			10	Combat	Damage		25		1					100	999				1			normal														
+610	Stygian Rains	2	7	5	3	2	2	200	Combat	Buff					bf														Invulnerability (15)												
+611	Polymorph	1	8	6	2			200	Combat	Damage		20			10	x			5										turns targets to pigs												
+612	Army of Gold	1	9	3	4			300	Combat	Buff					bf																										
+613	Army of Lead	1	9	3	5			300	Combat	Buff					bf																										
+614	Arcane Domination	1	9	4	7			700	Combat	Damage					bf					enslave				1			easy														only affects magic beings
+615	Wish	1	9	4	9			10000	Ritual	Other																															
+616	Utterdark	1	9	5	9			10000	Ritual	Global																															
+617	Army of Rats	1	9	6	7			500	Combat	Damage					bf																										
+618	Tangle Vines	0	1	6	1			20	Combat	Damage																															
+619	Summon Animals	0	1	6	2			100	Ritual	Summon							14	x													various animals										
+620	Summon Sea Dogs	0	1	6	1	2	1	300	Ritual	Summon							5	x													Sea Dog										
+621	Summon Crocodiles	0	1	6	1	2	1	1400	Ritual	Summon							5	x													Crocodile										
+622	Spirit Curse	0	1	5	1			100	Combat	Damage		50		1					100	curse																					
+623	Black Servant	0	1	5	2			500	Ritual	Com Summon							1													Black Servant											
+624	Summon Fire Ants	0	2	0	2	6	1	2500	Ritual	Summon							10	x													Fire Ant										
+625	Summon Storm Power	0	2	1	1			10	Combat	Buff				caster															+1 Air magic												
+626	Summon Water Power	0	2	2	1			20	Combat	Buff				caster															+1 Water magic												
+627	Summon Ogres	0	2	3	1			500	Ritual	Summon							5	x													Ogre										
+628	Summon Shades	0	2	5	2			500	Ritual	Summon							5	x													Shade										
+629	Summon Killer Mantis	0	2	6	2			800	Ritual	Summon							5	x													Killer Mantis										
+630	Pack of Wolves	0	2	6	1			400	Ritual	Summon							10	x													Wolf										
+631	Summon Horned Serpents	0	2	6	1			1000	Ritual	Summon							5	x													Horned Serpent										
+632	Phoenix Power	0	3	0	2			20	Combat	Buff				caster															+1 Fire magic												
+633	Summon Lesser Fire Elemental	0	3	0	1			100	Combat	Summon							1														Fire Elemental										
+634	Bind Scorpion Beast	0	3	0	1	3	1	600	Ritual	Summon							1														Scorpion Beast										
+635	Summon Lesser Air Elemental	0	3	1	1			100	Combat	Summon							1														Air Elemental										
+636	Call of the Winds	0	3	1	2			1000	Ritual	Com Summon							40													Great Hawk	Black Hawk										
+637	Summon Amphiptere	0	3	1	2	6	1	500	Ritual	Summon							1														Amphiptere										
+638	Summon Lesser Water Elemental	0	3	2	1			100	Combat	Summon							1														Water Elemental										
+639	Call Kraken	0	3	2	3			300	Ritual	Summon							1														Kraken										
+640	Summon Yetis	0	3	2	2	1	1	2000	Ritual	Summon							5	x													Yeti										
+641	Summon Earthpower	0	3	3	2			20	Combat	Buff				caster															+1 Earth magic												
+642	Summon Lesser Earth Elemental	0	3	3	1			100	Combat	Summon							1														Earth Elemental										
+643	Power of the Spheres	0	3	4	1			100	Combat	Buff																			+1 all magic												
+644	Dark Knowledge	0	3	5	1			400	Ritual	Radar																			reveal death sites												
+645	Revive Wights	0	3	5	2			2000	Ritual	Summon							5	x													Wight										
+646	Revive Bane	0	3	5	2			700	Ritual	Com Summon							1													Bane											
+647	Sloth of Bears	0	3	6	2			1000	Ritual	Summon							10	x													Great Bear										
+648	Pride of Lions	0	3	6	2			1000	Ritual	Summon							10	x													Great Lion										
+649	Ambush of Tigers	0	3	6	2			1000	Ritual	Summon							10	x													Tiger										
+650	Summon Bog Beasts	0	3	6	2	2	2	500	Ritual	Summon							5	x													Bog Beast										
+651	Awaken Vine Men	0	3	6	1			100	Ritual	Summon							3														Vine Man										
+652	Call of the Wild	0	3	6	4			1500	Ritual	Com Summon							30													Werewolf	Wolf										
+653	Summon Sea Lions	0	3	6	2	2	1	1500	Ritual	Summon							10	x													Sea Lion										
+654	Summon Fire Drake	0	4	0	2			700	Ritual	Summon							1														Fire Drake										
+655	Summon Wyverns	0	4	1	2			500	Ritual	Summon							1														Wyvern										
+656	Summon Gryphons	0	4	1	2			1000	Ritual	Summon							5	x													Gryphon										
+657	School of Sharks	0	4	2	2			100	Combat	Summon							10	x													Small Shark										
+658	Voice of Apsu	0	4	2	2			200	Ritual	Radar																			reveal water sites on land												
+659	Summon Ice Drake	0	4	2	2			700	Ritual	Summon							1														Ice Drake										
+660	Summon Sea Serpent	0	4	2	2			500	Ritual	Summon							1														Sea Serpent										
+661	Summon Cave Drake	0	4	3	2			700	Ritual	Summon							1														Cave Drake										
+662	Light of the Northern Star	0	4	4	3			100	Combat	Enchantment																															
+663	Summon Shade Beasts	0	4	5	3			1500	Ritual	Summon							15	x													Shade Beast										
+664	Summon Lammashtas	0	4	5	2			100	Combat	Summon							2													Lammashta											
+665	Maggots	0	4	6	1			100	Combat	Damage		20		1					100																						
+666	Awaken Vine Ogres	0	4	6	3			300	Ritual	Summon							2														Vine Ogre										
+667	Summon Leogryphs	0	4	6	2			1200	Ritual	Summon							10	x													Leogryph										
+668	Summon Swamp Drake	0	4	6	2	2	1	800	Ritual	Summon							1														Swamp Drake										
+669	Summon Kithaironic Lion	0	4	6	3	3	1	800	Ritual	Summon							1														Kithaironic Lion										
+670	Strength of Gaia	0	4	6	3	3	1	20	Combat	Buff				caster																											
+671	Will o' the Wisp	0	5	0	1			100	Combat	Summon							2														Will o'the Wisp										
+672	Summon Fire Elemental	0	5	0	3			100	Combat	Summon							1														Fire Elemental										
+673	Summon Summer Lions	0	5	0	3			3000	Ritual	Summon							5	x													Summer Lion										
+674	Summon Air Elemental	0	5	1	3			100	Combat	Summon							1														Air Elemental										
+675	Summon Spring Hawks	0	5	1	3			2000	Ritual	Summon							5	x													Spring Hawk										
+676	Wind Ride	0	5	1	5			1000	Ritual	Summon																															
+677	Raven Feast	0	5	1	4			300	Ritual	Province																															
+678	Contact Draconians	0	5	1	3			4500	Ritual	Com Summon							1											15 Draconians		Draconian Chief	Draconian										
+679	Voice of Tiamat	0	5	2	2			800	Ritual	Radar																			reveal elemental sites in seas												
+680	Summon Water Elemental	0	5	2	3			100	Combat	Summon							1														Water Elemental										
+681	Contact Sea Trolls	0	5	2	3			1500	Ritual	Summon							5	x													Sea Troll										
+682	Summon Winter Wolves	0	5	2	3			1000	Ritual	Summon							5	x													Winter Wolf										
+683	Contact Naiad	0	5	2	3	6	1	3500	Ritual	Com Summon							1													Naiad											
+684	Naiad Warriors	0	5	2	3	6	1	3000	Ritual	Summon							15														Kydnid										
+685	Summon Earth Elemental	0	5	3	3			100	Combat	Summon							1														Earth Elemental										
+686	Summon Fall Bears	0	5	3	3			2000	Ritual	Summon							5	x													Fall Bear										
+687	Contact Trolls	0	5	3	3			1500	Ritual	Summon							5	x													Troll										
+688	Spirit Mastery	0	5	5	1			400	Ritual	Summon							15	x													Dispossessed Spirit										
+689	Ghost Grip	0	5	5	1			10	Combat	Damage	20			1			5		3	25	x				1																
+690	Corpse Candle	0	5	5	1	0	1	100	Combat	Summon							3														Corpse Candle										
+691	Revive Bane Lord	0	5	5	4			1200	Ritual	Com Summon																				Bane Lord											
+692	Acashic Record	0	5	4	2			1000	Ritual	intel																			reveals nation graphs when cast on capital												
+693	Howl	0	5	6	3			300	Combat	Enchantment																					Wolf										
+694	Spirits of the Wood	0	5	6	3			800	Ritual	Summon							12	x													Hamadryad										
+695	Contact Forest Trolls	0	5	6	4			1000	Ritual	Summon							5	x													Forest Troll										
+696	Awaken Sleeper	0	5	6	3			1000	Ritual	Com Summon							1													Sleeper											
+697	Winged Monkeys	0	5	6	3	4	2	1000	Ritual	Assassin																					Winged Monkey										
+698	Summon Manticore	0	5	6	2	3	2	600	Ritual	Summon							1														Manticore										
+699	Summon Fire Snakes	0	6	0	2			900	Ritual	Summon							5	x													Fire Snake										
+700	Summon Great Eagles	0	6	1	3			1000	Ritual	Summon							5	x													Great Eagle										
+701	Shark Attack	0	6	2	3			300	Combat	Enchantment																					Shark										
+702	Sea King's Court	0	6	2	3			5500	Ritual	Com Summon							1											10 Sea Trolls		Sea King	"Sea Troll, Troll Guard"										
+703	Streams from Hades	0	6	2	4	5	1	4000	Ritual	Com Summon							1													Kokythiad											
+704	Contact Hill Giant	0	6	3	3			800	Ritual	Summon							1														Hill Giant										
+705	Troll King's Court	0	6	3	3			5500	Ritual	Com Summon							1											10 Trolls		Troll King											
+706	Acashic Knowledge	0	6	4	3			2500	Ritual	Radar																			reveals all sites in province												
+707	Ether Gate	0	6	4	4	5	1	9000	Ritual	Com Summon							1											15 Ether Warriors		Ether Lord	Ether Warrior										
+708	Summon Spectre	0	6	5	3			2200	Ritual	Com Summon							1													Spectral Mage											
+709	Summon Ghosts	0	6	5	2			1400	Ritual	Summon							5	x													Ghost										
+710	Forest Troll Tribe	0	6	6	3			4000	Ritual	Com Summon							1											20 Forest Trolls		Troll Shaman	Forest Troll										
+711	Contact Forest Giant	0	6	6	3			600	Ritual	Summon							1														Forest Giant										
+712	Summon Sprites	0	6	6	1	1	1	100	Combat	Summon							6														Sprite										
+713	Contact Lamias	0	6	6	3			500	Ritual	Summon							5	x													Lamia										
+714	Locust Swarms	0	6	6	3			800	Ritual	Province																															
+715	Contact Lamia Queen	0	6	6	5	5	2	2500	Ritual	Com Summon							1													Lamia Queen											
+716	Living Fire	0	7	0	4			200	Combat	Summon		1					4	x													Fire Elemental										
+717	Living Clouds	0	7	1	4			200	Combat	Summon		1					4	x													Air Elemental										
+718	Summon Asp Turtle	0	7	2	3			1300	Ritual	Summon							1														Asp Turtle										
+719	Living Water	0	7	2	4			200	Combat	Summon		1					4	x													Water Elemental										
+720	Summon Catoblepas	0	7	2	3	5	2	1500	Ritual	Summon							1														Catoblepas										
+721	Living Earth	0	7	3	4			200	Combat	Summon		1					4	x													Earth Elemental										
+722	Summon Mound Fiend	0	7	5	3			2800	Ritual	Com Summon							1													Mound Fiend											
+723	Harvester of Sorrows	0	7	5	4			2000	Ritual	Com Summon							1													Harvester of Sorrows											
+724	Call Wraith Lord	0	7	5	5			4000	Ritual	Com Summon							1													Wraith Lord											
+725	Animal Horde	0	7	6	4			2500	Ritual	Summon							100														various animals										
+726	Awaken Ivy King	0	7	6	4			3000	Ritual	Com Summon							1													Ivy King											
+727	Living Castle	0	7	6	4	2	1	5000	Ritual	Province																															
+728	King of Elemental Fire	0	8	0	5			5000	Ritual	Com Summon							1													King of Fire											
+729	Queen of Elemental Air	0	8	1	5			5000	Ritual	Com Summon							1													Queen of Air											
+730	Queen of Elemental Water	0	8	2	5			5000	Ritual	Com Summon							1													Queen of Water											
+731	Guardians of the Deep	0	8	2	6			6000	Ritual	Global																															
+732	Earth Attack	0	8	3	5			500	Ritual	Assassin							1													Earth Elemental											
+733	King of Elemental Earth	0	8	3	5			5000	Ritual	Com Summon							1													King of Earth											
+734	Manifestation	0	8	5	5			400	Ritual	Assassin							1													Ashen Angel											
+735	Well of Misery	0	8	5	6			8000	Ritual	Global																															
+736	King of Banefires	0	8	5	3	0	4	5000	Ritual	Com Summon							1													King of Banefires											
+737	Call the Eater of the Dead	0	8	4	4	5	4	5000	Ritual	Summon							1																								
+738	Dragon Master	4	8	6	3			3000	Ritual	Perma-bonus																															
+739	Wild Growth	0	8	6	4			40	Combat	Damage		15			10	x			0	entangle																					
+740	Faerie Court	0	8	6	5			4000	Ritual	Com Summon							1											Court of Sprites		Faerie Queen	Sprite										
+741	The Kindly Ones	0	9	0	6	6	4	5000	Ritual	Global																															
+742	Celestial Rainbow	2	9	2	7	6	5	8000	Ritual	Global																															
+743	Call Ancient Presence	0	9	2	6	6	4	2500	Ritual	Summon							1														Ancient Presence										
+744	Call Abomination	0	9	4	5	2	2	2500	Ritual	Summon							1														Abomination										
+745	Ghost Riders	0	9	5	6			500	Ritual	Remote Attack							33													Wraith Lord	Longdead Horseman										
+746	Legion of Wights	0	9	5	6			3000	Ritual	Summon							20														Wight										
+747	Tartarian Gate	0	9	5	7			1000	Ritual	Summon							1														Tartarian										
+748	Awaken Tarrasque	0	9	6	6			2500	Ritual	Summon							1														Tarrasque										
+749	Wild Hunt	0	9	6	6			5000	Ritual	Global																															
+750	Enchanted Forests	0	9	6	7			9000	Ritual	Global																															
+751	Corpse Man Construction	3	1	1	1	5	1	100	Ritual	Summon							1														Corpse Construct										
+752	Clockwork Soldiers	3	3	3	2			800	Ritual	Summon							5	x													Clockwork Soldier	n	y								
+753	Legions of Steel	3	3	3	3			40	Combat	Buff		10			25				0																						
+754	Construct Manikin	3	3	6	1	5	1	1200	Ritual	Summon							10	x																							
+755	Clockwork Horrors	3	5	3	2			1000	Ritual	Summon							10	x																							
+756	Crusher Construction	3	5	3	3			1500	Ritual	Summon							1																								
+757	Wooden Construction	3	5	6	3			500	Ritual	Summon							1																								
+758	Construct Mandragora	3	5	6	2	5	1	1000	Ritual	Summon							5	x																							
+759	Weapons of Sharpness	3	7	3	5			20	Combat	Buff		10			25				0																						
+760	Forge of the Ancients	3	7	3	5			8000	Ritual	Global																															
+761	Mechanical Men	3	7	3	2			1500	Ritual	Summon							10	x																							
+762	Golem Construction	3	7	4	3	3	2	3000	Ritual	Com Summon							1																								
+763	Siege Golem	3	9	3	3			2000	Ritual	Summon							1																								
+764	Iron Dragon	3	9	3	4			2500	Ritual	Summon							1																								
+765	Mechanical Militia	3	9	3	5			8000	Ritual	Global																															
+766	Juggernaut Construction	3	9	4	5			2500	Ritual	Summon							1																								
+767	Poison Golem	3	9	5	4	3	2	3500	Ritual	Com Summon							1																								
+768	Protection from Fire	4	1	0	1			5	Combat	Buff				caster																											
+769	Windrunner	4	1	1	1			10	Combat	Buff																															
+770	Protection from Lightning	4	1	1	1			5	Combat	Buff				caster																											
+771	Protection from Cold	4	1	2	1			5	Combat	Buff				caster																											
+772	Resist Magic	4	1	4	1			20	Combat	Buff				caster															+4 MR												
+773	Animate Skeleton	4	1	5	1			30	Combat	Summon		5					1		-2												longdead										
+774	Animate Dead	4	1	5	1			20	Combat	Summon		5					1		-2												some form of soulless										
+775	Reanimation	4	1	5	1			500	Ritual	Summon							10																								
+776	Poison Resistance	4	1	6	1			5	Combat	Buff				caster																											
+777	Healing Touch	4	1	6	1			20	Combat	Buff		1			1					30				1		1															
+778	Flight	4	2	1	1			20	Combat	Buff				caster															Flying												
+779	Water Shield	4	2	2	1			20	Combat	Buff				caster															+5 defense												
+780	Breath of Winter	4	2	2	1			20	Combat	Buff				caster																											
+781	Flying Shield	4	2	3	1	1	1	20	Combat	Buff				caster															Protective Force (10)												
+782	Revive King	4	2	5	1			300	Ritual	Com Summon							1													Mound King											
+783	Gift of the Hare	4	2	6	1			20	Combat	Buff		10			1	x			0																						
+784	Personal Regeneration	4	2	6	2			40	Combat	Buff				caster															Regeneration (10%)												doesn't affect lifeless units
+785	Fire Shield	4	3	0	1			20	Combat	Buff				caster																											
+786	Gift of Flight	4	3	1	2			20	Combat	Buff		5			1														Flying												
+787	Seeking Arrow	4	3	1	3			400	Ritual	Remote Attack	3																							n							
+788	Claymen	4	3	2	1	3	1	500	Ritual	Summon							5	x																							
+789	Strength of Giants	4	3	3	3			40	Combat	Buff																															
+790	Astral Shield	4	3	4	1			20	Combat	Buff				caster																											
+791	Raise Skeletons	4	3	5	2			40	Combat	Summon		5					3		-2																						
+792	Create Revenant	4	3	5	2			900	Ritual	Com Summon							1													Revenant											
+793	Regeneration	4	3	6	3			40	Combat	Buff		15			1														Regeneration (10%)												doesn't affect lifeless units
+794	Heal	4	3	6	1			20	Combat	Buff		10			1				5	30				1		1															
+795	Flaming Arrows	4	4	0	4			100	Combat	Buff					bf																										
+796	Terracotta Army	4	4	0	1	3	1	1000	Ritual	Summon							10	x													Terracotta Soldier										
+797	Cloud Trapeze	4	4	1	2			300	Ritual	Movement	5			caster																											
+798	Vile Water	4	4	2	2			800	Ritual	Summon																					Gelatinous Cube										
+799	Astral Healing	4	4	4	3			100	Combat	Buff					bf					2				1		1															doesn't affect mindless beings
+800	Antimagic	4	4	4	3			100	Combat	Buff					bf														+4 MR												
+801	Raise Dead	4	4	5	2			40	Combat	Summon		5					10	x	-2												some form of soulless										
+802	Twiceborn	4	4	5	2			1000	Ritual	Other				caster																											
+803	Behemoth	4	4	5	3			1000	Ritual	Summon																					Behemoth										
+804	Haste	4	4	6	3			100	Combat	Buff		10			25				0																						
+805	Poison Ward	4	4	6	2			100	Combat	Buff		5			15				0																						
+806	Flame Ward	4	5	0	2			100	Combat	Buff		5			15				0																						
+807	Thunder Ward	4	5	1	2			100	Combat	Buff		5			15				0																						
+808	Watcher	4	5	1	3	3	1	500	Ritual	Summon							1														Watcher										
+809	Trade Wind	4	5	1	4			1000	Ritual	Province	0																														
+810	Winter Ward	4	5	2	2			100	Combat	Buff		5			15				0																						
+811	Friendly Currents	4	5	2	2			100	Combat	Enchantment																			"-1 enc, +4 AP"												
+812	Quagmire	4	5	2	4			100	Combat	Enchantment																															
+813	Enliven Gargoyles	4	5	3	3	1	1	1000	Ritual	Summon							1														Gargoyle										
+814	Ritual of Returning	4	5	4	2			300	Ritual	Buff																															
+815	Dispel	4	5	4	3			3000	Ritual	Other																															
+816	The Eyes of God	4	5	4	5			5000	Ritual	Global																															
+817	Pale Riders	4	5	5	3			1000	Ritual	Summon							20	x													Longdead Horseman										
+818	Horde of Skeletons	4	5	5	2			40	Combat	Summon		5					6	x	-2												Longdead										
+819	Faery Trod	4	5	6	5			2000	Ritual	Movement	100																														"can only be cast in forest, can only target forests"
+820	Gift of Health	4	5	6	5			5000	Ritual	Global																															
+821	Foul Vapors	4	5	6	3	2	1	100	Combat	Enchantment																															
+822	Eternal Pyre	4	6	0	6			8000	Ritual	Global							20												20 fire gems per turn												
+823	Heat from Hell	4	6	0	4			200	Combat	Enchantment																															
+824	Vafur Flames	4	6	0	5			1000	Ritual	Province																															
+825	Arrow Fend	4	6	1	3			100	Combat	Buff					bf																										
+826	Dome of Solid Air	4	6	1	5			2000	Ritual	Province																															
+827	Water Ward	4	6	2	1			100	Combat	Buff		0			25																										
+828	Grip of Winter	4	6	2	4			200	Combat	Enchantment																															
+829	Frost Dome	4	6	2	5			1500	Ritual	Province																															
+830	Hidden in Snow	4	6	2	3	5	1	7500	Ritual	Com Summon																					"Unfrozen Lord, Unfrozen Mage"										
+831	Riches from Beneath	4	6	3	5			7000	Ritual	Global																															
+832	Enliven Statues	4	6	3	3			2000	Ritual	Summon							10	x													Living Statue										
+833	Hidden in Sand	4	6	3	3	5	1	7500	Ritual	Com Summon																					"Dust King, Dust Priest"										
+834	Opposition	4	6	4	3			20	Combat	Damage		20		1					100	999							normal														only affects magic beings
+835	Dome of Arcane Warding	4	6	4	4			1000	Ritual	Province																															
+836	Rigor Mortis	4	6	5	4			100	Combat	Enchantment																															
+837	Reanimate Archers	4	6	5	2	0	1	500	Ritual	Summon							10														Longdead Archer										
+838	Ziz	4	6	5	3	1	1	1000	Ritual	Summon							1														Ziz										
+839	Relief	4	6	6	5			100	Combat	Enchantment																															
+840	Dome of Flaming Death	4	7	0	4			800	Ritual	Province																															
+841	Mass Flight	4	7	1	4			200	Combat	Buff					bf														Flying												
+842	Ghost Ship Armada	4	7	2	4	5	3	6000	Ritual	Global																															
+843	Earth Blood Deep Well	4	7	3	6			8000	Ritual	Global																															
+844	Solar Brilliance	4	7	4	5			500	Combat	Enchantment																															
+845	Stellar Focus	4	7	4	5			3000	Ritual	Global																															
+846	Carrion Reanimation	4	7	5	3			1000	Ritual	Summon	5						100														Soulless					n	y				
+847	Life After Death	4	7	5	4			400	Combat	Buff					bf																										
+848	Ritual of Rebirth	4	7	5	4			1500	Ritual	Other																															
+849	Leviathan	4	7	5	3	2	1	1500	Ritual	Summon							1														Leviathan										
+850	Serpent's Blessing	4	7	6	4			100	Combat	Buff					bf														poisonres +10												
+851	Awaken Treelord	4	7	6	5			3500	Ritual	Com Summon	4						1													"Treelord, Dying Treelord, Vengeful Treelord"											can only target forests
+852	Forest Dome	4	7	6	5			1000	Ritual	Province																															
+853	Fire Fend	4	8	0	4			100	Combat	Buff					bf														fireres +10												
+854	Frost Fend	4	8	2	4			100	Combat	Buff					bf														coldres +10												
+855	Thunder Fend	4	8	1	4			100	Combat	Buff					bf														shockres +10												
+856	Mists of Deception	4	8	1	6			200	Combat	Enchantment																															
+857	Wrath of the Sea	4	8	2	5			7000	Ritual	Global																															
+858	Lichcraft	4	8	5	5			3000	Ritual	Com Summon																				Lich											
+859	Unraveling	4	8	4	6			600	Combat	Damage					bf																										
+860	Mass Regeneration	4	8	6	4			200	Combat	Buff					bf														Regeneration (10%)												doesn't affect lifeless beings
+861	Haunted Forest	4	8	6	5	5	1	6000	Ritual	Global																															
+862	Thetis' Blessing	4	9	2	5			5000	Ritual	Global																															
+863	Demon Cleansing	4	9	2	5			100	Combat	Enchantment																															
+864	Arcane Nexus	4	9	4	8			15000	Ritual	Global																															
+865	Fields of the Dead	4	9	5	5	3	2	100	Combat	Enchantment																															
+866	Army of the Dead	4	9	5	5			1000	Ritual	Summon	3						40	x																							
+867	Gaia's Blessing	4	9	6	6	3	2	300	Combat	Buff					bf																										
+868	Gift of Nature's Bounty	4	9	6	7			7000	Ritual	Global																															
+869	Desiccation	5	1	2	2			20	Combat	Damage		25			1				100						1																
+870	Farstrike	5	1	3	2	4	1	5	Combat	Damage		50		1					5	17	str																				
+871	Blink	5	1	4	1			10	Combat	Buff				caster																											
+872	Communion Master	5	1	4	1			20	Combat	Buff				caster																											
+873	Communion Slave	5	1	4	1			20	Combat	Buff				caster																											
+874	Horror Mark	5	1	4	2			20	Combat	Damage		50		1					100	horrormark																					
+875	Dust to Dust	5	1	5	1			20	Combat	Damage		25			1				0	22	x			1																	only affects undead beings
+876	Decay	5	1	5	1			20	Combat	Damage		20		1					3	decay							normal														
+877	Frighten	5	1	5	1			5	Combat	Damage		50			1				5	fear																					
+878	Fascination	5	1	6	1			20	Combat	Damage		5							100																						
+879	Seven Year Fever	5	1	6	1	0	1	30	Combat	Damage		20			1				2	disease																					
+880	Curse	5	1	6	1	4	1	30	Combat	Damage		50		1					100	curse																					
+881	Bonds of Fire	5	2	0	1			20	Combat	Damage		15		1					3																						
+882	Steal Breath	5	2	1	1			20	Combat	Damage		25		1					5	40	x				1		normal														doesn't affect water breathers
+883	Scrying Pool	5	2	2	2			200	Ritual	Intel	5																														
+884	Returning	5	2	4	2			200	Combat	Buff				caster															return to capital												
+885	Mind Burn	5	2	4	2			20	Combat	Damage		100		1					100	12	x			1			normal														doesn't affect mindless beings
+886	Berserkers	5	2	6	2			20	Combat	Damage		20			1				1																						
+887	Sleep	5	2	6	2			20	Combat	Damage		30		1					4	110	x				1		normal														doesn't affect mindless beings
+888	Rage	5	4	0	2			20	Combat	Damage		25		1					100																						
+889	Augury	5	3	0	2			200	Ritual	Radar	5																		reveals fire sites			n	y	y	y	n	y				
+890	Sailor's Death	5	3	2	3			20	Combat	Damage		25		1					1	14	x			1			normal														doesn't affect water breathers
+891	Iron Will	5	3	3	1			20	Combat	Buff				caster															+4 MR												
+892	Astral Window	5	3	4	2			300	Ritual	Intel																															
+893	Teleport	5	3	4	3			200	Ritual	Movement	5			caster																											
+894	Haruspex	5	3	6	2			200	Ritual	Radar	3																		reveals nature sites			y	y	y	y	n	y				
+895	Panic	5	3	6	2			20	Combat	Damage		25			5	x			1	fear																					
+896	Prison of Fire	5	4	0	3			30	Combat	Damage		25			3	x			2																						
+897	Auspex	5	4	1	2			200	Ritual	Radar	2																		reveals air sites			n	y	n	y	n	y				range does not extend through seas
+898	Curse of the Desert	5	4	2	3			30	Combat	Damage		25			5				100						1																
+899	Gnome Lore	5	4	3	2			300	Ritual	Radar	3																		reveals earth sites												
+900	Paralyze	5	4	4	2			20	Combat	Damage		100		1					100	paralyze				1			normal														doesn't affect mindless beings
+901	Vengeance of the Dead	5	4	4	3	5	1	300	Ritual	Assassin	5																														
+902	Terror	5	4	5	3			10	Combat	Damage		25			5	x			1	fear																					
+903	Touch of Madness	5	4	6	1			30	Combat	Damage		15			1				0																						
+904	Rage of the Cornered Rat	5	4	6	2			20	Combat	Damage		15			3	x			0																						
+905	Wildness	5	4	6	3			20	Combat	Damage		25			1				3																						
+906	Gift of Reason	5	4	6	4			2000	Ritual	Other				1															turn normal unit to commander												
+907	Raging Hearts	5	5	0	4			1000	Ritual	Province	5																											y			
+908	Confusion	5	5	1	3			10	Combat	Damage		25			1				3	confusion																					
+909	Soul Slay	5	5	4	3			20	Combat	Damage		100		1					100		999			1			normal														doesn't affect mindless beings
+910	Telestic Animation	5	5	4	3			500	Ritual	Com Summon																				Telestic Animate											
+911	Gateway	5	5	4	4			1000	Ritual	Movement	6																							y	y	n	y				"requires lab at destination, only works on own provinces"
+912	Leeching Darkness	5	5	5	3			20	Combat	Damage		25			3	x			1	8			1				normal		effect remains for 2 rounds												
+913	Burden of Time	5	5	5	5			7000	Ritual	Global																															
+914	Control the Dead	5	5	5	2			20	Combat	Damage		20			1				0	enslave				1			normal														only affects undead beings
+915	Charm Animal	5	5	6	2			20	Combat	Damage		15		1					100	charm							normal														
+916	The Ravenous Swarm	5	5	6	3			100	Combat	Enchantment																															
+917	Growing Fury	5	5	6	4			100	Combat	Enchantment																															
+918	Melancholia	5	6	3	5			2000	Ritual	Province	5																														
+919	Enslave Mind	5	6	4	4			20	Combat	Damage		100		1					100	enslave				1			normal														doesn't affect mindless beings
+920	Imprint Souls	5	6	4	4			2500	Ritual	Remote Attack	5																														
+921	Wither Bones	5	6	5	3			50	Combat	Damage		25			6	x			-1	16	x			1																	only affects undead beings
+922	Leprosy	5	6	5	5			1000	Ritual	Province	4																														
+923	Foul Air	5	6	5	5	1	1	7500	Ritual	Global																			"any wounded unit on land gets disease, unrest increases everywhere on land"												
+924	Beckoning	5	6	6	5			2000	Ritual	Province	4						50	x																							works only if targeted at forest provinces
+925	Purgatory	5	7	0	6			6000	Ritual	Global																															
+926	Dark Skies	5	7	1	5			5000	Ritual	Global																			morale penalty												
+927	Vengeful Water	5	7	2	7			5000	Ritual	Global																															
+928	Divine Name	5	7	4	5			2500	Ritual	Other																			turn normal or mindless unit to commander												
+929	Vortex of Returning	5	7	4	4			300	Combat	Buff					bf														all friendly units return to capital												
+930	Plague	5	7	5	4			100	Combat	Damage		20			1				0	disease																					
+931	Charm	5	7	6	3			30	Combat	Damage		20		1					100	charm				1			normal														doesn't affect mindless beings
+932	Hydrophobia	5	8	0	2			100	Combat	Damage		25			5				100																						
+933	Gale Gate	5	8	1	5			6000	Ritual	Global																															
+934	Lure of the Deep	5	8	2	6			7000	Ritual	Global																															
+935	Soul Drain	5	8	4	5	5	5	500	Combat	Enchantment																															
+936	Stygian Paths	5	8	5	5			1500	Ritual	Movement	10																														
+937	Black Death	5	8	5	5			1500	Ritual	Province	5																														
+938	Call the Worm That Walks	5	8	6	5			3000	Ritual	Com Summon																															
+939	Beast Mastery	5	8	6	6			400	Combat	Damage					bf					enslave				1			easy														
+940	Astral Travel	5	9	4	5			2500	Ritual	Movement	5																														
+941	Master Enslave	5	9	4	8			800	Combat	Damage					bf					enslave				1			easy														doesn't affect mindless beings
+942	Undead Mastery	5	9	5	7			700	Combat	Damage					bf					enslave				1			easy														only affects undead beings
+943	Blood Burst	6	1	7	1			200	Combat	Damage		30			1				5	11	x			1																	
+944	Blood Heal	6	1	7	1			100	Combat	Buff		30		caster						50				1		1															
+945	Sabbath Master	6	1	7	1			100	Combat	Buff																															
+946	Sabbath Slave	6	1	7	1			100	Combat	Buff																															
+947	Reinvigoration	6	1	7	1			100	Combat	Buff				caster																											
+948	Bind Shadow Imp	6	1	7	1			400	Ritual	Com Summon							1													Shadow Imp											
+949	Summon Imps	6	1	7	1			100	Combat	Summon		1					5														Imp										
+950	Bind Fiery Imps	6	1	7	1	0	1	200	Ritual	Summon							5	x													Fiery Imp										
+951	Blood Boil	6	1	7	1	0	1	50	Combat	Damage		20		1					3	11	x			1			normal														
+952	Bowl of Blood	6	2	7	1			500	Ritual	Radar	5																		reveals blood sites			n	y	y	y	n	y				
+953	Agony	6	2	7	2			100	Combat	Damage		35			4	x			2	1		m		1			normal	Major Fear													
+954	Banish Demon	6	2	7	1			100	Combat	Damage		25		1					100	999	x						normal														only affects undead and demons
+955	Bind Spine Devil	6	2	7	2			300	Ritual	Summon							1														Spine Devil										
+956	Bind Fiend	6	2	7	2			500	Ritual	Summon							1														Fiend of Darkness										
+957	Bind Bone Fiends	6	2	7	1	5	1	300	Ritual	Summon							5	x													Bone Fiend										
+958	Hell Power	6	2	7	3			300	Combat	Buff				caster															magic bonus +2												
+959	Leeching Touch	6	3	7	1			20	Combat	Damage		1		1						15	x	m		1					life drain damage												
+960	Pain Transfer	6	3	7	2			20	Combat	Buff																															
+961	Infernal Circle	6	3	7	5			500	Ritual	Province																			Blood ritual range increase												
+962	Bind Devil	6	3	7	2	0	2	700	Ritual	Summon							1														Devil										
+963	Bind Frost Fiend	6	3	7	2	2	2	600	Ritual	Summon							1														Frost Fiend										
+964	Crossbreeding	6	3	7	1	6	1	1500	Ritual	Summon							20	x																							
+965	Blood Feast	6	3	7	2			500	Ritual	Buff																															
+966	Bind Serpent Fiend	6	4	7	1			500	Ritual	Summon							1																								
+967	Blood Lust	6	4	7	2			100	Combat	Buff					bf																										
+968	Hellfire	6	4	7	1	0	2	100	Combat	Damage																															
+969	Bind Storm Demon	6	4	7	2	1	2	700	Ritual	Summon							1														Storm Demon										
+970	Bind Demon Knight	6	4	7	2	3	2	500	Ritual	Summon		5					1														Demon Knight										
+971	Call Lesser Horror	6	4	7	2	4	2	200	Combat	Com Summon							1																								
+972	Rain of Toads	6	4	7	3	6	1	1000	Ritual	Province																															
+973	Blood Fecundity	6	4	7	2	6	2	1000	Ritual	Province																															
+974	Hellbind Heart	6	5	7	2			100	Combat	Damage		30		1					100	charm				1			normal														doesn't affect mindless beings
+975	Horde from Hell	6	5	7	4			4400	Ritual	Remote Attack	4						25											Devil Commander			Imp	n	y	n							
+976	Bloodletting	6	5	7	4			400	Combat	Damage					bf					1				1			normal														
+977	Bind Succubus	6	5	7	4			6600	Ritual	Com Summon							1													Succubus		n									
+978	Wrath of Pazuzu	6	5	7	1	1	3	1500	Ritual	Province			5																			n		n							
+979	Awaken Dark Vines	6	5	7	1	6	3	1200	Ritual	Summon							2														Dark Vine	n									
+980	Send Lesser Horror	6	5	7	2	4	3	900	Ritual	Remote Attack							1																								
+981	Summon Illearth	6	5	7	2	3	2	200	Combat	Summon		1																			Illearth										
+982	Harm	6	6	7	2			100	Combat	Damage		50			4	x			5	2	x	m		1			normal	Area Chest Wound													
+983	Rejuvenate	6	6	7	1			1000	Ritual	Buff				caster															-10 years												
+984	Infernal Disease	6	6	7	5			500	Ritual	Assassin							1													Disease Demon											
+985	Ritual of Five Gates	6	6	7	5			2800	Ritual	Summon							5														5 different devils										
+986	Bind Ice Devil	6	6	7	3	2	3	8800	Ritual	Com Summon							1													Ice Devil											
+987	Call Horror	6	6	7	3	4	3	300	Combat	Com Summon							1																								
+988	Leech	6	7	7	1			100	Combat	Damage																															
+989	Blood Rain	6	7	7	3			300	Combat	Enchantment		25			1				100	25	x	m		1																	
+990	Bind Arch Devil	6	7	7	4	0	2	9900	Ritual	Com Summon																				Arch Devil											
+991	Father Illearth	6	7	7	3	3	4	8500	Ritual	Com Summon																				Father Illearth											
+992	Curse of Blood	6	7	7	3	5	4	7700	Ritual	Com Summon																				Vampire Lord											
+993	Blood Rite	6	7	7	2	5	2	3300	Ritual	Summon							3														Vampire										
+994	Send Dream Horror	6	7	7	3	4	4	1500	Ritual	Province	6																														
+995	Dome of Corruption	6	7	7	4	4	4	2000	Ritual	Province																															
+996	Astral Corruption	6	7	7	6	4	6	16600	Ritual	Global																															
+997	Purify Blood	6	7	7	4	6	1	300	Combat	Buff					bf																										
+998	Rush of Strength	6	8	7	3			100	Combat	Buff					bf																										
+999	Life for a Life	6	8	7	3			199	Combat	Damage		100		1					100		40	m		1																	
+1000	Bind Heliophagus	6	8	7	5			11100	Ritual	Com Summon																															
+1001	Three Red Seconds	6	8	7	5			12000	Ritual	Province	4																					n		n							
+1002	Blood Vortex	6	8	7	7			16600	Ritual	Global																															
+1003	Improved Cross Breeding	6	8	7	2	6	2	2000	Ritual	Summon							40	x																							
+1004	Send Horror	6	8	7	3	4	4	1500	Ritual	Remote Attack	6						1													some kind of horror											
+1005	Blood Vengeance	6	9	7	1			100	Combat	Buff				caster																											
+1006	Forces of Darkness	6	9	7	6			5000	Ritual	Summon							14	x													Fiend of Darkness										
+1007	The Looming Hell	6	9	7	8			15000	Ritual	Global																															
+1008	Bind Demon Lord	6	9	7	8			15000	Ritual	Com Summon							1													one of several demon lords											
+1009	Infernal Prison	6	9	7	3	0	1	200	Combat	Damage		30		1															sends target to Inferno												
+1010	Infernal Forces	6	9	7	5	0	2	5000	Ritual	Summon							7	x													Devil										
+1011	Infernal Tempest	6	9	7	5	1	2	5000	Ritual	Summon							7	x													Storm Demon										
+1012	Claws of Kokytos	6	9	7	3	2	1	200	Combat	Damage		30		1															sends target to Kokytos												
+1013	Forces of Ice	6	9	7	5	2	2	5000	Ritual	Summon							8	x													Frost Fiend										
+1014	Infernal Crusade	6	9	7	5	3	2	5000	Ritual	Summon							10	x													Demon Knight										
+1015	Horror Seed	6	9	7	4	4	5	2000	Ritual	Province	6																														
+																																									
