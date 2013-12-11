@@ -101,7 +101,7 @@ MItem.prepareData_PostMod = function() {
 		//set weapon class (ranged or melee)
 		if (o.type == '1-h wpn' || o.type == '2-h wpn') {
 			var w = o.weapon;
-			if (w && w.shots && w.shots != '0')
+			if (w && w.ammo && w.ammo != '0')
 				o.wpnclass = 'missile';
 			else 
 				o.wpnclass = 'melee';

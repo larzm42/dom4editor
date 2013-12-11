@@ -26,10 +26,6 @@ body {overflow:hidden;}
 	width: 600px;
 	background-color: #F6F6F6;
 }
-.slick-row.active {
-	background:#FFCC66;
-	
-}
 
 
 /****************************************
@@ -384,6 +380,7 @@ div.overlay-footer {
 		float:right;
 		clear:right;
 		font-size: 80%;
+		display: none;
 	}
 
 
@@ -448,9 +445,13 @@ div.overlay-header * {
 	color: #FFFFFF; /*#FCFFBF;*/
 }
 /* overlay main */
-#primary-details, div.overlay-contents, .slick-row.active {
-	/*background: #ffe481;*/
+#primary-details, div.overlay-contents {
 	background: #ded0b7;
+	/*background-image:url('guiborder2.png'); 
+	background-size: 100% 100%;*/
+}
+.slick-row:hover {
+     background-color:#ded0b7;
 }
 /* overlay highlights */
 div.overlay-main table.wpn-table {

@@ -989,8 +989,12 @@ MSpell.updateSpecialBitfield = function(v) {
 	return v;
 }
 
-MSpell.worksUnderwater = function(spell) { return (!(spell.spec & 8388608)); }
-MSpell.worksOnDryLand = function(spell) { return (!(spell.spec & 33554432)); }
+MSpell.worksUnderwater = function(spell) {
+       	return ((!spell.uw || spell.uw == 'y')); 
+}
+MSpell.worksOnDryLand = function(spell) { 
+	return ((!spell.land || spell.land != 'n')); 
+}
 
 
 //namespace args

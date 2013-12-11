@@ -14,7 +14,17 @@ var modconstants = DMI.modconstants;
 var unitSortableTypes = {
 	'cmdr (cap only)': 	'10.cmdr',
 	'commander': 		'11.cmdr',
-	'cmdr (u-water)': 	'11.cmdr-uw',
+	'Commander': 		'11.cmdr',
+	'Commander (Event)': 		'11.cmdr',
+	'Commander (Magic site)': 		'11.cmdr',
+	'Commander (Prophetization)': 		'11.cmdr',
+	'Commander (Recruitment)': 		'11.cmdr',
+	'Commander (Special)': 		'11.cmdr',
+	'Commander (Summon)': 		'11.cmdr',
+	'Commander (Wish)': 		'11.cmdr',
+	'Commander (item)': 		'11.cmdr',
+	'Commander (mercenary)': 		'11.cmdr',
+	'cmdr (u-water)': 	'12.cmdr-uw',
 	
 	'unit (cap only)': 	'20.unit',
 	'unit': 		'21.unit',
@@ -22,6 +32,8 @@ var unitSortableTypes = {
 	
 	'hero (multi)': 	'30.hero-cmdr',
 	'hero (unique)': 	'31.hero-cmdr',
+	'Hero (Event)': 	'31.hero-cmdr',
+	'Hero (item)': 	'31.hero-cmdr',
 	
 	'cmdr (summoned)': 	'40.cmdr-sum',
 	'unit (summoned)': 	'41.unit-sum',
@@ -32,6 +44,7 @@ var unitSortableTypes = {
 	'unit (created)':	'45.created',
 	
 	'pretender': 		'60.pret-cmdr',
+	'Pretender': 		'60.pret-cmdr',
 	
 	'special': 		'70?spec',
 	'unit (indy summon)':	'80?unit',
@@ -111,7 +124,6 @@ MUnit.prepareData_PostMod = function() {
 		//convert to numbers (for column ordering)
 		//doesn't seem to cause any further problems..
 		o.id = parseFloat(o.id);
-		o.type = '';
 		
 		o.renderOverlay = MUnit.renderOverlay;
 		o.matchProperty = MUnit.matchProperty;
@@ -134,6 +146,10 @@ MUnit.prepareData_PostMod = function() {
 		var is = Utils.is;
 		var normalise = Utils.normalise;
 		
+		if (o.rt == 2) {
+			o.slow_to_recruit = 1;
+		}
+
 		//magic paths
 		o.mpath = '';
 		var research = 0;
@@ -174,8 +190,8 @@ MUnit.prepareData_PostMod = function() {
 		if (research) 
 			research += 2
 		//add research bonus
-		if (is(o.researchbonus)) 
-			research += parseInt(o.researchbonus);
+		if (is(o.research)) 
+			research += parseInt(o.research);
 		//append research to pathcode
 		if (research) 
 			o.mpath += 'R' + String(research) + ' ';
@@ -226,7 +242,12 @@ MUnit.prepareData_PostMod = function() {
 		if (o.rcost > 60000)	o.rcost = 1; //gladiators
 		
 		//numeric gold and resource costs (for sorting)
-		o.gcost = parseInt(o.gcost || '0');
+		if (o.type == 'u') {
+			o.gcost = parseInt(o.gmon || '0');
+		} else {
+			o.gcost = parseInt(o.gcom || '0');
+		}
+		o.type = '';
 		if (!o.gcost)
 			o.rcost = 0;
 		else
@@ -238,6 +259,12 @@ MUnit.prepareData_PostMod = function() {
 MUnit.prepareData_PostNationData = function(o) {
 	for (var oi=0, o;  o= modctx.unitdata[oi];  oi++) {
 
+		if (!o.type || o.type == '') {
+			o.type = o.typeclass;
+			if (o.from && o.from != '') {
+				o.type = o.type + ' (' + o.from + ')';
+			}
+		}
 		//clear pretender cost
 		if (o.type == 'pretender') {
 			//delete o.gcost;
@@ -245,6 +272,13 @@ MUnit.prepareData_PostNationData = function(o) {
 		}
 		//sorttype
 		o.sorttype = unitSortableTypes[o.type];
+
+		if (!o.sorttype || o.sorttype == '') {
+			o.sorttype = o.typeclass;
+			if (o.from && o.from != '') {
+				o.sorttype = o.sorttype + ' (' + o.from + ')';
+			}
+		}
 
 		//show magic paths on grid for commanders only
 		if (isCmdr(o) && o.mpath) 
@@ -257,7 +291,7 @@ MUnit.prepareData_PostNationData = function(o) {
 
 		//add backlinks to units created by other units
 		var sumu;
-		if (o.domsummon && (sumu= modctx.unitlookup[o.domsummon])) {
+		if (o.domsum && (sumu= modctx.unitlookup[o.domsum])) {
 			sumu.createdby = sumu.createdby || [];
 			sumu.createdby.push(o)
 		}
@@ -303,41 +337,41 @@ MUnit.prepareForRender = function(o) {
 		}
 		
 		//init age
-		if (o.age == '0') delete o.age;
-		if (o.age == '-1') o.age = '0';
-		if (o.maxage == '0') delete o.maxage;
+		if (o.agestrt == '0') delete o.agestrt;
+		if (o.agestrt == '-1') o.agestrt = '0';
+		if (o.ageold == '0') delete o.ageold;
 		
 		//default age
 		if (is(o.inanimate)) {
-			if (!o.startage) o.startage = '??';
-			if (!o.maxage) o.maxage = '2000??';
-			//if (o.E) bonus('earth magic', 'maxage', mult(o.maxage, parseInt(o.E) * 0.5));
+			if (!o.agestrt) o.agestrt = '??';
+			if (!o.ageold) o.ageold = '2000??';
+			//if (o.E) bonus('earth magic', 'maxage', mult(o.ageold, parseInt(o.E) * 0.5));
 		}
 		else if (is(o.undead)) {
-			if (!o.startage) o.startage = '187';
-			if (!o.maxage) o.maxage = '500';
-			if (o.D) bonus('death magic', 'maxage', mult(o.maxage, parseInt(o.D) * 0.5));
+			if (!o.agestrt) o.agestrt = '187';
+			if (!o.ageold) o.ageold = '500';
+			if (o.D) bonus('death magic', 'maxage', mult(o.ageold, parseInt(o.D) * 0.5));
 		}
 		else if (is(o.demon)) {
-			if (!o.startage) o.startage = '370';
-			if (!o.maxage) o.maxage = '1000';
-			if (o.B) bonus('blood magic', 'maxage', mult(o.maxage, parseInt(o.B) * 0.5));
+			if (!o.agestrt) o.agestrt = '370';
+			if (!o.ageold) o.ageold = '1000';
+			if (o.B) bonus('blood magic', 'maxage', mult(o.ageold, parseInt(o.B) * 0.5));
 		}
 		else {
-			if (!o.startage) o.startage = '22';
-			if (!o.maxage) o.maxage = '50';
-			if (o.N) bonus('nature magic', 'maxage', mult(o.maxage, parseInt(o.N) * 0.5));
+			if (!o.agestrt) o.agestrt = '22';
+			if (!o.ageold) o.ageold = '50';
+			if (o.N) bonus('nature magic', 'maxage', mult(o.ageold, parseInt(o.N) * 0.5));
 			if (o.F) {
-				if (parseInt(o.maxage) >= 200)
+				if (parseInt(o.ageold) >= 200)
 					bonus('fire magic', 'maxage', mult(o.F, -5));
-				else if (parseInt(o.maxage) >= 50)
+				else if (parseInt(o.ageold) >= 50)
 					bonus('fire magic', 'maxage', mult(o.F, -2));
-				else if (parseInt(o.maxage))
+				else if (parseInt(o.ageold))
 					bonus('fire magic', 'maxage', mult(o.F, -1));
 			}
 		}
 		//older
-		if (is(o.older)) o.startage = sum(o.startage, o.older);
+		if (is(o.older)) o.agestrt = sum(o.agestrt, o.older);
 		
 		//magic boost
 		if (is(o.magicboost_all)) {
@@ -433,9 +467,9 @@ MUnit.prepareForRender = function(o) {
 
 		//formatted leadership
 		var ldr_arr = [];
-		if (Utils.is(o.leader)) ldr_arr.push(o.leader);
-		if (Utils.is(o.undeadleader)) ldr_arr.push('('+o.undeadleader+' undead)');
-		if (Utils.is(o.magicleader)) ldr_arr.push('('+o.magicleader+' magic)');
+		if (Utils.is(o.ldr_n)) ldr_arr.push(o.ldr_n);
+		if (Utils.is(o.ldr_u)) ldr_arr.push('('+o.ldr_u+' undead)');
+		if (Utils.is(o.ldr_m)) ldr_arr.push('('+o.ldr_m+' magic)');
 		o.ldr_str = ldr_arr.join(' + ');		
 		
 		//item slots
@@ -456,11 +490,11 @@ MUnit.prepareForRender = function(o) {
 			o.slots = slotwords.join(', ');
 		
 		//old age
-		var oldyears = parseInt(o.startage) - parseInt(o.maxage);
+		var oldyears = parseInt(o.agestrt) - parseInt(o.ageold);
 		if (oldyears >= 0) {
 			o.isold = '1';
 			
-			var oldmult = 1 + Math.floor(5 * oldyears / parseInt(o.maxage));
+			var oldmult = 1 + Math.floor(5 * oldyears / parseInt(o.ageold));
 			bonus('old age', 'str', -1 * oldmult);
 			bonus('old age', 'att', -1 * oldmult);
 			bonus('old age', 'def', -1 * oldmult);
@@ -836,7 +870,7 @@ var displayorder = Utils.cutDisplayOrder(aliases, formats,
 	'att',	'attack skill',	{'0':'0 '},
 	'def',	'defence skill',{'0':'0 '},
 	'prec',	'precision',	{'0':'0 '},
-	'ap', 	'move',		function(v,o){ return o.mapmove + ' / '+o.ap; }
+	'ap', 	'move',		function(v,o){ return o.map + ' / '+o.ap; }
 ]);
 var displayorder_cmdr = Utils.cutDisplayOrder(aliases, formats,
 [
@@ -849,12 +883,12 @@ var displayorder_cmdr = Utils.cutDisplayOrder(aliases, formats,
 ]);
 var displayorder_pret = Utils.cutDisplayOrder(aliases, formats,
 [
-	'startdom',		'base dominion',
-	'pathcost',		'new path cost'
+	'dom',		'base dominion',
+	'path',		'new path cost'
 ]);
 var displayorder2 = Utils.cutDisplayOrder(aliases, formats,
 [
-	'maxage',	'age',	function(v,o){ return o.startage + ' ('+v+')'; },
+	'ageold',	'age',	function(v,o){ return o.agestrt + ' ('+v+')'; },
 	
 	'gA',		'generates fire gems',		function(v){ return v!='0' && Format.PerTurn(Format.Gems(v+'A')); },
 	'gB',		'generates blood slaves',	function(v){ return v!='0' && Format.PerTurn(Format.Gems(v+'B')); },
@@ -865,154 +899,207 @@ var displayorder2 = Utils.cutDisplayOrder(aliases, formats,
 	'gN',		'generates nature gems',	function(v){ return v!='0' && Format.PerTurn(Format.Gems(v+'N')); },
 	'gW',		'generates water gems',		function(v){ return v!='0' && Format.PerTurn(Format.Gems(v+'W')); },
 	
+	'lim',		'recruitment limit',	Format.PerTurn,
+	'gemgen',	'generates gems',	function(v){ return v!='0' && Format.PerTurn(Format.Gems(v)); },
+
 	'onebattlespell','casts each battle',		Utils.spellRef,
 	
-	'regeneration',	'regeneration',	Format.Percent,
-	'fireres',	'resist fire',	Format.Percent,
-	'coldres',	'resist cold',	Format.Percent,
-	'poisonres',	'resist poison',Format.Percent,
-	'shockres',	'resist shock',	Format.Percent,
+	'regen',	'regeneration',	Format.Percent,
+	'resfire',	'resist fire',
+	'rescold',	'resist cold',
+	'respois',	'resist poison',
+	'resshck',	'resist shock',	
 	
-	'darkvision',	'dark vision',	Format.Percent,
-	'stealthy',	'stealthy',	Format.SignedZero,//{0:'+0'},
-	'healer',	'healer',
+	'dv',	'dark vision',	Format.Percent,
+	'stealth',	'stealthy',	Format.SignedZero,//{0:'+0'},
+	'heal',	'healer',
+	'dishe',	'disease healer',
+	'chaosrec',	'chaos recruit',
 	
-	'cold',		'cold aura',
+	'chill',		'cold aura',
 	'heat',		'heat aura',
-	'poisoncloud',	'poison cloud',
+	'pcloud',	'poison cloud',
 	'diseasecloud',	'disease cloud',
-	'fireshield',	'fire shield',
+	'fshld',	'fire shield',
 	'banefireshield','banefire shield',
 	'bloodvengeance','blood vengeance', Format.SignedZero,
+	'sacr',		'adept blood sacrificer',
 	
 	'iceprot',	'ice protection',
-	'firepower',	'fire power',
-	'stormpower',	'storm power',
-	'coldpower',	'cold power',
-	'darkpower',	'dark power',
+	'pwfire',	'fire power',
+	'pwstrm',	'storm power',
+	'pwcold',	'cold power',
+	'pwdark',	'dark power',
+	'pwchaos',	'chaos power',
+	'pwmagic',	'magic power',
+	'waterbr',	'waterbreathing',
 	
-	'springpower',	'spring power',
-	'summerpower',	'summer power',
-	'fallpower',	'fall power',
-	'winterpower',	'winter power',
+	'spring',	'spring power',
+	'summer',	'summer power',
+	'fall',	'fall power',
+	'winter',	'winter power',
 	
 	'fear',		'fear',		Format.SignedZero,
 	'awe',		'awe',		Format.SignedZero,
-	'sacredawe',	'halt heretic',	Format.SignedZero,
-	'animalawe',	'animal awe',	Format.SignedZero,
+	'halt',	'halt heretic',	Format.SignedZero,
+	'aawe',	'animal awe',	Format.SignedZero,
+	'event',	'causes events',	Format.Percent,
+	'reform',	'chance to reform when killed',	Format.Percent,
 	
-	'standard',	'standard',
+	'reanim',	'reanimation',
+	'std',	'standard',
+	'i_ldr',	'inspirational',
+	'reinc',	'reincarnation',
+	'eleg',	'elegist',
+	'reso',	'provides resources',
+	'i-resch',	'inspired researcher',
+	'def-org',	'defence organizer',
 	
-	'ambidextrous',	'ambidextrous',
-	'reinvigoration','reinvigoration',
-	'berserk',	'berserker',		Format.SignedZero,
+	'pearl','pearl cultivator',
+	'sailsz',	'sailing size',
+	'sailmaxsz',	'max size of passenger',
+
+	'adx',	'ambidextrous',
+	'inv',		'reinvigoration',
+	'brsrk',	'berserker',		Format.SignedZero,
+	'invul',	'invulnerability',
+	'dmgrev',	'damage reversal',
+	'inn',	'inate spellcaster',
+	'bodyg',	'bodyguard',
+	'pathboost',	'pathboost',
+	'disbel',	'disbelieve illusions',
 	
-	'supplybonus',	'supply bonus',		Format.Signed,
-	'siegebonus',	'siege bonus',		Format.Signed,
-	'castledef',	'castle defence',	Format.Signed,
-	'patrolbonus',	'patrol bonus',		Format.Signed,
-	'pillagebonus',	'pillage bonus',	Format.Signed,
-	'alchemy',		'alchemy bonus',	Format.Percent,
-	'forgebonus',	'forge bonus',		Format.Percent,
-	'douse',	'blood hunt bonus',	Format.Signed,
-	'nobadevents',	'fortune teller',	Format.Percent,
+	'sup',	'supply bonus',		Format.Signed,
+	'siege',	'siege bonus',		Format.Signed,
+	'cdef',	'castle defence',	Format.Signed,
+	'ptrl',	'patrol bonus',		Format.Signed,
+	'pllg',	'pillage bonus',	Format.Signed,
+	'alch',		'alchemy bonus',	Format.Percent,
+	'forge',	'forge bonus',		Format.Percent,
+	'fixforge',	'forge bonus',	
+	'smith',	'master smith',	
+	'bloodsearch',	'blood hunt bonus',	Format.Signed,
+	'fortune',	'fortune teller',	Format.Percent,
 	'spreaddom',	'spreads dominion',
-	'incunrest',	'increases unrest',	Format.SignedPerTurn,
+	'unrest',	'increases unrest',	Format.SignedPerTurn,
+	'plague',	'spreads plague',
 	
 	'seduce',	'capture cmdr (seduction)',	function(v){ if (v=='0') return '0'; return 'morale vs '+v; },
 	'succubus',	'capture cmdr (succubus)',	function(v){ if (v=='0') return '0'; return 'morale vs '+v; },
-	'corruption',	'capture cmdr (corruption)',	function(v){ if (v=='0') return '0'; return 'morale vs '+v; },
+	'corrupt',	'capture cmdr (corruption)',	function(v){ if (v=='0') return '0'; return 'morale vs '+v; },
 	'beckon',	'lure cmdr into sea',		function(v){ if (v=='0') return '0'; return 'morale vs '+v; },
 	
 	
-	'leper',	'leper',		Format.Percent,
+	'reaper',	'leper',		Format.Percent,
 	'popkill',	'kills population',	function(v,o){ return Format.PerTurn( parseInt(v)*10 ) },
 	'homesick',	'homesick',		Format.Percent,
+	'beastm',	'beast master',
+	'taskm',	'task master',
+	'ivylord',	'ivy lord',
+	'blind',	'blind fighter',
+	'slime',	'slimer',
+	'mindslime',	'mind slimer',
+	'xbreed',	'crossbreader',
 		
 	'special',	'special',
 	
-	'firstshape',	'natural shape',	function(v,o){	return chainedUnitRef(o, 'firstshape', []);	},
-	'secondshape',	'wounded shape',	function(v,o){	return chainedUnitRef(o, 'secondshape', []);	},
+	'1shape',	'natural shape',	function(v,o){	return chainedUnitRef(o, '1shape', []);	},
+	'2shape',	'wounded shape',	function(v,o){	return chainedUnitRef(o, '2shape', []);	},
 	'shapechange',	'shape changer',	function(v,o){	return chainedUnitRef(o, 'shapechange', []);	},
-	'secondtmpshape','dying shape',	function(v,o){	return chainedUnitRef(o, 'secondtmpshape', []);	},
+	'tmp2shape','dying shape',	function(v,o){	return chainedUnitRef(o, 'tmp2shape', []);	},
 	'landshape',	'land shape',	function(v,o){	return chainedUnitRef(o, 'landshape', []);	},
-	'watershape',	'sea shape',	function(v,o){	return chainedUnitRef(o, 'watershape', []);	},
+	'seashape',	'sea shape',	function(v,o){	return chainedUnitRef(o, 'seashape', []);	},
 	'forestshape',	'forest shape',	function(v,o){	return chainedUnitRef(o, 'forestshape', []);	},
-	'plainshape',	'normal shape',	function(v,o){	return chainedUnitRef(o, 'plainshape', []);	},
+	'normalshape',	'normal shape',	function(v,o){	return chainedUnitRef(o, 'normalshape', []);	},
 	'prophetshape',	'prophet shape',	function(v,o){	return chainedUnitRef(o, 'prophetshape', []);	},
 	
-	'domsummon',	'dominion attracts units',	function(v,o){ 
-		return Format.PerTurn( (o.n_domsummon || '1')+' x '+Utils.unitRef(v) ); 
+	'domsum',	'dominion attracts units',	function(v,o){ 
+		return Format.PerTurn( (o.n_domsum || '1')+' x '+Utils.unitRef(v) ); 
 	},
 	'makemonster',	'makes units',	function(v,o){ 
 		return Utils.is(o.n_makemonster) ?  Utils.unitRef(v)+' x '+o.n_makemonster  :  Utils.unitRef(v); 
 	},
-	'summon',	'automatically summons',function(v,o){ 
-		return Format.PerTurn( (o.n_summon || '1')+' x '+Utils.unitRef(v) );
+	'sum',	'summon allies',	function(v,o){ 
+		return Utils.is(o.n_sum) ?  Utils.unitRef(v)+' x '+o.n_sum  :  Utils.unitRef(v); 
+	},
+	'autosum',	'automatically summons',function(v,o){ 
+		return Format.PerTurn( (o.n_autosum || '1')+' x '+Utils.unitRef(v) );
 	},		
 	'batsum',	'summons in battle',	function(v,o){ 
 		return Utils.is(o.n_batsum) ?  Utils.unitRef(v)+' x '+o.n_batsum  :  Utils.unitRef(v); 
 	},
 	
-	'heretic',		'heretic',
-	'shatteredsoul',	'shattered soul', 	Format.Percent, //tartarian
+	'her',		'heretic',
+	'soulsh',	'shattered soul', 	Format.Percent, //tartarian
 	'insane',	'insane',		Format.Percent,
 	
-	'void',		'void summoning',	Format.Signed //rl'yeh	
+	'voidsan',		'void sanity',		
+	'voidsum',		'void summoning',	Format.Signed //rl'yeh	
 	
 ]);
 var flagorder = Utils.cutDisplayOrder(aliases, formats,
 [
 //	dbase key	displayed key		function/dict to format value
+	'slow_to_recruit',	'slow to recruit',
 	'unique',	'unique',
-	'immortal',	'immortal',
+	'imm',	'immortal',
 	'isold',	'old age',
 	'holy',		'sacred',
-	'sailing',	'sailor',
-	'mounted',	'mounted',
+	'cav',	'mounted',
 	'immobile',	'immobile',
+	'ffight',	'formation fighter',
+	'undisc',	'undisciplined',
+	'slash',	'slash resistant',
+	'blunt',	'blunt resistant',
+	'pierce',	'pierce resistant',
 	
 	'animal',	'animal',
 	'undead',	'undead',
 	'demon',	'demon',
-	'magicbeing',	'magic being',
-	'inanimate',	'inanimate',
+	'mgcbng',	'magic being',
+	'lifeless',	'inanimate',
 	'mind',		'mindless',
-	'ethereal',	'ethereal',
+	'eth',	'ethereal',
 	'ethtrue',	'true ethereal',
-	'illusion',	'glamour',	
-	'flying',	'flying',
-	'stormimmune',	'flies in storms',
+	'glam',	'glamour',	
+	'fly',	'flying',
+	'telep',	'teleporter',
+	'strmfly',	'flies in storms',
+	'noriver',	'cannot cross river',
+	'slave',	'slave',
 	
-	'trample',	'trample',
-	'blind',	'blind fighter',
-	'heal',		'recuperation',
+	'trmpl',	'trample',
+	'swal',	'swallow',
+	'rec',		'recuperation',
 	'spy',		'spy',
 	'assassin',	'assassin',
-	'drainimmune',	'ignores drain scales',
+	'drainres',	'ignores drain scales',
+	'tax',		'tax collector',
+	'gem',		'gem collector',
 		
-	'coldblood',	'cold blooded',
-	'pooramphibian','poor amphibian',
-	'amphibian',	'amphibious',
-	'aquatic',	'aquatic',
-	'neednoteat',	'need not eat',
+	'cldbld',	'cold blooded',
+	'pamph','poor amphibian',
+	'amphi',	'amphibious',
+	'aqua',		'aquatic',
+	'noeat',	'need not eat',
 	'noheal',	'only heals in lab',
+	'deathcu',	'death curse',
+	'float',	'floating',
 	
-	'wastesurvival',	'wasteland survival',
-	'mountainsurvival',	'mountain survival',
-	'swampsurvival',	'swamp survival',
-	'forestsurvival',	'forest survival',
+	'waste',	'wasteland survival',
+	'mount',	'mountain survival',
+	'swamp',	'swamp survival',
+	'forest',	'forest survival',
 	
 	'female',	'female',
 	'stonebeing',	'stone being',
-	'plague',	'spreads plague',
 	
-	'poisonarmor',	'poison barbs',
+	'barbs',	'poison barbs',
 	'petrify',	'petrifies attackers',
 	'entangle',	'entangles attackers',
 	'eyeloss',	Utils.afflictionRef('Eyeloss')+' on attackers',
 	
-	'inquisitor',		'inquisitor'
+	'inq',		'inquisitor'
 ]);
 var hiddenkeys = Utils.cutDisplayOrder(aliases, formats,
 [
@@ -1035,19 +1122,25 @@ var ignorekeys = {
 	titles:1, fullname:1, 
 	size:1, uniquename:1,
 	
-	leader:1,
-	magicleader:1,
-	undeadleader:1,
+	ldr_n:1,
+	ldr_u:1,
+	ldr_m:1,
 	
-	mapmove:1,
-	startage:1, older:1,
+	map:1,
+	agestrt:1, older:1,
 	casting_enc:1,	
 	
 	searchable:1,
 	notes:1,
+	rt:1,
+	typeclass:1,
+	from:1,
+	basecost:1,
+	gmon:1,
+	gcom:1,
 	
-	researchbonus:1, listed_mpath:1, 
-	n_domsummon:1, n_makemonster:1, n_batsum:1, n_summon:1,	
+	research:1, listed_mpath:1, 
+	n_domsum:1, n_makemonster:1, n_batsum:1, n_autosum:1, n_sum:1,	
 	
 	hand:1, head:1, body:1, foot:1, misc:1, 
 	

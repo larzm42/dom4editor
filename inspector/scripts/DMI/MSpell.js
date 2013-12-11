@@ -18,6 +18,56 @@ MSpell.initSpell = function(o) {
 	o.nations = [];
 }
 
+MSpell.nationList = function (o) {
+	o.nations = [];
+	if (o.national && o.national != '') {
+		var parts = o.national.split(',');
+		var era;
+		var oldNation;
+		for (var oi=0, nation;  nation = parts[oi];  oi++) {
+			era = 0;
+			if (nation.indexOf('EA') != -1) {
+				era = 1;
+				nation = nation.replace(/EA/g,'');
+				nation = nation.replace(/^\s+|\s+$|"/g,'');
+				if (nation == '') {
+					nation = oldNation;
+				}
+			} else if (nation.indexOf('MA') != -1) {
+				era = 2;
+				nation = nation.replace(/MA/g,'');
+				nation = nation.replace(/^\s+|\s+$|"/g,'');
+				if (nation == '') {
+					nation = oldNation;
+				}
+			} else if (nation.indexOf('LA') != -1) {
+				era = 3;
+				nation = nation.replace(/LA/g,'');
+				nation = nation.replace(/^\s+|\s+$|"/g,'');
+				if (nation == '') {
+					nation = oldNation;
+				}
+			}
+			nation = nation.replace(/^\s+|\s+$|"/g,'');
+			if (nation == 'Pan') {
+				nation = 'Pangaea';
+			}
+			if (nation == 'Arco') {
+				nation = 'Arcoscephale';
+			}
+			oldNation = nation;
+			for (var oj=0, natdata;  natdata = modctx.nationdata[oj];  oj++) {
+				if (natdata.name == nation) {
+					if (era == 0 || natdata.era == era) {
+						o.nations.push(natdata.id);
+					}
+				}
+			}
+		}
+	}
+	return o.nations;
+}
+
 MSpell.prepareData_PreMod = function() {
 	for (var oi=0, o;  o= modctx.spelldata[oi];  oi++) {
 		
@@ -28,13 +78,37 @@ MSpell.prepareData_PreMod = function() {
 		if (o.school == '255')
 			o.school = '-1';
 		
-		o.nations = Utils.keyListToTable(o, 'restricted') || [];
+		o.nations = MSpell.nationList(o);
 
 		if (o.mrneg == 'normal') {
 			o.mrneg_norm = 1;
 		}
 		if (o.mrneg == 'easy') {
 			o.mrneg_easy = 1;
+		}
+		if (o.target_uw == 'y') {
+			o.can_target_uw = 1;
+		}
+		if (o.target_land == 'y') {
+			o.can_target_land = 1;
+		}
+		if (o.target_enemy == 'y') {
+			o.can_target_enemey = 1;
+		}
+		if (o.target_friend == 'y') {
+			o.can_target_friend = 1;
+		}
+		if (o.target_uw == 'n') {
+			o.cannot_target_uw = 1;
+		}
+		if (o.target_land == 'n') {
+			o.cannot_target_land = 1;
+		}
+		if (o.target_enemy == 'n') {
+			o.cannot_target_enemey = 1;
+		}
+		if (o.target_friend == 'n') {
+			o.cannot_target_friend = 1;
 		}
 			
 	}
@@ -411,6 +485,13 @@ MSpell.formatDmgType = function(v,o) {
 	}
 }
 
+MSpell.formatAoe = function(v,o) {
+	if (v == 'bf') {
+		return 'battlefield';
+	}       
+	return o.aoeplus ? v+'+' : v; 
+}
+
 
 //////////////////////////////////////////////////////////////////////////
 // OVERLAY RENDERING
@@ -438,19 +519,30 @@ var displayorder = Utils.cutDisplayOrder(aliases, formats,
 
 	'rng_bat',	'range', 		function(v,o){ return o.rngplus ? v+'+' : v; },
 	'rng_prov',	'range', 		function(v,o){ return o.rng_prov == 1 ? v+' province' : v+' provinces' },
-	'aoe_s',	'area of effect', 	function(v,o){ return o.aoeplus ? v+'+' : v; },
+	'aoe_s',	'area of effect', 	MSpell.formatAoe,
 	'nreff', 	'number of effects',	function(v,o){ return o.effplus ? v+'+' : v; },
 
 	'precision',	'precision',	{0: '0 '},
 	'dmg',		'damage', 	function(v,o){ return o.dmgplus ? v+'+' : v; },
 	'dt',		'damage type', 	MSpell.formatDmgType,
 	'heal',		'heal',
-	'summon',	'summons', 	Utils.spellRef
+	'comsummon',	'summons commander', 	Utils.unitRef,
+	'summon',	'summons', 	Utils.unitRef
 	
 ]);
 var flagorder = Utils.cutDisplayOrder(aliases, formats,
 [
 //	dbase key	displayed key		function/dict to format value
+	'can_target_uw',	'can target underwater',
+	'can_target_land',	'can target land',
+	'can_target_enemey',	'can target enemy',
+	'can_target_friend',	'can target friendly',
+	'cannot_target_uw',	'cannot target underwater',
+	'cannot_target_land',	'cannot target land',
+	'cannot_target_enemey',	'cannot target enemy',
+	'cannot_target_friend',	'cannot target friend',
+	'anonym',	'anonymous',
+	'stun',		'stun damage',
 	'ap',		'armor piercing',
 	'an',		'armor negating',
 	'mrneg_norm',	'magic resistence negates',
@@ -476,6 +568,13 @@ var ignorekeys = {
 	land:1,
 	mrneg:1,
 	aoe_p:1,
+	national:1,
+	nat_x:1,
+	aoe_p:1,
+	target_uw:1,
+	target_land:1,
+	target_enemy:1,
+	target_friend:1,
 
 	// aoe:1, nreff:1,
 	summonsunits:1,	nations:1, eracodes:1, nationname:1,
@@ -646,7 +745,7 @@ MSpell.bitfieldValues = function(bitfield, masks_dict) {
 MSpell.landValues = function(o) {
 	var values=[];
 
-	if (o.uw != 'y') {
+	if (o.uw == 'n') {
 		values.push('cannot be cast underwater');
 	}
 	if (o.land == 'n' && o.uw == 'y') {

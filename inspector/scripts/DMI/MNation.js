@@ -22,8 +22,17 @@ MSite.prepareData_PreMod = function() {
 		
 		o.units = Utils.keyListToTable(o, 'mon');
 		o.commanders = Utils.keyListToTable(o, 'com');
-		o.capunits = Utils.keyListToTable(o, 'hmon');
-		o.capcommanders = Utils.keyListToTable(o, 'hcom');
+		o.capunits = [];
+		o.capcommanders = [];	
+		var capunit = Utils.keyListToTable(o, 'hmon');
+		for (var oj=0, cap; cap = capunit[oj]; oj++) {
+			var u = modctx.unitlookup[cap];
+			if (u.type == 'c') {
+				o.capcommanders.push(cap);
+			} else {
+				o.capunits.push(cap);
+			}
+		}
 	}
 }
 MSite.prepareData_PostMod = function() {
@@ -49,6 +58,19 @@ MNation.prepareData_PreMod = function() {
 	for (var oi=0, o;  o= modctx.nationdata[oi];  oi++) {
 		
 		o.pretenders = Utils.keyListToTable(o, 'pret');
+
+		o.pretenders = [];
+		var capunit = Utils.keyListToTable(o, 'hmon');
+		for (var oj=0, cap; cap = capunit[oj]; oj++) {
+			var u = modctx.unitlookup[cap];
+			if (u.type == 'c') {
+				o.capcommanders.push(cap);
+			} else {
+				o.capunits.push(cap);
+			}
+		}
+
+
 		o.commanders = Utils.keyListToTable(o, 'com');
 		o.units = Utils.keyListToTable(o, 'unit');
 		o.heroes = Utils.keyListToTable(o, 'hero', 6);	
