@@ -357,7 +357,7 @@ var displayorder = DMI.Utils.cutDisplayOrder(aliases, formats,
 	'ritr_n',	'nature ritual range bonus',	Format.Signed,
 	'ritr_b',	'blood ritual range bonus',	Format.Signed,
 	
-	'sumbat',	'monster autosummons',
+	'sumbat',	'monster autosummons', Utils.unitRef,
 	'#sumbat',	'number of autosummons',
 
 	'fshld',	'fire shield',
