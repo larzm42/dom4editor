@@ -172,11 +172,11 @@ id	name	school	researchlevel	path1	pathlevel1	path2	pathlevel2	fatiguecost	type	
 322	Heavenly Choir	0	9	4	7	0	2	14400	Ritual	Com Summon							1											Angels of the Choir		Seraph									x	"Pythium MA, Marignon MA, LA"	
 323	Bind Harlequin	6	1	7	1			100	Ritual	Summon							1														Demon Jester								x	Marignon LA	
 324	Reascendance	6	1	7	4	4	1	8800	Ritual	Com Summon							1													Fallen Angel									x	Marignon LA	
-325	Summon Valkyries	0	6	1	3	5	1	100	Combat	Summon		1					7														Valkyrie	n	y						x	"Vanheim EA, MA, Helheim, Midgård"	
-326	Awaken Draugar	0	3	5	2			1200	Ritual	Summon							3														Draug	n	y						x	"Vanheim EA, MA, Helheim, Niefelheim, Jotunheim, Utgård, Midgård"	
+325	Summon Valkyries	0	6	1	3	5	1	100	Combat	Summon		1					7														Valkyrie	n	y						x	"Vanheim EA, MA, Helheim, MidgÃ¥rd"	
+326	Awaken Draugar	0	3	5	2			1200	Ritual	Summon							3														Draug	n	y						x	"Vanheim EA, MA, Helheim, Niefelheim, Jotunheim, UtgÃ¥rd, MidgÃ¥rd"	
 327	Summon Glosos	0	3	5	2			1300	Ritual	Summon							9														Gloso	n	y								
-328	Brood of Garm	0	2	6	2			700	Ritual	Summon							10														Wolf	n	y						x	"Helheim, Niefelheim, Jotunheim, Utgård"	
-329	Illwinter	6	6	7	5	2	3	120	Ritual	Global																						n	y						x	"Niefelheim, Jotunheim, Utgård"	
+328	Brood of Garm	0	2	6	2			700	Ritual	Summon							10														Wolf	n	y						x	"Helheim, Niefelheim, Jotunheim, UtgÃ¥rd"	
+329	Illwinter	6	6	7	5	2	3	120	Ritual	Global																						n	y						x	"Niefelheim, Jotunheim, UtgÃ¥rd"	
 330	Summon Jaguar Toad	0	1	6	1			100	Ritual	Summon							1														Jaguar Toad	n	y						x	"Mictlan EA, MA, LA"	
 331	Summon Jaguars	0	3	6	2			2500	Ritual	Summon							17														Jaguar	n	y						x	"Mictlan EA, MA, LA"	
 332	Summon Jade Serpent	0	4	2	2			500	Ritual	Summon							1														Jade Serpent	n	y						x	"Mictlan EA, MA, LA"	
@@ -381,7 +381,7 @@ id	name	school	researchlevel	path1	pathlevel1	path2	pathlevel2	fatiguecost	type	
 534	Protection	1	3	6	1			20	Combat	Buff		15			1				100																						
 535	Mossbody	1	3	6	1	2	1	20	Combat	Buff		1			1																										
 536	Luck	1	3	4	1			20	Combat	Buff		5			1				2																						
-537	Breath of the Desert	1	4	0	3	1	1	500	Ritual	Province	5																					n	y	m	y	y	y	y			
+537	Breath of the Desert	1	4	0	3	1	1	500	Ritual	Province	5																					n	y	n	y	y	y	y			
 538	Wind Guide	1	4	1	2			100	Combat	Buff					bf																										
 539	Liquid Body	1	4	2	1			20	Combat	Buff				caster																											
 540	Quickness	1	4	2	2			20	Combat	Buff		15			1				1																						
