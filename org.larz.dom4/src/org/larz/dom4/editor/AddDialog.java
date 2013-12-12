@@ -224,9 +224,9 @@ public class AddDialog extends Dialog {
 			public void widgetSelected(SelectionEvent e) {
 				SearchDialog dialog = new SearchDialog(getShell(), selectButton[add.ordinal()].getSelection(), type);
 				if (dialog.open() == Window.OK) {
-					IDNameDB armorDB = dialog.getSelected();
-					if (armorDB != null) {
-						idText[add.ordinal()].setText(Integer.toString(armorDB.id));
+					IDNameDB objectDB = dialog.getSelected();
+					if (objectDB != null) {
+						idText[add.ordinal()].setText(Integer.toString(objectDB.id));
 					}
 				}
 			}
@@ -246,8 +246,10 @@ public class AddDialog extends Dialog {
 			public void widgetSelected(SelectionEvent e) {
 				SearchDialog dialog = new SearchDialog(getShell(), selectButton[add.ordinal()].getSelection(), type);
 				if (dialog.open() == Window.OK) {
-					IDNameDB armorDB = dialog.getSelected();
-					nameText[add.ordinal()].setText(armorDB.name);
+					IDNameDB objectDB = dialog.getSelected();
+					if (objectDB != null) {
+						nameText[add.ordinal()].setText(objectDB.name);
+					}
 				}
 			}
 		});

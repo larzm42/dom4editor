@@ -39,7 +39,7 @@
          </property>
          <property
                name="aboutText"
-               value="This is the Dominions 4 Mod File Editor.&#x0A;Project home: http://code.google.com/p/dom4editor/&#x0A;License: http://www.gnu.org/licenses/gpl.txt&#x0A;&#x0A;Release 1.0 - December 5, 2013.">
+               value="This is the Dominions 4 Mod File Editor.&#x0A;Project home: http://dom4editor.googlecode.com/&#x0A;License: http://www.gnu.org/licenses/gpl.txt&#x0A;&#x0A;Release 1.0 - December 12, 2013.">
          </property>
          <property
                name="startupForegroundColor"
