@@ -69,7 +69,7 @@ MItem.prepareData_PostMod = function() {
 			o.protshield = a.protshield;
 			o.prothead = a.prothead;
 			o.enc = a.enc;
-			o.parry = a.parry;
+			o.parry = a.par;
 			
 			o.def = sum(o.def, a.def);
 		}
@@ -549,7 +549,8 @@ MItem.renderOverlay = function(o) {
 		h+='	<p class="firstline">Requires '+Format.Gems(o.gemcost) +' to forge ('+Format.Paths(o.mpath)+')</p>';
 	
 	//descr
-	var uid = 'c'+(new Date()).getTime();
+	var uid = 'c'+(Math.random());
+	uid = uid.replace('.','');
 	h+='		<div class="overlay-descr pane-extension '+uid+'"></div>';
 	
 	if (o.descr)

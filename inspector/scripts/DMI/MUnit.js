@@ -226,15 +226,25 @@ MUnit.prepareData_PostMod = function() {
 			o.mpath += 'U' + String(n) + ' ';
 		}
 		
-		//casters have base research 2 
-		if (research) 
-			research += 2
+		// Research = (5+(2XLevels))
+		if (research) {
+			research *= 2;
+			research += 5;
+		}
 		//add research bonus
 		if (is(o.research)) 
 			research += parseInt(o.research);
 		//append research to pathcode
 		if (research) 
 			o.mpath += 'R' + String(research) + ' ';
+
+		if (o.research) {
+			if (o.research > 0) {
+				o.adept_research = o.research;
+			} else {
+				o.inept_research = o.research;
+			}
+		}
 		
 		//resource costs
 		o.rcost = parseInt(o.rcost);
@@ -545,7 +555,7 @@ MUnit.prepareForRender = function(o) {
 		}
 		
 		//mounted def bonus
-		if (is(o.mounted))
+		if (is(o.cav))
 			bonus('mounted', 'def', 3);
 				
 		//weapons
@@ -595,13 +605,13 @@ MUnit.prepareForRender = function(o) {
 			def_armor += parseInt(a.def || '0');
 			
 			if (a.type == 'armor') 
-				p_body = parseInt(a.protbody);
+				p_body = parseInt(a.body);
 
 			else if (a.type == 'helm')
-				p_head = parseInt(a.prothead);
+				p_head = parseInt(a.head);
 			
 			else if (a.type == 'shield')
-				def_parry = a.parry;
+				def_parry = a.par;
 			
 			else if (a.type == 'misc') { 
 				//use misc armor prot instead of basic?                                                
@@ -634,7 +644,7 @@ MUnit.prepareForRender = function(o) {
 			o.casting_enc = parseInt(o.enc) + (enc_armor*2);
 			
 			//mounted ignore armor
-			if (!is(o.mounted)) {
+			if (!is(o.cav)) {
 				//for enc 0 (undead) armor only affects speed
 				bonus('armor', 'ap', -enc_armor);
 				if (o.enc!='0')
@@ -994,6 +1004,8 @@ var displayorder2 = Utils.cutDisplayOrder(aliases, formats,
 	'reso',	'provides resources',
 	'i-resch',	'inspired researcher',
 	'def-org',	'defence organizer',
+	'adept_research',	'adept researcher',
+	'inept_research',	'inept researcher',
 	
 	'pearl','pearl cultivator',
 	'sailsz',	'sailing size',
@@ -1343,7 +1355,8 @@ MUnit.renderOverlay = function(o) {
 
 	
 	//descr
-	var uid = 'c'+(new Date()).getTime();
+	var uid = 'c'+(Math.random());
+	uid = uid.replace('.','');
 	h+='		<div class="overlay-descr pane-extension '+uid+'"></div>';
 	
 	if (o.descr)

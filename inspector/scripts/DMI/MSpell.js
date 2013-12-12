@@ -656,7 +656,8 @@ MSpell.renderOverlay = function(o) {
 	h+='	<div class="overlay-footer">';
 	
 	//descr
-	var uid = 'c'+(new Date()).getTime();
+	var uid = 'c'+(Math.random());
+	uid = uid.replace('.','');
 	h+='		<div class="overlay-descr pane-extension '+uid+'">&nbsp;</div>';
 	
 	if (o.descr)
