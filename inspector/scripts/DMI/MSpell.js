@@ -183,12 +183,9 @@ MSpell.prepareData_PostMod = function() {
 		 	o.gemcost = String(Math.floor(o.fatiguecost/100)) + o.path1;
 		
 		//combat fatiguecost
-		/*if (parseInt(o.effect) > 10000){
-			o.type = 'ritual';
+		if (o.type == 'Ritual'){
 			delete o.fatiguecost;
 		}
-		else
-			o.type = 'combat spell';*/
 	
 
 		//log cloud effects		
@@ -247,7 +244,7 @@ function spellNameFormatter(row, cell, value, columnDef, dataContext) {
 
 function fatigueFormatter(row, cell, value, columnDef, dataContext) {
 	if (value) {
-		if (value < 1000) {
+		if (value < 1000 && dataContext.type!='Ritual') {
 	       		return String(value)+'-';
 		}
 	}
