@@ -29,8 +29,8 @@ Release 1.0 - December 12, 2013.
       startupMessageRect="20,256,445,18"
       startupForegroundColor="000000" />
    <launcher name="dom4editor">
-      <linux icon="/org.larz.dom3/icons/alt_launcher.xpm"/>
-      <macosx icon="/org.larz.dom3/icons/alt_launcher.icns"/>
+      <linux icon="/org.larz.dom4/icons/alt_launcher.xpm"/>
+      <macosx icon="/org.larz.dom4/icons/alt_launcher.icns"/>
       <solaris/>
       <win useIco="true">
          <ico path="/org.larz.dom4/icons/alt_launcher.ico"/>
