@@ -849,7 +849,7 @@ MUnit.CGrid = Utils.Class( DMI.CGrid, function() {
 				     .length==0 ) 
 				{
 					//add icon if not exists yet
-					$(".slick-header-column[title=Magic]")
+					$(".slick-header-column[id*=listed_mpath]")
 					.append('<img id="unitboosterordericon" alt="'+L+'" class="pathicon Path_'+L+'" src="images/magicicons/Path_'+L+'.png" />')
 					.find(".slick-sort-indicator").css('visibility','hidden');
 				}
