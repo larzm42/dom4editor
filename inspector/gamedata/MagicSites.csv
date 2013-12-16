@@ -3,18 +3,18 @@ id	name	era	rarity	loc	level	path	F	A	W	E	S	D	N	B	gold	res	sup	unr	exp	lab	fort	
 2	The Coral Towers	2	5	0	0	Water			5																	102	Initiate of the Deep	104	Deep Seer	209	Mother Guard																																									
 3	Cathedral of the Spheres	2	5	0	0	Astral		2	1		5															41	Arch Theurg	51	Battle Vestal																																											
 4	Swamps of Pythia	12	5	0	1	Nature																				1840	Hydra Hatchling	1831	Hydra	296	Hydra Tamer																																									
-5	Forest of Avalon	2	5	0	0	Nature							3													212	Lord Warden	65	Warden of Avalon		Knight Commander of Avalon	64	Knight of Avalon																																							
+5	Forest of Avalon	2	5	0	0	Nature							3													212	Lord Warden	65	Warden of Avalon	2128	Knight Commander of Avalon	64	Knight of Avalon																																							
 6	Tower of Avalon	2	5	0	0	Nature		2																		151	Daughter of Avalon	153	Crone of Avalon																																											
-7	The Keep of Ulm	2	5	0	0	Earth																					Black Priest		Priest Smith	113	Lord Guardian	66	Guardian																																							
+7	The Keep of Ulm	2	5	0	0	Earth																				1973	Black Priest	1982	Priest Smith	113	Lord Guardian	66	Guardian																																							
 8	The Forges of Ulm	2	5	0	0	Earth				5																																																														
 9	The Temple City	1	5	0	0	Death						4	2													177	Lizard King	1366	Lizard Heir	783	Serpent Dancer																																									
 10	Tower of a Thousand Stars	2	5	0	0	Astral					4		1													301	Astrologer	747	Heart Companion																																											
 11	The Citadel of Frozen Crystal	2	5	0	0	Water		3	2																	358	Temple Guard																																													
 12	Empoisoners Guild	23	5	0	0	Nature																				503	Poison Slinger	502	Empoisoner																																											
-13	The House of Fiery Justice	2	5	0	0	Holy	4				1																High Inquisitor	223	Grand Master																												50%															
+13	The House of Fiery Justice	2	5	0	0	Holy	4				1															222	High Inquisitor	223	Grand Master																												50%															
 14	The Grove of Gaia	2	5	0	0	Nature							5													769	White Centaur																																													
 15	The Halls of Andvare	2	5	0	0	Earth				3																323	Dwarven Smith	463	Fay Boar																																											
-16	Iron Woods	2	5	0	0	Nature					1	2	2													785	Gygja		Garmhirding																																											
+16	Iron Woods	2	5	0	0	Nature					1	2	2													785	Gygja	784	Garmhirding																																											
 17	The Sunken City	23	5	0	0	Astral			2		3																																																													
 18	Ravens Vale	2	5	0	0	Death																				414	Wingless																																													
 19	Hidden Grove	2	5	0	0	Nature																				516	Pandemoniac																																													
@@ -43,9 +43,9 @@ id	name	era	rarity	loc	level	path	F	A	W	E	S	D	N	B	gold	res	sup	unr	exp	lab	fort	
 42	Black Forest	3	5	0	0	Nature					1		1													1028	Wolfherd	1011	Fortune Teller																																											
 43	The Sacred Swamp	3	5	0	1	Nature							3													1879	Serpent Assassin	761	Serpent Priest	1859	Hydra Hatchling	1850	Hydra																																							
 44	The Black Temple	3	5	0	0	Holy																				738	Black Templar	1237	Hochmeister	740	Black Priest																																									
-45	The Void Gate	23	5	0	0	Astral																					Starspawn									Astral		void monsters																																		
+45	The Void Gate	23	5	0	0	Astral																				332	Starspawn									Astral		void monsters																																		
 46	Niefelheim	1	5	0	0	Air			4			2														844	Niefel Jarl	845	Niefel Giant	1310	Jotun Skinshifter																																									
-47	Well of Urd	3	5	0	0	Astral					2	1	1													281	Norna		Garmhirding																																											
+47	Well of Urd	3	5	0	0	Astral					2	1	1													281	Norna	784	Garmhirding																																											
 48	The Grove of Gaia	-1	5	0	0	Nature							5													787	Black Centaur																																													
 49	The Grove of Gaia	3	5	0	0	Nature				1			3													704	Dryad Hoplite																																													
 50	The Heavenly Gate	2	5	0	0	Astral		1			2															803	Celestial Master																																													
@@ -55,12 +55,12 @@ id	name	era	rarity	loc	level	path	F	A	W	E	S	D	N	B	gold	res	sup	unr	exp	lab	fort	
 54	The Gate of Spring and Autumn	1	5	0	0	Astral	1		2		2	1														941	Celestial Master																																													
 55	Temple of the Dead	2	5	0	0	Death						3														1654	Lictor	1655	Censor																																											
 56	Forest of Avalon		5	0	0	Nature							2													851	Cu Sidhe																																													
-57	Avalon		5	0	0	Nature		3																		849	Daoine Sidhe	850	Sidhe Champion	848	Sidhe Lord		Tuatha																																							
+57	Avalon		5	0	0	Nature		3																		849	Daoine Sidhe	850	Sidhe Champion	848	Sidhe Lord	856	Tuatha																																							
 58	Vanhalla	3	5	0	0	Air		3		1																262	Van	263	Vanherse	264	Vanjarl																																									
 59	Helhalla	1	5	0	0	Death		1																		855	Valkyrie	1503	Helhirding	1507	Dis	847	Hangadrott																																							
 60	God Forest	2	5	0	0	Nature	1						2													890	Hunter Lord	889	Black Hunter																																											
-61	God Mountain	2	5	0	0	Earth				2																894	Black Sorcerer	891	Sorceress	877	Bane Spider		Spider Warrior																																							
-62	The Temple Marsh	2	5	0	0	Nature			1			2	2														Sobek General		Sobek Warrior		Sobek Swamp Guard		Swamp Guard																																							
+61	God Mountain	2	5	0	0	Earth				2																894	Black Sorcerer	891	Sorceress	877	Bane Spider	876	Spider Warrior																																							
+62	The Temple Marsh	2	5	0	0	Nature			1			2	2													2238	Sobek General	2236	Sobek Warrior	2237	Sobek Swamp Guard	164	Swamp Guard																																							
 63	The City of Tombs	3	5	0	0	Death	1					3														1095	Keeper of the Tombs	1094	Desert Ranger	1166	Tomb Guard																																									
 64	Temple of the Spheres	2	5	0	0	Astral					1															670	Grand Thaumaturg																																													
 65	The Desert Eye		5	0	0	Astral					3																																							50%																						
@@ -68,9 +68,9 @@ id	name	era	rarity	loc	level	path	F	A	W	E	S	D	N	B	gold	res	sup	unr	exp	lab	fort	
 67	Silver Mine		5	0	0	Earth									40																																																									
 68	Copper Mine		5	0	0	Earth									20																																																									
 69	Iron Mine		5	0	0	Earth										40																																																								
-70	Naval Academy	3	5	0	0	Water		1			2															1030	Admiral		Royal Navigator																																											
-71	House of Justice	3	5	0	0	Holy	1																				Hand of Justice		High Inquisitor		Goetic Master																											25%														
-72	Palace of Pearls	1	5	0	0	Water			4				2														Pearl King		Pearl Guard																																											
+70	Naval Academy	3	5	0	0	Water		1			2															1030	Admiral	1032	Royal Navigator																																											
+71	House of Justice	3	5	0	0	Holy	1																			2114	Hand of Justice	2199	High Inquisitor	745	Goetic Master																											25%														
+72	Palace of Pearls	1	5	0	0	Water			4				2													2397	Pearl King	2387	Pearl Guard																																											
 73	Mount Cephalos	1	5	0	0	Air		2			2															1650	Oreiad	1075	Wind Lord	1074	Wind Rider																																									
 74	Lykeion	1	5	0	0	Earth				2																1072	Engineer	1606	Mage Engineer																																											
 75	Akademeia	1	5	0	0	Earth																				1070	Philosopher																																													
@@ -99,7 +99,7 @@ id	name	era	rarity	loc	level	path	F	A	W	E	S	D	N	B	gold	res	sup	unr	exp	lab	fort	
 98	Mount Kailasa	1	5	0	0	Earth				2																1327	Yavana	1328	Yavana Archer																																											
 99	The Lotus Garden	1	5	0	0	Nature					2		2													1329	Yaksha	1330	Yakshini																																											
 100	Augurs' Circle		5	0	0	Death						1														1115	Augur Elder																																													
-101	The Grove of Aphros	1	5	0	0	Water			2				4														Aphroi Lord		Aphroi																																											
+101	The Grove of Aphros	1	5	0	0	Water			2				4													2399	Aphroi Lord	2401	Aphroi																																											
 102	Temple of the Land	3	5	0	0	Blood							1													732	Priest King	726	Eagle Warrior																																											
 103	High Temple of the Rain	3	5	0	0	Blood			1																	1423	Rain Warrior	1421	Rain Priest	1420	King of Rain																																									
 104	Temple of the Moon	3	5	0	0	Blood					1															734	Moon Priest																																													
@@ -134,9 +134,9 @@ id	name	era	rarity	loc	level	path	F	A	W	E	S	D	N	B	gold	res	sup	unr	exp	lab	fort	
 133	Tir na n'Og	1	5	0	0	Air		3																		1753	Tuatha Warrior	1754	Ri	1773	Tuatha Sorceress																																									
 134	Mag Mor	1	5	0	0	Nature				1			2																																																											
 135	Mound of Ancient Kings	2	5	0	0	Nature		3					2													849	Daoine Sidhe	856	Tuatha	1774	Bean Sidhe																																									
-136	Isle of Balor	1	5	0	0	Water		2	1																		Unmarked		Fomorian Giant		Fomorian King																																									
-137	Rath Chimbalth	1	5	0	0	Air		1				2															Nemedian Warrior		Nemedian Champion		Nemedian Sorceress																																									
-138	The Imperial Capital	3	5	0	0	Holy																					Comitatense		Palatine		Tribuni		Serpent Cataphract		Serpent Lord																																					
+136	Isle of Balor	1	5	0	0	Water		2	1																	1817	Unmarked	1801	Fomorian Giant	1802	Fomorian King																																									
+137	Rath Chimbalth	1	5	0	0	Air		1				2														1790	Nemedian Warrior	1791	Nemedian Champion	1792	Nemedian Sorceress																																									
+138	The Imperial Capital	3	5	0	0	Holy																				1867	Comitatense	1868	Palatine	1870	Tribuni	763	Serpent Cataphract	765	Serpent Lord																																					
 139	Temple of the Spheres	3	5	0	0	Astral					1															1874	Theurg																																													
 140	Grand Cathedral	3	5	0	0	Holy					1															1961	Eparch																																													
 141	Hall of Elders	3	5	0	0	Astral	1	1			1															1937	Starets																																													
@@ -144,27 +144,27 @@ id	name	era	rarity	loc	level	path	F	A	W	E	S	D	N	B	gold	res	sup	unr	exp	lab	fort	
 143	Temple of the Sage King	3	5	0	0	Holy	1			1	2															1987	Kohen Gadol																																													
 144	The Twin Cities	2	5	0	0	Holy						1														2011	Zamzummite	2027	Adon	2028	Talmai Elder	2025	Sheshai Anakite	2026	Ahiman Anakite																																					
 145	Mount Seir	2	5	0	0	Earth	1			2	1																																																													
-146	Gomorrah	1	5	0	0	Earth								2													Melqart		Ba'al		Rephaite Warrior																																									
+146	Gomorrah	1	5	0	0	Earth								2												2031	Melqart	2032	Ba'al	2030	Rephaite Warrior																																									
 147	Mount Hermon	1	5	0	0	Earth	2			2	1																																																													
 148	Campus Sceleris	2	5	0	0	Death						1														809	Shadow Vestal																																													
-149	The House of Water	1	5	0	0	Water			2				1														Enki's Chosen																																													
-150	The First City	1	5	0	0	Holy																					Entu		Ensi																																											
-151	The Swamps of Ur	1	5	0	0	Nature							3														Sirrush																																													
-152	Temple of Storms and Flames	1	5	0	0	Blood	2	3						2													Bride of the Gods		Colossi Warrior																																											
-153	Forest of Spider	1	5	0	0	Nature						1	2														Spider Clan Sorcerer		Spider Clan Archer		Spider Clan Warrior		Spider Rider																																							
-154	Great Mababwe	1	5	0	0	Holy	1			2																	Lion Queen		Lion King		Lion Warrior																																									
-155	Novgård	2	5	0	0	Air	1	2																			Oathbound		Vanabog																																											
-156	Pine of Skulls	2	5	0	0	Nature						1	1														Chud Skinshifter																																													
+149	The House of Water	1	5	0	0	Water			2				1													2176	Enki's Chosen																																													
+150	The First City	1	5	0	0	Holy																				2269	Entu	2181	Ensi																																											
+151	The Swamps of Ur	1	5	0	0	Nature							3													1347	Sirrush																																													
+152	Temple of Storms and Flames	1	5	0	0	Blood	2	3						2												2429	Bride of the Gods	2262	Colossi Warrior																																											
+153	Forest of Spider	1	5	0	0	Nature						1	2													2295	Spider Clan Sorcerer	2301	Spider Clan Archer	2302	Spider Clan Warrior	2308	Spider Rider																																							
+154	Great Mababwe	1	5	0	0	Holy	1			2																2297	Lion Queen	2296	Lion King	2309	Lion Warrior																																									
+155	Novgård	2	5	0	0	Air	1	2																		2349	Oathbound	2342	Vanabog																																											
+156	Pine of Skulls	2	5	0	0	Nature						1	1													2352	Chud Skinshifter																																													
 157	Campus Sceleris	3	5	0	0	Holy						8																																																												
 158	Campus Sceleris	3	5	0	0	Holy						15																																																												
 159	Campus Sceleris	3	5	0	0	Holy						22																																																												
-160	Palace of Pearls	2	5	0	0	Water			4				1														Triton Prince		Triton King		Knight of the Deeps																																									
-161	Palace of Pearls	3	5	0	0	Water			3				1														Pearl King		Pearl Guard																																											
-162	The Grove of Aphros	2	5	0	0	Nature			3				2														Aphroi Lord		Aphroi																																											
-163	The Grove of Aphros	3	5	0	0	Nature			2				2														Aphroi Lord		Aphroi																																											
+160	Palace of Pearls	2	5	0	0	Water			4				1													1061	Triton Prince	1088	Triton King	1059	Knight of the Deeps																																									
+161	Palace of Pearls	3	5	0	0	Water			3				1													2397	Pearl King	2387	Pearl Guard																																											
+162	The Grove of Aphros	2	5	0	0	Nature			3				2													2399	Aphroi Lord	2401	Aphroi																																											
+163	The Grove of Aphros	3	5	0	0	Nature			2				2													2399	Aphroi Lord	2401	Aphroi																																											
 164	City of Unfulfilled Dreams	3	5	0	0	Astral			1		3																																																													
 165	The Chamber of the Broken Seal		5	0	0	Death						5										Death																																																		
-166	The Chamber of the Broken Seal	2	5	0	0	Death						1															Shard Guard																																													
+166	The Chamber of the Broken Seal	2	5	0	0	Death						1														2508	Shard Guard																																													
 167	The Womb of the Earth	1	5	0	0	Earth			1																	2493	Olm Sage	2492	Great Olm																																											
 168	The Empty Slot		6	0	6																																																																			
 169	The Empty Slot		6	0	6																																																																			
@@ -881,10 +881,10 @@ id	name	era	rarity	loc	level	path	F	A	W	E	S	D	N	B	gold	res	sup	unr	exp	lab	fort	
 880	Hoburg Settlement		2	16	0	Nature																Growth				1198	Horticulturist	483	Hoburg Militia																																				Yes							
 881	Barbarian Warcamp		5	14	0	Nature																				147	Barbarian Lord	141	Barbarian Chief	139	Barbarian	140	Barbarian																													Yes	Yes	Yes								
 882	Knightly Order		5	223	0	Holy																Order				23	Knight Commander	22	Knight																																Yes	Yes	Yes	Yes	Yes		Yes	Yes				Extra units for native PD (1 per point)
-883	Knightly Order of the Deeps		5	32	0	Holy																Order				406	Triton Commander		Triton Knight																																					Yes						Extra units for native PD (1 per point)
+883	Knightly Order of the Deeps		5	32	0	Holy																Order				406	Triton Commander	1060	Triton Knight																																					Yes						Extra units for native PD (1 per point)
 884	The Halfway Inn		1	16607	0	Astral									10																																														Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
 885	Ancient Ruin		1	223	0	Nature																														Nature	2223	Large Spider	x																						Yes	Yes	Yes	Yes	Yes		Yes	Yes				
-886	Order of the Secret Light		2	16607	1	Holy					1																Sage	23	Knight Commander	22	Knight																														Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	Extra units for native PD (1 per point) (knight)
+886	Order of the Secret Light		2	16607	1	Holy					1															478	Sage	23	Knight Commander	22	Knight																														Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	Extra units for native PD (1 per point) (knight)
 887	Order of the Undying		2	16607	1	Holy																														Holy		Longdead Horseman	x																						Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
 888	Shrine of the Outcast		1	735	1	Holy																														Holy		Foul Spawn			Foul Spawn																				Yes	Yes	Yes	Yes	Yes		Yes	Yes		Yes		
 889	Temple of the Spider God		2	735	1	Holy																														Holy		Giant Spider	x		Large Spider																				Yes	Yes	Yes	Yes	Yes		Yes	Yes		Yes		
