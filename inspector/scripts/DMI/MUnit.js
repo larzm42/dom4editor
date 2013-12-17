@@ -1,8 +1,8 @@
+
 //namespace scope
 (function( DMI, $, undefined ){
 		
 var MUnit = DMI.MUnit = DMI.MUnit || {};
-
 var Format = DMI.Format;
 var Utils = DMI.Utils;
 
@@ -422,6 +422,8 @@ MUnit.prepareForRender = function(o) {
 		}
 		//older
 		if (is(o.older)) o.agestrt = sum(o.agestrt, o.older);
+
+		if (o.maxage) o.ageold = parseInt(o.ageold) + parseInt(o.maxage);
 		
 		//magic boost
 		if (is(o.magicboost_all)) {
@@ -470,7 +472,7 @@ MUnit.prepareForRender = function(o) {
 		var isldr = is(o.leader);
 		if (n= parseInt(o.A)) {
 			if (isldr) bonus('air magic', 'magicleader', n*5);
-			bonus('air magic','prec', n);
+			//bonus('air magic','prec', n);
 		}
 		if (n= parseInt(o.B)) {
 			if (isldr) bonus('blood magic', 'magicleader', n*5);
@@ -496,7 +498,7 @@ MUnit.prepareForRender = function(o) {
 			if (isldr) bonus('fire magic', 'leader', n*5);  
 			//if (isldr) bonus('fire magic', 'leader', n*5);
 			if (isldr) bonus('fire magic', 'magicleader', n*5);
-			bonus('fire magic', 'att', n);
+			//bonus('fire magic', 'att', n);
 			
 			if (is(o.fireshield))
 				bonus('fire magic', 'fireshield', n);
@@ -509,7 +511,7 @@ MUnit.prepareForRender = function(o) {
 		}
 		if (n= parseInt(o.W)) {	
 			if (isldr) bonus('water magic', 'magicleader', n*5);
-			bonus('water magic', 'def', n);
+			//bonus('water magic', 'def', n);
 			
 			if (is(o.cold))
 				bonus('water magic', 'cold', n);
@@ -544,7 +546,7 @@ MUnit.prepareForRender = function(o) {
 		if (oldyears >= 0) {
 			o.isold = '1';
 			
-			var oldmult = 1 + Math.floor(5 * oldyears / parseInt(o.ageold));
+			var oldmult = 1 + Math.floor(4 * oldyears / parseInt(o.ageold));
 			bonus('old age', 'str', -1 * oldmult);
 			bonus('old age', 'att', -1 * oldmult);
 			bonus('old age', 'def', -1 * oldmult);
@@ -912,19 +914,23 @@ var displayorder = Utils.cutDisplayOrder(aliases, formats,
 	//	dbase key	displayed key		function/dict to format value
 	'hp',	'hit points',	function(v,o){ return v + ' &nbsp;(size '+o.size+')'; },
 	'prot',	'protection',	{'0':'0 '},
-	'mor',	'morale',	{'0':'0 '},
 	'mr',	'magic res',	{'0':'0 '},
-	'enc',	'encumbrance',	{'0':'0 '},
-	
+	'mor',	'morale',	{'0':'0 '}
+]);
+var displayorder2 = Utils.cutDisplayOrder(aliases, formats,
+[
+	//	dbase key	displayed key		function/dict to format value
 	'str',	'strength',	{'0':'0 '},
 	'att',	'attack skill',	{'0':'0 '},
 	'def',	'defence skill',{'0':'0 '},
 	'prec',	'precision',	{'0':'0 '},
-	'ap', 	'move',		function(v,o){ return o.map + ' / '+o.ap; }
+
+	'enc',	'encumbrance',	{'0':'0 '},
+	'ap', 	'move',		function(v,o){ return o.map + ' / '+o.ap; },
+	'ldr_str', 'leadership'
 ]);
 var displayorder_cmdr = Utils.cutDisplayOrder(aliases, formats,
 [
-	'ldr_str', 'leadership',
 	'mpath',	'magic paths',	function(v,o){
 		return Format.Paths(v.replace(/U\d*/, function(s){return Utils.rndMagicRef(Math.floor(o.id), s);}));
 	},
@@ -936,7 +942,7 @@ var displayorder_pret = Utils.cutDisplayOrder(aliases, formats,
 	'dom',		'base dominion',
 	'path',		'new path cost'
 ]);
-var displayorder2 = Utils.cutDisplayOrder(aliases, formats,
+var displayorder3 = Utils.cutDisplayOrder(aliases, formats,
 [
 	'ageold',	'age',	function(v,o){ return o.agestrt + ' ('+v+')'; },
 	
@@ -1276,8 +1282,12 @@ MUnit.renderOverlay = function(o) {
 	h+=' 		</table> ';
 	
 	h+='		<table class="overlay-table"> ';
-	// h+= 			Utils.renderDetailsRows(o, displayorder_cmdr, aliases, formats, isCmdr(o) ? '' : 'hidden-row');
 	h+= 			Utils.renderDetailsRows(o, displayorder2, aliases, formats);
+	h+=' 		</table> ';
+
+	h+='		<table class="overlay-table"> ';
+	// h+= 			Utils.renderDetailsRows(o, displayorder_cmdr, aliases, formats, isCmdr(o) ? '' : 'hidden-row');
+	h+= 			Utils.renderDetailsRows(o, displayorder3, aliases, formats);
 	h+= 			Utils.renderStrangeDetailsRows(o, ignorekeys, aliases, 'strange');
 	h+=' 		</table> ';
 	
@@ -1440,7 +1450,7 @@ MUnit.dumpCSV = function( showkeys ) {
 	}
 	
 	if (!showkeys) {
-		showkeys = ['id', 'name'].concat(displayorder, displayorder_cmdr, displayorder_pret, displayorder2, flagorder, Utils.objectKeys(ignorekeys));
+		showkeys = ['id', 'name'].concat(displayorder, displayorder2, displayorder_cmdr, displayorder_pret, displayorder3, flagorder, Utils.objectKeys(ignorekeys));
 		Utils.weedArray('modded', showkeys);
 		Utils.weedArray('descr', showkeys);
 		Utils.weedArray('[object Object]', showkeys);
