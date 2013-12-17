@@ -506,9 +506,9 @@ div.overlay-main table.wpn-table {
 
 
 /*  */
-.unit .overlay-table .enc, .unit .overlay-table .ap { 
+/*.unit .overlay-table .enc, .unit .overlay-table .ap { 
 	border-bottom: 2px dashed #ffd635;*/
-}
+}*/
 
 div.spell table.spell-effect th, div.spell table.spell-effect td.widecell {
 	padding-left: 1em;
