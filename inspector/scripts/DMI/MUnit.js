@@ -1150,7 +1150,7 @@ var flagorder = Utils.cutDisplayOrder(aliases, formats,
 	'forest',	'forest survival',
 	
 	'female',	'female',
-	'stonebeing',	'stone being',
+	'stone',	'stone being',
 	
 	'barbs',	'poison barbs',
 	'petrify',	'petrifies attackers',

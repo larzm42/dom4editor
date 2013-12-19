@@ -504,10 +504,7 @@ var moddingkeys = Utils.cutDisplayOrder(aliases, formats,
 [
 	'effect',	'effect',	function(v,o){ return v + ' (damage:'+o.damage+')'; },
 	'nextspell',	'nextspell',	function(v,o){ return v.id; },
-	'spec_original',	'special',
-	'extra_eff',	'effect',
-	'explanation',	'explanation',
-	'other',	'other'
+	'spec_original',	'special'
 ]);
 var displayorder = Utils.cutDisplayOrder(aliases, formats,
 [
@@ -524,7 +521,10 @@ var displayorder = Utils.cutDisplayOrder(aliases, formats,
 	'dt',		'damage type', 	MSpell.formatDmgType,
 	'heal',		'heal',
 	'comsummon',	'summons commander', 	Utils.unitRef,
-	'summon',	'summons', 	Utils.unitRef
+	'summon',	'summons', 	Utils.unitRef,
+	'extra_eff',	'effect',
+	'explanation',	'explanation',
+	'other',	'other'
 	
 ]);
 var flagorder = Utils.cutDisplayOrder(aliases, formats,
