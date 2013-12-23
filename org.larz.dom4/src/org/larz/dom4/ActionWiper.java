@@ -15,9 +15,10 @@
  */
 package org.larz.dom4;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Menu;
-import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.ui.IPerspectiveDescriptor;
 import org.eclipse.ui.IPerspectiveListener;
 import org.eclipse.ui.IStartup;
@@ -46,6 +47,28 @@ public class ActionWiper implements IStartup, IPerspectiveListener
 	public void earlyStartup()
 	{
 		IWorkbenchWindow[] windows = PlatformUI.getWorkbench().getWorkbenchWindows();
+		if (windows.length == 0) {
+			Job job = new Job("remove uneeded actions") {
+
+				@Override
+				protected IStatus run(IProgressMonitor monitor) {
+					IWorkbenchWindow[] windows = PlatformUI.getWorkbench().getWorkbenchWindows();
+					for (int i = 0; i < windows.length; i++)
+					{
+						IWorkbenchPage page = windows[i].getActivePage();
+						if (page != null)
+						{
+							wipeActions(page);
+						}
+						windows[i].addPerspectiveListener(ActionWiper.this);
+					}
+					return null;
+				}
+				
+			};
+			job.schedule(1000);
+			
+		}
 		for (int i = 0; i < windows.length; i++)
 		{
 			IWorkbenchPage page = windows[i].getActivePage();
@@ -62,16 +85,6 @@ public class ActionWiper implements IStartup, IPerspectiveListener
 		Display.getDefault().syncExec(new Runnable() {
 			public void run()
 			{
-				// remove the run menu
-				Menu menu = page.getWorkbenchWindow().getShell().getMenuBar();
-				for (MenuItem item : menu.getItems())
-				{
-					if (item.getText().equals("&Run"))
-					{
-						item.dispose();
-					}
-				}
-
 				for (int i = 0; i < ACTIONS_2_WIPE.length; i++)
 				{
 					page.hideActionSet(ACTIONS_2_WIPE[i]);

@@ -90,7 +90,9 @@ public class AddDialog extends Dialog {
 
 	@Override
 	protected Point getInitialSize() {
-		return new Point(500, 300);
+		Point result = super.getInitialSize();
+		result.x = Math.max(result.x, 500);
+		return result;
 	}
 
 	@Override
