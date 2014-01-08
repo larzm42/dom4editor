@@ -1,0 +1,21 @@
+number	name	test
+266	Material Composition: Ferrous
+267	Material Composition: Ferrous
+268	Material Composition: Flammable
+269	Material Composition: Flammable
+278	Restrict to Nation {Spl: #restricted}
+302	<Unknown Attribute>
+404	<Unknown Attribute>
+426	<Unknown Attribute>
+477	<Unknown Attribute>
+700	Map Range {Spl: #provrange}
+701	<Unknown Attribute>
+702	Source Terrain (?) {Spl: #onlygeosrc}
+703	Only Target Own Provinces (?) {Spl: #onlyowndst}
+704	<Unknown Attribute>
+705	<Unknown Attribute>
+706	No Path over Land (?) {Spl: #nolandtrace}
+707	<Unknown Attribute>
+708	<Unknown Attribute>
+709	<Unknown Attribute>
+711	<Unknown Attribute>

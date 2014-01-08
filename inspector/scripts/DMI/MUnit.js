@@ -1324,7 +1324,7 @@ MUnit.renderOverlay = function(o) {
 	//source details
 	var isfree = false;
 	var noupkeep = false;
-	if (o.summonedby && isSummon(o)) {
+	if (o.summonedby /*&& isSummon(o)*/) {
 		for (var i=0, refarr=[], s; s= o.summonedby[i]; i++) 
 			refarr.push(Utils.spellRef(s.id)); 
 		h+='	<p class="firstline">summoned with '+refarr.join(', ')+'</p>';

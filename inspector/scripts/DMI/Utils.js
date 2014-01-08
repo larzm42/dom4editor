@@ -187,7 +187,7 @@ Utils.renderFlags = function(arr){
 	var _arr = (typeof(arr) == 'string')  ?  arguments  :  arr;
 	
 	for (var i=0, f, h; f= _arr[i]; i++)
-		h = (h ? h+', ' : ' (') + '<span class="flag">'+f+'</span>';
+		h = (h ? h+', ' : ' (') + '<span class="flag">'+f.trim()+'</span>';
 	return h ? h+')' : '';
 }
 

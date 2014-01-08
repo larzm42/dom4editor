@@ -5,7 +5,6 @@ var MArmor = DMI.MArmor = DMI.MArmor || {};
 
 var Format = DMI.Format;
 var Utils = DMI.Utils;
-
 var modctx = DMI.modctx;
 var modconstants = DMI.modconstants;
 
@@ -13,12 +12,10 @@ var modconstants = DMI.modconstants;
 // PREPARE DATA
 //////////////////////////////////////////////////////////////////////////
 
-
 MArmor.initArmor = function(o) {
 	o.type = 5;
 	o.used_by = [];
 }
-
 
 MArmor.prepareData_PreMod = function() {
 	for (var oi=0, o; o= modctx.armordata[oi]; oi++) {
@@ -26,10 +23,22 @@ MArmor.prepareData_PreMod = function() {
 	}
 }
 
-
 MArmor.prepareData_PostMod = function() {
 	for (var oi=0, o; o= modctx.armordata[oi]; oi++) {
 		o.id = parseInt(o.id);
+
+		for (var oi2=0, o2; o2 = modctx.armordata2[oi2]; oi2++) {
+			var o2id = parseInt(o2.armor_number);
+			if (o2id == o.id) {
+				if (parseInt(o2.zone_number) == 1 || 
+					parseInt(o2.zone_number) == 2 || 
+					parseInt(o2.zone_number) == 5 || 
+					parseInt(o2.zone_number) == 6) {
+					o.prot = o2.protection;
+					break;
+				}
+			}
+		}
 		
 		o.renderOverlay = MArmor.renderOverlay;
 		o.matchProperty = MArmor.matchProperty;
@@ -37,14 +46,14 @@ MArmor.prepareData_PostMod = function() {
 		//serachable string
 		o.searchable = o.name.toLowerCase();
 		
-		o.type = {4:'shield', 5:'armor', 6:'helm', 7:'misc'}[o.type];
+		o.type = {4:'shield', 5:'armor', 6:'helm', 8:'misc'}[o.type];
 		
 		if (o.type=="shield") {
 			if (o.prot) {
 				o.protshield = o.prot;
 				delete o.prot;
 			}
-			//o.parry = o.def;
+			o.parry = parseInt(o.def) + parseInt(o.enc);
 			o.def = Utils.negative(o.enc);
 		}
 		else if (o.type=="helm" && o.prot) {
@@ -117,11 +126,11 @@ var formats = {};
 var displayorder = DMI.Utils.cutDisplayOrder(aliases, formats,
 [
 	'prot',		'basic protection',
-	'body',	'protection, body',
-	'head',	'protection, head',
-	'shield',	'protection, shield',
+	'protbody',	'protection, body',
+	'prothead',	'protection, head',
+	'protshield',	'protection, shield',
 	'def',		'defence',		Format.Signed,
-	'par',	'parry',
+	'parry',	'parry',
 	'enc',		'encumbrance'
 ]);
 
@@ -132,17 +141,12 @@ var flagorder = DMI.Utils.cutDisplayOrder(aliases, formats,
 var hiddenkeys = DMI.Utils.cutDisplayOrder(aliases, formats,
 [
 	'id', 		'armor id',	function(v,o){ return v + ' ('+o.name+')'; },
-	'rcost',	'resource cost',
-	'special',	'special'
+	'rcost',	'resource cost'
 ]);
 var ignorekeys = {
 	used_by:1,
-	modded:1,
-	id:1,
 	name:1,
 	type:1,
-	dispname:1,
-
 	searchable:1,renderOverlay:1, matchProperty:1
 };
 	
@@ -206,9 +210,6 @@ MArmor.renderOverlay = function(o, baseAtt) {
 	h+='</div> ';
 	return h;	
 }
-
-
-
 
 //namespace args
 }( window.DMI = window.DMI || {}, jQuery ));

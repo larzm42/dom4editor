@@ -5,15 +5,12 @@ var MWpn = DMI.MWpn = DMI.MWpn || {};
 
 var Format = DMI.Format;
 var Utils = DMI.Utils;
-
 var modctx = DMI.modctx;
 var modconstants = DMI.modconstants;
 
 //////////////////////////////////////////////////////////////////////////
 // PREPARE DATA
 //////////////////////////////////////////////////////////////////////////
-
-
 
 MWpn.initWpn = function(o) {
 	o.used_by = [];
@@ -34,6 +31,25 @@ MWpn.prepareData_PostMod = function() {
 
 		//serachable string
 		o.searchable = o.name.toLowerCase();
+
+		var effects = modctx.effectlookup[o.effect_record_id];
+		if (effects) {
+			if (effects.effect_number == "2") {
+				o.dmg = effects.raw_argument;
+			} else if (effects.effect_number == "11") {
+				o.dmg = modctx.special_damage_types_lookup[parseInt(effects.raw_argument)].bit_name;
+			} else if (effects.effect_number == "108") {
+				o.dmg = modctx.other_planes_lookup[parseInt(effects.raw_argument)].name;
+			} else {
+				o.dmg = effects.raw_argument + " " + modctx.effectsinfolookup[effects.effect_number].name.replace(/{(.*?)}/g, "");
+			}
+			if (effects.range_base && effects.range_base != "0") {
+				o.range = effects.range_base;
+			}
+			if (effects.area_base && effects.area_base != "0") {
+				o.aoe = effects.area_base;
+			}
+		}
 		
 		//may want to display 0 damage (alongside flags)
 		if (!o.dmg) 
@@ -47,14 +63,9 @@ MWpn.prepareData_PostMod = function() {
 			}
 			o.wpnclass = 'missile';
 		}
-		else 
+		else {
 			o.wpnclass = 'melee';
-		
-		
-		//special values
-		if (o.nostr=='1' && (o.dmg== '-11' || o.dmg== '-12')) {
-			o.dmg = '-999';
-			o.special = 'banishment';
+			delete o.ammo;
 		}
 		
 		//backlinks on secondary effects
@@ -72,15 +83,13 @@ MWpn.CGrid = Utils.Class( DMI.CGrid, function() {
 	//grid columns
 	var columns = [
 		{ id: "name",     width: 145, name: "Weapon Name", field: "name", sortable: true },
-		{ id: "wpnclass",     width: 60, name: "Type", field: "wpnclass", sortable: true },
-		{ id: "twohanded",     width: 60, name: "2-h", field: "twohanded", sortable: true }
+		{ id: "wpnclass",     width: 60, name: "Type", field: "wpnclass", sortable: true }
 	];
 	
 	this.superClass.call(this, 'wpn', modctx.wpndata, columns); //superconstructor
 	
 	$(this.domsel+' .grid-container').css('width', 530);//set table width
 
-	
 	//in closure scope
 	var that = this;
 
@@ -157,14 +166,14 @@ formats.dmg = function(v,o) {
 	v+= ' ';
 	
 	//append dmgflags
-	var slist = [];
-	for (var i=0, k; k=dmgflags[i]; i++)			
-		if (o[k] == '1') slist.push('<span class="flag">'+aliases[k]+'</span>');
-	if (slist.length)
-		v += '(' + slist.join(', ') + ')';
-	
-	//not useful information
-	if (v=='spc ') return '0';
+//	var slist = [];
+//	for (var i=0, k; k=dmgflags[i]; i++)			
+//		if (o[k] == '1') slist.push('<span class="flag">'+aliases[k]+'</span>');
+//	if (slist.length)
+//		v += '(' + slist.join(', ') + ')';
+//	
+//	//not useful information
+//	if (v=='spc ') return '0';
 	
 	return v;
 }
@@ -176,65 +185,6 @@ formats.nratt = function(v,o) {
 	return (v && v<0)  ?  '1 per '+(-v)+' turns'  :  v; 
 }
 
-var flagorder = DMI.Utils.cutDisplayOrder(aliases, formats,
-[
-	'magic',	'magic weapon',
-//	dbase key	displayed key		function/dict to format value
-	'onestrike',	'one use only',
-
-//		'dt_cap',	'max 1hp damage',
-	'dt_demon',	'x2 vs demons',
-	'dt_demononly',	'only damages demons',
-	'dt_undeadonly',	'only damages undead',
-	'dt_demonundead',	'only damages undead/demon',
-	'dt_holy',	'x3 vs undead/demon',
-	'dt_magic',	'x2 vs magic beings',
-	'dt_magiconly',	'only damages magic beings',
-	'dt_small',	'x2 vs smaller beings',
-	'dt_large',	'x2 vs larger beings',
-	'dt_constructonly',	'only damages lifeless beings',
-	'dt_constr',	'extra damage to lifeless beings',
-	'dt_raise',	'victims raised as soulless',
-	'dt_str',	'weapon reduces strength',
-	'dt_fear',	'weapon reduces morale',
-	'dt_sacred',	'only effects sacred',
-	'mind',		'mindless beings are immune',
-	'planeshift',	'banishes target to another plane',
-	'unrepel',	'cannot be repelled',
-	'norepel',	'cannot be used to repell',
-	'swallow',	'target is swallowed',
-	
-	'dt_slave',	'victims are enslaved',
-	
-	'partdrain',	'partial life drain',
-	'drain',	'life drain',
-	
-	'charge',	'charge bonus',
-	'flail',	'+2 att vs shields',
-	'mres',		'MR negates',
-	'mrnegateseasily',	'MR negates easily'
-]);
-var dmgflags = DMI.Utils.cutDisplayOrder(aliases, formats,
-[
-//	dbase key	displayed key		function/dict to format value
-	'dt_cap',		'max 1 HP damage',
-	'nostr',		'no strength',
-	'armorpiercing',	'armor piercing',
-	'armornegating',	'armor negating',
-	'cold',		'cold',
-	'fire',		'fire',
-	'shock',	'shock',
-	'poison',	'poison',
-	'acid',		'acid',
-	'dt_p',		'peircing',
-	'dt_s',		'slashing',
-	'dt_b',		'blunt',
-	//'dt_normal', 	'normal damage',
-	'dt_stun',	'stun',
-	'sizeres',	'stun reduced for large targets',
-	'dt_paralyze',	'paralyze',
-	'dt_poison',	'damage over time'
-]);
 var hiddenkeys = DMI.Utils.cutDisplayOrder(aliases, formats,
 [
 	'id', 		'weap id',	function(v,o){ return v + ' ('+o.name+')'; },
@@ -245,23 +195,12 @@ var ignorekeys = {
 	modded:1,
 	id:1,
 	name:1,
-	dt_norm: 'damage type normal',
-	bonus: 'no hands needed',
-	//nostr:1,
-	//dt_cap:1,
 	secondaryeffect:1,
 	secondaryeffectalways:1,
-	'twohanded': '2 handed',
 	isImplicitWpn:1,
+	effect_record_id:1,
 
-	'fx_iron': 'fx_iron',
-	'fx_wood': 'fx_wood',
 	wpnclass:1,
-	display_name:1,
-	other:1,
-	dt_spc:1,
-	spc_dmg:1,
-	X:1,
 	searchable:1, renderOverlay:1, matchProperty:1
 };
 	
@@ -332,9 +271,16 @@ MWpn.renderWpnTable = function(o, isImplicitWpn) {
 	h+='		<table class="overlay-table wpn-table"> ';
 	h+= 			Utils.renderDetailsRows(o, hiddenkeys, aliases, formats, 'hidden-row');
 	h+= 			Utils.renderDetailsRows(o, displayorder, aliases, formats);
-	h+= 			Utils.renderDetailsFlags(o, flagorder, aliases, formats);
 	h+= 			Utils.renderStrangeDetailsRows(o, ignorekeys, aliases, 'strange');
 	
+	var effects = modctx.effectlookup[o.effect_record_id];
+	if (effects) {
+		var mask = modctx.effectbitslookup;
+		var specflags = Utils.renderFlags( MWpn.bitfieldValues(effects.modifiers_mask, mask) );
+		if (specflags)
+			h+=		'<tr><td class="widecell" colspan="2">&bull; '+specflags+'</td></tr></div>';
+	}
+
 	if (o.modded) {
 		h+='	<tr class="modded hidden-row"><td colspan="2">Modded<span class="internal-inline"> [modded]</span>:<br />';
 		h+=		o.modded.replace('ERROR:', '<span style="color:red;font-weight:bold;">ERROR:</span>');
@@ -346,20 +292,22 @@ MWpn.renderWpnTable = function(o, isImplicitWpn) {
 	var secondaryeffect = modctx.wpnlookup[o.secondaryeffect];
 	var secondaryeffectalways = modctx.wpnlookup[o.secondaryeffectalways];
 	
-	if (o.secondaryeffectalways && secondaryeffectalways) {
+	if (o.secondaryeffectalways && secondaryeffectalways && secondaryeffectalways.id != 0) {
 		h+=' <h4>Auto effect: '+secondaryeffectalways.name+'</h4>';
 		//detect recursion
-		if (secondaryeffectalways == o)
-			throw 'Error, weapon 2nd effect as itself: '+o.id+': '+o.name; 
+		if (secondaryeffectalways == o) {
+		//	throw 'Error, weapon 2nd effect as itself: '+o.id+': '+o.name; 
+		}	
 		else {
 			h+= MWpn.renderWpnTable(secondaryeffectalways, true);
 		}
 	} 
-	else if (o.secondaryeffect && secondaryeffect) {
+	else if (o.secondaryeffect && secondaryeffect && secondaryeffect.id != 0) {
 		h+=' <h4>On-hit effect: '+secondaryeffect.name+'</h4>';
 		//detect recursion
-		if (secondaryeffect == o)
-			throw 'Error, weapon 2nd effect as itself: '+o.id+': '+o.name; 
+		if (secondaryeffect == o) {
+		//	throw 'Error, weapon 2nd effect as itself: '+o.id+': '+o.name; 
+		}
 		else {
 			h+= MWpn.renderWpnTable(secondaryeffect, true);
 		}
@@ -367,7 +315,23 @@ MWpn.renderWpnTable = function(o, isImplicitWpn) {
 	return h;
 }
 
-
+MWpn.bitfieldValues = function(bitfield, masks_dict) {
+	var magic = true;
+	var newValues=[];
+	var values = myproject.bitfieldValues(bitfield, masks_dict);
+	for (var value in values) {
+		if (values[value].indexOf("Hard to Hit Ethereal") == -1) {
+			value = values[value].replace(/{(.*?)}/g, "");
+			newValues.push(value);
+		} else {
+			magic = false;
+		}
+	}
+	if (magic == true) {
+		newValues.push("Magic weapon");
+	}
+	return newValues;
+}
 
 //namespace args
 }( window.DMI = window.DMI || {}, jQuery ));

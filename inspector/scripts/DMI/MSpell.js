@@ -5,7 +5,6 @@ var MSpell = DMI.MSpell = DMI.MSpell || {};
 
 var Format = DMI.Format;
 var Utils = DMI.Utils;
-
 var modctx = DMI.modctx;
 var modconstants = DMI.modconstants;
 
@@ -20,51 +19,16 @@ MSpell.initSpell = function(o) {
 
 MSpell.nationList = function (o) {
 	o.nations = [];
-	if (o.national && o.national != '') {
-		var parts = o.national.split(',');
-		var era;
-		var oldNation;
-		for (var oi=0, nation;  nation = parts[oi];  oi++) {
-			era = 0;
-			if (nation.indexOf('EA') != -1) {
-				era = 1;
-				nation = nation.replace(/EA/g,'');
-				nation = nation.replace(/^\s+|\s+$|"/g,'');
-				if (nation == '') {
-					nation = oldNation;
-				}
-			} else if (nation.indexOf('MA') != -1) {
-				era = 2;
-				nation = nation.replace(/MA/g,'');
-				nation = nation.replace(/^\s+|\s+$|"/g,'');
-				if (nation == '') {
-					nation = oldNation;
-				}
-			} else if (nation.indexOf('LA') != -1) {
-				era = 3;
-				nation = nation.replace(/LA/g,'');
-				nation = nation.replace(/^\s+|\s+$|"/g,'');
-				if (nation == '') {
-					nation = oldNation;
-				}
-			}
-			nation = nation.replace(/^\s+|\s+$|"/g,'');
-			if (nation == 'Pan') {
-				nation = 'Pangaea';
-			}
-			if (nation == 'Arco') {
-				nation = 'Arcoscephale';
-			}
-			oldNation = nation;
-			for (var oj=0, natdata;  natdata = modctx.nationdata[oj];  oj++) {
-				if (natdata.name == nation) {
-					if (era == 0 || natdata.era == era) {
-						o.nations.push(natdata.id);
-					}
-				}
+	
+	for (var oi=0, attr; attr = modctx.attributes_by_spell[oi];  oi++) {
+		if (attr.spell_number == o.id) {
+			var attribute = modctx.attributeslookup[parseInt(attr.attribute_record_id)];
+			if (attribute.attribute_number == "278") {
+				o.nations.push(parseInt(modctx.restrict_to_nations_by_attribute_lookup[parseInt(attr.attribute_record_id)].nation_number));
 			}
 		}
 	}
+
 	return o.nations;
 }
 
@@ -74,43 +38,10 @@ MSpell.prepareData_PreMod = function() {
 		o.path1  = modconstants[16][o.path1];
 		o.path2  = modconstants[16][o.path2];
 
-		//database uses 255. mods use -1
-		if (o.school == '255')
-			o.school = '-1';
-		
 		o.nations = MSpell.nationList(o);
-
-		if (o.mrneg == 'normal') {
-			o.mrneg_norm = 1;
-		}
-		if (o.mrneg == 'easy') {
-			o.mrneg_easy = 1;
-		}
-		if (o.target_uw == 'y') {
-			o.can_target_uw = 1;
-		}
-		if (o.target_land == 'y') {
-			o.can_target_land = 1;
-		}
-		if (o.target_enemy == 'y') {
-			o.can_target_enemey = 1;
-		}
-		if (o.target_friend == 'y') {
-			o.can_target_friend = 1;
-		}
-		if (o.target_uw == 'n') {
-			o.cannot_target_uw = 1;
-		}
-		if (o.target_land == 'n') {
-			o.cannot_target_land = 1;
-		}
-		if (o.target_enemy == 'n') {
-			o.cannot_target_enemey = 1;
-		}
-		if (o.target_friend == 'n') {
-			o.cannot_target_friend = 1;
-		}
-			
+		
+		o.nextspell = o.next_spell;
+		
 	}
 }
 
@@ -127,7 +58,6 @@ MSpell.prepareData_PostMod = function() {
 		}
 		delete o.nations;
 		
-		
 		o.renderOverlay = MSpell.renderOverlay;
 		o.matchProperty = MSpell.matchProperty;
 		
@@ -136,19 +66,17 @@ MSpell.prepareData_PostMod = function() {
 		o.id = parseInt(o.id);
 		o.fatiguecost = parseInt(o.fatiguecost);
 		
-		
 		//serachable string
 		o.searchable = o.name.toLowerCase();
 		
 		//flip 'works underwater' bit and suchlike
-		o.spec_original = o.spec;
-		o.spec = MSpell.updateSpecialBitfield(o.spec);		
+//		o.spec_original = o.spec;
+//		o.spec = MSpell.updateSpecialBitfield(o.spec);		
 				
 		//lookup effect 2
-		if (o.nextspell == '0')
+		if (o.nextspell == '0') {
 			delete o.nextspell;
-		
-		else if (o.nextspell) {
+		} else if (o.nextspell) {
 			var e2;
 			if (e2 = modctx.spelllookup[o.nextspell])
 				o.nextspell = e2;
@@ -177,49 +105,104 @@ MSpell.prepareData_PostMod = function() {
 			o.sortschool += '.' + o.researchlevel;
 		}
 		
-		//gemcost from fatigue
-		o.gemcost = 0;
-		if (o.path1 && o.fatiguecost >= 100)
-		 	o.gemcost = String(Math.floor(o.fatiguecost/100)) + o.path1;
-		
+		var effects = modctx.effectlookup[o.effect_record_id];
+		if (effects) {
+			if (effects.ritual == "1") {
+				o.type = 'Ritual';
+			} else {
+				o.type = 'Combat';
+			}
+			o.rng_bat = effects.range_base;
+			if (effects.range_per_level != "0") {
+				o.rng_bat = parseInt(o.rng_bat) + (parseInt(o.pathlevel1) * parseInt(effects.range_per_level));
+				o.rng_bat = o.rng_bat + "+ [" + effects.range_per_level + "/lvl]";
+			}
+			if (o.rng_bat == "0") {
+				delete o.rng_bat;
+			}
+
+			if (effects.area_base) {
+				o.aoe_s = effects.area_base;
+				if (effects.area_per_level != "0") {
+					o.aoe_s = parseInt(o.aoe_s) + (parseInt(o.pathlevel1) * parseInt(effects.area_per_level));
+					o.aoe_s = o.aoe_s + "+ [" + effects.area_per_level + "/lvl]";
+				}
+				if (o.aoe_s == "0") {
+					if (o.effects_count == "1" && effects.ritual == "0") {
+						if (effects.range_base == "0") {
+							o.aoe_s = "Caster";
+						} else {
+							o.aoe_s = "One person";
+						}
+					} else {
+						delete o.aoe_s;
+					}
+				}
+			}
+			if (parseInt(o.effects_count) > 1) {
+				o.nreff = o.effects_count;
+			}
+			if (effects.area_battlefield_pct) {
+				o.aoe_s = effects.area_battlefield_pct + "% of battlefield";
+			}
+			if (effects.duration) {
+				o.duration = effects.duration;
+			}
+		}
+
 		//combat fatiguecost
 		if (o.type == 'Ritual'){
 			delete o.fatiguecost;
+		} else {
+			if (parseInt(o.gemcost) > 0) {
+				o.fatiguecost = parseInt(o.gemcost) * 100;
+			}
 		}
+		if (o.gemcost && parseInt(o.gemcost) > 0) {
+			o.gemcost = o.gemcost + o.path1;
+		} else {
+			delete o.gemcost;
+		}	
 	
+		// Attributes
+		for (var oj=0, attr; attr = modctx.attributes_by_spell[oj];  oj++) {
+			if (attr.spell_number == o.id) {
+				var attribute = modctx.attributeslookup[parseInt(attr.attribute_record_id)];
+				if (attribute.attribute_number == "700") {
+					o.rng_prov = attribute.raw_value;
+				}
+			}
+		}
 
-		//log cloud effects		
-		  // var e = parseInt(o.effect);
-		  // if (e > 999 && e<10000)
-		  // console.log(o.id+', '+o.name+', damage: '+e);
-		
 		//associate summons with this spell (and vice  versa)
 		var _o = o;
 		while (o.school != -1 && _o) {
 			//get summons data for this spell
-			var arr = MSpell.summonsForSpell(_o);
-			for (var i=0, uid, utype;  (uid= arr[i]) && (utype= arr[i+1]);  i+=2) {
+			if (effects.effect_number == "1" ||
+				effects.effect_number == "1" ||
+				effects.effect_number == "21" ||
+				effects.effect_number == "26" ||
+				effects.effect_number == "31" ||
+				effects.effect_number == "37" ||
+				effects.effect_number == "38" ||
+				effects.effect_number == "43" ||
+				effects.effect_number == "50" ||
+				effects.effect_number == "93" ||
+				effects.effect_number == "119") {
 				
-				if (_o.damage == '-1' || _o.damage == '-2') //national undead
-					break;
-						
+				var eff = modctx.effectlookup[_o.effect_record_id];
+				var uid = eff.raw_argument;//MSpell.summonsForSpell(_o);
+							
 				var u = modctx.unitlookup[uid];
 				if (!u) {
 					console.log('Unit '+uid+' not found (Spell '+_o.id+')');
 					break;
 				}
-				//find correct version of this unit or create a clone
-				if (u.type && u.type != utype) {
-					u = modctx.getUnitOfType(u, utype) || modctx.cloneUnit(u);
-					u.summonedby = [];//clear
-				}
+
 				//add to list of summoned units (to be attached to nations later)
 				o.summonsunits = o.summonsunits || [];
 				o.summonsunits.push(u);
-				
-				//set unit type
-				u.type = utype;
-				
+
 				//attach spell to unit
 				u.summonedby = u.summonedby || [];
 				u.summonedby.push( o );					
@@ -237,7 +220,7 @@ MSpell.prepareData_PostMod = function() {
 //////////////////////////////////////////////////////////////////////////
 
 function spellNameFormatter(row, cell, value, columnDef, dataContext) {
-	if (dataContext.nat_x)
+	if (dataContext.nations)
 		return '<div class="national-spell">'+value+'</div>';	
 	return value;
 }
@@ -272,7 +255,6 @@ MSpell.CGrid = DMI.Utils.Class( DMI.CGrid, function() {
 
 	//closure scope
 	var that = this;
-	
 	
 	//+ and - keys increment effect no
 	$(that.domselp+" input.effect").keypress( function(e) {
@@ -448,6 +430,7 @@ MSpell.CGrid = DMI.Utils.Class( DMI.CGrid, function() {
 	
 	this.init();
 });
+
 //MSpell.matchProperty = DMI.matchProperty;
 MSpell.matchProperty = function(o, key, comp, val) {
 	if (DMI.matchProperty(o, key, comp, val))
@@ -458,37 +441,9 @@ MSpell.matchProperty = function(o, key, comp, val) {
 		return DMI.MSpell.matchProperty(o.nextspell, key, comp, val);
 }
 
-MSpell.formatDmgType = function(v,o) {
-	if (o.dt == 'n') {
-		return 'normal';
-	}
-	if (o.dt == 'm') {
-		return 'magic';
-	}
-	if (o.dt == 'f') {
-		return 'fire';
-	}
-	if (o.dt == 'c') {
-		return 'cold';
-	}
-	if (o.dt == 's') {
-		return 'shock';
-	}
-	if (o.dt == 'p') {
-		return 'poison';
-	}
-	if (o.dt == 'a') {
-		return 'acid';
-	}
-}
-
 MSpell.formatAoe = function(v,o) {
-	if (v == 'bf') {
-		return 'battlefield';
-	}       
 	return o.aoeplus ? v+'+' : v; 
 }
-
 
 //////////////////////////////////////////////////////////////////////////
 // OVERLAY RENDERING
@@ -508,43 +463,14 @@ var moddingkeys = Utils.cutDisplayOrder(aliases, formats,
 ]);
 var displayorder = Utils.cutDisplayOrder(aliases, formats,
 [
-	'fatiguecost',	'fatigue cost',		function(v){ return v+'-'; },
-	'gemcost',	'gems required',	Format.Gems,
-
 	'rng_bat',	'range', 		function(v,o){ return o.rngplus ? v+'+' : v; },
 	'rng_prov',	'range', 		function(v,o){ return o.rng_prov == 1 ? v+' province' : v+' provinces' },
 	'aoe_s',	'area of effect', 	MSpell.formatAoe,
 	'nreff', 	'number of effects',	function(v,o){ return o.effplus ? v+'+' : v; },
-
-	'precision',	'precision',	{0: '0 '},
-	'dmg',		'damage', 	function(v,o){ return o.dmgplus ? v+'+' : v; },
-	'dt',		'damage type', 	MSpell.formatDmgType,
-	'heal',		'heal',
-	'comsummon',	'summons commander', 	Utils.unitRef,
-	'summon',	'summons', 	Utils.unitRef,
-	'extra_eff',	'effect',
-	'explanation',	'explanation',
-	'other',	'other'
-	
-]);
-var flagorder = Utils.cutDisplayOrder(aliases, formats,
-[
-//	dbase key	displayed key		function/dict to format value
-	'can_target_uw',	'can target underwater',
-	'can_target_land',	'can target land',
-	'can_target_enemey',	'can target enemy',
-	'can_target_friend',	'can target friendly',
-	'cannot_target_uw',	'cannot target underwater',
-	'cannot_target_land',	'cannot target land',
-	'cannot_target_enemey',	'cannot target enemy',
-	'cannot_target_friend',	'cannot target friend',
-	'anonym',	'anonymous',
-	'stun',		'stun damage',
-	'ap',		'armor piercing',
-	'an',		'armor negating',
-	'mrneg_norm',	'magic resistence negates',
-	'mrneg_easy',	'magic resistence negates easily'
-
+	'fatiguecost',	'fatigue cost',		function(v){ return v+'-'; },
+	'precision',	'precision',	{0: '0 '},	
+	'duration',	'duration',	function(v,o){ return o.duration == 1 ? v+' round' : v+' rounds' },
+	'gemcost',	'gems required',	Format.Gems
 ]);
 var ignorekeys = {
 	modded:1,
@@ -556,47 +482,18 @@ var ignorekeys = {
 	type:1,		
 	mpath:1,
 	fatiguecost:1,gemcost:1,
-	rngplus:1,
-	aoeplus:1,
-	dmgplus:1,
-	effplus:1,
-	subtype:1,
-	uw:1,
-	land:1,
-	mrneg:1,
-	aoe_p:1,
-	national:1,
-	nat_x:1,
-	aoe_p:1,
-	target_uw:1,
-	target_land:1,
-	target_enemy:1,
-	target_friend:1,
+	next_spell:1,
+	effect_record_id:1,
+	effects_count:1,
 
-	// aoe:1, nreff:1,
 	summonsunits:1,	nations:1, eracodes:1, nationname:1,
-	spec:1,
 	
 	//common fields
-	name:1,descr:1,
+	name:1,description:1,
 	searchable:1, renderOverlay:1, matchProperty:1
 };		
 
-function spellCostLine(o) {
-	if (o.type=="ritual")
-		return 'ritual costs '+Format.Gems(o.gemcost);
-	
-	else {
-		if (o.gemcost)
-			return 'combat fatigue '+o.fatiguecost+'- ('+Format.Gems(o.gemcost)+')';
-		else
-			return 'combat fatigue '+o.fatiguecost+'-';
-	}
-}
-
 MSpell.renderOverlay = function(o) {
-	var descrpath = 'gamedata/spelldescr/';
-	
 	//template
 	var h=''
 	h+='<div class="spell overlay-contents"> ';
@@ -637,9 +534,9 @@ MSpell.renderOverlay = function(o) {
 	h+=		MSpell.renderSpellTable(o);
 	
 	//special flags; casting requirements (cannot be cast underwater etc..)
-	var specflags = Utils.renderFlags( MSpell.landValues(o) );
-	if (specflags)
-		h+=	'<p>'+specflags+'</p>';	
+//	var specflags = Utils.renderFlags( MSpell.landValues(o) );
+//	if (specflags)
+//		h+=	'<p>'+specflags+'</p>';	
 
 	
 	//wikilink
@@ -653,16 +550,17 @@ MSpell.renderOverlay = function(o) {
 	h+='	<div class="overlay-footer">';
 	
 	//descr
-	var uid = 'c'+(Math.random());
-	uid = uid.replace('.','');
-	h+='		<div class="overlay-descr pane-extension '+uid+'">&nbsp;</div>';
+	//var uid = 'c'+(Math.random());
+	//uid = uid.replace('.','');
+	//h+='		<div class="overlay-descr pane-extension '+uid+'">&nbsp;</div>';
 	
-	if (o.descr)
-			Utils.insertContent( '<p>'+o.descr+'</p>', 'div.'+uid );
-	else if (o.research != 'unresearchable') {
-			 var url = descrpath + Utils.descrFilename(o.name);
-			 Utils.loadContent( url, 'div.'+uid );
-	}
+	if (o.description)
+	//		Utils.insertContent( '<p>'+o.description+'</p>', 'div.'+uid );
+	h+='		<div class="overlay-descr pane-extension"><p>'+o.description.replace(/\"/g, '')+'</p></div>';
+//	else if (o.research != 'unresearchable') {
+//			 var url = descrpath + Utils.descrFilename(o.name);
+//			 Utils.loadContent( url, 'div.'+uid );
+//	}
 
 	h+='	</div> ';
 	h+='</div> ';
@@ -684,7 +582,6 @@ MSpell.renderSpellTable = function(o, original_effect) {
 	h+= 			Utils.renderDetailsRows(o, hiddenkeys, aliases, formats, 'hidden-row');
 	h+= 			Utils.renderDetailsRows(o, moddingkeys, aliases, formats, 'modding-row');
 	h+= 			Utils.renderDetailsRows(o, displayorder, aliases, formats);
-	h+= 			Utils.renderDetailsFlags(o, flagorder, aliases, formats);
 	h+= 			Utils.renderStrangeDetailsRows(o, ignorekeys, aliases, 'strange');
 	h+='		</table> ';
 
@@ -700,13 +597,39 @@ MSpell.renderSpellTable = function(o, original_effect) {
 	if (o.damage == '0' && MSpell.format.effect(o.effect) == 8)
 		cssclasses += 	' hidden-block'
 	
-	//effect
-	h+='		<table class="overlay-table spell-effect '+cssclasses+'"> ';
-	//h+=			renderEffect(o, original_effect);
-	//special
-	var specflags = Utils.renderFlags( MSpell.bitfieldValues(o.spec, MSpell.masks_special) );
-	if (specflags)
-		h+=		'<tr><td class="widecell" colspan="2">&bull; '+specflags+'</td></tr></div>';
+	var effects = modctx.effectlookup[o.effect_record_id];
+	if (effects) {
+		//effect
+		h+='		<table class="overlay-table spell-effect '+cssclasses+'"> ';
+		h+=			renderEffect(o, effects);
+
+		// Attributes
+		for (var oi=0, attr; attr = modctx.attributes_by_spell[oi];  oi++) {
+			if (attr.spell_number == o.id) {
+				var attribute = modctx.attributeslookup[parseInt(attr.attribute_record_id)];
+				if (attribute.attribute_number != "278" &&
+						attribute.attribute_number != "700" &&
+						attribute.attribute_number != "703") {
+					var specflags = modctx.attribute_keyslookup[attribute.attribute_number].name;
+					
+					var val;
+					if (attribute.attribute_number == '702') {
+						val = MSpell.bitfieldValues(attribute.raw_value, terrain_mask);
+					} else {
+						val = attribute.raw_value;
+					}
+					
+					h+= '<tr class="'+attribute.attribute_number+'"><th>'+modctx.attribute_keyslookup[attribute.attribute_number].name.replace(/{(.*?)}|<|>/g, "")+':</th><td>'+val+'</td></tr>'
+				}
+			}
+		}
+
+		//special
+		var mask = modctx.effectbitslookup;
+		var specflags = Utils.renderFlags( MSpell.bitfieldValues(effects.modifiers_mask, mask) );
+		if (specflags)
+			h+=		'<tr><td class="widecell" colspan="2">&nbsp;</td></tr><tr><td class="widecell" colspan="2">&bull; '+specflags+'</td></tr></div>';
+	}
 	
 	if (o.modded) {
 		h+='	<tr class="modded hidden-row"><td colspan="2">Modded<span class="internal-inline"> [modded]</span>:<br />';
@@ -731,96 +654,39 @@ MSpell.renderSpellTable = function(o, original_effect) {
 }
 
 MSpell.bitfieldValues = function(bitfield, masks_dict) {
-	var values=[],  bitfield = parseInt(bitfield);
-	
-	for (var k in masks_dict) {
-		if (parseInt(k) & bitfield)
-			values.push(masks_dict[k]);
+	var newValues=[];
+	var values = myproject.bitfieldValues(bitfield, masks_dict);
+	for (var value in values) {
+		value = values[value].replace(/{(.*?)}/g, "");
+		newValues.push(value);
 	}
-	return values;
+	return newValues;
 }
 
-MSpell.landValues = function(o) {
-	var values=[];
-
-	if (o.uw == 'n') {
-		values.push('cannot be cast underwater');
-	}
-	if (o.land == 'n' && o.uw == 'y') {
-		values.push('only works underwater');
-	}
-	return values;
-}
-
-
-function renderEffect(o, o_parent) {
-	//format basic spell values
-	var num = MSpell.format.num(o.nreff, o);
-	var range = MSpell.format.range(o.range, o);
-	var aoe = MSpell.format.aoe(o.aoe, (o_parent || o));
-	var cloud = MSpell.format.cloud(o.effect, o);
-	
-	//shave spare thousands of effect value
-	var neffect = MSpell.format.effect(o.effect)
-
-	
-	var _hidekeys = {};
-		
-	//hide some meaningless stuff
- 	if (num == '0' || num == '1') 		_hidekeys.num = true;
- 	if ((o_parent || o).type == 'ritual')	_hidekeys.aoe = true;
-
-
- 	//hide aoe if it covers same area as original
-	if (o_parent  &&  ((o.aoe == '1' && o_parent.aoe != '0') || (o.aoe == '0' && o_parent.aoe == '0')))
-		_hidekeys.aoe = true;
-	
-	
-	//lookup effect in main table
-	var res = MSpell.effectlookup[neffect] || MSpell.effectlookup['unknown'];
+function renderEffect(o, effects) {
+	var res = MSpell.effectlookup[effects.effect_number] || MSpell.effectlookup['unknown'];
 	//if its a function then run it
-	if (typeof(res) == 'function')	res = res(o);
-	//wrap in array if not already
-	if (!$.isArray(res))	res = [res];
+	if (typeof(res) == 'function')	res = res(o, effects);
+	return '<tr><th width="10px">'+modctx.effectsinfolookup[effects.effect_number].name.replace(/{(.*?)}/g, "").trim()+':</th><td>'+res+'</td></tr>'
+}
 
-	
-	//render results
-	var h= '';
-	function renderRow( key, th, td ) {
-		var cssclass = key; 
-		if (_hidekeys[key]) 
-			cssclass += ' modding-row';
-		
-		h+= '<tr class="'+cssclass+'"><th>'+th+':</th><td>'+td+'</td></tr>';
-	}
-	//loop objects	
-	for (var i=0, e;  e= res[i];  i++) {
-		//th:td pairs
-		var prefix = '';
-		for (var th in e) {
-			var td = e[th];
-			//special value.. rows to hide, comma separated
-			if (th == '_hidekeys') 
-				for (var j=0, k, arr=td.split(',');  k= arr[j];  j++) 
-					_hidekeys[k] = true;
-			else {
-				if (typeof(td) == 'function') td = td(o.damage, o);
-				renderRow( th.replace(' ', '-'), prefix+th, td );
-				
-				//all rows but first have bullet prefix
-				prefix='&bull; ';
-			}
-		}
-	}
-	//final rows
-	if (aoe)   renderRow( 'aoe',   '&bull; area of effect',  aoe   );
-	if (cloud) renderRow( 'cloud', '&bull; repeats for',   cloud );
-	if (num)   renderRow( 'num',   '&bull; nbr of effects',  num   );
-	
-	return h;	
-}	
-	
-
+var terrain_mask = {
+		0: {'bit_value': 0, 'bit_name': 'Plains'},
+		1: {'bit_value': 1, 'bit_name': 'Small Province'},
+		2: {'bit_value': 2, 'bit_name': 'Large Province'},
+		4: {'bit_value': 4, 'bit_name': 'Sea'},
+		8: {'bit_value': 8, 'bit_name': 'Freshwater'},
+		16: {'bit_value': 16, 'bit_name': 'Mountain'},
+		32: {'bit_value': 32, 'bit_name': 'Swamp'},
+		64: {'bit_value': 64, 'bit_name': 'Waste'},
+		128: {'bit_value': 128, 'bit_name': 'Forest'},
+		256: {'bit_value': 256, 'bit_name': 'Farm'},
+		512: {'bit_value': 512, 'bit_name': 'Nostart'},
+		1024: {'bit_value': 1024, 'bit_name': 'Many Sites'},
+		2048: {'bit_value': 2048, 'bit_name': 'Deep Sea'},
+		4096: {'bit_value': 4096, 'bit_name': 'Cave'},
+		4194304: {'bit_value': 4194304, 'bit_name': 'Border Mountain'}
+}
 
 //namespace args
 }( window.DMI = window.DMI || {}, jQuery ));
