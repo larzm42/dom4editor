@@ -176,10 +176,9 @@ MSpell.prepareData_PostMod = function() {
 
 		//associate summons with this spell (and vice  versa)
 		var _o = o;
-		while (o.school != -1 && _o) {
+		while (_o) {
 			//get summons data for this spell
 			if (effects.effect_number == "1" ||
-				effects.effect_number == "1" ||
 				effects.effect_number == "21" ||
 				effects.effect_number == "26" ||
 				effects.effect_number == "31" ||
@@ -191,21 +190,23 @@ MSpell.prepareData_PostMod = function() {
 				effects.effect_number == "119") {
 				
 				var eff = modctx.effects_lookup[_o.effect_record_id];
-				var uid = eff.raw_argument;//MSpell.summonsForSpell(_o);
-							
-				var u = modctx.unitlookup[uid];
-				if (!u) {
-					console.log('Unit '+uid+' not found (Spell '+_o.id+')');
-					break;
+				if (eff) {
+					var uid = eff.raw_argument;//MSpell.summonsForSpell(_o);
+					
+					var u = modctx.unitlookup[uid];
+					if (!u) {
+						console.log('Unit '+uid+' not found (Spell '+_o.id+')');
+						break;
+					}
+
+					//add to list of summoned units (to be attached to nations later)
+					o.summonsunits = o.summonsunits || [];
+					o.summonsunits.push(u);
+
+					//attach spell to unit
+					u.summonedby = u.summonedby || [];
+					u.summonedby.push( o );					
 				}
-
-				//add to list of summoned units (to be attached to nations later)
-				o.summonsunits = o.summonsunits || [];
-				o.summonsunits.push(u);
-
-				//attach spell to unit
-				u.summonedby = u.summonedby || [];
-				u.summonedby.push( o );					
 			} else if (effects.effect_number == "76" || effects.effect_number == "89" || effects.effect_number == "100") {
 				var arr;
 				if (effects.effect_number == "76") {

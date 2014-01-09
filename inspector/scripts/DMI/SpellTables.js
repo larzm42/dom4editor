@@ -143,7 +143,8 @@ var damage = 		MSpell.format.damage;
 var damage_untested = 	function (v,o){ return damage(v,o) + ' ?'; }
 
 MSpell.effectlookup = {
-		'unknown': function (spell, effect){ return 'Unknown Effect' + effect.effect_number + '('+effect.raw_argument + ' ?)'; },
+		'unknown': function (spell, effect){ return 'Unknown Effect ' + effect.effect_number + ' ('+effect.raw_argument + ')?'; },
+		0:	'Nothing',
 		1:	function(spell, effect) {
 			return show_summon(effect.raw_argument, spell.effects_count);
 		},
