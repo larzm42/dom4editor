@@ -183,16 +183,16 @@ Utils.renderFlag = function(f){
 }
 
 //list of flags enclosed in parenthesis
-Utils.renderFlags = function(arr){
+Utils.renderFlags = function(arr, noparen){
 	var _arr = (typeof(arr) == 'string')  ?  arguments  :  arr;
 	
 	for (var i=0, f, h; f= _arr[i]; i++) {
-		h = (h ? h+', ' : ' (') + f[0].trim();
+		h = (h ? h+', ' : noparen ? ' ' : ' (') + f[0].trim();
 		if (f[1] != "none") {
 			h += '<span class="internal-inline"> ['+f[1]+']</span>';
 		}
 	}
-	return h ? h+')' : '';
+	return h ? h + (noparen ? '' : ')') : '';
 }
 
 Utils.addFlags = function(o, arr, ignorekeys){

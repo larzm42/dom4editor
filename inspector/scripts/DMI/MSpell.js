@@ -633,7 +633,7 @@ MSpell.renderSpellTable = function(o, original_effect) {
 					
 					var val;
 					if (attribute.attribute_number == '702') {
-						val = MSpell.bitfieldValues(attribute.raw_value, terrain_mask);
+						val = Utils.renderFlags(MSpell.bitfieldValues(attribute.raw_value, terrain_mask), 1);
 					} else {
 						val = attribute.raw_value;
 					}

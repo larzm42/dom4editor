@@ -154,11 +154,11 @@ MSpell.effectlookup = {
 		8:	damage,
 		10:	function(spell, effect) {
 			var mask = modctx.buffs_1_types_lookup;
-			return MSpell.bitfieldValues(effect.raw_argument, mask);
+			return Utils.renderFlags(MSpell.bitfieldValues(effect.raw_argument, mask), 1);
 		},
 		11:	function(spell, effect) {
 			var mask = modctx.special_damage_types_lookup;
-			return MSpell.bitfieldValues(effect.raw_argument, mask);
+			return Utils.renderFlags(MSpell.bitfieldValues(effect.raw_argument, mask), 1);
 		},
 		13:	damage,
 		15:	'teleports to capital',
@@ -170,7 +170,7 @@ MSpell.effectlookup = {
 		22:	'Fate of Oedipus',
 		23:	function(spell, effect) {
 			var mask = modctx.buffs_2_types_lookup;
-			return MSpell.bitfieldValues(effect.raw_argument, mask);
+			return Utils.renderFlags(MSpell.bitfieldValues(effect.raw_argument, mask), 1);
 		},
 		24:	damage,
 		25:	'Wish',
