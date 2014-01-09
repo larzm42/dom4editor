@@ -32,7 +32,7 @@ MWpn.prepareData_PostMod = function() {
 		//serachable string
 		o.searchable = o.name.toLowerCase();
 
-		var effects = modctx.effectlookup[o.effect_record_id];
+		var effects = modctx.effects_lookup[o.effect_record_id];
 		if (effects) {
 			if (effects.effect_number == "2") {
 				o.dmg = effects.raw_argument;
@@ -41,7 +41,7 @@ MWpn.prepareData_PostMod = function() {
 			} else if (effects.effect_number == "108") {
 				o.dmg = modctx.other_planes_lookup[parseInt(effects.raw_argument)].name;
 			} else {
-				o.dmg = effects.raw_argument + " " + modctx.effectsinfolookup[effects.effect_number].name.replace(/{(.*?)}/g, "");
+				o.dmg = effects.raw_argument + " " + modctx.effects_info_lookup[effects.effect_number].name.replace(/{(.*?)}/g, "");
 			}
 			if (effects.range_base && effects.range_base != "0") {
 				o.range = effects.range_base;
@@ -67,6 +67,8 @@ MWpn.prepareData_PostMod = function() {
 			o.wpnclass = 'melee';
 			delete o.ammo;
 		}
+		
+		Utils.addFlags( o, MWpn.bitfieldValues(effects.modifiers_mask, modctx.effect_modifier_bits_lookup), ignorekeys )
 		
 		//backlinks on secondary effects
 		var secondaryeffect = modctx.wpnlookup[o.secondaryeffect] || modctx.wpnlookup[o.secondaryeffectalways];
@@ -273,12 +275,11 @@ MWpn.renderWpnTable = function(o, isImplicitWpn) {
 	h+= 			Utils.renderDetailsRows(o, displayorder, aliases, formats);
 	h+= 			Utils.renderStrangeDetailsRows(o, ignorekeys, aliases, 'strange');
 	
-	var effects = modctx.effectlookup[o.effect_record_id];
+	var effects = modctx.effects_lookup[o.effect_record_id];
 	if (effects) {
-		var mask = modctx.effectbitslookup;
-		var specflags = Utils.renderFlags( MWpn.bitfieldValues(effects.modifiers_mask, mask) );
+		var specflags = Utils.renderFlags(MWpn.bitfieldValues(effects.modifiers_mask, modctx.effect_modifier_bits_lookup) );
 		if (specflags)
-			h+=		'<tr><td class="widecell" colspan="2">&bull; '+specflags+'</td></tr></div>';
+			h+=		'<tr><td class="widecell" colspan="2">'+specflags+'</td></tr></div>';
 	}
 
 	if (o.modded) {
@@ -321,14 +322,19 @@ MWpn.bitfieldValues = function(bitfield, masks_dict) {
 	var values = myproject.bitfieldValues(bitfield, masks_dict);
 	for (var value in values) {
 		if (values[value].indexOf("Hard to Hit Ethereal") == -1) {
+			var flag = "none";
+			var flagIndex = values[value].indexOf("Wpn: #");
+			if (flagIndex != -1) {
+				flag = values[value].substring(flagIndex+6, values[value].length-2)
+			}
 			value = values[value].replace(/{(.*?)}/g, "");
-			newValues.push(value);
+			newValues.push([value, flag]);
 		} else {
 			magic = false;
 		}
 	}
 	if (magic == true) {
-		newValues.push("Magic weapon");
+		newValues.push(["Magic weapon", "magic"]);
 	}
 	return newValues;
 }

@@ -22,7 +22,7 @@ MSpell.nationList = function (o) {
 	
 	for (var oi=0, attr; attr = modctx.attributes_by_spell[oi];  oi++) {
 		if (attr.spell_number == o.id) {
-			var attribute = modctx.attributeslookup[parseInt(attr.attribute_record_id)];
+			var attribute = modctx.attributes_lookup[parseInt(attr.attribute_record_id)];
 			if (attribute.attribute_number == "278") {
 				o.nations.push(parseInt(modctx.restrict_to_nations_by_attribute_lookup[parseInt(attr.attribute_record_id)].nation_number));
 			}
@@ -105,7 +105,7 @@ MSpell.prepareData_PostMod = function() {
 			o.sortschool += '.' + o.researchlevel;
 		}
 		
-		var effects = modctx.effectlookup[o.effect_record_id];
+		var effects = modctx.effects_lookup[o.effect_record_id];
 		if (effects) {
 			if (effects.ritual == "1") {
 				o.type = 'Ritual';
@@ -167,7 +167,7 @@ MSpell.prepareData_PostMod = function() {
 		// Attributes
 		for (var oj=0, attr; attr = modctx.attributes_by_spell[oj];  oj++) {
 			if (attr.spell_number == o.id) {
-				var attribute = modctx.attributeslookup[parseInt(attr.attribute_record_id)];
+				var attribute = modctx.attributes_lookup[parseInt(attr.attribute_record_id)];
 				if (attribute.attribute_number == "700") {
 					o.rng_prov = attribute.raw_value;
 				}
@@ -190,7 +190,7 @@ MSpell.prepareData_PostMod = function() {
 				effects.effect_number == "93" ||
 				effects.effect_number == "119") {
 				
-				var eff = modctx.effectlookup[_o.effect_record_id];
+				var eff = modctx.effects_lookup[_o.effect_record_id];
 				var uid = eff.raw_argument;//MSpell.summonsForSpell(_o);
 							
 				var u = modctx.unitlookup[uid];
@@ -206,6 +206,25 @@ MSpell.prepareData_PostMod = function() {
 				//attach spell to unit
 				u.summonedby = u.summonedby || [];
 				u.summonedby.push( o );					
+			} else if (effects.effect_number == "76" || effects.effect_number == "89" || effects.effect_number == "100") {
+				var arr;
+				if (effects.effect_number == "76") {
+					arr = MSpell.tartarianGate;
+				} else if (effects.effect_number == "89") {
+					arr = MSpell.uniqueSummon[effects.raw_argument];
+				} else if (effects.effect_number == "100") {
+					arr = MSpell.terrainSummon[effects.raw_argument];
+				}
+				for (var i=0, uid;  uid= arr[i];  i++) {
+					var u = modctx.unitlookup[uid];
+					//add to list of summoned units (to be attached to nations later)
+					o.summonsunits = o.summonsunits || [];
+					o.summonsunits.push(u);
+
+					//attach spell to unit
+					u.summonedby = u.summonedby || [];
+					u.summonedby.push( o );					
+				}
 			}
 			if (_o == _o.nextspell) break;
 			_o = _o.nextspell;
@@ -597,7 +616,7 @@ MSpell.renderSpellTable = function(o, original_effect) {
 	if (o.damage == '0' && MSpell.format.effect(o.effect) == 8)
 		cssclasses += 	' hidden-block'
 	
-	var effects = modctx.effectlookup[o.effect_record_id];
+	var effects = modctx.effects_lookup[o.effect_record_id];
 	if (effects) {
 		//effect
 		h+='		<table class="overlay-table spell-effect '+cssclasses+'"> ';
@@ -606,11 +625,11 @@ MSpell.renderSpellTable = function(o, original_effect) {
 		// Attributes
 		for (var oi=0, attr; attr = modctx.attributes_by_spell[oi];  oi++) {
 			if (attr.spell_number == o.id) {
-				var attribute = modctx.attributeslookup[parseInt(attr.attribute_record_id)];
+				var attribute = modctx.attributes_lookup[parseInt(attr.attribute_record_id)];
 				if (attribute.attribute_number != "278" &&
 						attribute.attribute_number != "700" &&
 						attribute.attribute_number != "703") {
-					var specflags = modctx.attribute_keyslookup[attribute.attribute_number].name;
+					var specflags = modctx.attribute_keys_lookup[attribute.attribute_number].name;
 					
 					var val;
 					if (attribute.attribute_number == '702') {
@@ -619,16 +638,16 @@ MSpell.renderSpellTable = function(o, original_effect) {
 						val = attribute.raw_value;
 					}
 					
-					h+= '<tr class="'+attribute.attribute_number+'"><th>'+modctx.attribute_keyslookup[attribute.attribute_number].name.replace(/{(.*?)}|<|>/g, "")+':</th><td>'+val+'</td></tr>'
+					h+= '<tr class="'+attribute.attribute_number+'"><th>'+modctx.attribute_keys_lookup[attribute.attribute_number].name.replace(/{(.*?)}|<|>/g, "")+':</th><td>'+val+'</td></tr>'
 				}
 			}
 		}
 
 		//special
-		var mask = modctx.effectbitslookup;
+		var mask = modctx.effect_modifier_bits_lookup;
 		var specflags = Utils.renderFlags( MSpell.bitfieldValues(effects.modifiers_mask, mask) );
 		if (specflags)
-			h+=		'<tr><td class="widecell" colspan="2">&nbsp;</td></tr><tr><td class="widecell" colspan="2">&bull; '+specflags+'</td></tr></div>';
+			h+=		'<tr><td class="widecell" colspan="2">&nbsp;</td></tr><tr><td class="widecell" colspan="2">'+specflags+'</td></tr></div>';
 	}
 	
 	if (o.modded) {
@@ -658,7 +677,7 @@ MSpell.bitfieldValues = function(bitfield, masks_dict) {
 	var values = myproject.bitfieldValues(bitfield, masks_dict);
 	for (var value in values) {
 		value = values[value].replace(/{(.*?)}/g, "");
-		newValues.push(value);
+		newValues.push([value, "none"]);
 	}
 	return newValues;
 }
@@ -667,7 +686,7 @@ function renderEffect(o, effects) {
 	var res = MSpell.effectlookup[effects.effect_number] || MSpell.effectlookup['unknown'];
 	//if its a function then run it
 	if (typeof(res) == 'function')	res = res(o, effects);
-	return '<tr><th width="10px">'+modctx.effectsinfolookup[effects.effect_number].name.replace(/{(.*?)}/g, "").trim()+':</th><td>'+res+'</td></tr>'
+	return '<tr><th width="10px">'+modctx.effects_info_lookup[effects.effect_number].name.replace(/{(.*?)}/g, "").trim()+':</th><td>'+res+'</td></tr>'
 }
 
 var terrain_mask = {

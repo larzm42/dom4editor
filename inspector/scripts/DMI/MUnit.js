@@ -977,7 +977,7 @@ var displayorder3 = Utils.cutDisplayOrder(aliases, formats,
 	'pcloud',	'poison cloud',
 	'diseasecloud',	'disease cloud',
 	'fshld',	'fire shield',
-	'banefireshield','banefire shield',
+	'bfshld','banefire shield',
 	'bloodvengeance','blood vengeance', Format.SignedZero,
 	'sacr',		'adept blood sacrificer',
 	

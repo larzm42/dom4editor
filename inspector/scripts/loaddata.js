@@ -134,17 +134,17 @@ DMI.loadDom3Data = function(cb_success) {
 
 	var filestoload = [
 		'gamedata/BaseI.csv'+versionCode,
-		'gamedata/armors.csv'+versionCode,
-		'gamedata/protections_by_armor.csv'+versionCode,
 		'gamedata/BaseU.csv'+versionCode,
-		'gamedata/weapons.csv'+versionCode,
-		'gamedata/spells.csv'+versionCode,
 		'gamedata/MagicSites.csv'+versionCode,
 		'gamedata/Nations.csv'+versionCode,
+
+		'gamedata/armors.csv'+versionCode,
+		'gamedata/protections_by_armor.csv'+versionCode,
+		'gamedata/weapons.csv'+versionCode,
+		'gamedata/spells.csv'+versionCode,
 		'gamedata/effects.csv'+versionCode,
 		'gamedata/effect_modifier_bits.csv'+versionCode,
 		'gamedata/effects_info.csv'+versionCode,
-
 		'gamedata/attribute_keys.csv'+versionCode,
 		'gamedata/attributes.csv'+versionCode,
 		'gamedata/attributes_by_spell.csv'+versionCode,
@@ -186,7 +186,7 @@ DMI.loadDom3Data = function(cb_success) {
 
 			var data = dataobj['gamedata/protections_by_armor.csv'+versionCode];
 			if (!data) throw(DMI.Utils.error('ERROR LOADING: gamedata/protections_by_armor.csv'));
-			modctx.armordata2 = parseTextToTable(data);
+			modctx.protections_by_armor = parseTextToTable(data);
 	
 			var data = dataobj['gamedata/BaseU.csv'+versionCode];
 			if (!data) throw(DMI.Utils.error('ERROR LOADING: gamedata/BaseU.csv'));
@@ -215,28 +215,28 @@ DMI.loadDom3Data = function(cb_success) {
 			
 			var data = dataobj['gamedata/effects.csv'+versionCode];
 			if (!data) throw(DMI.Utils.error('ERROR LOADING: gamedata/effects.csv'));
-			modctx.effectdata = parseTextToTable(data);
-			modctx.effectlookup = createLookup(modctx.effectdata, 'record_id');
+			modctx.effects = parseTextToTable(data);
+			modctx.effects_lookup = createLookup(modctx.effects, 'record_id');
 			
 			var data = dataobj['gamedata/effect_modifier_bits.csv'+versionCode];
 			if (!data) throw(DMI.Utils.error('ERROR LOADING: gamedata/effect_modifier_bits.csv'));
-			modctx.effectbitsdata = parseTextToTable(data);
-			modctx.effectbitslookup = createLookup(modctx.effectbitsdata, 'bit_value');
+			modctx.effect_modifier_bits = parseTextToTable(data);
+			modctx.effect_modifier_bits_lookup = createLookup(modctx.effect_modifier_bits, 'bit_value');
 			
 			var data = dataobj['gamedata/effects_info.csv'+versionCode];
 			if (!data) throw(DMI.Utils.error('ERROR LOADING: gamedata/effects_info.csv'));
-			modctx.effectsinfo = parseTextToTable(data);
-			modctx.effectsinfolookup = createLookup(modctx.effectsinfo, 'number');
+			modctx.effects_info = parseTextToTable(data);
+			modctx.effects_info_lookup = createLookup(modctx.effects_info, 'number');
 
 			var data = dataobj['gamedata/attribute_keys.csv'+versionCode];
 			if (!data) throw(DMI.Utils.error('ERROR LOADING: gamedata/attribute_keys.csv'));
 			modctx.attribute_keys = parseTextToTable(data);
-			modctx.attribute_keyslookup = createLookup(modctx.attribute_keys, 'number');
+			modctx.attribute_keys_lookup = createLookup(modctx.attribute_keys, 'number');
 
 			var data = dataobj['gamedata/attributes.csv'+versionCode];
 			if (!data) throw(DMI.Utils.error('ERROR LOADING: gamedata/attributes.csv'));
 			modctx.attributes = parseTextToTable(data);
-			modctx.attributeslookup = createLookup(modctx.attributes, 'record_id');
+			modctx.attributes_lookup = createLookup(modctx.attributes, 'record_id');
 
 			var data = dataobj['gamedata/attributes_by_spell.csv'+versionCode];
 			if (!data) throw(DMI.Utils.error('ERROR LOADING: gamedata/attributes_by_spell.csv'));

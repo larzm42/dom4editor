@@ -186,9 +186,22 @@ Utils.renderFlag = function(f){
 Utils.renderFlags = function(arr){
 	var _arr = (typeof(arr) == 'string')  ?  arguments  :  arr;
 	
-	for (var i=0, f, h; f= _arr[i]; i++)
-		h = (h ? h+', ' : ' (') + '<span class="flag">'+f.trim()+'</span>';
+	for (var i=0, f, h; f= _arr[i]; i++) {
+		h = (h ? h+', ' : ' (') + f[0].trim();
+		if (f[1] != "none") {
+			h += '<span class="internal-inline"> ['+f[1]+']</span>';
+		}
+	}
 	return h ? h+')' : '';
+}
+
+Utils.addFlags = function(o, arr, ignorekeys){
+	var _arr = (typeof(arr) == 'string')  ?  arguments  :  arr;
+	
+	for (var i=0, f, h; f= _arr[i]; i++) {
+		o[f[1]] = 1;
+		ignorekeys[f[1]] = 1;
+	}
 }
 
 

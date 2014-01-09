@@ -27,7 +27,7 @@ MArmor.prepareData_PostMod = function() {
 	for (var oi=0, o; o= modctx.armordata[oi]; oi++) {
 		o.id = parseInt(o.id);
 
-		for (var oi2=0, o2; o2 = modctx.armordata2[oi2]; oi2++) {
+		for (var oi2=0, o2; o2 = modctx.protections_by_armor[oi2]; oi2++) {
 			var o2id = parseInt(o2.armor_number);
 			if (o2id == o.id) {
 				if (parseInt(o2.zone_number) == 1 || 

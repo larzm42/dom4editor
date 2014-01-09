@@ -77,6 +77,67 @@ function show_summon(unit, count) {
 	return ref;
 }
 
+function list_summons(spell, effect) {
+	var arr;
+	if (effect.effect_number == "76") {
+		arr = MSpell.tartarianGate;
+	} else if (effect.effect_number == "89") {
+		arr = MSpell.uniqueSummon[effect.raw_argument];
+	} else if (effect.effect_number == "100") {
+		arr = MSpell.terrainSummon[effect.raw_argument];
+	}
+	
+	//create array of refs
+	var tokens = [];
+	for (var i=0, uid; uid= arr[i];  i++)
+		tokens.push( show_summon(uid, 1) );
+	
+	//comma separated & one per line
+	return tokens.join(', <br />');
+}
+
+MSpell.tartarianGate = [771, 772, 773, 774, 775, 776, 777];
+
+MSpell.uniqueSummon = {
+		1:	/* Bind Ice Devil */ [
+		    306, 821,  822, 823, 824, 825],
+		2:	/* Bind Arch Devil */ [
+			305, 826, 827, 828, 829],
+		3:	/* Bind Heliophagus */ [
+		    492, 818, 819, 820],
+		4:	/* King of Elemental Earth */ [
+		    906, 469],
+		5:	/* Father Illearth */ [
+		    470],
+		6:	/* Queen of Elemental Water */ [
+		    359, 907, 908],
+		7:	/* Queen of Elemental Air */ [
+		    563, 911, 912],
+		8:	/* King of Elemental Fire */ [
+		    631, 910],
+		9:	/* King of Banefires */ [
+		    909],
+		10:	/* Bind Demon Lord */ [
+		    446, 810, 900, 1405],
+		11:	/* Awaken Treelord */ [
+		    621, 980, 981],
+		12:	/* Call Amesha Spenta */ [
+		    1375, 1376, 1377, 1492, 1493, 1494],
+		13:	/* Summon Tlaloque */ [
+		    1484, 1485, 1486, 1487],
+		14:	/* Release Lord of Civilization */ [
+		    2063, 2065, 2066, 2067, 2064, 2062]
+}
+
+MSpell.terrainSummon = {
+		1: /* Hidden in Snow */ [
+			1201, 1200, 1202, 1203],
+		2: /* Hidden in Sand */ [
+			1979, 1978, 1980, 1981],
+		3: /* Hidden Underneath */
+			[2522, 2523, 2524, 2525]
+}
+
 //used in effectlookup
 var damage = 		MSpell.format.damage;
 var damage_untested = 	function (v,o){ return damage(v,o) + ' ?'; }
@@ -178,7 +239,9 @@ MSpell.effectlookup = {
 		73:	damage,
 		74:	damage,
 		75:	damage_untested,
-		76:	damage_untested,
+		76:	function (spell, effect) {
+			return list_summons(spell, effect);
+		},
 		77:	damage_untested,
 		79:	damage_untested,
 		80:	damage_untested,
@@ -194,7 +257,7 @@ MSpell.effectlookup = {
 		85:	damage_untested,
 		86:	damage_untested,
 		89:	function (spell, effect) {
-			return modctx.special_unique_summons_lookup[effect.raw_argument].name;
+			return list_summons(spell, effect);
 		},
 		90:	damage_untested,
 		91:	damage,
@@ -209,7 +272,7 @@ MSpell.effectlookup = {
 		98:	damage_untested,
 		99:	damage_untested,
 		100:	function (spell, effect) {
-			return modctx.terrain_specific_summons_lookup[effect.raw_argument].name;
+			return list_summons(spell, effect);
 		},
 		101:	damage,
 		102:	damage_untested,
