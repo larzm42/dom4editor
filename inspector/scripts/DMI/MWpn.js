@@ -45,6 +45,8 @@ MWpn.prepareData_PostMod = function() {
 			}
 			if (effects.range_base && effects.range_base != "0") {
 				o.range = effects.range_base;
+			} else if (effects.range_strength_divisor) {
+				o.range = "-" + effects.range_strength_divisor;
 			}
 			if (effects.area_base && effects.area_base != "0") {
 				o.aoe = effects.area_base;
