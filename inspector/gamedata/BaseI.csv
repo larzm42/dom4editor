@@ -313,7 +313,7 @@ id	name	type	constlevel	mainpath	mainlevel	secondarypath	secondarylevel	weapon	a
 313	Arcane Lens	misc	6	S	3																																																																													1	1	1	1	1	1	1	1																																																			
 314	Eye of Innocence	misc	6	S	2																																	40																					1																																																																															Lost an Eye		
 315	Ring of Wizardry	misc	6	S	8																															1																																					1	1	1	1	1	1	1	1																																																												
-316	Ring of Sorcery	misc	6	S	6																															1																																									1	1	1	1																																																												
+316	Ring of Sorcery	misc	6	S	7																															1																																									1	1	1	1																																																												
 317	Skull Mentor	misc	6	D	2																																																																																																																	18																						
 318	Elixir of Life	misc	6	N	2	F	2																																																																																																																																					"prevents aging, resurrects bearer upon death"
 319	Pocket Ship	misc	6	N	3	A	2																																						200	4																																																																																														grants sailing
