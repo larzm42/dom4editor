@@ -13,6 +13,7 @@ var modconstants = DMI.modconstants;
 //determines unit type sort order (and identifies commanders)
 var unitSortableTypes = {
 	'cmdr (cap only)': 	'10.cmdr',
+	'cmdr (foreign)': 	'111.cmdr',
 	'commander': 		'11.cmdr',
 	'Commander': 		'11.cmdr',
 	'Commander (Recruitment)': 	'15.cmdr',
@@ -28,6 +29,11 @@ var unitSortableTypes = {
 	'Commander (Event)': 		'12.cmdr',
 	'Commander (?)': 	'193.cmdr',
 	'cmdr (u-water)': 	'194.cmdr-uw',
+	'cmdr (forest)': '112.cmdr',
+	'cmdr (mountain)': '113.cmdr',
+	'cmdr (swamp)': '114.cmdr',
+	'cmdr (waste)': '115.cmdr',
+	'cmdr (cave)': '116.cmdr',
 
 	'Mage (Recruitment)': 	'195.cmdr-mage',
 	'Mage (Magic site)':	'196.cmdr-mage',
@@ -51,6 +57,7 @@ var unitSortableTypes = {
 	'Scout (Summon)': 	'19976.cmdr-scout',
 
 	'unit (cap only)': 	'20.unit',
+	'unit (foreign)': 	'201.unit',
 	'unit': 		'21.unit',
 	'Unit': 		'21.unit',
 	'unit (u-water)': 	'21.unit-uw',
@@ -64,7 +71,12 @@ var unitSortableTypes = {
 	'Unit (mercenary)': 	'29.unit',
 	'Unit (Special)': 	'291.unit',
 	'Unit (?)': 		'292.unit',
-	
+	'unit (forest)': '202.unit',
+	'unit (mountain)': '203.unit',
+	'unit (swamp)': '204.unit',
+	'unit (waste)': '205.unit',
+	'unit (cave)': '206.unit',
+
 	'hero (multi)': 	'30.hero-cmdr',
 	'hero (unique)': 	'31.hero-cmdr',
 	'Hero (Event)': 	'31.hero-cmdr',
@@ -316,7 +328,7 @@ MUnit.prepareData_PostNationData = function(o) {
 			}
 		}
 		//clear pretender cost
-		if (o.type == 'pretender') {
+		if (o.type == 'Pretender') {
 			//delete o.gcost;
 			delete o.rcost;
 		}
@@ -1202,7 +1214,6 @@ var ignorekeys = {
 	
 	hand:1, head:1, body:1, foot:1, misc:1, 
 	
-
 	A:1, B:1, D:1, E:1, F:1, N:1, S:1, W:1, H:1, randompaths:1,
 	magicboost_A:1, magicboost_B:1, magicboost_D:1, magicboost_E:1, magicboost_F:1, magicboost_N:1, magicboost_S:1, magicboost_W:1, magicboost_H:1,
 	magicboost_all:1,
@@ -1330,16 +1341,16 @@ MUnit.renderOverlay = function(o) {
 		h+='	<p class="firstline">summoned with '+refarr.join(', ')+'</p>';
 		isfree = true;
 	}
-	else if (o.type=='pretender') {
+	else if (o.type=='Pretender') {
 		h+='<p class="firstline">';
 		h+= ' Cost<span class="internal-inline"> [gcost]</span>: ' + o.gcost +' pts ';
 		
-		h+= ' +<span class="internal-inline"> [pathcost]</span> '+o.pathcost + ' pts per magic path';
+		h+= ' +<span class="internal-inline"> [pathcost]</span> '+o.path + ' pts per magic path';
 		// h+='<br />';
 		// h+= ' New magic paths cost<span class="internal-inline"> [pathcost]</span>: '+o.pathcost + ' pts ';
 		
 		h+='<br />';
-		h+= ' Dominion<span class="internal-inline"> [startdom]</span>: '+o.startdom;
+		h+= ' Dominion<span class="internal-inline"> [startdom]</span>: '+o.dom;
 		h+='</p>';
 		isfree = noupkeep = true;
 	}

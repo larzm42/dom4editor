@@ -301,6 +301,7 @@ MSpell.effectlookup = {
 		504:	damage_untested,
 		509:	damage_untested,
 		514:	damage_untested,
+		524:	damage_untested,
 		599:	damage_untested,
 		600:	damage_untested,
 		601:	damage_untested,

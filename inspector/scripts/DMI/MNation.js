@@ -45,6 +45,7 @@ MSite.prepareData_PostMod = function() {
 MNation.initNation = function(o) {
 	o.pretenders = [];
 	o.commanders = [];
+	o.foreigncommanders = [];
 	o.units = [];
 	o.heroes = [];	
 	o.multiheroes = [];
@@ -57,29 +58,143 @@ MNation.initNation = function(o) {
 MNation.prepareData_PreMod = function() {
 	for (var oi=0, o;  o= modctx.nationdata[oi];  oi++) {
 		
-		o.pretenders = Utils.keyListToTable(o, 'pret');
-
 		o.pretenders = [];
-		var capunit = Utils.keyListToTable(o, 'hmon');
-		for (var oj=0, cap; cap = capunit[oj]; oj++) {
-			var u = modctx.unitlookup[cap];
-			if (u.type == 'c') {
-				o.capcommanders.push(cap);
-			} else {
-				o.capunits.push(cap);
+		
+		// Get realms of nation
+		var realms = [];
+		for (var oj=0, attr; attr = modctx.attributes_by_nation[oj];  oj++) {
+			if (parseInt(attr.nation_number) == o.id) {
+				var attribute = modctx.attributes_lookup[parseInt(attr.attribute_record_id)];
+				if (attribute.attribute_number == "289") {
+					realms.push(attribute.raw_value);
+				}
+			}
+		}
+		
+		// get monsters in realm
+		for (var oj=0, attr; attr = modctx.realms[oj];  oj++) {
+			for (var ok=0, realm; realm = realms[ok]; ok++) {
+				if (attr.realm == realm) {
+					o.pretenders.push(attr.monster_number);
+				}
+			}
+		}
+		
+		// look for added pretenders
+		for (var oj=0, attr; attr = modctx.pretender_types_by_nation[oj];  oj++) {
+			if (parseInt(attr.nation_number) == o.id) {
+				o.pretenders.push(attr.monster_number);
+			}
+		}
+		
+		// look for deleted pretenders
+		for (var oj=0, attr; attr = modctx.unpretender_types_by_nation[oj];  oj++) {
+			if (parseInt(attr.nation_number) == o.id) {
+				for (var ok=0, pret; pret = o.pretenders[ok]; ok++) {
+					if (pret == attr.monster_number) {
+						o.pretenders.splice(ok, 1);
+						break;
+					}
+				}
+			}
+		}
+		
+//		var capunit = Utils.keyListToTable(o, 'hmon');
+//		for (var oj=0, cap; cap = capunit[oj]; oj++) {
+//			var u = modctx.unitlookup[cap];
+//			if (u.type == 'c') {
+//				o.capcommanders.push(cap);
+//			} else {
+//				o.capunits.push(cap);
+//			}
+//		}
+
+//		o.commanders = Utils.keyListToTable(o, 'com');
+		o.commanders = [];
+		// look for commanders
+		for (var oj=0, attr; attr = modctx.fort_leader_types_by_nation[oj];  oj++) {
+			if (parseInt(attr.nation_number) == o.id) {
+				o.commanders.push(attr.monster_number);
+			}
+		}
+		o.foreigncommanders = [];
+		// look for foreign commanders
+		for (var oj=0, attr; attr = modctx.nonfort_leader_types_by_nation[oj];  oj++) {
+			if (parseInt(attr.nation_number) == o.id) {
+				o.foreigncommanders.push(attr.monster_number);
+			}
+		}
+		//o.units = Utils.keyListToTable(o, 'unit');
+		o.units = [];
+		// look for units
+		for (var oj=0, attr; attr = modctx.fort_troop_types_by_nation[oj];  oj++) {
+			if (parseInt(attr.nation_number) == o.id) {
+				o.units.push(attr.monster_number);
+			}
+		}
+		o.foreignunits = [];
+		// look for foreign units
+		for (var oj=0, attr; attr = modctx.nonfort_troop_types_by_nation[oj];  oj++) {
+			if (parseInt(attr.nation_number) == o.id) {
+				o.foreignunits.push(attr.monster_number);
 			}
 		}
 
+//		o.heroes = Utils.keyListToTable(o, 'hero', 6);	
+//		o.multiheroes = Utils.keyListToTable(o, 'multi', 2);
+//		o.uwunits = Utils.keyListToTable(o, 'uwu', 5);
+//		o.uwcoms = Utils.keyListToTable(o, 'uwc', 5);
+//		o.specialunits = Utils.keyListToTable(o, 'spc');
+		o.sites = [];
+		o.forestrec = [];
+		o.forestcom = [];
+		o.mountainrec = [];
+		o.mountaincom = [];
+		o.swamprec = [];
+		o.swampcom = [];
+		o.wasterec = [];
+		o.wastecom = [];
+		o.caverec = [];
+		o.cavecom = [];
+		for (var oj=0, attr; attr = modctx.attributes_by_nation[oj];  oj++) {
+			if (parseInt(attr.nation_number) == o.id) {
+				var attribute = modctx.attributes_lookup[parseInt(attr.attribute_record_id)];
+				if (attribute.attribute_number == "52") {
+					o.sites.push(parseInt(attribute.raw_value));
+				}
+				if (attribute.attribute_number == "294") {
+					o.forestrec.push(parseInt(attribute.raw_value));
+				}
+				if (attribute.attribute_number == "295") {
+					o.forestcom.push(parseInt(attribute.raw_value));
+				}
+				if (attribute.attribute_number == "296") {
+					o.swamprec.push(parseInt(attribute.raw_value));
+				}
+				if (attribute.attribute_number == "297") {
+					o.swampcom.push(parseInt(attribute.raw_value));
+				}
+				if (attribute.attribute_number == "298") {
+					o.mountainrec.push(parseInt(attribute.raw_value));
+				}
+				if (attribute.attribute_number == "299") {
+					o.mountaincom.push(parseInt(attribute.raw_value));
+				}
+				if (attribute.attribute_number == "300") {
+					o.wasterec.push(parseInt(attribute.raw_value));
+				}
+				if (attribute.attribute_number == "301") {
+					o.wastecom.push(parseInt(attribute.raw_value));
+				}
+				if (attribute.attribute_number == "302") {
+					o.caverec.push(parseInt(attribute.raw_value));
+				}
+				if (attribute.attribute_number == "303") {
+					o.cavecom.push(parseInt(attribute.raw_value));
+				}
+			}
+		}
 
-		o.commanders = Utils.keyListToTable(o, 'com');
-		o.units = Utils.keyListToTable(o, 'unit');
-		o.heroes = Utils.keyListToTable(o, 'hero', 6);	
-		o.multiheroes = Utils.keyListToTable(o, 'multi', 2);
-		o.uwunits = Utils.keyListToTable(o, 'uwu', 5);
-		o.uwcoms = Utils.keyListToTable(o, 'uwc', 5);
-		o.specialunits = Utils.keyListToTable(o, 'spc');
-		o.sites = Utils.keyListToTable(o, 'site', 4);
-		
 		o.spells = [];
 	}
 }
@@ -131,7 +246,7 @@ MNation.prepareData_PostMod = function() {
 		}
 		
 		//associate pretenders
- 		var basekey = 'pretender';
+ 		var basekey = 'Pretender';
 		var arr = o.pretenders;
 		for (var i=0; i<arr.length; i++) {
 			if (!arr[i]) continue;
@@ -204,11 +319,23 @@ MNation.prepareData_PostMod = function() {
 		var iterations = {
 			'unit': o.units, 
 			'commander': o.commanders,
-			'hero (unique)': o.heroes,
-			'hero (multi)': o.multiheroes,
-			'unit (u-water)': o.uwunits,
-			'cmdr (u-water)': o.uwcoms,
-			'special': o.specialunits,
+			'cmdr (foreign)': o.foreigncommanders,
+			'unit (foreign)': o.foreignunits,
+			'unit (forest)': o.forestrec,
+			'cmdr (forest)': o.forestcom,
+			'unit (mountain)': o.mountainrec,
+			'cmdr (mountain)': o.mountaincom,
+			'unit (swamp)': o.swamprec,
+			'cmdr (swamp)': o.swampcom,
+			'unit (waste)': o.wasterec,
+			'cmdr (waste)': o.wastecom,
+			'unit (cave)': o.caverec,
+			'cmdr (cave)': o.cavecom,
+			//'hero (unique)': o.heroes,
+			//'hero (multi)': o.multiheroes,
+			//'unit (u-water)': o.uwunits,
+			//'cmdr (u-water)': o.uwcoms,
+			//'special': o.specialunits,
 			'unit (cap only)': o.capunits,
 			'cmdr (cap only)': o.capcommanders
 		}

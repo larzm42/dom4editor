@@ -159,8 +159,17 @@ DMI.loadDom3Data = function(cb_success) {
 		'gamedata/monster_tags.csv'+versionCode,
 		'gamedata/special_unique_summons.csv'+versionCode,
 		'gamedata/terrain_specific_summons.csv'+versionCode,
-		'gamedata/other_planes.csv'+versionCode
-
+		'gamedata/other_planes.csv'+versionCode,
+		'gamedata/attributes_by_nation.csv'+versionCode,
+		'gamedata/fort_leader_types_by_nation.csv'+versionCode,
+		'gamedata/fort_troop_types_by_nation.csv'+versionCode,
+		'gamedata/nonfort_leader_types_by_nation.csv'+versionCode,
+		'gamedata/nonfort_troop_types_by_nation.csv'+versionCode,
+		'gamedata/pretender_types_by_nation.csv'+versionCode,
+		'gamedata/realms.csv'+versionCode,
+		'gamedata/unpretender_types_by_nation.csv'+versionCode,
+		'gamedata/map_terrain_types.csv'+versionCode
+		
 		];
 	
 	//add directory to mod paths
@@ -299,6 +308,43 @@ DMI.loadDom3Data = function(cb_success) {
 			if (!data) throw(DMI.Utils.error('ERROR LOADING: gamedata/other_planes.csv'));
 			modctx.other_planes = parseTextToTable(data);
 			modctx.other_planes_lookup = createLookup(modctx.other_planes, 'number');
+			
+			var data = dataobj['gamedata/map_terrain_types.csv'+versionCode];
+			if (!data) throw(DMI.Utils.error('ERROR LOADING: gamedata/map_terrain_types.csv'));
+			modctx.map_terrain_types = parseTextToTable(data);
+			modctx.map_terrain_types_lookup = createLookup(modctx.map_terrain_types, 'bit_value');
+			
+			var data = dataobj['gamedata/attributes_by_nation.csv'+versionCode];
+			if (!data) throw(DMI.Utils.error('ERROR LOADING: gamedata/attributes_by_nation.csv'));
+			modctx.attributes_by_nation = parseTextToTable(data);
+
+			var data = dataobj['gamedata/fort_leader_types_by_nation.csv'+versionCode];
+			if (!data) throw(DMI.Utils.error('ERROR LOADING: gamedata/fort_leader_types_by_nation.csv'));
+			modctx.fort_leader_types_by_nation = parseTextToTable(data);
+
+			var data = dataobj['gamedata/fort_troop_types_by_nation.csv'+versionCode];
+			if (!data) throw(DMI.Utils.error('ERROR LOADING: gamedata/fort_troop_types_by_nation.csv'));
+			modctx.fort_troop_types_by_nation = parseTextToTable(data);
+
+			var data = dataobj['gamedata/nonfort_leader_types_by_nation.csv'+versionCode];
+			if (!data) throw(DMI.Utils.error('ERROR LOADING: gamedata/nonfort_leader_types_by_nation.csv'));
+			modctx.nonfort_leader_types_by_nation = parseTextToTable(data);
+
+			var data = dataobj['gamedata/nonfort_troop_types_by_nation.csv'+versionCode];
+			if (!data) throw(DMI.Utils.error('ERROR LOADING: gamedata/nonfort_troop_types_by_nation.csv'));
+			modctx.nonfort_troop_types_by_nation = parseTextToTable(data);
+
+			var data = dataobj['gamedata/pretender_types_by_nation.csv'+versionCode];
+			if (!data) throw(DMI.Utils.error('ERROR LOADING: gamedata/pretender_types_by_nation.csv'));
+			modctx.pretender_types_by_nation = parseTextToTable(data);
+
+			var data = dataobj['gamedata/unpretender_types_by_nation.csv'+versionCode];
+			if (!data) throw(DMI.Utils.error('ERROR LOADING: gamedata/unpretender_types_by_nation.csv'));
+			modctx.unpretender_types_by_nation = parseTextToTable(data);
+
+			var data = dataobj['gamedata/realms.csv'+versionCode];
+			if (!data) throw(DMI.Utils.error('ERROR LOADING: gamedata/realms.csv'));
+			modctx.realms = parseTextToTable(data);
 
 			//before applying mod (order is important!)
 			DMI.MWpn.prepareData_PreMod();

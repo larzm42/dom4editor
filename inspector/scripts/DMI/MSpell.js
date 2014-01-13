@@ -634,7 +634,7 @@ MSpell.renderSpellTable = function(o, original_effect) {
 					
 					var val;
 					if (attribute.attribute_number == '702') {
-						val = Utils.renderFlags(MSpell.bitfieldValues(attribute.raw_value, terrain_mask), 1);
+						val = Utils.renderFlags(MSpell.bitfieldValues(attribute.raw_value, modctx.map_terrain_types_lookup), 1);
 					} else {
 						val = attribute.raw_value;
 					}
@@ -645,8 +645,7 @@ MSpell.renderSpellTable = function(o, original_effect) {
 		}
 
 		//special
-		var mask = modctx.effect_modifier_bits_lookup;
-		var specflags = Utils.renderFlags( MSpell.bitfieldValues(effects.modifiers_mask, mask) );
+		var specflags = Utils.renderFlags( MSpell.bitfieldValues(effects.modifiers_mask, modctx.effect_modifier_bits_lookup) );
 		if (specflags)
 			h+=		'<tr><td class="widecell" colspan="2">&nbsp;</td></tr><tr><td class="widecell" colspan="2">'+specflags+'</td></tr></div>';
 	}
@@ -688,24 +687,6 @@ function renderEffect(o, effects) {
 	//if its a function then run it
 	if (typeof(res) == 'function')	res = res(o, effects);
 	return '<tr><th width="10px">'+modctx.effects_info_lookup[effects.effect_number].name.replace(/{(.*?)}/g, "").trim()+':</th><td>'+res+'</td></tr>'
-}
-
-var terrain_mask = {
-		0: {'bit_value': 0, 'bit_name': 'Plains'},
-		1: {'bit_value': 1, 'bit_name': 'Small Province'},
-		2: {'bit_value': 2, 'bit_name': 'Large Province'},
-		4: {'bit_value': 4, 'bit_name': 'Sea'},
-		8: {'bit_value': 8, 'bit_name': 'Freshwater'},
-		16: {'bit_value': 16, 'bit_name': 'Mountain'},
-		32: {'bit_value': 32, 'bit_name': 'Swamp'},
-		64: {'bit_value': 64, 'bit_name': 'Waste'},
-		128: {'bit_value': 128, 'bit_name': 'Forest'},
-		256: {'bit_value': 256, 'bit_name': 'Farm'},
-		512: {'bit_value': 512, 'bit_name': 'Nostart'},
-		1024: {'bit_value': 1024, 'bit_name': 'Many Sites'},
-		2048: {'bit_value': 2048, 'bit_name': 'Deep Sea'},
-		4096: {'bit_value': 4096, 'bit_name': 'Cave'},
-		4194304: {'bit_value': 4194304, 'bit_name': 'Border Mountain'}
 }
 
 //namespace args
