@@ -1,5 +1,4 @@
-record_id	attribute_record_id	attribute_number	nation_number
-test
+record_id	attribute_record_id	attribute_number	nation_number	test
 1	2675	278	8
 2	2676	278	5
 3	2677	278	33
