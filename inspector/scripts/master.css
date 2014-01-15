@@ -23,7 +23,7 @@ body {overflow:hidden;}
 	/*right: 0;*/
 	z-index: 1;
 	
-	width: 600px;
+	width: 640px;
 	background-color: #F6F6F6;
 }
 
@@ -83,7 +83,7 @@ body {overflow:hidden;}
 .pathicon.Path_F, .pathicon.Path_A { top:2px; }
 
 .pathicon.Path_R { width:13px; padding:0px 1px 0px 0px; }
-.pathicon.Path_U { width:12px; padding:0px 1px 0px 1px; }
+.pathicon.Path_U { width:12px; padding:0px 1px 0px 1px; border:0; }
 
 .abilityicon {
 	width:14px;

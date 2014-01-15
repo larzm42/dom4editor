@@ -153,14 +153,18 @@ MSpell.prepareData_PostMod = function() {
 		//combat fatiguecost
 		if (o.type == 'Ritual'){
 			delete o.fatiguecost;
+			o.fatiguecostsort = -1;
 		} else {
 			if (parseInt(o.gemcost) > 0) {
 				o.fatiguecost = parseInt(o.gemcost) * 100;
 			}
+			o.fatiguecostsort = parseInt(o.fatiguecost);
 		}
 		if (o.gemcost && parseInt(o.gemcost) > 0) {
+			o.gemcostsort = parseInt(o.gemcost);
 			o.gemcost = o.gemcost + o.path1;
 		} else {
+			o.gemcostsort = -1;
 			delete o.gemcost;
 		}	
 	
@@ -263,12 +267,12 @@ function spellTypeFormatter(row, cell, value, columnDef, dataContext) {
 MSpell.CGrid = DMI.Utils.Class( DMI.CGrid, function() {		
 	//grid columns
 	var columns = [
-		{ id: "name",     width: 140, name: "Spell Name", field: "name", sortable: true, formatter: spellNameFormatter },
+		{ id: "name",     width: 120, name: "Spell Name", field: "name", sortable: true, formatter: spellNameFormatter },
 		{ id: "type",      width: 40, name: "Type", field: "type", sortable: true, formatter: spellTypeFormatter },
 		{ id: "research",      width: 60, name: "School", field: "sortschool", sortable: true, formatter: function(_,__,v,___,o){ return o.research; } },
 		{ id: "mpath",    width: 40, name: "Path req", field: "mpath", sortable: true, formatter: DMI.GridFormat.Paths },
-		{ id: "gemcost",    width: 30, name: "Cost", field: "fatiguecost", cssClass: "numeric", sortable: true, formatter: spellCostFormatter },
-		{ id: "fatiguecost",     width: 30, name: "Fat", field: "fatiguecost", cssClass: "numeric", sortable: true, formatter: fatigueFormatter }
+		{ id: "gemcost",    width: 30, name: "Cost", field: "gemcostsort", sortable: true, formatter: spellCostFormatter },
+		{ id: "fatiguecost",     width: 30, name: "Fat", field: "fatiguecostsort", sortable: true, formatter: fatigueFormatter }
 	];
 	
 	this.superClass.call(this, 'spell', modctx.spelldata, columns); //superconstructor
@@ -502,6 +506,7 @@ var ignorekeys = {
 	type:1,		
 	mpath:1,
 	fatiguecost:1,gemcost:1,
+	fatiguecostsort:1,gemcostsort:1,
 	next_spell:1,
 	effect_record_id:1,
 	effects_count:1,

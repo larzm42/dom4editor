@@ -314,6 +314,8 @@ MUnit.prepareData_PostMod = function() {
 			o.rcost = 0;
 		else
 			o.rcost = Math.floor(o.rcost || 1);
+
+		o.rcostsort = parseInt(o.rcost);
 	}
 }
 
@@ -689,11 +691,11 @@ MUnit.CGrid = Utils.Class( DMI.CGrid, function() {
 	var columns = [
 		{ id: "name",     width: 100, name: "Unit Name", field: "name", sortable: true },
 		{ id: "nation",   width: 60, name: "Nation", field: "nationname", sortable: true },
-		{ id: "type",     width: 60, name: "Type", field: "sorttype", sortable: true, formatter: formatType },
-		{ id: "gcost",     width: 30, name: "Gold", field: "gcost", sortable: true, cssClass: "numeric", formatter: formatGold },
-		{ id: "rcost",     width: 27, name: "Res", field: "rcost", sortable: true, cssClass: "numeric", formatter: formatRes },		
-		{ id: "sacred",     width: 23, name: "Sacred", field: "holy", sortable: true, formatter: formatHoly },
-		{ id: "listed_mpath",     width: 100, name: "Magic", field: "listed_mpath", sortable: true, formatter: DMI.GridFormat.OrderedPaths }
+		{ id: "type",     width: 80, name: "Type", field: "sorttype", sortable: true, formatter: formatType },
+		{ id: "gcost",     width: 35, name: "Gold", field: "gcost", sortable: true, cssClass: "numeric", formatter: formatGold },
+		{ id: "rcost",     width: 30, name: "Res", field: "rcostsort", sortable: true, cssClass: "numeric", formatter: formatRes },		
+		{ id: "sacred",     width: 30, name: "Sacred", field: "holy", sortable: true, formatter: formatHoly },
+		{ id: "listed_mpath",     width: 120, name: "Magic", field: "listed_mpath", sortable: true, formatter: DMI.GridFormat.OrderedPaths }
 	];
 	
 	this.superClass.call(this, 'unit', modctx.unitdata, columns); //superconstructor
@@ -1218,7 +1220,7 @@ var ignorekeys = {
 	magicboost_A:1, magicboost_B:1, magicboost_D:1, magicboost_E:1, magicboost_F:1, magicboost_N:1, magicboost_S:1, magicboost_W:1, magicboost_H:1,
 	magicboost_all:1,
 	
-	gcost:1, rcost:1,
+	gcost:1, rcost:1, rcostsort:1,
 	
 	weapons:1, armor:1, helmet:1, shield:1, wpn1:1, wpn2:1, wpn3:1, wpn4:1, wpn5:1, wpn6:1,
 	
