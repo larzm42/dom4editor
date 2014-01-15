@@ -692,7 +692,7 @@ MUnit.CGrid = Utils.Class( DMI.CGrid, function() {
 		{ id: "name",     width: 100, name: "Unit Name", field: "name", sortable: true },
 		{ id: "nation",   width: 60, name: "Nation", field: "nationname", sortable: true },
 		{ id: "type",     width: 80, name: "Type", field: "sorttype", sortable: true, formatter: formatType },
-		{ id: "gcost",     width: 35, name: "Gold", field: "gcost", sortable: true, cssClass: "numeric", formatter: formatGold },
+		{ id: "gcost",     width: 32, name: "Gold", field: "gcost", sortable: true, cssClass: "numeric", formatter: formatGold },
 		{ id: "rcost",     width: 30, name: "Res", field: "rcostsort", sortable: true, cssClass: "numeric", formatter: formatRes },		
 		{ id: "sacred",     width: 30, name: "Sacred", field: "holy", sortable: true, formatter: formatHoly },
 		{ id: "listed_mpath",     width: 120, name: "Magic", field: "listed_mpath", sortable: true, formatter: DMI.GridFormat.OrderedPaths }
