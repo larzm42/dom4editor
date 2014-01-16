@@ -89,7 +89,7 @@ id	name	era	rarity	loc	level	path	F	A	W	E	S	D	N	B	gold	res	sup	unr	exp	lab	fort	
 88	High Temple of the Sky and the Rain	2	5	0	0	Water		1	1																	1191	Rain Priest	1907	High Priest of the Sky																																											
 89	Temple of the Moon	2	5	0	0	Astral					1															1192	Moon Priest																																													
 90	Temple of the Sun	2	5	0	0	Fire		1																		725	Sun Warrior	1193	Sun Priest																																											
-91	Carnutes	1	5	0	0	Nature				2	3		1													1222	Boar Warrior	1223	Boar Lord		Druid																																									
+91	Carnutes	1	5	0	0	Nature				2	3		1													1222	Boar Warrior	1223	Boar Lord	1204	Druid																																									
 92	Temple of the Pure War	3	5	0	0	Holy		1																		1247	Sohei																																													
 93	Mountain of the Mystics	3	5	0	0	Earth	1			1			1													1248	Yamabushi																																													
 94	Palace of the Eagle Kings	1	5	0	0	Air		5	1																	1286	Eagle King	1289	Temple Guard																																											
