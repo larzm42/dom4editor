@@ -1039,6 +1039,7 @@ var displayorder3 = Utils.cutDisplayOrder(aliases, formats,
 	'inn',	'inate spellcaster',
 	'bodyg',	'bodyguard',
 	'pathboost',	'pathboost',
+	'ritualrange',	'ritual range',
 	'disbel',	'disbelieve illusions',
 	
 	'sup',	'supply bonus',		Format.Signed,
