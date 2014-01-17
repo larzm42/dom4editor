@@ -28,12 +28,14 @@ var unitSortableTypes = {
 	'Commander (Battle Summon)': 	'192.cmdr',
 	'Commander (Event)': 		'12.cmdr',
 	'Commander (?)': 	'193.cmdr',
-	'cmdr (u-water)': 	'194.cmdr-uw',
 	'cmdr (forest)': '112.cmdr',
 	'cmdr (mountain)': '113.cmdr',
 	'cmdr (swamp)': '114.cmdr',
 	'cmdr (waste)': '115.cmdr',
 	'cmdr (cave)': '116.cmdr',
+	'cmdr (coast)': '117.cmdr',
+	'cmdr (land)': '118.cmdr',
+	'cmdr (u-water)': 	'119.cmdr-uw',
 
 	'Mage (Recruitment)': 	'195.cmdr-mage',
 	'Mage (Magic site)':	'196.cmdr-mage',
@@ -60,7 +62,6 @@ var unitSortableTypes = {
 	'unit (foreign)': 	'201.unit',
 	'unit': 		'21.unit',
 	'Unit': 		'21.unit',
-	'unit (u-water)': 	'21.unit-uw',
 	'Unit (Recruitment)': 	'22.unit',
 	'Unit (Summon)': 	'23.unit',
 	'Unit (Battle Summon)': '24.unit',
@@ -76,6 +77,9 @@ var unitSortableTypes = {
 	'unit (swamp)': '204.unit',
 	'unit (waste)': '205.unit',
 	'unit (cave)': '206.unit',
+	'unit (coast)': '207.unit',
+	'unit (land)': '208.unit',
+	'unit (u-water)': 	'209.unit-uw',
 
 	'hero (multi)': 	'30.hero-cmdr',
 	'hero (unique)': 	'31.hero-cmdr',
@@ -621,13 +625,13 @@ MUnit.prepareForRender = function(o) {
 			def_armor += parseInt(a.def || '0');
 			
 			if (a.type == 'armor') 
-				p_body = parseInt(a.body);
+				p_body = parseInt(a.protbody);
 
 			else if (a.type == 'helm')
-				p_head = parseInt(a.head);
+				p_head = parseInt(a.prothead);
 			
 			else if (a.type == 'shield')
-				def_parry = a.par;
+				def_parry = a.parry;
 			
 			else if (a.type == 'misc') { 
 				//use misc armor prot instead of basic?                                                

@@ -31,13 +31,21 @@ MArmor.prepareData_PostMod = function() {
 			var o2id = parseInt(o2.armor_number);
 			if (o2id == o.id) {
 				if (parseInt(o2.zone_number) == 1 || 
-					parseInt(o2.zone_number) == 2 || 
 					parseInt(o2.zone_number) == 5 || 
 					parseInt(o2.zone_number) == 6) {
 					o.prot = o2.protection;
 					break;
+				} else if (parseInt(o2.zone_number) == 2) {
+					o.torso = o2.protection;
+				} else if (parseInt(o2.zone_number) == 3) {
+					o.upper = o2.protection;
+				} else if (parseInt(o2.zone_number) == 4) {
+					o.lower = o2.protection;
 				}
 			}
+		}
+		if (o.torso) {
+			o.prot = Math.floor((parseInt(o.torso) + (parseInt(o.upper) + parseInt(o.lower)) / 2) / 2);
 		}
 		
 		o.renderOverlay = MArmor.renderOverlay;

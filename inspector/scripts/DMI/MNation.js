@@ -156,11 +156,53 @@ MNation.prepareData_PreMod = function() {
 		o.wastecom = [];
 		o.caverec = [];
 		o.cavecom = [];
+		o.coastcom = [];
+		o.coastrec = [];
+		o.uwcom = [];
+		o.uwunit = [];
+		o.landcom = [];
+		o.landunit = [];
 		for (var oj=0, attr; attr = modctx.attributes_by_nation[oj];  oj++) {
 			if (parseInt(attr.nation_number) == o.id) {
 				var attribute = modctx.attributes_lookup[parseInt(attr.attribute_record_id)];
 				if (attribute.attribute_number == "52") {
 					o.sites.push(parseInt(attribute.raw_value));
+				}
+				if (attribute.attribute_number == "158" || attribute.attribute_number == "159") {
+					o.coastcom.push(parseInt(attribute.raw_value));
+				}
+				if (attribute.attribute_number == "160" || attribute.attribute_number == "161" || attribute.attribute_number == "162") {
+					o.coastrec.push(parseInt(attribute.raw_value));
+				}
+				if (attribute.attribute_number == "163") {
+					o.landcom.push(parseInt(attribute.raw_value));
+				}
+				if (attribute.attribute_number == "171" || attribute.attribute_number == "172") {
+					if (attr.nation_number == "83" ||
+						attr.nation_number == "84" ||
+						attr.nation_number == "85" ||
+						attr.nation_number == "86" ||
+						attr.nation_number == "87" ||
+						attr.nation_number == "88" ||
+						attr.nation_number == "89" ||
+						attr.nation_number == "90" ||
+						attr.nation_number == "92") {
+					} else {
+						o.uwcom.push(parseInt(attribute.raw_value));
+					}
+				}
+				if (attribute.attribute_number == "173" || attribute.attribute_number == "174" || attribute.attribute_number == "175" || attribute.attribute_number == "176") {
+					if (attr.nation_number == "83" ||
+						attr.nation_number == "84" ||
+						attr.nation_number == "85" ||
+						attr.nation_number == "86" ||
+						attr.nation_number == "88" ||
+						attr.nation_number == "89" ||
+						attr.nation_number == "90" ||
+						attr.nation_number == "92") {
+					} else {
+						o.uwunit.push(parseInt(attribute.raw_value));
+					}
 				}
 				if (attribute.attribute_number == "294") {
 					o.forestrec.push(parseInt(attribute.raw_value));
@@ -331,10 +373,14 @@ MNation.prepareData_PostMod = function() {
 			'cmdr (waste)': o.wastecom,
 			'unit (cave)': o.caverec,
 			'cmdr (cave)': o.cavecom,
+			'unit (coast)': o.coastrec,
+			'cmdr (coast)': o.coastcom,
+			'unit (land)': o.landunit,
+			'cmdr (land)': o.landcom,
 			//'hero (unique)': o.heroes,
 			//'hero (multi)': o.multiheroes,
-			//'unit (u-water)': o.uwunits,
-			//'cmdr (u-water)': o.uwcoms,
+			'unit (u-water)': o.uwunit,
+			'cmdr (u-water)': o.uwcom,
 			//'special': o.specialunits,
 			'unit (cap only)': o.capunits,
 			'cmdr (cap only)': o.capcommanders
