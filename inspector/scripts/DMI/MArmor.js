@@ -155,6 +155,7 @@ var ignorekeys = {
 	used_by:1,
 	name:1,
 	type:1,
+	torso:1,upper:1,lower:1,
 	searchable:1,renderOverlay:1, matchProperty:1
 };
 	
