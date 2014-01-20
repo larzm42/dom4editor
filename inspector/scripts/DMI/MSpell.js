@@ -211,7 +211,8 @@ MSpell.prepareData_PostMod = function() {
 					u.summonedby = u.summonedby || [];
 					u.summonedby.push( o );					
 				}
-			} else if (effects.effect_number == "76" || effects.effect_number == "89" || effects.effect_number == "100") {
+			} else if (effects.effect_number == "76" || effects.effect_number == "89" 
+				|| effects.effect_number == "100" || effects.effect_number == "114") {
 				var arr;
 				if (effects.effect_number == "76") {
 					arr = MSpell.tartarianGate;
@@ -219,6 +220,8 @@ MSpell.prepareData_PostMod = function() {
 					arr = MSpell.uniqueSummon[effects.raw_argument];
 				} else if (effects.effect_number == "100") {
 					arr = MSpell.terrainSummon[effects.raw_argument];
+				} else if (effects.effect_number == "114") {
+					arr = MSpell.uniqueSummon[effects.raw_argument];
 				}
 				for (var i=0, uid;  uid= arr[i];  i++) {
 					var u = modctx.unitlookup[uid];
