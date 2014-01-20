@@ -85,6 +85,8 @@ function list_summons(spell, effect) {
 		arr = MSpell.uniqueSummon[effect.raw_argument];
 	} else if (effect.effect_number == "100") {
 		arr = MSpell.terrainSummon[effect.raw_argument];
+	} else if (effect.effect_number == "114") {
+		arr = MSpell.uniqueSummon[effect.raw_argument];
 	}
 	
 	//create array of refs
@@ -288,7 +290,9 @@ MSpell.effectlookup = {
 		111:	damage,
 		112:	damage_untested,
 		113:	damage_untested,
-		114:	damage_untested,
+		114:	function (spell, effect) {
+			return list_summons(spell, effect);
+		},
 		115:	damage_untested,
 		116:	damage_untested,
 		117:	damage_untested,
