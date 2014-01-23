@@ -99,17 +99,6 @@ MNation.prepareData_PreMod = function() {
 			}
 		}
 		
-//		var capunit = Utils.keyListToTable(o, 'hmon');
-//		for (var oj=0, cap; cap = capunit[oj]; oj++) {
-//			var u = modctx.unitlookup[cap];
-//			if (u.type == 'c') {
-//				o.capcommanders.push(cap);
-//			} else {
-//				o.capunits.push(cap);
-//			}
-//		}
-
-//		o.commanders = Utils.keyListToTable(o, 'com');
 		o.commanders = [];
 		// look for commanders
 		for (var oj=0, attr; attr = modctx.fort_leader_types_by_nation[oj];  oj++) {
@@ -117,6 +106,7 @@ MNation.prepareData_PreMod = function() {
 				o.commanders.push(attr.monster_number);
 			}
 		}
+		
 		o.foreigncommanders = [];
 		// look for foreign commanders
 		for (var oj=0, attr; attr = modctx.nonfort_leader_types_by_nation[oj];  oj++) {
@@ -124,7 +114,7 @@ MNation.prepareData_PreMod = function() {
 				o.foreigncommanders.push(attr.monster_number);
 			}
 		}
-		//o.units = Utils.keyListToTable(o, 'unit');
+		
 		o.units = [];
 		// look for units
 		for (var oj=0, attr; attr = modctx.fort_troop_types_by_nation[oj];  oj++) {
@@ -132,6 +122,7 @@ MNation.prepareData_PreMod = function() {
 				o.units.push(attr.monster_number);
 			}
 		}
+		
 		o.foreignunits = [];
 		// look for foreign units
 		for (var oj=0, attr; attr = modctx.nonfort_troop_types_by_nation[oj];  oj++) {
@@ -140,11 +131,6 @@ MNation.prepareData_PreMod = function() {
 			}
 		}
 
-//		o.heroes = Utils.keyListToTable(o, 'hero', 6);	
-//		o.multiheroes = Utils.keyListToTable(o, 'multi', 2);
-//		o.uwunits = Utils.keyListToTable(o, 'uwu', 5);
-//		o.uwcoms = Utils.keyListToTable(o, 'uwc', 5);
-//		o.specialunits = Utils.keyListToTable(o, 'spc');
 		o.sites = [];
 		o.forestrec = [];
 		o.forestcom = [];
@@ -162,6 +148,8 @@ MNation.prepareData_PreMod = function() {
 		o.uwunit = [];
 		o.landcom = [];
 		o.landunit = [];
+		o.heroes = [];	
+		o.multiheroes = [];
 		for (var oj=0, attr; attr = modctx.attributes_by_nation[oj];  oj++) {
 			if (parseInt(attr.nation_number) == o.id) {
 				var attribute = modctx.attributes_lookup[parseInt(attr.attribute_record_id)];
@@ -233,6 +221,18 @@ MNation.prepareData_PreMod = function() {
 				}
 				if (attribute.attribute_number == "303") {
 					o.cavecom.push(parseInt(attribute.raw_value));
+				}
+				if (attribute.attribute_number == "139" || 
+					attribute.attribute_number == "140" || 
+					attribute.attribute_number == "141" || 
+					attribute.attribute_number == "142" || 
+					attribute.attribute_number == "143" || 
+					attribute.attribute_number == "144") {
+					o.heroes.push(parseInt(attribute.raw_value));
+				}
+				if (attribute.attribute_number == "145" || 
+					attribute.attribute_number == "146") {
+					o.multiheroes.push(parseInt(attribute.raw_value));
 				}
 			}
 		}
@@ -389,11 +389,10 @@ MNation.prepareData_PostMod = function() {
 			'cmdr (coast)': o.coastcom,
 			'unit (land)': o.landunit,
 			'cmdr (land)': o.landcom,
-			//'hero (unique)': o.heroes,
-			//'hero (multi)': o.multiheroes,
+			'hero (unique)': o.heroes,
+			'hero (multi)': o.multiheroes,
 			'unit (u-water)': o.uwunit,
 			'cmdr (u-water)': o.uwcom,
-			//'special': o.specialunits,
 			'unit (cap only)': o.capunits,
 			'cmdr (cap only)': o.capcommanders
 		}
