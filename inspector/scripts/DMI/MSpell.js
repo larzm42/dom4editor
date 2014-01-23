@@ -238,6 +238,7 @@ MSpell.prepareData_PostMod = function() {
 			_o = _o.nextspell;
 		}
 		
+		Utils.addFlags(o, MSpell.bitfieldValues(effects.modifiers_mask, modctx.effect_modifier_bits_lookup), ignorekeys );
 	}
 }
 
@@ -656,8 +657,8 @@ MSpell.renderSpellTable = function(o, original_effect) {
 		var specflags = Utils.renderFlags( MSpell.bitfieldValues(effects.modifiers_mask, modctx.effect_modifier_bits_lookup) );
 		if (specflags)
 			h+=		'<tr><td class="widecell" colspan="2">&nbsp;</td></tr><tr><td class="widecell" colspan="2">'+specflags+'</td></tr></div>';
-	}
-	
+		}
+
 	if (o.modded) {
 		h+='	<tr class="modded hidden-row"><td colspan="2">Modded<span class="internal-inline"> [modded]</span>:<br />';
 		h+=		o.modded.replace('ERROR:', '<span style="color:red;font-weight:bold;">ERROR:</span>');
@@ -684,8 +685,13 @@ MSpell.bitfieldValues = function(bitfield, masks_dict) {
 	var newValues=[];
 	var values = myproject.bitfieldValues(bitfield, masks_dict);
 	for (var value in values) {
+		var flag = "none";
+		var flagIndex = values[value].indexOf("Wpn: #");
+		if (flagIndex != -1) {
+			flag = values[value].substring(flagIndex+6, values[value].length-2)
+		}
 		value = values[value].replace(/{(.*?)}/g, "");
-		newValues.push([value, "none"]);
+		newValues.push([value, flag]);
 	}
 	return newValues;
 }
@@ -695,6 +701,27 @@ function renderEffect(o, effects) {
 	//if its a function then run it
 	if (typeof(res) == 'function')	res = res(o, effects);
 	return '<tr><th width="10px">'+modctx.effects_info_lookup[effects.effect_number].name.replace(/{(.*?)}/g, "").trim()+':</th><td>'+res+'</td></tr>'
+}
+
+MSpell.worksUnderwater = function(spell) {
+	var effects = modctx.effects_lookup[spell.effect_record_id];
+	if (effects) {
+		if ((effects.modifiers_mask & 8388608) ||
+			(effects.modifiers_mask & 33554432)) {
+			return true;
+		}
+	}
+	return false; 
+}
+
+MSpell.worksOnDryLand = function(spell) { 
+	var effects = modctx.effects_lookup[spell.effect_record_id];
+	if (effects) {
+		if (!(effects.modifiers_mask & 33554432)) {
+			return true;
+		}
+	}
+	return false; 
 }
 
 //namespace args
