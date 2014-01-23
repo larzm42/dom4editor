@@ -273,6 +273,18 @@ MNation.prepareData_PostMod = function() {
 				if (u.type == 'combat summon' || u.type == 'combat summon (cmdr)')
 					continue;
 				
+		 		var basekey;
+		 		if (u.typeclass == 'Unit') {
+		 			basekey = 'unit (summon)';
+		 		} else {
+		 			basekey = 'cmdr (summon)';
+		 		}
+				if (u.type && u.type!=basekey) {
+					//find pretender version of this unit
+					u = modctx.getUnitOfType(u, basekey) || modctx.cloneUnit(u);
+				}
+				u.type = basekey;
+
 				u.nations = u.nations || {};
 				u.nations[o.id] = o;
 				u.eracodes = u.eracodes || {}; 
