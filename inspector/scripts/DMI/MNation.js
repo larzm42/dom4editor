@@ -153,7 +153,7 @@ MNation.prepareData_PreMod = function() {
 		for (var oj=0, attr; attr = modctx.attributes_by_nation[oj];  oj++) {
 			if (parseInt(attr.nation_number) == o.id) {
 				var attribute = modctx.attributes_lookup[parseInt(attr.attribute_record_id)];
-				if (attribute.attribute_number == "52") {
+				if (attribute.attribute_number == "52" || attribute.attribute_number == "100") {
 					o.sites.push(parseInt(attribute.raw_value));
 				}
 				if (attribute.attribute_number == "158" || attribute.attribute_number == "159") {

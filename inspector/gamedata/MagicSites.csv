@@ -21,7 +21,7 @@ id	name	era	rarity	loc	level	path	F	A	W	E	S	D	N	B	gold	res	sup	unr	exp	lab	fort	
 20	Surakid's Tower		5	0	1	Astral					4	2																																																												
 21	Mine of the Cyclops		5	0	0	Earth		2				2																																																												
 22	Bolivar's Tower of Reflections		5	0	3	Air		4																		341	Illusionist																																													
-23	The Unholy Sepulchre	3	5	0	0	Holy						8																																																												
+23	The Unholy Sepulchre	3	5	0	0	Holy						15																																																												
 24	The Unholy Sepulchre	3	5	0	0	Holy						15																																																												
 25	The Unholy Sepulchre	3	5	0	0	Holy						22																																																												
 26	Starke's Ice Cave		5	0	1	Water			4													Cold																																																		
@@ -77,7 +77,7 @@ id	name	era	rarity	loc	level	path	F	A	W	E	S	D	N	B	gold	res	sup	unr	exp	lab	fort	
 76	Temple Sanguine	3	5	0	0	Blood																				1967	Slayer Sanguine																																													
 77	Temple of the Shroud	1	5	0	0	Holy	3				3															1108	Equite of the Sacred Shroud	1112	Bishop of the Sacred Shroud	1111	Arch Bishop of the Sacred Shroud																																									
 78	The Lotus Gardens	2	5	0	0	Nature					3		2													1144	Rishi	1141	Tiger Rider																																											
-79	The Carrion Grove	-1	5	0	0	Nature						1	4													787	Black Centaur																																													
+79	The Carrion Grove	-1	5	0	0	Nature						1	6													787	Black Centaur																																													
 80	The Carrion Grove	-1	5	0	0	Nature						1	6													787	Black Centaur																																													
 81	The Carrion Grove	-1	5	0	0	Nature						1	9													787	Black Centaur																																													
 82	The Wheel of Pain	1	5	0	0	Earth																				1157	Steel Warrior																																													
@@ -155,7 +155,7 @@ id	name	era	rarity	loc	level	path	F	A	W	E	S	D	N	B	gold	res	sup	unr	exp	lab	fort	
 154	Great Mababwe	1	5	0	0	Holy	1			2																2297	Lion Queen	2296	Lion King	2309	Lion Warrior																																									
 155	Novgård	2	5	0	0	Air	1	2																		2349	Oathbound	2342	Vanabog																																											
 156	Pine of Skulls	2	5	0	0	Nature						1	1													2352	Chud Skinshifter																																													
-157	Campus Sceleris	3	5	0	0	Holy						8																																																												
+157	Campus Sceleris	3	5	0	0	Holy						15																																																												
 158	Campus Sceleris	3	5	0	0	Holy						15																																																												
 159	Campus Sceleris	3	5	0	0	Holy						22																																																												
 160	Palace of Pearls	2	5	0	0	Water			4				1													1061	Triton Prince	1088	Triton King	1059	Knight of the Deeps																																									
