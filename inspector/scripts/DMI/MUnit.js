@@ -185,8 +185,16 @@ MUnit.prepareData_PostMod = function() {
 			
 			o.unique='1';
 		}
+		
 		//searchable string
 		o.searchable = o.fullname.toLowerCase();
+		
+		// Prophetshape
+		if (o.special) {
+			if (o.special.indexOf('Prophetform') != -1) {
+				o.prophetshape = parseInt(o.special.substr(11));
+			}
+		}
 		
 		//localise useful functions
 		var sum = Utils.sum;
