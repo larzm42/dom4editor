@@ -399,13 +399,15 @@ MUnit.prepareForRender = function(o) {
 		
 		//local helper: apply bonus to stat and add it to tooltip
 		o.titles = {};
-		function bonus(reason, stat, inc) {
+		function bonus(reason, stat, inc, nochange) {
 			inc = parseInt(inc);
 			if (inc) {
 				var oldv =  o[stat] || '0';
 				o.titles[stat] =  o.titles[stat]  ?  o.titles[stat]+', '  :  oldv;
 				o.titles[stat]+= ' '+Format.Signed(String(inc)) +' ('+reason+')';
-				o[stat] = sum(oldv, inc);
+				if (!nochange) {
+					o[stat] = sum(oldv, inc);
+				}
 			}
 		}
 		
@@ -600,18 +602,21 @@ MUnit.prepareForRender = function(o) {
 		}
 		if (countarms > 1 && mwpnpen < 0) {
 			//ambidextrous
-			var ambidextrous = parseInt(o.ambidextrous || '0');
+			var ambidextrous = parseInt(o.adx || '0');
 			if (ambidextrous > -mwpnpen) ambidextrous = -mwpnpen;
 				
-			bonus('dual wield', 'att', mwpnpen);
-			bonus('ambidextrous', 'att', ambidextrous);
+			bonus('dual wield', 'att', mwpnpen, 1);
+			o.watt = sum(0, mwpnpen);
+			bonus('ambidextrous', 'att', ambidextrous, 1);
+			o.watt = sum(o.watt, ambidextrous);
 		}
 		
 		//wpn att / prec tooltips
 		for (var i=0, w;  w= o.weapons[i]; i++) {
 			if (w.wpnclass == 'melee') {
 				o.titles.att = o.titles.att  ?  o.titles.att+', \n'  :  '';
-				o.titles.att += ' '+w.name+'  ->  '+ sum(o.att, w.att);
+				var newatt = sum(o.att, o.watt);
+				o.titles.att += ' '+w.name+'  ->  '+ sum(newatt, w.att);
 				
 			} else {
 				o.titles.prec = o.titles.prec  ?  o.titles.prec+', \n'  :  '';
@@ -1220,6 +1225,7 @@ var ignorekeys = {
 	basecost:1,
 	gmon:1,
 	gcom:1,
+	watt:1,
 	
 	research:1, listed_mpath:1, 
 	n_domsum:1, n_makemonster:1, n_batsum:1, n_autosum:1, n_sum:1,	
