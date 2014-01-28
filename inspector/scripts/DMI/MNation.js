@@ -165,7 +165,11 @@ MNation.prepareData_PreMod = function() {
 				if (attribute.attribute_number == "163") {
 					o.landcom.push(parseInt(attribute.raw_value));
 				}
-				if (attribute.attribute_number == "171" || attribute.attribute_number == "172") {
+				if (attribute.attribute_number == "171" || 
+					attribute.attribute_number == "172" ||
+					attribute.attribute_number == "186" ||
+					attribute.attribute_number == "187" ||
+					attribute.attribute_number == "188") {
 					if (attr.nation_number == "83" ||
 						attr.nation_number == "84" ||
 						attr.nation_number == "85" ||
@@ -179,7 +183,13 @@ MNation.prepareData_PreMod = function() {
 						o.uwcom.push(parseInt(attribute.raw_value));
 					}
 				}
-				if (attribute.attribute_number == "173" || attribute.attribute_number == "174" || attribute.attribute_number == "175" || attribute.attribute_number == "176") {
+				if (attribute.attribute_number == "173" || 
+					attribute.attribute_number == "174" || 
+					attribute.attribute_number == "175" || 
+					attribute.attribute_number == "176" || 
+					attribute.attribute_number == "189" || 
+					attribute.attribute_number == "190" || 
+					attribute.attribute_number == "191") {
 					if (attr.nation_number == "83" ||
 						attr.nation_number == "84" ||
 						attr.nation_number == "85" ||
