@@ -101,7 +101,10 @@ var unitSortableTypes = {
 	'': 					'900?cmdr' //??
 }
 function isCmdr(u) {
-	return u.sorttype.indexOf('cmdr') != -1 && !u.createdby;
+	if (u.sorttype) {
+		return u.sorttype.indexOf('cmdr') != -1 && !u.createdby;
+	}
+	return false;
 }
 function isSummon(u) {
 	return u.type.indexOf('summon') != -1;
