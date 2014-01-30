@@ -138,7 +138,7 @@ MUnit.prepareData_PreMod = function() {
 		
 		//consolidate armor types to a single array
 		var arr = [];
-		for (var k in {armor:1, helmet:1, shield:1, msc:1}) {
+		for (var k in {armor1:1, armor2:1, armor3:1, armor4:1}) {
 			if (!o[k]) continue;
 			arr.push(o[k])
 			delete o[k];
