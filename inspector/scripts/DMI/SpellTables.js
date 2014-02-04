@@ -64,7 +64,7 @@ MSpell.format = {
 	}
 }
 
-function show_summon(unit, count) {
+function show_summon(unit, count, pathlevel1) {
 	var ref;
 	if (parseInt(unit) < 0) {
 		ref = modctx.monster_tags_lookup[parseInt(unit)].name;
@@ -72,7 +72,7 @@ function show_summon(unit, count) {
 		ref = Utils.unitRef(unit);
 	}
 	if (count && count != "0" && count != "1") {
-		ref = ref + " x " + String(spellBonus(count, 1))
+		ref = ref + " x " + String(spellBonus(count, pathlevel1))
 	}
 	return ref;
 }
@@ -148,7 +148,7 @@ MSpell.effectlookup = {
 		'unknown': function (spell, effect){ return 'Unknown Effect ' + effect.effect_number + ' ('+effect.raw_argument + ')?'; },
 		0:	'Nothing',
 		1:	function(spell, effect) {
-			return show_summon(effect.raw_argument, spell.effects_count);
+			return show_summon(effect.raw_argument, spell.effects_count, spell.pathlevel1);
 		},
 		2:	damage,
 		3:	damage,
@@ -168,7 +168,7 @@ MSpell.effectlookup = {
 		19:	'teleport',
 		20:	damage,
 		21:	function(spell, effect) {
-			return show_summon(effect.raw_argument, spell.effects_count);
+			return show_summon(effect.raw_argument, spell.effects_count, spell.pathlevel1);
 		},
 		22:	'Fate of Oedipus',
 		23:	function(spell, effect) {
@@ -178,23 +178,23 @@ MSpell.effectlookup = {
 		24:	damage,
 		25:	'Wish',
 		26:	function(spell, effect) {
-			return show_summon(effect.raw_argument, spell.effects_count);
+			return show_summon(effect.raw_argument, spell.effects_count, spell.pathlevel1);
 		},
 		27:	'magic duel',
 		28:	'control',
 		29:	'take permanent control',
 		30:	damage,
 		31:	function(spell, effect) {
-			return show_summon(effect.raw_argument, spell.effects_count);
+			return show_summon(effect.raw_argument, spell.effects_count, spell.pathlevel1);
 		},
 		35:	function(spell, effect) {
-			return spellBonus(spell.effects_count, 1);
+			return spellBonus(spell.effects_count, spell.pathlevel1);
 		},
 		37:	function(spell, effect) {
-			return show_summon(effect.raw_argument, spell.effects_count);
+			return show_summon(effect.raw_argument, spell.effects_count, spell.pathlevel1);
 		},
 		38:	function(spell, effect) {
-			return show_summon(effect.raw_argument, spell.effects_count);
+			return show_summon(effect.raw_argument, spell.effects_count, spell.pathlevel1);
 		},
 		39:	damage,
 		40:	damage,
@@ -203,7 +203,7 @@ MSpell.effectlookup = {
 			return modctx.anon_province_events_lookup[effect.raw_argument].name;
 		},
 		43:	function(spell, effect) {
-			return show_summon(effect.raw_argument, spell.effects_count);
+			return show_summon(effect.raw_argument, spell.effects_count, spell.pathlevel1);
 		},
 		44:	damage,
 		46:	damage,
@@ -226,7 +226,7 @@ MSpell.effectlookup = {
 		},
 		49:	damage_untested,
 		50:	function(spell, effect) {
-			return show_summon(effect.raw_argument, spell.effects_count);
+			return show_summon(effect.raw_argument, spell.effects_count, spell.pathlevel1);
 		},
 		53:	damage_untested,
 		54:	damage_untested,
@@ -266,7 +266,7 @@ MSpell.effectlookup = {
 		91:	damage,
 		92:	damage_untested,
 		93:	function(spell, effect) {
-			return show_summon(effect.raw_argument, spell.effects_count);
+			return show_summon(effect.raw_argument, spell.effects_count, spell.pathlevel1);
 		},
 		94:	damage_untested,
 		95:	damage_untested,
@@ -298,7 +298,7 @@ MSpell.effectlookup = {
 		117:	damage_untested,
 		118:	damage_untested,
 		119:	function(spell, effect) {
-			return show_summon(effect.raw_argument, spell.effects_count);
+			return show_summon(effect.raw_argument, spell.effects_count, spell.pathlevel1);
 		},
 		120:	damage_untested,
 		500:	damage_untested,

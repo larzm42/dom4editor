@@ -254,6 +254,7 @@ MUnit.prepareData_PostMod = function() {
 		//add research bonus
 		if (is(o.research)) 
 			research += parseInt(o.research);
+		
 		//append research to pathcode
 		if (research) 
 			o.mpath += 'R' + String(research) + ' ';
@@ -312,11 +313,172 @@ MUnit.prepareData_PostMod = function() {
 		if (o.rcost > 60000)	o.rcost = 1; //gladiators
 		
 		//numeric gold and resource costs (for sorting)
-		if (o.type == 'u') {
-			o.gcost = parseInt(o.gmon || '0');
+		if (parseInt(o.basecost) > 1000) {
+
+			// Autocalc
+			var leadership = {
+					0:	10,
+					10:	15,
+					40: 30,
+					60: 45,
+					80: 60,
+					120: 100,
+					160: 150
+			}
+			
+			//Leader cost
+			var ldr_cost = 0;
+			if (o.ldr_n) {
+				ldr_cost = parseInt(leadership[o.ldr_n]);
+			}
+			if (o.i_ldr) {
+				ldr_cost = ldr_cost + 10*parseInt(o.i_ldr);
+			}
+			if (o.sailsz && parseInt(o.sailsz) > 0) {
+				ldr_cost = ldr_cost + .5 * ldr_cost;
+			}
+			
+			var path1 = {
+					1: 30,
+					2: 90,
+					3: 150,
+					4: 210,
+					5: 270
+			}
+			var path2 = {
+					1: 20,
+					2: 60,
+					3: 100,
+					4: 140,
+					5: 180
+			}
+			
+			// Paths cost
+			var paths_cost = 0;
+			var arr = [];
+			var baseM = [o.F, o.A, o.W, o.E, o.S, o.D, o.N, o.B];
+			if (MUnit.hasRandom(o)) {
+				MUnit.buildRandomArrays(o, 0, arr, baseM);
+				for (var rand1=0; rand1 < arr.length; rand1++) {
+					arr[rand1].sort(function(a,b){return b-a});
+				}
+				var largest = 0;
+				var smallest = 0;
+				for (var rand2=0; rand2 < arr.length; rand2++) {
+					var tempPathCost = 0;
+					for (var rand3=0, valrand; valrand = arr[rand2][rand3];  rand3++) {
+						if (rand3 == 0) {
+							tempPathCost = path1[valrand];
+						} else {
+							tempPathCost = tempPathCost + path2[valrand];
+						}
+					}
+					if (largest == 0) {
+						largest = tempPathCost;
+						smallest = tempPathCost;
+					} else {
+						if (tempPathCost > largest) {
+							largest = tempPathCost;
+						} else if (tempPathCost < smallest) {
+							smallest = tempPathCost;
+						}
+					}
+				}
+				paths_cost = (largest * .75) + (smallest *.25);
+				
+			} else {
+				var sortedArr = [];
+				for (var oj=0; oj<baseM.length; oj++) {
+					if (parseInt(baseM[oj]) > 0) {
+						sortedArr.push(parseInt(baseM[oj]));
+					}
+				}
+				sortedArr.sort(function(a,b){return b-a});
+				for (var ok=0, val2; val2 = sortedArr[ok];  ok++) {
+					if (ok == 0) {
+						paths_cost = path1[val2];
+					} else {
+						paths_cost = paths_cost + path2[val2];
+					}
+				}
+			}
+			if (paths_cost > 0 && o.adept_research) {
+				paths_cost = paths_cost + parseInt(o.adept_research) * 5;
+			}
+			if (o.inept_research) {
+				paths_cost = paths_cost - 5;
+			}
+			if (o.fixforge) {
+				paths_cost = paths_cost + paths_cost*(parseInt(o.fixforge)/100);
+			}
+			
+			// Priest cost
+			var priest = {
+					1: 20,
+					2: 40,
+					3: 80,
+					4: 140
+			}
+			var priest_cost = 0;
+			if (o.H) {
+				priest_cost = parseInt(priest[o.H]);
+			}
+			
+			// Spy cost
+			var spy_cost = 0;
+			if ((o.spy && parseInt(o.spy) > 0)) {
+				spy_cost = spy_cost + 40;
+			}
+			if ((o.assassin && parseInt(o.assassin) > 0)) {
+				spy_cost = spy_cost + 40;
+			}
+			if (o.seduce && parseInt(o.seduce) > 0) {
+				spy_cost = spy_cost + 60;
+			}
+			
+			var cost_array = [ldr_cost, paths_cost, priest_cost, spy_cost];
+			cost_array.sort(function(a,b){return b-a});
+			
+			var cost;
+			if (o.type == 'u') {
+				cost = 0;
+			} else {
+				cost = cost_array[0] + cost_array[1]/2 + cost_array[2]/2 + cost_array[3]/2;
+			}
+			
+			// Special costs
+			var special_cost = 0;
+			if (o.stealth && parseInt(o.stealth) > 0 && o.type != 'u') {
+				special_cost = special_cost + 5;
+			}
+			if (o.heal && parseInt(o.heal) > 0 && o.type != 'u') {
+				special_cost = special_cost + 50;
+			}
+			if (o.dishe && parseInt(o.dishe) > 0 && o.type != 'u') {
+				special_cost = special_cost + 20;
+			}
+			if (o.cav && parseInt(o.cav) > 0) {
+				special_cost = special_cost + 15;
+			}
+			
+			o.gcost = parseInt(cost + special_cost);
+			o.gcost = o.gcost + parseInt(o.basecost) - 10000;
+			if (o.slow_to_recruit && parseInt(o.slow_to_recruit) > 0 && o.type != 'u') {
+				o.gcost = MUnit.roundIfNeeded(o.gcost * .9); 
+			}
+			if (o.holy && parseInt(o.holy) > 0) {
+				o.gcost = MUnit.roundIfNeeded(o.gcost * 1.3); 
+			}
+			o.gcost = MUnit.roundIfNeeded(o.gcost);
 		} else {
-			o.gcost = parseInt(o.gcom || '0');
+			o.gcost = parseInt(o.basecost);
 		}
+//		if (o.type == 'u') {
+//			o.diffsort = parseInt(o.gmon - o.gcost);
+//		} else {
+//			o.diffsort = parseInt(o.gcom - o.gcost);
+//		}
+		
 		o.type = '';
 		if (!o.gcost)
 			o.rcost = 0;
@@ -325,6 +487,128 @@ MUnit.prepareData_PostMod = function() {
 
 		o.rcostsort = parseInt(o.rcost);
 	}
+}
+
+MUnit.roundIfNeeded = function (num) {
+	if (parseInt(num) > 30) {
+		return 5*(Math.floor(num/5));
+	}
+	return Math.floor(num);
+}
+
+MUnit.hasRandom = function (o) {
+	if (o.randompaths.length) {
+		for (var i=0, r; r= o.randompaths[i]; i++) {
+			if (r.chance == 100) {
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
+MUnit.buildRandomArrays = function (o, i, arr, baseM) {
+	var r = o.randompaths[i];
+	if (r.chance != 100) {
+		i++;
+		if (i == o.randompaths.length) {
+			return false;
+		}
+		r = o.randompaths[i];
+		if (r.chance != 100) {
+			i++;
+			if (i == o.randompaths.length) {
+				return false;
+			}
+			r = o.randompaths[i];
+			if (r.chance != 100) {
+				i++;
+				if (i == o.randompaths.length) {
+					return false;
+				}
+				r = o.randompaths[i];
+				if (r.chance != 100) {
+					i++;
+					if (i == o.randompaths.length) {
+						return false;
+					}
+				}
+			}
+		}
+	}
+	if (r.chance == 100) {
+		for (var step = 0, letter; letter = r.paths.charAt(step); step++) {
+			var newM = baseM.slice(0);
+			if (letter.indexOf('F') != -1) {
+				if (newM[0]) {
+					newM[0] = parseInt(newM[0])+parseInt(r.levels);
+				} else {
+					newM[0] = parseInt(r.levels);
+				}
+			}
+			if (letter.indexOf('A') != -1) {
+				if (newM[1]) {
+					newM[1] = parseInt(newM[1])+parseInt(r.levels);
+				} else {
+					newM[1] = parseInt(r.levels);
+				}
+			}
+			if (letter.indexOf('W') != -1) {
+				if (newM[2]) {
+					newM[2] = parseInt(newM[2])+parseInt(r.levels);
+				} else {
+					newM[2] = parseInt(r.levels);
+				}
+			}
+			if (letter.indexOf('E') != -1) {
+				if (newM[3]) {
+					newM[3] = parseInt(newM[3])+parseInt(r.levels);
+				} else {
+					newM[3] = parseInt(r.levels);
+				}
+			}
+			if (letter.indexOf('S') != -1) {
+				if (newM[4]) {
+					newM[4] = parseInt(newM[4])+parseInt(r.levels);
+				} else {
+					newM[4] = parseInt(r.levels);
+				}
+			}
+			if (letter.indexOf('D') != -1) {
+				if (newM[5]) {
+					newM[5] = parseInt(newM[5])+parseInt(r.levels);
+				} else {
+					newM[5] = parseInt(r.levels);
+				}
+			}
+			if (letter.indexOf('N') != -1) {
+				if (newM[6]) {
+					newM[6] = parseInt(newM[6])+parseInt(r.levels);
+				} else {
+					newM[6] = parseInt(r.levels);
+				}
+			}
+			if (letter.indexOf('B') != -1) {
+				if (newM[7]) {
+					newM[7] = parseInt(newM[7])+parseInt(r.levels);
+				} else {
+					newM[7] = parseInt(r.levels);
+				}
+			}
+			if (o.randompaths.length > i+1) {
+				i++;
+				if (!MUnit.buildRandomArrays(o, i, arr, newM)) {
+					arr.push(newM);
+				}
+				i--;
+			} else {
+				arr.push(newM);
+			}
+		}
+	} else {
+		return false;
+	}
+	return true;
 }
 
 //stuff that depends on unit type must come after parsing nation data
@@ -710,8 +994,10 @@ MUnit.CGrid = Utils.Class( DMI.CGrid, function() {
 		{ id: "nation",   width: 60, name: "Nation", field: "nationname", sortable: true },
 		{ id: "type",     width: 80, name: "Type", field: "sorttype", sortable: true, formatter: formatType },
 		{ id: "gcost",     width: 32, name: "Gold", field: "gcost", sortable: true, cssClass: "numeric", formatter: formatGold },
+//		{ id: "gcom",     width: 32, name: "gcom", field: "gcom", sortable: true, cssClass: "numeric", formatter: formatGold },
+//		{ id: "diff",     width: 32, name: "diff", field: "diffsort", sortable: true, cssClass: "numeric", formatter: formatGold },
 		{ id: "rcost",     width: 30, name: "Res", field: "rcostsort", sortable: true, cssClass: "numeric", formatter: formatRes },		
-		{ id: "sacred",     width: 30, name: "Sacred", field: "holy", sortable: true, formatter: formatHoly },
+		{ id: "sacred",     width: 30, name: "Sac", field: "holy", sortable: true, formatter: formatHoly },
 		{ id: "listed_mpath",     width: 120, name: "Magic", field: "listed_mpath", sortable: true, formatter: DMI.GridFormat.OrderedPaths }
 	];
 	
@@ -1360,7 +1646,7 @@ MUnit.renderOverlay = function(o) {
 		for (var i=0, refarr=[], s; s= o.summonedby[i]; i++) 
 			refarr.push(Utils.spellRef(s.id)); 
 		h+='	<p class="firstline">summoned with '+refarr.join(', ')+'</p>';
-		isfree = true;
+		//isfree = true;
 	}
 	else if (o.type=='Pretender') {
 		h+='<p class="firstline">';

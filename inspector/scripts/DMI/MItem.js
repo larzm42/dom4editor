@@ -69,7 +69,7 @@ MItem.prepareData_PostMod = function() {
 			o.protshield = a.protshield;
 			o.prothead = a.prothead;
 			o.enc = a.enc;
-			o.parry = a.par;
+			o.parry = a.parry;
 			
 			o.def = sum(o.def, a.def);
 		}
