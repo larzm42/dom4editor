@@ -123,9 +123,10 @@ MSpell.prepareData_PostMod = function() {
 
 			if (effects.area_base) {
 				o.aoe_s = effects.area_base;
-				if (effects.area_per_level != "0") {
-					o.aoe_s = parseInt(o.aoe_s) + (parseInt(o.pathlevel1) * parseInt(effects.area_per_level));
-					o.aoe_s = o.aoe_s + "+ [" + effects.area_per_level + "/lvl]";
+				var area_per_level = parseInt(effects.area_per_level)%10;
+				if (area_per_level != 0) {
+					o.aoe_s = parseInt(o.aoe_s) + (parseInt(o.pathlevel1) * parseInt(area_per_level));
+					o.aoe_s = o.aoe_s + "+ [" + area_per_level + "/lvl]";
 				}
 				if (o.aoe_s == "0") {
 					if (o.effects_count == "1" && effects.ritual == "0") {
