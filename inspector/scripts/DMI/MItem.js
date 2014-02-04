@@ -78,7 +78,9 @@ MItem.prepareData_PostMod = function() {
 		if (o.secondarypath=='') o.secondarylevel = '';
 		
 		//path: E1D1
-		o.mpath = o.mainpath + o.mainlevel + (o.secondarypath || "") + (o.secondarylevel || "");
+		if (o.mainpath) {
+			o.mpath = o.mainpath + o.mainlevel + (o.secondarypath || "") + (o.secondarylevel || "");
+		}
 		
 		//gemcost: 5E5D
 		o.gemcost = forgeCost[o.mainlevel] + o.mainpath + (forgeCost[o.secondarylevel] || "") + (o.secondarypath || ""); 
