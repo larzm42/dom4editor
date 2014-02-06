@@ -1262,7 +1262,7 @@ var displayorder_pret = Utils.cutDisplayOrder(aliases, formats,
 var displayorder3 = Utils.cutDisplayOrder(aliases, formats,
 [
 	'ageold',	'age',	function(v,o){ return o.agestrt + ' ('+v+')'; },
-	'gcost', 'basest',
+	'gcost', 'basecost',
 	
 	'gA',		'generates fire gems',		function(v){ return v!='0' && Format.PerTurn(Format.Gems(v+'A')); },
 	'gB',		'generates blood slaves',	function(v){ return v!='0' && Format.PerTurn(Format.Gems(v+'B')); },
