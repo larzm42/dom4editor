@@ -209,6 +209,9 @@ MUnit.prepareData_PostMod = function() {
 		if (o.rt == 2) {
 			o.slow_to_recruit = 1;
 		}
+		
+		// used to have proper key
+		o.gcost = o.basecost;
 
 		//magic paths
 		o.mpath = '';
@@ -461,26 +464,26 @@ MUnit.prepareData_PostMod = function() {
 				special_cost = special_cost + 15;
 			}
 			
-			o.gcost = parseInt(cost + special_cost);
-			o.gcost = o.gcost + parseInt(o.basecost) - 10000;
+			o.goldcost = parseInt(cost + special_cost);
+			o.goldcost = o.goldcost + parseInt(o.basecost) - 10000;
 			if (o.slow_to_recruit && parseInt(o.slow_to_recruit) > 0 && o.type != 'u') {
-				o.gcost = MUnit.roundIfNeeded(o.gcost * .9); 
+				o.goldcost = Math.round(o.goldcost * .9); 
 			}
 			if (o.holy && parseInt(o.holy) > 0) {
-				o.gcost = MUnit.roundIfNeeded(o.gcost * 1.3); 
+				o.goldcost = Math.round(o.goldcost * 1.3); 
 			}
-			o.gcost = MUnit.roundIfNeeded(o.gcost);
+			o.goldcost = MUnit.roundIfNeeded(o.goldcost);
 		} else {
-			o.gcost = parseInt(o.basecost);
+			o.goldcost = parseInt(o.basecost);
 		}
 //		if (o.type == 'u') {
-//			o.diffsort = parseInt(o.gmon - o.gcost);
+//			o.diffsort = parseInt(o.goldcost - o.gmon);
 //		} else {
-//			o.diffsort = parseInt(o.gcom - o.gcost);
+//			o.diffsort = parseInt(o.goldcost - o.gcom);
 //		}
 		
 		o.type = '';
-		if (!o.gcost)
+		if (!o.goldcost)
 			o.rcost = 0;
 		else
 			o.rcost = Math.floor(o.rcost || 1);
@@ -627,7 +630,6 @@ MUnit.prepareData_PostNationData = function(o) {
 		}
 		//clear pretender cost
 		if (o.type == 'Pretender') {
-			//delete o.gcost;
 			delete o.rcost;
 		}
 		//sorttype
@@ -646,8 +648,6 @@ MUnit.prepareData_PostNationData = function(o) {
 		else o.listed_mpath = '';
 
 		o.holy = o.holy || '';
-		//~ o.gcost = o.gcost || '';
-		//~ o.rcost = o.rcost || '';
 
 		//add backlinks to units created by other units
 		var sumu;
@@ -993,7 +993,7 @@ MUnit.CGrid = Utils.Class( DMI.CGrid, function() {
 		{ id: "name",     width: 100, name: "Unit Name", field: "name", sortable: true },
 		{ id: "nation",   width: 60, name: "Nation", field: "nationname", sortable: true },
 		{ id: "type",     width: 80, name: "Type", field: "sorttype", sortable: true, formatter: formatType },
-		{ id: "gcost",     width: 32, name: "Gold", field: "gcost", sortable: true, cssClass: "numeric", formatter: formatGold },
+		{ id: "goldcost",     width: 32, name: "Gold", field: "goldcost", sortable: true, cssClass: "numeric", formatter: formatGold },
 //		{ id: "gcom",     width: 32, name: "gcom", field: "gcom", sortable: true, cssClass: "numeric", formatter: formatGold },
 //		{ id: "diff",     width: 32, name: "diff", field: "diffsort", sortable: true, cssClass: "numeric", formatter: formatGold },
 		{ id: "rcost",     width: 30, name: "Res", field: "rcostsort", sortable: true, cssClass: "numeric", formatter: formatRes },		
@@ -1185,9 +1185,9 @@ MUnit.CGrid = Utils.Class( DMI.CGrid, function() {
 		//exit bound scope
 	}();
 	
-	this.defaultSortCmp = function(r1,r2) {
-		return (r2.gcost - r1.gcost) || (r2.rcost - r1.rcost);
-	}	
+//	this.defaultSortCmp = function(r1,r2) {
+//		return (r2.goldcost - r1.goldcost) || (r2.rcost - r1.rcost);
+//	}	
 	
 	this.init();
 	$(this.domsel+' .grid-container').attachRefMouseEvents();
@@ -1262,6 +1262,7 @@ var displayorder_pret = Utils.cutDisplayOrder(aliases, formats,
 var displayorder3 = Utils.cutDisplayOrder(aliases, formats,
 [
 	'ageold',	'age',	function(v,o){ return o.agestrt + ' ('+v+')'; },
+	'gcost', 'basest',
 	
 	'gA',		'generates fire gems',		function(v){ return v!='0' && Format.PerTurn(Format.Gems(v+'A')); },
 	'gB',		'generates blood slaves',	function(v){ return v!='0' && Format.PerTurn(Format.Gems(v+'B')); },
@@ -1525,7 +1526,7 @@ var ignorekeys = {
 	magicboost_A:1, magicboost_B:1, magicboost_D:1, magicboost_E:1, magicboost_F:1, magicboost_N:1, magicboost_S:1, magicboost_W:1, magicboost_H:1,
 	magicboost_all:1,
 	
-	gcost:1, rcost:1, rcostsort:1,
+	goldcost:1, rcost:1, rcostsort:1,
 	
 	weapons:1, armor:1, helmet:1, shield:1, wpn1:1, wpn2:1, wpn3:1, wpn4:1, wpn5:1, wpn6:1,
 	
@@ -1650,7 +1651,7 @@ MUnit.renderOverlay = function(o) {
 	}
 	else if (o.type=='Pretender') {
 		h+='<p class="firstline">';
-		h+= ' Cost<span class="internal-inline"> [gcost]</span>: ' + o.gcost +' pts ';
+		h+= ' Cost: ' + o.goldcost +' pts ';
 		
 		h+= ' +<span class="internal-inline"> [pathcost]</span> '+o.path + ' pts per magic path';
 		// h+='<br />';
@@ -1670,16 +1671,16 @@ MUnit.renderOverlay = function(o) {
 		}
 	}	
 	//cost line
-	var gunit = ' gold <span class="internal-inline"> [gcost]</span>';
+	var gunit = ' gold';
 	var runit = ' resources <span class="internal-inline"> [rcost]</span>';
 	if (isfree) {
-		if (Utils.is(o.gcost) && !noupkeep)
-			h+='	<p class="firstline">Upkeep: '+Math.ceil((o.holy ? 0.5 : 1) * parseInt(o.gcost) / 15) +gunit+'</p>';
+		if (Utils.is(o.goldcost) && !noupkeep)
+			h+='	<p class="firstline">Upkeep: '+Math.ceil((o.holy ? 0.5 : 1) * parseInt(o.goldcost) / 15) +gunit+'</p>';
 	}
-	else if (o.gcost == '0')
+	else if (o.goldcost == '0')
 		h+='	<p class="firstline">no gold cost</p>';
 	else
-		h+='	<p class="firstline">costs&nbsp; '+ o.gcost+gunit +',&nbsp; '+ o.rcost+runit +'</p>';
+		h+='	<p class="firstline">costs&nbsp; '+ o.goldcost+gunit +',&nbsp; '+ o.rcost+runit +'</p>';
 
 	
 	//descr
