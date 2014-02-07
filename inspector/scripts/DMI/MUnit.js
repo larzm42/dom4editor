@@ -220,13 +220,36 @@ MUnit.prepareData_PostMod = function() {
 			var k = modconstants.pathkeys[i];
 			var plevel  = o[k];
 			
-			// //apply bonus
-			//var pboost = o['magicboost_'+k];
-			// if (pboost) {
-			// 	if (plevel) o[k] = plevel = normalise(sum(plevel, pboost));
-			// 	delete o['magicboost_'+k];
-			// }
-			
+			// apply bonus
+			if (o.pathboost) {
+				// Only support +1 for now
+				if (o.pathboost.indexOf('1') == 0) {
+					if (k == 'F' && o.pathboost.indexOf('f') != -1) {
+						plevel = parseInt(plevel) + 1;
+					}
+					if (k == 'A' && o.pathboost.indexOf('A') != -1) {
+						plevel = parseInt(plevel) + 1;
+					}
+					if (k == 'W' && o.pathboost.indexOf('W') != -1) {
+						plevel = parseInt(plevel) + 1;
+					}
+					if (k == 'E' && o.pathboost.indexOf('E') != -1) {
+						plevel = parseInt(plevel) + 1;
+					}
+					if (k == 'S' && o.pathboost.indexOf('S') != -1) {
+						plevel = parseInt(plevel) + 1;
+					}
+					if (k == 'D' && o.pathboost.indexOf('D') != -1) {
+						plevel = parseInt(plevel) + 1;
+					}
+					if (k == 'N' && o.pathboost.indexOf('N') != -1) {
+						plevel = parseInt(plevel) + 1;
+					}
+					if (k == 'B' && o.pathboost.indexOf('B') != -1) {
+						plevel = parseInt(plevel) + 1;
+					}
+				}
+			}
 			//append to pathcost code
 			if (is(plevel)) {
 				o.mpath +=  k + plevel + ' '; //string
