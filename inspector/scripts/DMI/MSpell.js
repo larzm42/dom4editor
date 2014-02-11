@@ -181,48 +181,49 @@ MSpell.prepareData_PostMod = function() {
 
 		//associate summons with this spell (and vice  versa)
 		var _o = o;
-		while (_o) {
+		var _effects = effects;
+		while (_o && _effects) {
 			//get summons data for this spell
-			if (effects.effect_number == "1" ||
-				effects.effect_number == "21" ||
-				effects.effect_number == "26" ||
-				effects.effect_number == "31" ||
-				effects.effect_number == "37" ||
-				effects.effect_number == "38" ||
-				effects.effect_number == "43" ||
-				effects.effect_number == "50" ||
-				effects.effect_number == "93" ||
-				effects.effect_number == "119") {
+			if (_effects.effect_number == "1" ||
+				_effects.effect_number == "21" ||
+				_effects.effect_number == "26" ||
+				_effects.effect_number == "31" ||
+				_effects.effect_number == "37" ||
+				_effects.effect_number == "38" ||
+				_effects.effect_number == "43" ||
+				_effects.effect_number == "50" ||
+				_effects.effect_number == "93" ||
+				_effects.effect_number == "119") {
 				
-				var eff = modctx.effects_lookup[_o.effect_record_id];
-				if (eff) {
-					var uid = eff.raw_argument;//MSpell.summonsForSpell(_o);
-					
-					var u = modctx.unitlookup[uid];
-					if (!u) {
-						console.log('Unit '+uid+' not found (Spell '+_o.id+')');
-						break;
-					}
+				var uid = _effects.raw_argument;
 
-					//add to list of summoned units (to be attached to nations later)
-					o.summonsunits = o.summonsunits || [];
-					o.summonsunits.push(u);
-
-					//attach spell to unit
-					u.summonedby = u.summonedby || [];
-					u.summonedby.push( o );					
+				var u = modctx.unitlookup[uid];
+				if (!u) {
+					console.log('Unit '+uid+' not found (Spell '+_o.id+')');
+					break;
 				}
-			} else if (effects.effect_number == "76" || effects.effect_number == "89" 
-				|| effects.effect_number == "100" || effects.effect_number == "114") {
+
+				//add to list of summoned units (to be attached to nations later)
+				o.summonsunits = o.summonsunits || [];
+				o.summonsunits.push(u);
+
+				//attach spell to unit
+				u.summonedby = u.summonedby || [];
+				u.summonedby.push( o );					
+			} else if (_effects.effect_number == "76" || 
+				_effects.effect_number == "89" || 
+				_effects.effect_number == "100" || 
+				_effects.effect_number == "114") {
+				
 				var arr;
-				if (effects.effect_number == "76") {
+				if (_effects.effect_number == "76") {
 					arr = MSpell.tartarianGate;
-				} else if (effects.effect_number == "89") {
-					arr = MSpell.uniqueSummon[effects.raw_argument];
-				} else if (effects.effect_number == "100") {
-					arr = MSpell.terrainSummon[effects.raw_argument];
-				} else if (effects.effect_number == "114") {
-					arr = MSpell.uniqueSummon[effects.raw_argument];
+				} else if (_effects.effect_number == "89") {
+					arr = MSpell.uniqueSummon[_effects.raw_argument];
+				} else if (_effects.effect_number == "100") {
+					arr = MSpell.terrainSummon[_effects.raw_argument];
+				} else if (_effects.effect_number == "114") {
+					arr = MSpell.uniqueSummon[_effects.raw_argument];
 				}
 				for (var i=0, uid;  uid= arr[i];  i++) {
 					var u = modctx.unitlookup[uid];
@@ -237,6 +238,9 @@ MSpell.prepareData_PostMod = function() {
 			}
 			if (_o == _o.nextspell) break;
 			_o = _o.nextspell;
+			if (_o) {
+				_effects = modctx.effects_lookup[_o.effect_record_id];
+			}
 		}
 		
 		Utils.addFlags(o, MSpell.bitfieldValues(effects.modifiers_mask, modctx.effect_modifier_bits_lookup), ignorekeys );
