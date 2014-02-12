@@ -70,7 +70,9 @@ MWpn.prepareData_PostMod = function() {
 			delete o.ammo;
 		}
 		
-		Utils.addFlags( o, MWpn.bitfieldValues(effects.modifiers_mask, modctx.effect_modifier_bits_lookup), ignorekeys )
+		if (effects) {
+			Utils.addFlags( o, MWpn.bitfieldValues(effects.modifiers_mask, modctx.effect_modifier_bits_lookup), ignorekeys )
+		}
 		
 		//backlinks on secondary effects
 		var secondaryeffect = modctx.wpnlookup[o.secondaryeffect] || modctx.wpnlookup[o.secondaryeffectalways];

@@ -220,7 +220,7 @@ var modctx = DMI.modctx = {
 			modctx._new(c,a ,'armor',fnw);			
 			DMI.MArmor.initArmor(modctx.armor);
 
-			if (a.n1<200 || a.n1>399) throw 'invalid id';
+			if (a.n1<250 || a.n1>999) throw 'invalid id';
 		},
 		selectarmor: function(c,a,t,fnw){ 
 			try {
@@ -239,7 +239,7 @@ var modctx = DMI.modctx = {
 			modctx._new(c,a ,'wpn',fnw);			
 			DMI.MWpn.initWpn(modctx.wpn);
 			
-			if (a.n1<600 || a.n1>999) throw 'invalid id';
+			if (a.n1<700 || a.n1>1999) throw 'invalid id';
 		},
 		selectweapon: function(c,a,t,fnw){ 
 			try {
@@ -271,7 +271,7 @@ var modctx = DMI.modctx = {
 			// });
 			DMI.MUnit.initUnit(modctx.unit);
 			
-			if (a.n1<2200 || a.n1>3999) throw 'invalid id';
+			if (a.n1<3001 || a.n1>6999) throw 'invalid id';
 		},
 		selectmonster: function(c,a,t,fnw){ modctx._select(c,a,'unit',fnw); },
 		
@@ -305,7 +305,7 @@ var modctx = DMI.modctx = {
 			modctx._new(c,a ,'site',fnw);
 			DMI.MSite.initSite(modctx.site);
 
-			if (a.n1<750 || a.n1>999) throw 'invalid id';
+			if (a.n1<1500 || a.n1>1999) throw 'invalid id';
 		},
 		selectsite: function(c,a,t,fnw){ modctx._select(c,a,'site',fnw); }
 	},
@@ -358,6 +358,10 @@ var modctx = DMI.modctx = {
 		armornegating:	_bool,
 		magic:		_bool,
 		
+		slash:		_bool,
+		pierce:		_bool,
+		blunt:		_bool,
+		acid:		_bool,
 		
 		dt_normal:	_bool,
 		dt_stun:	_bool,
@@ -379,6 +383,29 @@ var modctx = DMI.modctx = {
 		shock:		_bool,
 		poison:		_bool,
 
+		dt_sizestun:		_bool,
+		demonundead:		_bool,
+		dt_weakness:		_bool,
+		dt_drain:		_bool,
+		dt_weapondrain:		_bool,
+		sacredonly:		_bool,
+		hardmrneg:		_bool,
+		sizeresist:		_bool,
+		undeadimmune:		_bool,
+		inanimateimmune:		_bool,
+		flyingimmune:		_bool,
+		enemyimmune:		_bool,
+		friendlyimmune:		_bool,
+		undeadonly:		_bool,
+		norepel:		_bool,
+		unrepel:		_bool,
+		beam:		_bool,
+		range050:		_bool,
+		range0:		_bool,
+		melee50:		_bool,
+		skip:		_bool,
+		skip2:		_bool,
+
 		//fx
 		flyspr:		_ignore,
 		explspr:	_ignore,
@@ -395,6 +422,8 @@ var modctx = DMI.modctx = {
 		
 		secondaryeffect:	_ref,
 		secondaryeffectalways:	_ref
+		
+
 	},
 
 	//armor selected
@@ -428,6 +457,7 @@ var modctx = DMI.modctx = {
 			modctx.unit.name = argtrim(a);
 			modctx.unitlookup[argtrim(a).toLowerCase()] = modctx.unit;
 		},
+		fixedname: _str,
 		clear: function(c,a,t){
 			var o = modctx.unit;
 			var keepstats = {
@@ -559,18 +589,18 @@ var modctx = DMI.modctx = {
 			}
 			_num(c,a,t);
 		},
-		restrictedgod: function(c,a,t){
-			var o = modctx[t];
-			//remove as pretender from current nations
-			for (var n, i=0; n=modctx.nationdata[i]; i++)
-				Utils.weedArray(o.id, n.pretenders);
-
-			//and associate with just this one nation
-			var nation = modctx.nationlookup[argnum(a)];
-			if (nation) nation.pretenders.push(o.id);
-
-			//can use this command on multiple nations??
-		},
+//		restrictedgod: function(c,a,t){
+//			var o = modctx[t];
+//			//remove as pretender from current nations
+//			for (var n, i=0; n=modctx.nationdata[i]; i++)
+//				Utils.weedArray(o.id, n.pretenders);
+//
+//			//and associate with just this one nation
+//			var nation = modctx.nationlookup[argnum(a)];
+//			if (nation) nation.pretenders.push(o.id);
+//
+//			//can use this command on multiple nations??
+//		},
 		
 		female:		_bool,
 		mounted:	_bool,
@@ -593,7 +623,11 @@ var modctx = DMI.modctx = {
 		pooramphibian:	_bool,
 		flying:		_bool,
 		stormimmune:	_bool,
-		sailing:	_bool,
+		sailing: function(c,a,t){
+			modctx.unit['sailsz'] = a.n1;
+			modctx.unit['sailmaxsz'] = a.n2;
+		},
+
 		forestsurvival:	_bool,
 		mountainsurvival:_bool,
 		swampsurvival:	_bool,
@@ -781,11 +815,11 @@ var modctx = DMI.modctx = {
 		domsummon10:	function(c,a,t){ modctx[t]['domsummon'] = argref(a);  modctx[t]['n_domsummon'] = 'DRN/10' },
 		domsummon20:	function(c,a,t){ modctx[t]['domsummon'] = argref(a);  modctx[t]['n_domsummon'] = 'DRN/20' },
 		
-		makemonster1:	function(c,a,t){ modctx[t]['makemonster'] = argref(a);  modctx[t]['n_makemonster'] = '1' },
-		makemonster2:	function(c,a,t){ modctx[t]['makemonster'] = argref(a);  modctx[t]['n_makemonster'] = '2' },
-		makemonster3:	function(c,a,t){ modctx[t]['makemonster'] = argref(a);  modctx[t]['n_makemonster'] = '3' },
-		makemonster4:	function(c,a,t){ modctx[t]['makemonster'] = argref(a);  modctx[t]['n_makemonster'] = '4' },
-		makemonster5:	function(c,a,t){ modctx[t]['makemonster'] = argref(a);  modctx[t]['n_makemonster'] = '5' },
+		makemonsters1:	function(c,a,t){ modctx[t]['makemonsters'] = argref(a);  modctx[t]['n_makemonsters'] = '1' },
+		makemonsters2:	function(c,a,t){ modctx[t]['makemonsters'] = argref(a);  modctx[t]['n_makemonsters'] = '2' },
+		makemonsters3:	function(c,a,t){ modctx[t]['makemonsters'] = argref(a);  modctx[t]['n_makemonsters'] = '3' },
+		makemonsters4:	function(c,a,t){ modctx[t]['makemonsters'] = argref(a);  modctx[t]['n_makemonsters'] = '4' },
+		makemonsters5:	function(c,a,t){ modctx[t]['makemonsters'] = argref(a);  modctx[t]['n_makemonsters'] = '5' },
 		
 		summon1:	function(c,a,t){ modctx[t]['summon'] = argref(a);  modctx[t]['n_summon'] = '1' },
 		summon2:	function(c,a,t){ modctx[t]['summon'] = argref(a);  modctx[t]['n_summon'] = '2' },
@@ -814,7 +848,137 @@ var modctx = DMI.modctx = {
 		okundeadleader:		function(c,a,t){ modctx[t]['undeadleader'] = 40; },
 		goodundeadleader:	function(c,a,t){ modctx[t]['undeadleader'] = 80; },
 		expertundeadleader:	function(c,a,t){ modctx[t]['undeadleader'] = 120; },
-		superiorundeadleader:	function(c,a,t){ modctx[t]['undeadleader'] = 160; }		
+		superiorundeadleader:	function(c,a,t){ modctx[t]['undeadleader'] = 160; },		
+
+		voidsanity:		_num,
+		invulnerable:	_num,
+		magicpower:		_num,
+		randomspell:	_num,
+		reclimit:		_num,
+		chaosrec:		_num,
+		homerealm:		_num,
+		giftofwater:	_num,
+		indepmove:		_num,
+		patience:		_num,
+		falsearmy:		_num,
+		foolscouts:		_num,
+		deserter:		_num,
+		horrordeserter:	_num,
+		defector:		_num,
+		autohealer:		_num,
+		autodishealer:	_num,
+		autodisgrinder:	_num,
+		woundfend:		_num,
+		damagerev:		_num,
+		slimer:			_num,
+		deathdisease:	_num,
+		deathparalyze:	_num,
+		deathfire:		_num,
+		chaospower:		_num,
+		digest:			_num,
+		incorporate:	_num,
+		incprovdef:		_num,
+		elegist:		_num,
+		gold:			_num,
+		growhp:			_num,
+		shrinkhp:		_num,
+		reanimator:		_num,
+		montag:			_num,
+		inspirational:	_num,
+		beastmaster:	_num,
+		taskmaster:		_num,
+		formationfighter:	_num,
+		bodyguard:		_num,
+		masterrit:		_num,
+		inspiringres:	_num,
+		divineins:		_num,
+		firerange:		_num,
+		airrange:		_num,
+		waterrange:		_num,
+		earthrange:		_num,
+		astralrange:	_num,
+		deathrange:		_num,
+		naturerange:	_num,
+		bloodrange:		_num,
+		elementrange:	_num,
+		sorceryrange:	_num,
+		allrange:		_num,
+		tmpfiregems:	_num,
+		tmpairgems:		_num,
+		tmpwatergems:	_num,
+		tmpearthgems:	_num,
+		tmpastralgems:	_num,
+		tmpdeathgems:	_num,
+		tmpnaturegems:	_num,
+		tmpbloodslaves:	_num,
+		makepearls:		_num,
+		bonusspells:	_num,
+		tainted:		_num,
+		fixforgebonus:	_num,
+		mastersmith:	_num,
+		crossbreeder:	_num,
+		deathbanish:	_num,
+		kokytosret:		_num,
+		infernoret:		_num,
+		voidret:		_num,
+		allret:			_num,
+		resources:		_num,
+
+		spy:			_bool,
+		slowrec:		_bool,
+		noslowrec:		_bool,
+		reqlab:			_bool,
+		reqtemple:		_bool,
+		singlebattle:	_bool,
+		aisinglerec:	_bool,
+		ainorec:		_bool,
+		lesserhorror:	_bool,
+		greaterhorror:	_bool,
+		doomhorror:		_bool,
+		bug:			_bool,
+		uwbug:			_bool,
+		autocompete:	_bool,
+		float:			_bool,
+		teleport:		_bool,
+		noriverpass:	_bool,
+		unteleportable:	_bool,
+		hpoverflow:		_bool,
+		pierceres:		_bool,
+		slashres:		_bool,
+		bluntres:		_bool,
+		deathcurse:		_bool,
+		trampswallow:	_bool,
+		taxcollector:	_bool,
+		nohof:			_bool,
+		cleanshape:		_bool,
+		slave:			_bool,
+		undisciplined:	_bool,
+		magicimmune:	_bool,
+		comslave:		_bool,
+		
+		makemonsters1:	function(c,a,t){ modctx[t]['makemonsters'] = argref(a);  modctx[t]['n_makemonsters'] = '1' },
+		makemonsters2:	function(c,a,t){ modctx[t]['makemonsters'] = argref(a);  modctx[t]['n_makemonsters'] = '2' },
+		makemonsters3:	function(c,a,t){ modctx[t]['makemonsters'] = argref(a);  modctx[t]['n_makemonsters'] = '3' },
+		makemonsters4:	function(c,a,t){ modctx[t]['makemonsters'] = argref(a);  modctx[t]['n_makemonsters'] = '4' },
+		makemonsters5:	function(c,a,t){ modctx[t]['makemonsters'] = argref(a);  modctx[t]['n_makemonsters'] = '5' },
+
+		raredomsummon:	function(c,a,t){ modctx[t]['raredomsummon'] = argref(a) },
+		battlesum1:	function(c,a,t){ modctx[t]['battlesum'] = argref(a);  modctx[t]['n_battlesum'] = '1' },
+		battlesum2:	function(c,a,t){ modctx[t]['battlesum'] = argref(a);  modctx[t]['n_battlesum'] = '2' },
+		battlesum3:	function(c,a,t){ modctx[t]['battlesum'] = argref(a);  modctx[t]['n_battlesum'] = '3' },
+		battlesum4:	function(c,a,t){ modctx[t]['battlesum'] = argref(a);  modctx[t]['n_battlesum'] = '4' },
+		battlesum5:	function(c,a,t){ modctx[t]['battlesum'] = argref(a);  modctx[t]['n_battlesum'] = '5' },
+		batstartsum1:	function(c,a,t){ modctx[t]['batstartsum'] = argref(a);  modctx[t]['n_batstartsum'] = '1' },
+		batstartsum2:	function(c,a,t){ modctx[t]['batstartsum'] = argref(a);  modctx[t]['n_batstartsum'] = '2' },
+		batstartsum3:	function(c,a,t){ modctx[t]['batstartsum'] = argref(a);  modctx[t]['n_batstartsum'] = '3' },
+		batstartsum4:	function(c,a,t){ modctx[t]['batstartsum'] = argref(a);  modctx[t]['n_batstartsum'] = '4' },
+		batstartsum5:	function(c,a,t){ modctx[t]['batstartsum'] = argref(a);  modctx[t]['n_batstartsum'] = '5' },
+		batstartsum1d6:	function(c,a,t){ modctx[t]['batstartsum'] = argref(a);  modctx[t]['n_batstartsum'] = '1d6' },
+		batstartsum2d6:	function(c,a,t){ modctx[t]['batstartsum'] = argref(a);  modctx[t]['n_batstartsum'] = '2d6' },
+		batstartsum3d6:	function(c,a,t){ modctx[t]['batstartsum'] = argref(a);  modctx[t]['n_batstartsum'] = '3d6' },
+		batstartsum4d6:	function(c,a,t){ modctx[t]['batstartsum'] = argref(a);  modctx[t]['n_batstartsum'] = '4d6' },
+		batstartsum5d6:	function(c,a,t){ modctx[t]['batstartsum'] = argref(a);  modctx[t]['n_batstartsum'] = '5d6' },
+
 	},
 
 	//spell selected
@@ -1009,9 +1173,9 @@ var modctx = DMI.modctx = {
 
 		//fx
 		color: _ignore, //<red> <green> <blue>
-		flag: _ignore, //“<imgfile>”
+		flag: _ignore, //"<imgfile>"
 		templepic: _ignore, //Table 26 for some pic nbr values.
-		mapbackground: _ignore, // “<imgfile>”
+		mapbackground: _ignore, // "<imgfile>"
 		
 		labcost: _ignore,//_num,
 		templecost: _ignore,//_num,
