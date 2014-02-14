@@ -242,8 +242,9 @@ MSpell.prepareData_PostMod = function() {
 				_effects = modctx.effects_lookup[_o.effect_record_id];
 			}
 		}
-		
-		Utils.addFlags(o, MSpell.bitfieldValues(effects.modifiers_mask, modctx.effect_modifier_bits_lookup), ignorekeys );
+		if (effects) {
+			Utils.addFlags(o, MSpell.bitfieldValues(effects.modifiers_mask, modctx.effect_modifier_bits_lookup), ignorekeys );
+		}
 	}
 }
 

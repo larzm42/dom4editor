@@ -253,6 +253,12 @@ var modctx = DMI.modctx = {
 			}
 		},
 		newmonster: function(c,a,t,fnw) {
+			if (a.n1 == '') {
+				//get first unused id
+				var id = modctx.unitdata.length;
+				while (modctx.unitlookup[id]) id++;
+				a.n1 = id;
+			}
 			modctx._new(c,a ,'unit',fnw); 
 
 			// Utils.merge( modctx.unit, {
@@ -271,7 +277,7 @@ var modctx = DMI.modctx = {
 			// });
 			DMI.MUnit.initUnit(modctx.unit);
 			
-			if (a.n1<3001 || a.n1>6999) throw 'invalid id';
+			//if (a.n1<3001 || a.n1>6999) throw 'invalid id';
 		},
 		selectmonster: function(c,a,t,fnw){ modctx._select(c,a,'unit',fnw); },
 		
@@ -1061,6 +1067,17 @@ var modctx = DMI.modctx = {
 		spec:		_num,
 		
 		restricted: function(c,a,t){ modctx.spell.nations.push(argref(a)); }, //deferr lookups
+
+		damagemon: 		_str,
+				
+		provrange:		_num,
+		onlygeosrc:		_num,
+		onlygeodst:		_num,
+		onlyfriendlydst:	_num,
+		onlyowndst:		_num,
+		nowatertrace:	_num,
+		nolandtrace:	_num,
+		walkable:		_num,
 
 		//fx
 		flightspr:	_ignore,
