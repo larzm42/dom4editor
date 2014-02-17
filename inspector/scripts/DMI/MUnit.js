@@ -943,13 +943,11 @@ MUnit.prepareForRender = function(o) {
 			enc_armor += parseInt(a.enc || '0');
 			def_armor += parseInt(a.def || '0');
 			
-			if (a.type == 'armor') 
-				p_body = parseInt(a.protbody);
+			p_body = parseInt(a.protbody);
 
-			else if (a.type == 'helm')
-				p_head = parseInt(a.prothead);
+			p_head = parseInt(a.prothead);
 			
-			else if (a.type == 'shield')
+			if (a.type == 'shield')
 				def_parry = a.parry;
 			
 			else if (a.type == 'misc') { 

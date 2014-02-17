@@ -30,22 +30,30 @@ MArmor.prepareData_PostMod = function() {
 		for (var oi2=0, o2; o2 = modctx.protections_by_armor[oi2]; oi2++) {
 			var o2id = parseInt(o2.armor_number);
 			if (o2id == o.id) {
-				if (parseInt(o2.zone_number) == 1 || 
-					parseInt(o2.zone_number) == 5 || 
-					parseInt(o2.zone_number) == 6) {
-					o.prot = o2.protection;
-					break;
+				if (parseInt(o2.zone_number) == 1) {
+					o.prothead = o2.protection;
 				} else if (parseInt(o2.zone_number) == 2) {
 					o.torso = o2.protection;
 				} else if (parseInt(o2.zone_number) == 3) {
 					o.upper = o2.protection;
 				} else if (parseInt(o2.zone_number) == 4) {
 					o.lower = o2.protection;
+				} else if (parseInt(o2.zone_number) == 5) {
+					o.protshield = o2.protection;
+				} else if (parseInt(o2.zone_number) == 6) {
+					o.general = o2.protection;
 				}
 			}
 		}
 		if (o.torso) {
-			o.prot = Math.floor((parseInt(o.torso) + (parseInt(o.upper) + parseInt(o.lower)) / 2) / 2);
+			o.protbody = Math.floor((parseInt(o.torso) + (parseInt(o.upper) + parseInt(o.lower)) / 2) / 2);
+		}
+		
+		if (o.general) {
+			o.protbody = parseInt(o.protbody || '0') + parseInt(o.general);
+			if (o.prothead) {
+				o.prothead = parseInt(o.prothead) + parseInt(o.general);
+			}
 		}
 		
 		o.renderOverlay = MArmor.renderOverlay;
@@ -57,20 +65,8 @@ MArmor.prepareData_PostMod = function() {
 		o.type = {4:'shield', 5:'armor', 6:'helm', 8:'misc'}[o.type];
 		
 		if (o.type=="shield") {
-			if (o.prot) {
-				o.protshield = o.prot;
-				delete o.prot;
-			}
 			o.parry = parseInt(o.def) + parseInt(o.enc);
 			o.def = Utils.negative(o.enc);
-		}
-		else if (o.type=="helm" && o.prot) {
-			o.prothead = o.prot;
-			delete o.prot;
-		}
-		else if (o.type=="armor" && o.prot) {
-			o.protbody = o.prot;
-			delete o.prot;
 		}
 	}
 }
@@ -155,7 +151,7 @@ var ignorekeys = {
 	used_by:1,
 	name:1,
 	type:1,
-	torso:1,upper:1,lower:1,
+	torso:1,upper:1,lower:1,general:1,
 	searchable:1,renderOverlay:1, matchProperty:1
 };
 	
