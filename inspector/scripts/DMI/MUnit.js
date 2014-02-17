@@ -970,7 +970,7 @@ MUnit.prepareForRender = function(o) {
 			p_head = (p_nat + p_head - (p_nat * p_head/40));
 			var p_total = ((p_body * 4) + p_head) / 5;
 			
-			// p_total = p_total > 10  ?  math.floor(p_total)  :  
+			p_total = p_head > 10 ? Math.floor(p_total) : p_total;
 
 			//display strings			
 			o.prot = String(Math.round(p_total));
