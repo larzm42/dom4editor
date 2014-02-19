@@ -717,7 +717,7 @@ MSpell.bitfieldValues = function(bitfield, masks_dict) {
 	if (!bitfield) {
 		return newValues;
 	}
-	var values = myproject.bitfieldValues(bitfield, masks_dict);
+	var values = bitfields.bitfieldValues(bitfield, masks_dict);
 	for (var value in values) {
 		var flag = "none";
 		var flagIndex = values[value].indexOf("Wpn: #");

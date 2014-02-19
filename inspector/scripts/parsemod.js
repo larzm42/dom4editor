@@ -827,17 +827,17 @@ var modctx = DMI.modctx = {
 		domsummon10:	function(c,a,t){ modctx[t]['domsummon'] = argref(a);  modctx[t]['n_domsummon'] = 'DRN/10' },
 		domsummon20:	function(c,a,t){ modctx[t]['domsummon'] = argref(a);  modctx[t]['n_domsummon'] = 'DRN/20' },
 		
-		makemonsters1:	function(c,a,t){ modctx[t]['makemonsters'] = argref(a);  modctx[t]['n_makemonsters'] = '1' },
-		makemonsters2:	function(c,a,t){ modctx[t]['makemonsters'] = argref(a);  modctx[t]['n_makemonsters'] = '2' },
-		makemonsters3:	function(c,a,t){ modctx[t]['makemonsters'] = argref(a);  modctx[t]['n_makemonsters'] = '3' },
-		makemonsters4:	function(c,a,t){ modctx[t]['makemonsters'] = argref(a);  modctx[t]['n_makemonsters'] = '4' },
-		makemonsters5:	function(c,a,t){ modctx[t]['makemonsters'] = argref(a);  modctx[t]['n_makemonsters'] = '5' },
+		makemonsters1:	function(c,a,t){ modctx[t]['summon'] = argref(a);  modctx[t]['n_summon'] = '1' },
+		makemonsters2:	function(c,a,t){ modctx[t]['summon'] = argref(a);  modctx[t]['n_summon'] = '2' },
+		makemonsters3:	function(c,a,t){ modctx[t]['summon'] = argref(a);  modctx[t]['n_summon'] = '3' },
+		makemonsters4:	function(c,a,t){ modctx[t]['summon'] = argref(a);  modctx[t]['n_summon'] = '4' },
+		makemonsters5:	function(c,a,t){ modctx[t]['summon'] = argref(a);  modctx[t]['n_summon'] = '5' },
 		
-		summon1:	function(c,a,t){ modctx[t]['summon'] = argref(a);  modctx[t]['n_summon'] = '1' },
-		summon2:	function(c,a,t){ modctx[t]['summon'] = argref(a);  modctx[t]['n_summon'] = '2' },
-		summon3:	function(c,a,t){ modctx[t]['summon'] = argref(a);  modctx[t]['n_summon'] = '3' },
-		summon4:	function(c,a,t){ modctx[t]['summon'] = argref(a);  modctx[t]['n_summon'] = '4' },
-		summon5:	function(c,a,t){ modctx[t]['summon'] = argref(a);  modctx[t]['n_summon'] = '5' },
+		summon1:	function(c,a,t){ modctx[t]['autosum'] = argref(a);  modctx[t]['n_autosum'] = '1' },
+		summon2:	function(c,a,t){ modctx[t]['autosum'] = argref(a);  modctx[t]['n_autosum'] = '2' },
+		summon3:	function(c,a,t){ modctx[t]['autosum'] = argref(a);  modctx[t]['n_autosum'] = '3' },
+		summon4:	function(c,a,t){ modctx[t]['autosum'] = argref(a);  modctx[t]['n_autosum'] = '4' },
+		summon5:	function(c,a,t){ modctx[t]['autosum'] = argref(a);  modctx[t]['n_autosum'] = '5' },
 	
 		nametype:	_num,
 		
@@ -1272,24 +1272,24 @@ var modctx = DMI.modctx = {
 		aiholdgod: _ignore,
 		godrebirth: _ignore,
 				
-//		coastunit1?='#coastunit1' |
-//		coastunit2?='#coastunit2' |
-//		coastunit3?='#coastunit3' |
-//		coastcom1?='#coastcom1' |
-//		coastcom2?='#coastcom2' |
-//		addforeignunit?='#addforeignunit' |
-//		addforeigncom?='#addforeigncom' |
-//		forestrec?='#forestrec' |
-//		forestcom?='#forestcom' |
-//		mountainrec?='#mountainrec' |
-//		mountaincom?='#mountaincom' |
-//		swamprec?='#swamprec' |
-//		swampcom?='#swampcom' |
-//		wasterec?='#wasterec' |
-//		wastecom?='#wastecom' |
-//		caverec?='#caverec' |
-//		cavecom?='#cavecom' |
-//
+		coastunit1: function(c,a,t){ modctx[t]['coastrec'][1] = argref(a); },
+		coastunit2: function(c,a,t){ modctx[t]['coastrec'][2] = argref(a); },
+		coastunit3: function(c,a,t){ modctx[t]['coastrec'][2] = argref(a); },
+		coastcom1: function(c,a,t){ modctx[t]['coastcom'][1] = argref(a); },
+		coastcom2: function(c,a,t){ modctx[t]['coastcom'][2] = argref(a); },
+		addforeignunit: function(c,a,t){ modctx[t]['foreignunits'].push(argref(a)); },
+		addforeigncom: function(c,a,t){ modctx[t]['foreigncommanders'].push(argref(a)); },
+		forestrec: function(c,a,t){ modctx[t]['forestrec'].push(argref(a)); },
+		forestcom: function(c,a,t){ modctx[t]['forestcom'].push(argref(a)); },
+		mountainrec: function(c,a,t){ modctx[t]['mountainrec'].push(argref(a)); },
+		mountaincom: function(c,a,t){ modctx[t]['mountaincom'].push(argref(a)); },
+		swamprec: function(c,a,t){ modctx[t]['swamprec'].push(argref(a)); },
+		swampcom: function(c,a,t){ modctx[t]['swampcom'].push(argref(a)); },
+		wasterec: function(c,a,t){ modctx[t]['wasterec'].push(argref(a)); },
+		wastecom: function(c,a,t){ modctx[t]['wastecom'].push(argref(a)); },
+		caverec: function(c,a,t){ modctx[t]['caverec'].push(argref(a)); },
+		cavecom: function(c,a,t){ modctx[t]['cavecom'].push(argref(a)); },
+
 		cleargods: _bool,
 		addgod: function(c,a,t){ modctx[t]['addgod'].push(argref(a)); },
 		delgod: function(c,a,t){ modctx[t]['delgod'].push(argref(a)); }

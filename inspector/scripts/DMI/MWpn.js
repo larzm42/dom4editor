@@ -32,7 +32,7 @@ MWpn.prepareData_PostMod = function() {
 		//serachable string
 		o.searchable = o.name.toLowerCase();
 
-		var effects = modctx.effects_lookup[o.effect_record_id];
+		var effects = MWpn.getEffect(o);
 		if (effects) {
 			if (effects.effect_number == "2") {
 				o.dmg = effects.raw_argument;
@@ -205,6 +205,11 @@ var ignorekeys = {
 	secondaryeffectalways:1,
 	isImplicitWpn:1,
 	effect_record_id:1,
+	nostr:1,
+	dt_stun:1,
+	dt_large:1,
+	dt_small:1,
+	di_large:1,
 
 	wpnclass:1,
 	searchable:1, renderOverlay:1, matchProperty:1
@@ -279,7 +284,7 @@ MWpn.renderWpnTable = function(o, isImplicitWpn) {
 	h+= 			Utils.renderDetailsRows(o, displayorder, aliases, formats);
 	h+= 			Utils.renderStrangeDetailsRows(o, ignorekeys, aliases, 'strange');
 	
-	var effects = modctx.effects_lookup[o.effect_record_id];
+	var effects = MWpn.getEffect(o);
 	if (effects) {
 		var specflags = Utils.renderFlags(MWpn.bitfieldValues(effects.modifiers_mask, modctx.effect_modifier_bits_lookup) );
 		if (specflags)
@@ -323,7 +328,7 @@ MWpn.renderWpnTable = function(o, isImplicitWpn) {
 MWpn.bitfieldValues = function(bitfield, masks_dict) {
 	var magic = true;
 	var newValues=[];
-	var values = myproject.bitfieldValues(bitfield, masks_dict);
+	var values = bitfields.bitfieldValues(bitfield, masks_dict);
 	for (var value in values) {
 		if (values[value].indexOf("Hard to Hit Ethereal") == -1) {
 			var flag = "none";
@@ -341,6 +346,144 @@ MWpn.bitfieldValues = function(bitfield, masks_dict) {
 		newValues.push(["Magic weapon", "magic"]);
 	}
 	return newValues;
+}
+
+MWpn.getEffect = function(weapon) {
+	if (weapon.effect_record_id) {
+		return modctx.effects_lookup[weapon.effect_record_id];
+	}
+	var effect = {};
+	if (weapon.dt_stun) {
+		effect.effect_number = 3;
+	} else if (weapon.dt_poison) {
+		effect.effect_number = 7;
+	} else if (weapon.dt_holy) {
+		effect.effect_number = 24;
+	} else if (weapon.dt_large) {
+		effect.effect_number = 32;
+	} else if (weapon.dt_small) {
+		effect.effect_number = 33;
+	} else if (weapon.dt_paralyze) {
+		effect.effect_number = 66;
+	} else if (weapon.dt_weakness) {
+		effect.effect_number = 67;
+	} else if (weapon.dt_magic) {
+		effect.effect_number = 73;
+	} else if (weapon.dt_constructonly) {
+		effect.effect_number = 96;
+	} else if (weapon.dt_drain) {
+		effect.effect_number = 103;
+	} else if (weapon.dt_weapondrain) {
+		effect.effect_number = 104;
+	} else if (weapon.dt_demon) {
+		effect.effect_number = 107;
+	} else if (weapon.dt_cap) {
+		effect.effect_number = 109;
+	} else {
+		effect.effect_number = 2;
+	}
+	
+	effect.modifiers_mask = "0";
+	if (!weapon.nostr) {
+		effect.modifiers_mask = bitfields.longOr(effect.modifiers_mask, "1");
+	}
+	if (weapon.twohanded) {
+		effect.modifiers_mask = bitfields.longOr(effect.modifiers_mask, "2");
+	}
+	if (weapon.flail) {
+		effect.modifiers_mask = bitfields.longOr(effect.modifiers_mask, "4");
+	}
+	if (weapon.demononly) {
+		effect.modifiers_mask = bitfields.longOr(effect.modifiers_mask, "8");
+	}
+	if (weapon.fire) {
+		effect.modifiers_mask = bitfields.longOr(effect.modifiers_mask, "32");
+	}
+	if (weapon.armorpiercing) {
+		effect.modifiers_mask = bitfields.longOr(effect.modifiers_mask, "64");
+	}
+	if (weapon.armornegating) {
+		effect.modifiers_mask = bitfields.longOr(effect.modifiers_mask, "128");
+	}
+	if (weapon.cold) {
+		effect.modifiers_mask = bitfields.longOr(effect.modifiers_mask, "512");
+	}
+	if (weapon.shock) {
+		effect.modifiers_mask = bitfields.longOr(effect.modifiers_mask, "2048");
+	}
+	if (weapon.mrnegates) {
+		effect.modifiers_mask = bitfields.longOr(effect.modifiers_mask, "4096");
+	}
+	if (weapon.sacredonly) {
+		effect.modifiers_mask = bitfields.longOr(effect.modifiers_mask, "32768");
+	}
+	if (weapon.mind) {
+		effect.modifiers_mask = bitfields.longOr(effect.modifiers_mask, "131072");
+	}
+	if (weapon.friendlyimmune) {
+		effect.modifiers_mask = bitfields.longOr(effect.modifiers_mask , "62144");
+	}
+	if (weapon.undeadimmune) {
+		effect.modifiers_mask = bitfields.longOr(effect.modifiers_mask , "24288");
+	}
+	if (weapon.flyingimmune) {
+		effect.modifiers_mask = bitfields.longOr(effect.modifiers_mask, "1048576");
+	}
+	if (!weapon.magic) {
+		effect.modifiers_mask = bitfields.longOr(effect.modifiers_mask, "2097152");
+	}
+	if (weapon.enemyimmune) {
+		effect.modifiers_mask = bitfields.longOr(effect.modifiers_mask, "4194304");
+	}
+	if (weapon.mrnegateseasily) {
+		effect.modifiers_mask = bitfields.longOr(effect.modifiers_mask, "16777216");
+	}
+	if (weapon.undeadonly) {
+		effect.modifiers_mask = bitfields.longOr(effect.modifiers_mask, "67108864");
+	}
+	if (weapon.bonus) {
+		effect.modifiers_mask = bitfields.longOr(effect.modifiers_mask, "134217728");
+	}
+	if (weapon.charge) {
+		effect.modifiers_mask = bitfields.longOr(effect.modifiers_mask, "2147483648");
+	}
+	if (weapon.unrepel) {
+		effect.modifiers_mask = bitfields.longOr(effect.modifiers_mask, "137438953472");
+	}
+	if (weapon.pierce) {
+		effect.modifiers_mask = bitfields.longOr(effect.modifiers_mask, "274877906944");
+	}
+	if (weapon.blunt) {
+		effect.modifiers_mask = bitfields.longOr(effect.modifiers_mask, "549755813888");
+	}
+	if (weapon.slash) {
+		effect.modifiers_mask = bitfields.longOr(effect.modifiers_mask, "1099511627776");
+	}
+	if (weapon.acid) {
+		effect.modifiers_mask = bitfields.longOr(effect.modifiers_mask, "2199023255552");
+	}
+	if (weapon.sizeresist) {
+		effect.modifiers_mask = bitfields.longOr(effect.modifiers_mask, "4398046511104");
+	}
+	
+	if (weapon.dmg) {
+		effect.raw_argument = weapon.dmg;
+	}
+	
+	if (weapon.range) {
+		if (parseInt(weapon.range) < 0) {
+			effect.range_strength_divisor = -parseInt(weapon.range);
+		} else {
+			effect.range_base = weapon.range;
+		}
+	}
+	
+	if (weapon.aoe) {
+		effect.area_base = weapon.aoe;
+	}
+	
+	return effect;
+
 }
 
 //namespace args

@@ -148,7 +148,7 @@ MNation.prepareData_PostMod = function() {
 			}
 		}
 		if (o.addgod) {
-			o.pretenders.concat(o.addgod);
+			o.pretenders = o.pretenders.concat(o.addgod);
 		}
 		
 		// look for deleted pretenders
