@@ -11,94 +11,96 @@ var modconstants = DMI.modconstants;
 
 
 //determines unit type sort order (and identifies commanders)
-var unitSortableTypes = {
-	'cmdr (cap only)': 		'100.cmdr',
-	'cmdr (cave)': 			'101.cmdr',
-	'cmdr (coast)': 		'102.cmdr',
-	'cmdr (foreign)': 		'103.cmdr',
-	'cmdr (forest)': 		'104.cmdr',
-	'cmdr (land)': 			'105.cmdr',
-	'cmdr (mountain)': 		'106.cmdr',
-	'cmdr (swamp)': 		'107.cmdr',
-	'cmdr (u-water)': 		'108.cmdr-uw',
-	'cmdr (waste)': 		'109.cmdr',
+MUnit.unitSortableTypes = {
+	'cmdr (cap only)': 		'aaa.cmdr',
+	'cmdr (cave)': 			'aab.cmdr',
+	'cmdr (coast)': 		'aac.cmdr',
+	'cmdr (foreign)': 		'aad.cmdr',
+	'cmdr (forest)': 		'aae.cmdr',
+	'cmdr (land)': 			'aaf.cmdr',
+	'cmdr (mountain)': 		'aag.cmdr',
+	'cmdr (swamp)': 		'aah.cmdr',
+	'cmdr (u-water)': 		'aai.cmdr-uw',
+	'cmdr (waste)': 		'aaj.cmdr',
 
-	'commander': 			'110.cmdr',
-	'Commander': 			'111.cmdr',
-	'cmdr (summon)': 		'112.cmdr',
-	'cmdr (Battle Summon)': '113.cmdr',
-	'cmdr (Event)': 		'114.cmdr',
-	'cmdr (item)': 			'115.cmdr',
-	'cmdr (Magic site)':	'116.cmdr',
-	'cmdr (Mercenary)': 	'117.cmdr',
-	'cmdr (mercenary)': 	'118.cmdr',
-	'cmdr (Prophetization)':'119.cmdr',
-	'cmdr (Recruitment)': 	'120.cmdr',
-	'cmdr (Special)': 		'121.cmdr',
-	'cmdr (Summon)': 		'122.cmdr',
-	'cmdr (Wish)': 			'123.cmdr',
-	'cmdr (?)': 			'124.cmdr',
+	'commander': 			'aba.cmdr',
+	'Commander': 			'abb.cmdr',
+	'cmdr (summon)': 		'abc.cmdr',
+	'cmdr (Battle Summon)': 'abd.cmdr',
+	'cmdr (Event)': 		'abe.cmdr',
+	'cmdr (item)': 			'abf.cmdr',
+	'cmdr (Magic site)':	'abg.cmdr',
+	'cmdr (Mercenary)': 	'abh.cmdr',
+	'cmdr (mercenary)': 	'abi.cmdr',
+	'cmdr (Prophetization)':'abj.cmdr',
+	'cmdr (Recruitment)': 	'abk.cmdr',
+	'cmdr (Special)': 		'abl.cmdr',
+	'cmdr (Summon)': 		'abm.cmdr',
+	'cmdr (Wish)': 			'abn.cmdr',
+	'cmdr (?)': 			'abo.cmdr',
 
-	'Mage (item)': 			'200.cmdr-mage',
-	'Mage (Event)': 		'201.cmdr-mage',
-	'Mage (Magic site)':	'202.cmdr-mage',
-	'Mage (Prophetization)':'203.cmdr-mage',
-	'Mage (Recruitment)': 	'204.cmdr-mage',
-	'Mage (ritual)':		'205.cmdr-mage',
-	'Mage (Special)': 		'206.cmdr-mage',
-	'Mage (Summon)': 		'207.cmdr-mage',
-	'Mage (?)': 			'208.cmdr-mage',
-	'Mage': 				'209.cmdr-mage',
+	'Mage (item)': 			'aca.cmdr-mage',
+	'Mage (Event)': 		'acb.cmdr-mage',
+	'Mage (Magic site)':	'acc.cmdr-mage',
+	'Mage (Prophetization)':'acd.cmdr-mage',
+	'Mage (Recruitment)': 	'ace.cmdr-mage',
+	'Mage (ritual)':		'acf.cmdr-mage',
+	'Mage (Special)': 		'acg.cmdr-mage',
+	'Mage (Summon)': 		'ach.cmdr-mage',
+	'Mage (?)': 			'aci.cmdr-mage',
+	'Mage': 				'acj.cmdr-mage',
 	
-	'Priest (Event)': 		'300.cmdr-priest',
-	'Priest (Freespawn)': 	'301.cmdr-priest',
-	'Priest (Magic site)': 	'302.cmdr-priest',
-	'Priest (Recruitment)': '303.cmdr-priest',
-	'Priest (Summon)': 		'304.cmdr-priest',
-	'Priest (Prophetization)':'305.cmdr-priest',
+	'Priest (Event)': 		'ada.cmdr-priest',
+	'Priest (Freespawn)': 	'adb.cmdr-priest',
+	'Priest (Magic site)': 	'adc.cmdr-priest',
+	'Priest (Recruitment)': 'add.cmdr-priest',
+	'Priest (Summon)': 		'ade.cmdr-priest',
+	'Priest (Prophetization)':'adf.cmdr-priest',
 
-	'Scout (Recruitment)': 	'400.cmdr-scout',
-	'Scout (Summon)': 		'401.cmdr-scout',
+	'Scout (Recruitment)': 	'aea.cmdr-scout',
+	'Scout (Summon)': 		'aeb.cmdr-scout',
 
-	'unit (cap only)': 		'500.unit',
-	'unit (foreign)': 		'501.unit',
-	'unit': 				'502.unit',
-	'Unit': 				'503.unit',
-	'Unit (Recruitment)': 	'504.unit',
-	'Unit (Summon)': 		'505.unit',
-	'Unit (Battle Summon)': '506.unit',
-	'Unit (Event)': 		'507.unit',
-	'Unit (Freespawn)': 	'508.unit',
-	'Unit (Magic site)': 	'509.unit',
-	'Unit (Mercenary)': 	'510.unit',
-	'Unit (mercenary)': 	'511.unit',
-	'Unit (Special)': 		'512.unit',
-	'Unit (?)': 			'513.unit',
-	'unit (forest)': 		'514.unit',
-	'unit (mountain)': 		'515.unit',
-	'unit (swamp)': 		'516.unit',
-	'unit (waste)': 		'517.unit',
-	'unit (cave)': 			'518.unit',
-	'unit (coast)': 		'519.unit',
-	'unit (land)': 			'520.unit',
-	'unit (u-water)': 		'521.unit-uw',
-	'unit (summon)': 		'522.unit',
+	'unit (cap only)': 		'afa.unit',
+	'unit (foreign)': 		'afb.unit',
+	'unit': 				'afc.unit',
+	'Unit': 				'afd.unit',
+	'Unit (Recruitment)': 	'afe.unit',
+	'Unit (Summon)': 		'aff.unit',
+	'unit (Summon)': 		'afg.unit',
+	'unit (summon)': 		'afh.unit',
+	'Unit (Battle Summon)': 'afi.unit',
+	'Unit (Event)': 		'afj.unit',
+	'Unit (Freespawn)': 	'afk.unit',
+	'Unit (Magic site)': 	'afl.unit',
+	'Unit (Mercenary)': 	'afm.unit',
+	'Unit (mercenary)': 	'afn.unit',
+	'Unit (Special)': 		'afo.unit',
+	'Unit (?)': 			'afp.unit',
+	'unit (forest)': 		'afq.unit',
+	'unit (mountain)': 		'afr.unit',
+	'unit (swamp)': 		'afs.unit',
+	'unit (waste)': 		'aft.unit',
+	'unit (cave)': 			'afu.unit',
+	'unit (coast)': 		'afv.unit',
+	'unit (land)': 			'afw.unit',
+	'unit (u-water)': 		'afx.unit-uw',
 
-	'hero (multi)': 		'600.hero-cmdr',
-	'hero (unique)': 		'601.hero-cmdr',
-	'Hero (Event)': 		'602.hero-cmdr',
-	'Hero (item)': 			'603.hero-cmdr',
+	'hero (multi)': 		'aga.hero-cmdr',
+	'hero (unique)': 		'agb.hero-cmdr',
+	'Hero (Event)': 		'agc.hero-cmdr',
+	'Hero (item)': 			'agd.hero-cmdr',
 	
-	'pretender': 			'700.pret-cmdr',
-	'Pretender': 			'701.pret-cmdr',
+	'pretender': 			'aha.pret-cmdr',
+	'Pretender': 			'ahb.pret-cmdr',
 	
-	'special': 				'800.cmdr-spec',
-	'Horror': 				'801.cmdr-spec',
-	'horror': 				'802.cmdr-spec',
-	'Horror (Summon)': 		'803.cmdr-spec',
-	'horror (Summon)': 		'804.cmdr-spec',
+	'special': 				'aia.cmdr-spec',
+	'Horror': 				'aib.cmdr-spec',
+	'horror': 				'aic.cmdr-spec',
+	'Horror (Summon)': 		'aid.cmdr-spec',
+	'horror (Summon)': 		'aie.cmdr-spec',
 	
-	'': 					'900?cmdr' //??
+	'Unused': 				'aja?cmdr',
+	'': 					'ajb?cmdr'
 }
 function isCmdr(u) {
 	if (u.sorttype) {
@@ -206,12 +208,16 @@ MUnit.prepareData_PostMod = function() {
 		var is = Utils.is;
 		var normalise = Utils.normalise;
 		
-		if (o.rt == 2) {
+		if (o.rt == 2 || o.slowrec) {
 			o.slow_to_recruit = 1;
 		}
 		
 		// used to have proper key
-		o.gcost = o.basecost;
+		if (!o.gcost) {
+			o.gcost = o.basecost;
+		} else {
+			o.basecost = o.gcost;
+		}
 
 		//magic paths
 		o.mpath = '';
@@ -656,7 +662,7 @@ MUnit.prepareData_PostNationData = function(o) {
 			delete o.rcost;
 		}
 		//sorttype
-		o.sorttype = unitSortableTypes[o.type];
+		o.sorttype = MUnit.unitSortableTypes[o.type];
 
 		if (!o.sorttype || o.sorttype == '') {
 			o.sorttype = o.typeclass;
@@ -1014,7 +1020,7 @@ MUnit.CGrid = Utils.Class( DMI.CGrid, function() {
 	var columns = [
 		{ id: "name",     width: 100, name: "Unit Name", field: "name", sortable: true },
 		{ id: "nation",   width: 60, name: "Nation", field: "nationname", sortable: true },
-		{ id: "type",     width: 80, name: "Type", field: "sorttype", sortable: true, formatter: formatType },
+		{ id: "sorttype",     width: 80, name: "Type", field: "sorttype", sortable: true, formatter: formatType },
 		{ id: "goldcost",     width: 32, name: "Gold", field: "goldcost", sortable: true, cssClass: "numeric", formatter: formatGold },
 //		{ id: "gcom",     width: 32, name: "gcom", field: "gcom", sortable: true, cssClass: "numeric", formatter: formatGold },
 //		{ id: "diff",     width: 32, name: "diff", field: "diffsort", sortable: true, cssClass: "numeric", formatter: formatGold },
@@ -1295,7 +1301,7 @@ var displayorder3 = Utils.cutDisplayOrder(aliases, formats,
 	'gN',		'generates nature gems',	function(v){ return v!='0' && Format.PerTurn(Format.Gems(v+'N')); },
 	'gW',		'generates water gems',		function(v){ return v!='0' && Format.PerTurn(Format.Gems(v+'W')); },
 	
-	'lim',		'recruitment limit',	Format.PerTurn,
+	'reclimit',		'recruitment limit',	Format.PerTurn,
 	'gemprod',	'generates gems',	function(v){ return v!='0' && Format.PerTurn(Format.Gems(v)); },
 
 	'onebattlespell','casts each battle',		Utils.spellRef,
@@ -1409,6 +1415,9 @@ var displayorder3 = Utils.cutDisplayOrder(aliases, formats,
 	'mindslime',	'mind slimer',
 	'crossbreeder',	'crossbreader',
 	'patience', 'patience',
+	'uwdamage', 'underwater damage',
+	'digest', 'digest',
+	'bonusspells', 'bonus spells',
 	'special',	'special',
 	
 	'firstshape',	'natural shape',	function(v,o){	return chainedUnitRef(o, 'firstshape', []);	},
@@ -1548,6 +1557,7 @@ var ignorekeys = {
 	gmon:1,
 	gcom:1,
 	watt:1,
+	slowrec:1,
 	
 	researchbonus:1, listed_mpath:1, 
 	n_domsummon:1, n_makemonster:1, n_batstartsum:1, n_autosum:1, n_summon:1,	

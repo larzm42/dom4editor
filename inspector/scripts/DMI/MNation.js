@@ -3,6 +3,7 @@
 		
 var MSite = DMI.MSite = DMI.MSite || {};
 var MNation = DMI.MNation = DMI.MNation || {};
+var MUnit = DMI.MUnit = DMI.MUnit || {};
 
 var Format = DMI.Format;
 var Utils = DMI.Utils;
@@ -43,94 +44,45 @@ MSite.prepareData_PostMod = function() {
 
 
 MNation.initNation = function(o) {
+	o.foreignunits = [];
+	o.forestrec = [];
+	o.forestcom = [];
+	o.mountainrec = [];
+	o.mountaincom = [];
+	o.swamprec = [];
+	o.swampcom = [];
+	o.wasterec = [];
+	o.wastecom = [];
+	o.caverec = [];
+	o.cavecom = [];
+	o.coastrec = [];
+	o.coastcom = [];
+	o.landunit = [];
+	o.landcom = [];
+	o.capunits = [];
+	o.capcommanders = [];
 	o.pretenders = [];
 	o.commanders = [];
 	o.foreigncommanders = [];
 	o.units = [];
 	o.heroes = [];	
 	o.multiheroes = [];
-	o.uwunits = [];
-	o.uwcoms = [];
-	o.specialunits = [];
+	o.uwunit = [];
+	o.uwcom = [];
 	o.sites = [];
 	o.spells = [];
+	o.homerealm = [];
+	o.addgod = [];
+	o.delgod = [];
 }
 MNation.prepareData_PreMod = function() {
 	for (var oi=0, o;  o= modctx.nationdata[oi];  oi++) {
 		
 		o.pretenders = [];
-		
-		// Get realms of nation
-		var realms = [];
-		for (var oj=0, attr; attr = modctx.attributes_by_nation[oj];  oj++) {
-			if (parseInt(attr.nation_number) == o.id) {
-				var attribute = modctx.attributes_lookup[parseInt(attr.attribute_record_id)];
-				if (attribute.attribute_number == "289") {
-					realms.push(attribute.raw_value);
-				}
-			}
-		}
-		
-		// get monsters in realm
-		for (var oj=0, attr; attr = modctx.realms[oj];  oj++) {
-			for (var ok=0, realm; realm = realms[ok]; ok++) {
-				if (attr.realm == realm) {
-					o.pretenders.push(attr.monster_number);
-				}
-			}
-		}
-		
-		// look for added pretenders
-		for (var oj=0, attr; attr = modctx.pretender_types_by_nation[oj];  oj++) {
-			if (parseInt(attr.nation_number) == o.id) {
-				o.pretenders.push(attr.monster_number);
-			}
-		}
-		
-		// look for deleted pretenders
-		for (var oj=0, attr; attr = modctx.unpretender_types_by_nation[oj];  oj++) {
-			if (parseInt(attr.nation_number) == o.id) {
-				for (var ok=0, pret; pret = o.pretenders[ok]; ok++) {
-					if (pret == attr.monster_number) {
-						o.pretenders.splice(ok, 1);
-						break;
-					}
-				}
-			}
-		}
-		
 		o.commanders = [];
-		// look for commanders
-		for (var oj=0, attr; attr = modctx.fort_leader_types_by_nation[oj];  oj++) {
-			if (parseInt(attr.nation_number) == o.id) {
-				o.commanders.push(attr.monster_number);
-			}
-		}
-		
 		o.foreigncommanders = [];
-		// look for foreign commanders
-		for (var oj=0, attr; attr = modctx.nonfort_leader_types_by_nation[oj];  oj++) {
-			if (parseInt(attr.nation_number) == o.id) {
-				o.foreigncommanders.push(attr.monster_number);
-			}
-		}
-		
 		o.units = [];
-		// look for units
-		for (var oj=0, attr; attr = modctx.fort_troop_types_by_nation[oj];  oj++) {
-			if (parseInt(attr.nation_number) == o.id) {
-				o.units.push(attr.monster_number);
-			}
-		}
-		
 		o.foreignunits = [];
-		// look for foreign units
-		for (var oj=0, attr; attr = modctx.nonfort_troop_types_by_nation[oj];  oj++) {
-			if (parseInt(attr.nation_number) == o.id) {
-				o.foreignunits.push(attr.monster_number);
-			}
-		}
-
 		o.sites = [];
 		o.forestrec = [];
 		o.forestcom = [];
@@ -150,6 +102,100 @@ MNation.prepareData_PreMod = function() {
 		o.landunit = [];
 		o.heroes = [];	
 		o.multiheroes = [];
+		o.spells = [];
+	}
+}
+
+MNation.prepareData_PostMod = function() {
+	for (var oi=0, o;  o= modctx.nationdata[oi];  oi++) {
+		o.id = parseInt(o.id);
+		
+		o.renderOverlay = MNation.renderOverlay;
+		
+		o.eracode = modconstants.eracodes[o.era];
+		o.shortname = o.eracode+'  '+o.name;
+		o.fullname = o.eracode+'  '+o.name+'  -  '+o.epithet;
+		
+		// Get realms of nation
+		var realms = [];
+		for (var oj=0, attr; attr = modctx.attributes_by_nation[oj];  oj++) {
+			if (parseInt(attr.nation_number) == o.id) {
+				var attribute = modctx.attributes_lookup[parseInt(attr.attribute_record_id)];
+				if (attribute.attribute_number == "289") {
+					realms.push(attribute.raw_value);
+				}
+			}
+		}
+		if (o.homerealm) {
+			realms = realms.concat(o.homerealm);
+		}
+		
+		// get monsters in realm
+		for (var oj=0, attr; attr = modctx.realms[oj];  oj++) {
+			for (var ok=0, realm; realm = realms[ok]; ok++) {
+				if (parseInt(attr.realm) == parseInt(realm)) {
+					o.pretenders.push(attr.monster_number);
+				}
+			}
+		}
+		
+		// look for added pretenders
+		if (!o.cleargods) {
+			for (var oj=0, attr; attr = modctx.pretender_types_by_nation[oj];  oj++) {
+				if (parseInt(attr.nation_number) == o.id) {
+					o.pretenders.push(attr.monster_number);
+				}
+			}
+		}
+		if (o.addgod) {
+			o.pretenders.concat(o.addgod);
+		}
+		
+		// look for deleted pretenders
+		for (var oj=0, attr; attr = modctx.unpretender_types_by_nation[oj];  oj++) {
+			if (parseInt(attr.nation_number) == o.id) {
+				for (var ok=0, pret; pret = o.pretenders[ok]; ok++) {
+					if (pret == attr.monster_number) {
+						o.pretenders.splice(ok, 1);
+						break;
+					}
+				}
+			}
+		}
+		if (o.delgod) {
+			o.pretenders = o.pretenders.filter(function(item) {
+			    return o.delgod.indexOf(item) === -1;
+			});
+		}
+		
+		// look for commanders
+		for (var oj=0, attr; attr = modctx.fort_leader_types_by_nation[oj];  oj++) {
+			if (parseInt(attr.nation_number) == o.id) {
+				o.commanders.push(attr.monster_number);
+			}
+		}
+		
+		// look for foreign commanders
+		for (var oj=0, attr; attr = modctx.nonfort_leader_types_by_nation[oj];  oj++) {
+			if (parseInt(attr.nation_number) == o.id) {
+				o.foreigncommanders.push(attr.monster_number);
+			}
+		}
+		
+		// look for units
+		for (var oj=0, attr; attr = modctx.fort_troop_types_by_nation[oj];  oj++) {
+			if (parseInt(attr.nation_number) == o.id) {
+				o.units.push(attr.monster_number);
+			}
+		}
+		
+		// look for foreign units
+		for (var oj=0, attr; attr = modctx.nonfort_troop_types_by_nation[oj];  oj++) {
+			if (parseInt(attr.nation_number) == o.id) {
+				o.foreignunits.push(attr.monster_number);
+			}
+		}
+
 		for (var oj=0, attr; attr = modctx.attributes_by_nation[oj];  oj++) {
 			if (parseInt(attr.nation_number) == o.id) {
 				var attribute = modctx.attributes_lookup[parseInt(attr.attribute_record_id)];
@@ -246,20 +292,6 @@ MNation.prepareData_PreMod = function() {
 				}
 			}
 		}
-
-		o.spells = [];
-	}
-}
-
-MNation.prepareData_PostMod = function() {
-	for (var oi=0, o;  o= modctx.nationdata[oi];  oi++) {
-		o.id = parseInt(o.id);
-		
-		o.renderOverlay = MNation.renderOverlay;
-		
-		o.eracode = modconstants.eracodes[o.era];
-		o.shortname = o.eracode+'  '+o.name;
-		o.fullname = o.eracode+'  '+o.name+'  -  '+o.epithet;
 		
 		//associate spells
 		//national spells already listed themselves in o.spells
@@ -285,9 +317,9 @@ MNation.prepareData_PostMod = function() {
 				
 		 		var basekey;
 		 		if (u.typeclass == 'Unit') {
-		 			basekey = 'unit (summon)';
+		 			basekey = 'unit (Summon)';
 		 		} else {
-		 			basekey = 'cmdr (summon)';
+		 			basekey = 'cmdr (Summon)';
 		 		}
 				if (u.type && u.type!=basekey) {
 					//find pretender version of this unit

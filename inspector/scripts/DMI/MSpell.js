@@ -2,6 +2,7 @@
 (function( DMI, $, undefined ){
 		
 var MSpell = DMI.MSpell = DMI.MSpell || {};
+var MUnit = DMI.MUnit = DMI.MUnit || {};
 
 var Format = DMI.Format;
 var Utils = DMI.Utils;
@@ -85,6 +86,11 @@ MSpell.prepareData_PostMod = function() {
 				delete o.nextspell;
 			}
 		}
+		
+		// Modded description
+		if (o.descr) {
+			o.description = o.descr;
+		}
 
 		//path: E1D1
 		if (!o.path1 || o.pathlevel1=='0') {
@@ -105,7 +111,10 @@ MSpell.prepareData_PostMod = function() {
 			o.sortschool += '.' + o.researchlevel;
 		}
 		
-		var effects = modctx.effects_lookup[o.effect_record_id];
+		if (o.nreff) {
+			o.effects_count = o.nreff;
+		}
+		var effects = MSpell.getEffect(o);
 		if (effects) {
 			if (effects.ritual == "1") {
 				o.type = 'Ritual';
@@ -153,6 +162,9 @@ MSpell.prepareData_PostMod = function() {
 
 		//combat fatiguecost
 		if (o.type == 'Ritual'){
+			if (!o.gemcost) {
+				o.gemcost = parseInt(o.fatiguecost) / 100;
+			}
 			delete o.fatiguecost;
 			o.fatiguecostsort = -1;
 		} else {
@@ -209,7 +221,17 @@ MSpell.prepareData_PostMod = function() {
 
 				//attach spell to unit
 				u.summonedby = u.summonedby || [];
-				u.summonedby.push( o );					
+				u.summonedby.push( o );
+				
+				if (!u.type) {
+					if (_effects.effect_number == "1") {
+						u.type = 'unit (Summon)';
+						u.sorttype = MUnit.unitSortableTypes[u.type];
+					} else if (_effects.effect_number == "21") {
+						u.type = 'cmdr (Summon)';
+						u.sorttype = MUnit.unitSortableTypes[u.type];
+					}
+				}
 			} else if (_effects.effect_number == "76" || 
 				_effects.effect_number == "89" || 
 				_effects.effect_number == "100" || 
@@ -237,9 +259,9 @@ MSpell.prepareData_PostMod = function() {
 				}
 			}
 			if (_o == _o.nextspell) break;
-			_o = _o.nextspell;
+			_o = modctx.spelllookup[_o.nextspell];
 			if (_o) {
-				_effects = modctx.effects_lookup[_o.effect_record_id];
+				_effects = MSpell.getEffect(_o);
 			}
 		}
 		if (effects) {
@@ -513,6 +535,9 @@ var ignorekeys = {
 	researchlevel:1,research:1,sortschool:1,
 
 	damage:1,
+	damagemon:1,
+	spec:1,
+	descr:1,
 	type:1,		
 	mpath:1,
 	fatiguecost:1,gemcost:1,
@@ -632,7 +657,7 @@ MSpell.renderSpellTable = function(o, original_effect) {
 	if (o.damage == '0' && MSpell.format.effect(o.effect) == 8)
 		cssclasses += 	' hidden-block'
 	
-	var effects = modctx.effects_lookup[o.effect_record_id];
+	var effects = MSpell.getEffect(o);
 	if (effects) {
 		//effect
 		h+='		<table class="overlay-table spell-effect '+cssclasses+'"> ';
@@ -689,6 +714,9 @@ MSpell.renderSpellTable = function(o, original_effect) {
 
 MSpell.bitfieldValues = function(bitfield, masks_dict) {
 	var newValues=[];
+	if (!bitfield) {
+		return newValues;
+	}
 	var values = myproject.bitfieldValues(bitfield, masks_dict);
 	for (var value in values) {
 		var flag = "none";
@@ -710,7 +738,7 @@ function renderEffect(o, effects) {
 }
 
 MSpell.worksUnderwater = function(spell) {
-	var effects = modctx.effects_lookup[spell.effect_record_id];
+	var effects = MSpell.getEffect(spell);
 	if (effects) {
 		if ((effects.modifiers_mask & 8388608) ||
 			(effects.modifiers_mask & 33554432)) {
@@ -721,13 +749,77 @@ MSpell.worksUnderwater = function(spell) {
 }
 
 MSpell.worksOnDryLand = function(spell) { 
-	var effects = modctx.effects_lookup[spell.effect_record_id];
+	var effects = MSpell.getEffect(spell);
 	if (effects) {
 		if (!(effects.modifiers_mask & 33554432)) {
 			return true;
 		}
 	}
 	return false; 
+}
+
+MSpell.getEffect = function(spell) {
+	if (spell.effect_record_id) {
+		return modctx.effects_lookup[spell.effect_record_id];
+	}
+	var effect = {};
+	if (spell.copyspell) {
+		var otherspell = DMI.modctx.spelllookup[spell.copyspell];
+		effect = modctx.effects_lookup[otherspell.effect_record_id];
+	}
+	if (spell.effect) {
+		if (parseInt(spell.effect) > 1000) {
+			effect.effect_number = parseInt(spell.effect) - 10000;
+			effect.ritual = 1;
+		} else {
+			effect.effect_number = parseInt(spell.effect);
+			effect.ritual = 0;
+		}
+	}
+	if (effect.effect_number == "1" ||
+		effect.effect_number == "21" ||
+		effect.effect_number == "26" ||
+		effect.effect_number == "31" ||
+		effect.effect_number == "37" ||
+		effect.effect_number == "38" ||
+		effect.effect_number == "43" ||
+		effect.effect_number == "50" ||
+		effect.effect_number == "93" ||
+		effect.effect_number == "119") {
+		if (spell.damagemon) {
+			effect.raw_argument = spell.damagemon.toLowerCase();
+		} else if (spell.damage) {
+			effect.raw_argument = spell.damage;
+		}
+	}
+	
+	if (spell.spec) {
+		effect.modifiers_mask = spell.spec; 
+	} else {
+		effect.modifiers_mask = 0; 
+	}
+	
+	if (spell.range) {
+		effect.range_base = parseInt(spell.range) % 1000;
+	} else {
+		effect.range_base = '0';
+		effect.range_per_level = '0';
+	}
+	
+	return effect;
+
+//effect.duration INTEGER,
+//	effect.range_base INTEGER, 
+//	effect.range_per_level INTEGER, 
+//	effect.range_strength_divisor INTEGER, 
+//	effect.area_base INTEGER, 
+//	effect.area_per_level INTEGER, 
+//	effect.area_battlefield_pct INTEGER, 
+//	effect.sound_number INTEGER, 
+//	effect.flight_sprite_number INTEGER, 
+//	effect.flight_sprite_length INTEGER, 
+//	effect.explosion_sprite_number INTEGER, 
+//	effect.explosion_sprite_length INTEGER, 
 }
 
 //namespace args

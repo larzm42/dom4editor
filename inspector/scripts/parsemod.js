@@ -291,9 +291,15 @@ var modctx = DMI.modctx = {
 		},
 		selectspell: function(c,a,t,fnw){ modctx._select(c,a,'spell',fnw); },
 		
-		//
-		//no newnation
-		//
+		newnation: function(c,a,t,fnw) {
+			//get first unused id
+			var id = modctx.nationdata.length;
+			while (modctx.nationlookup[id]) id++;
+				
+			modctx._new(c, {n1:id} ,'nation',fnw);
+			DMI.MNation.initNation(modctx.nation);
+		},
+		
 		selectnation: function(c,a,t,fnw){ //modctx._select(c,a,'nation')
 			try {
 				modctx._select(c,a,'nation',fnw)
@@ -1193,6 +1199,7 @@ var modctx = DMI.modctx = {
 		flag: _ignore, //"<imgfile>"
 		templepic: _ignore, //Table 26 for some pic nbr values.
 		mapbackground: _ignore, // "<imgfile>"
+		secondarycolor: _ignore,
 		
 		labcost: _ignore,//_num,
 		templecost: _ignore,//_num,
@@ -1236,14 +1243,57 @@ var modctx = DMI.modctx = {
 //~ of C'tis, tomb wyrms and other special C'tissian 
 //~ undead. Desert Tombs C'tis has this attribute.
 
-		startfort: _ignore,//_num,// Table 28 for a list of fort numbers
-		defaultfort: _ignore,//_num,
-		farmfort: _ignore,//_num,
-		mountainfort: _ignore,//_num,
-		forestfort: _ignore,//_num,
-		swampfort: _ignore,//_num,
-		uwfort: _ignore,//_num,
-		deepfort: _ignore//_num
+		//startfort: _ignore,//_num,// Table 28 for a list of fort numbers
+		//defaultfort: _ignore,//_num,
+		//farmfort: _ignore,//_num,
+		//mountainfort: _ignore,//_num,
+		//forestfort: _ignore,//_num,
+		//swampfort: _ignore,//_num,
+		//uwfort: _ignore,//_num,
+		//deepfort: _ignore//_num
+
+		likesterr: _ignore,
+		hatesterr: _ignore,
+		aiawake: _ignore,
+		merccost: _ignore,
+		homerealm: function(c,a,t){ modctx[t]['homerealm'].push(argref(a)); },
+		likespop: _ignore,
+		fortera: _ignore,
+		fortcost: _ignore,
+		uwbuild: _ignore,
+		spreadcold: _ignore,
+		spreadheat: _ignore,
+		spreadchaos: _ignore,
+		spreadlazy: _ignore,
+		spreaddeath: _ignore,
+		golemhp: _ignore,
+		tradecoast: _ignore,
+
+		aiholdgod: _ignore,
+		godrebirth: _ignore,
+				
+//		coastunit1?='#coastunit1' |
+//		coastunit2?='#coastunit2' |
+//		coastunit3?='#coastunit3' |
+//		coastcom1?='#coastcom1' |
+//		coastcom2?='#coastcom2' |
+//		addforeignunit?='#addforeignunit' |
+//		addforeigncom?='#addforeigncom' |
+//		forestrec?='#forestrec' |
+//		forestcom?='#forestcom' |
+//		mountainrec?='#mountainrec' |
+//		mountaincom?='#mountaincom' |
+//		swamprec?='#swamprec' |
+//		swampcom?='#swampcom' |
+//		wasterec?='#wasterec' |
+//		wastecom?='#wastecom' |
+//		caverec?='#caverec' |
+//		cavecom?='#cavecom' |
+//
+		cleargods: _bool,
+		addgod: function(c,a,t){ modctx[t]['addgod'].push(argref(a)); },
+		delgod: function(c,a,t){ modctx[t]['delgod'].push(argref(a)); }
+
 	},
 	sitecommands: {
 		end: function(c,a,t){
