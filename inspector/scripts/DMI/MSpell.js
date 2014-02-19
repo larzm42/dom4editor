@@ -526,7 +526,8 @@ var displayorder = Utils.cutDisplayOrder(aliases, formats,
 	'fatiguecost',	'fatigue cost',		function(v){ return v+'-'; },
 	'precision',	'precision',	{0: '0 '},	
 	'duration',	'duration',	function(v,o){ return o.duration == 1 ? v+' round' : v+' rounds' },
-	'gemcost',	'gems required',	Format.Gems
+	'gemcost',	'gems required',	Format.Gems,
+	'onlygeosrc', 'source terrain', function(v,o){ return Utils.renderFlags(MSpell.bitfieldValues(o.onlygeosrc, modctx.map_terrain_types_lookup), 1) }
 ]);
 var ignorekeys = {
 	modded:1,

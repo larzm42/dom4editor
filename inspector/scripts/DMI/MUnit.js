@@ -1334,6 +1334,7 @@ var displayorder3 = Utils.cutDisplayOrder(aliases, formats,
 	'chaospower',	'chaos power',
 	'magicpower',	'magic power',
 	'waterbreathing',	'waterbreathing',
+	'giftofwater',	'gift of waterbreathing',
 	
 	'springpower',	'spring power',
 	'summerpower',	'summer power',
