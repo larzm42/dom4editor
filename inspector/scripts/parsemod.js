@@ -340,7 +340,243 @@ var modctx = DMI.modctx = {
 		secondarypath: 	function(c,a,t){ modctx[t][c] = modconstants['16'][argnum(a)] },
 		mainlevel: 	_num,
 		secondarylevel: _num,
-		copyspr: 	_ref
+		copyspr: 	_ref,
+		
+		spr: 		_str,
+		spell: 		_str,
+		autospell: 	_str,
+				
+		str: 	_num,
+		att: 	_num,
+		def: 	_num,
+		prec: 	_num,
+		mr: 	_num,
+		morale: 	_num,
+		voidsanity: 	_num,
+		fireres: 	_num,
+		coldres: 	_num,
+		shockres: 	_num,
+		poisonres: 	_num,
+		restricted: 	_num,
+		pen: 	_num,
+		autospellrepeat: 	_num,
+		randomspell: 	_num,
+		mapspeed: 	_num,
+		tainted: 	_num,
+		speciallook: 	_num,
+		giftofwater: 	_num,
+		seduce: 	_num,
+		succubus: 	_num,
+		beckon: 	_num,
+		falsearmy: 	_num,
+		foolscouts: 	_num,
+		iceprot: 	_num,
+		invulnerable: 	_num,
+		healer: 	_num,
+		autohealer: 	_num,
+		autodishealer: 	_num,
+		autodisgrinder: 	_num,
+		homesick: 	_num,
+		uwdamage: 	_num,
+		regeneration: 	_num,
+		reinvigoration: 	_num,
+		woundfend: 	_num,
+		poisoncloud: 	_num,
+		diseasecloud: 	_num,
+		animalawe: 	_num,
+		awe: 	_num,
+		fear: 	_num,
+		fireshield: 	_num,
+		banefireshield: 	_num,
+		damagerev: 	_num,
+		bloodvengeance: 	_num,
+		slimer: 	_num,
+		deathdisease: 	_num,
+		deathparalyze: 	_num,
+		deathfire: 	_num,
+		chaospower: 	_num,
+		firepower: 	_num,
+		coldpower: 	_num,
+		magicpower: 	_num,
+		stormpower: 	_num,
+		darkpower: 	_num,
+		springpower: 	_num,
+		summerpower: 	_num,
+		fallpower: 	_num,
+		winterpower: 	_num,
+		ambidextrous: 	_num,
+		berserk: 	_num,
+		darkvision: 	_num,
+		digest: 	_num,
+		incorporate: 	_num,
+		castledef: 	_num,
+		siegebonus: 	_num,
+		patrolbonus: 	_num,
+		pillagebonus: 	_num,
+		supplybonus: 	_num,
+		nobadevents: 	_num,
+		incprovdef: 	_num,
+		incunrest: 	_num,
+		leper: 	_num,
+		popkill: 	_num,
+		heretic: 	_num,
+		elegist: 	_num,
+		spreaddom: 	_num,
+		shatteredsoul: 	_num,
+		gold: 	_num,
+		inspirational: 	_num,
+		beastmaster: 	_num,
+		taskmaster: 	_num,
+		formationfighter: 	_num,
+		bodyguard: 	_num,
+		standard: 	_num,
+		douse: 	_num,
+		researchbonus: 	_num,
+		inspiringres: 	_num,
+		divineins: 	_num,
+		forgebonus: 	_num,
+		fixforgebonus: 	_num,
+		crossbreeder: 	_num,
+		bonusspells: 	_num,
+		deathbanish: 	_num,
+		kokytosret: 	_num,
+		infernoret: 	_num,
+		voidret: 	_num,
+		allret: 	_num,
+		firerange: 	_num,
+		airrange: 	_num,
+		waterrange: 	_num,
+		earthrange: 	_num,
+		astralrange: 	_num,
+		deathrange: 	_num,
+		naturerange: 	_num,
+		bloodrange: 	_num,
+		elementrange: 	_num,
+		sorceryrange: 	_num,
+		allrange: 	_num,
+		makepearls: 	_num,
+		tmpfiregems: 	_num,
+		tmpairgems: 	_num,
+		tmpwatergems: 	_num,
+		tmpearthgems: 	_num,
+		tmpastralgems: 	_num,
+		tmpdeathgems: 	_num,
+		tmpnaturegems: 	_num,
+		tmpbloodslaves: 	_num,
+
+		copyitem: function(c,a,t){
+			var from = modctx.itemlookup[a.n1] || modctx.itemlookup[($.trim(a.s) || '-1').toLowerCase()];
+			if (!from) throw 'original item not found';
+			var ignorestats = {
+				//stats to NOT copy
+				modded:1,
+				id:1
+				//name:1,
+			};
+			var to = modctx.item;
+			for (var k in to)   if (!ignorestats[k]) delete to[k];
+			for (var k in from) if (!ignorestats[k]) to[k] = from[k];
+				
+			//deep copy arrays
+//			to.nations = [];
+//			for (var i=0, m; m= from.nations[i]; i++) to.nations[i] = m;
+		},
+		domsummon:	_str,
+		domsummon2:	_str,
+		domsummon20:	_str,
+		raredomsummon:	_str,
+		summon1:	_str,
+		summon2: _str,
+		summon3: _str,
+		summon4: _str,
+		summon5: _str,
+		makemonsters1: _str,
+		makemonsters2: _str,
+		makemonsters3: _str,
+		makemonsters4: _str,
+		makemonsters5: _str,
+		battlesum1: _str,
+		battlesum2: _str,
+		battlesum3: _str,
+		battlesum4: _str,
+		battlesum5: _str,
+		batstartsum1: _str,
+		batstartsum2: _str,
+		batstartsum3: _str,
+		batstartsum4: _str,
+		batstartsum5: _str,
+		batstartsum1d6: _str,
+		batstartsum2d6: _str,
+		batstartsum3d6: _str,
+		batstartsum4d6: _str,
+		batstartsum5d6: _str,
+
+		ethereal: _bool,
+		nomounted: _bool,
+		nocoldblood: _bool,
+		nodemon: _bool,
+		noundead: _bool,
+		noinanim: _bool,
+		nofemale: _bool,
+		onlymounted: _bool,
+		onlycoldblood: _bool,
+		onlydemon: _bool,
+		onlyundead: _bool,
+		onlyinanim: _bool,
+		onlyfemale: _bool,
+		reqeyes: _bool,
+		nofind: _bool,
+		luck: _bool,
+		quickness: _bool,
+		bless: _bool,
+		barkskin: _bool,
+		stoneskin: _bool,
+		ironskin: _bool,
+		waterbreathing: _bool,
+		float: _bool,
+		fly: _bool,
+		stormimmune: _bool,
+		run: _bool,
+		trample: _bool,
+		bers: _bool,
+		extralife: _bool,
+		champprize: _bool,
+		autocompete: _bool,
+		cursed: _bool,
+		curse: _bool,
+		disease: _bool,
+		chestwound: _bool,
+		feeblemind: _bool,
+		mute: _bool,
+		nhwound: _bool,
+		crippled: _bool,
+		loseeye: _bool,
+		singlebattle: _bool,
+		chaosrec: _bool,
+		stonebeing: _bool,
+		noriverpass: _bool,
+		unteleportable: _bool,
+		slashres: _bool,
+		pierceres: _bool,
+		bluntres: _bool,
+		hpoverflow: _bool,
+		deathcurse: _bool,
+		trampswallow: _bool,
+		inquisitor: _bool,
+		taxcollector: _bool,
+		undisciplined: _bool,
+		drainimmune: _bool,
+		magicimmune: _bool,
+		comslave: _bool,
+
+		magicboost: function(c,a,t){
+			var pstr = modconstants[10][argnum(a)];
+			if (!Utils.inArray(pstr, modconstants.pathkeys))
+				pstr = 'all';
+			
+			modctx.item[pstr] = a.n2;
+		},
+
 	},
 
 	//weapon selected
@@ -588,31 +824,33 @@ var modctx = DMI.modctx = {
 		pathcost: function(c,a,t){
 			var o = modctx[t];
 			if (!Utils.is(o.pathcost)) { //is new pretender
-				for (var n, i=0; n=modctx.nationdata[i]; i++)
-					Utils.joinArray(o.id, n.pretenders);
+				for (var n, i=0; n=modctx.nationdata[i]; i++) {
+					if (n.homerealm) {
+						for	(var ok=0, k;  k= n.homerealm[ok];  ok++) {
+							if (parseInt(k) == parseInt(o.homerealm)) {
+								Utils.joinArray(o.id, n.pretenders);
+							}
+						}
+					}
+				}
 			}
 			_num(c,a,t);
 		},
 		startdom: function(c,a,t){
 			var o = modctx[t];
 			if (!Utils.is(o.startdom)) { //is new pretender
-				for (var n, i=0; n=modctx.nationdata[i]; i++)
-					Utils.joinArray(o.id, n.pretenders);
+				for (var n, i=0; n=modctx.nationdata[i]; i++) {
+					if (n.homerealm) {
+						for	(var ok=0, k;  k= n.homerealm[ok];  ok++) {
+							if (parseInt(k) == parseInt(o.homerealm)) {
+								Utils.joinArray(o.id, n.pretenders);
+							}
+						}
+					}
+				}
 			}
 			_num(c,a,t);
 		},
-//		restrictedgod: function(c,a,t){
-//			var o = modctx[t];
-//			//remove as pretender from current nations
-//			for (var n, i=0; n=modctx.nationdata[i]; i++)
-//				Utils.weedArray(o.id, n.pretenders);
-//
-//			//and associate with just this one nation
-//			var nation = modctx.nationlookup[argnum(a)];
-//			if (nation) nation.pretenders.push(o.id);
-//
-//			//can use this command on multiple nations??
-//		},
 		
 		female:		_bool,
 		mounted:	_bool,
@@ -1363,7 +1601,60 @@ var modctx = DMI.modctx = {
 		constcost: _ignore,//_num,
 		enchcost: _ignore,//_num,
 		thaucost: _ignore,//_num,
-		bloodcost: _ignore    //_num,
+		bloodcost: _ignore,//_num,
+		
+		decunrest: _ignore,
+		supply: _ignore,
+		voidgate: _ignore,
+		fort: _ignore,
+		fortpart: _ignore,
+		scry: _ignore,
+		firerange: _ignore,
+		airrange: _ignore,
+		waterrange: _ignore,
+		earthrange: _ignore,
+		astralrange: _ignore,
+		deathrange: _ignore,
+		naturerange: _ignore,
+		bloodrange: _ignore,
+		elementrange: _ignore,
+		sorceryrange: _ignore,
+		allrange: _ignore,
+		xp: _ignore,
+		adventureruin: _ignore,
+		cluster: _ignore,
+		dominion: _ignore,
+		goddomchaos: _ignore,
+		goddomlazy: _ignore,
+		goddomcold: _ignore,
+		goddomdeath: _ignore,
+		goddommisfortune: _ignore,
+		goddomdrain: _ignore,
+		blesshp: _ignore,
+		blessmr: _ignore,
+		blessmor: _ignore,
+		blessstr: _ignore,
+		blessatt: _ignore,
+		blessdef: _ignore,
+		blessprec: _ignore,
+		blessfireres: _ignore,
+		blesscoldres: _ignore,
+		blessshockres: _ignore,
+		blesspoisres: _ignore,
+		blessairshld: _ignore,
+		blessreinvig: _ignore,
+		blessdtv: _ignore,
+		blessanimawe: _ignore,
+		blessawe: _ignore,
+		blessdarkvis: _ignore,
+
+		temple: _ignore,
+		claim: _ignore,
+		evil: _ignore,
+		wild: _ignore,
+
+		summon: _ignore
+
 	},
 
 	

@@ -103,6 +103,17 @@ MNation.prepareData_PreMod = function() {
 		o.heroes = [];	
 		o.multiheroes = [];
 		o.spells = [];
+		// Get realms of nation
+		var realms = [];
+		for (var oj=0, attr; attr = modctx.attributes_by_nation[oj];  oj++) {
+			if (parseInt(attr.nation_number) == o.id) {
+				var attribute = modctx.attributes_lookup[parseInt(attr.attribute_record_id)];
+				if (attribute.attribute_number == "289") {
+					realms.push(attribute.raw_value);
+				}
+			}
+		}
+		o.homerealm = realms;
 	}
 }
 
@@ -138,6 +149,7 @@ MNation.prepareData_PostMod = function() {
 				}
 			}
 		}
+		o.homerealm = realms;
 		
 		// look for added pretenders
 		if (!o.cleargods) {

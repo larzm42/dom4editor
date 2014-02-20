@@ -158,6 +158,8 @@ var displayorder = DMI.Utils.cutDisplayOrder(aliases, formats,
 	'nratt',	'nbr of attacks',
 	'ammo',		'ammunition',	{'0':'12'},
 	'aoe',		'area of effect',
+	'demonundead', 	'only effect demon and undead',
+	'melee50',		'50% chance of being used',
 	'special',	'special',	function(v,o){ 
 		return v.replace(/affliction:\s*(.*)/i, 'affliction: '+Utils.ref('affliction $1','$1'));
 	}
@@ -209,7 +211,10 @@ var ignorekeys = {
 	dt_stun:1,
 	dt_large:1,
 	dt_small:1,
-	di_large:1,
+	dt_large:1,
+	dt_holy:1,
+	dt_magic:1,
+	dt_raise:1,
 
 	wpnclass:1,
 	searchable:1, renderOverlay:1, matchProperty:1
@@ -349,10 +354,10 @@ MWpn.bitfieldValues = function(bitfield, masks_dict) {
 }
 
 MWpn.getEffect = function(weapon) {
-	if (weapon.effect_record_id) {
-		return modctx.effects_lookup[weapon.effect_record_id];
-	}
 	var effect = {};
+	if (weapon.effect_record_id) {
+		effect = modctx.effects_lookup[weapon.effect_record_id];
+	}
 	if (weapon.dt_stun) {
 		effect.effect_number = 3;
 	} else if (weapon.dt_poison) {
@@ -369,6 +374,8 @@ MWpn.getEffect = function(weapon) {
 		effect.effect_number = 67;
 	} else if (weapon.dt_magic) {
 		effect.effect_number = 73;
+	} else if (weapon.dt_raise) {
+		effect.effect_number = 74;
 	} else if (weapon.dt_constructonly) {
 		effect.effect_number = 96;
 	} else if (weapon.dt_drain) {

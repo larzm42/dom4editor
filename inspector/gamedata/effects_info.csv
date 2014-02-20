@@ -50,7 +50,7 @@ number	name	test
 70	Crumble
 72	Life Overload Damage (?)
 73	Damage vs Magic Beings {Wpn: #dt_magic}
-74	Unlife Damage (?)
+74	Unlife Damage (?) {Wpn: #dt_raise}
 75	Raven Feast
 76	Tartarian Gate
 77	Astral Travel

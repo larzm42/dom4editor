@@ -546,6 +546,8 @@ var ignorekeys = {
 	next_spell:1,
 	effect_record_id:1,
 	effects_count:1,
+	range:1,
+	aoe:1,
 
 	summonsunits:1,	nations:1, eracodes:1, nationname:1,
 	
@@ -760,10 +762,11 @@ MSpell.worksOnDryLand = function(spell) {
 }
 
 MSpell.getEffect = function(spell) {
-	if (spell.effect_record_id) {
-		return modctx.effects_lookup[spell.effect_record_id];
-	}
 	var effect = {};
+	if (spell.effect_record_id) {
+		effect = modctx.effects_lookup[spell.effect_record_id];
+	}
+	
 	if (spell.copyspell) {
 		var otherspell = DMI.modctx.spelllookup[spell.copyspell];
 		effect = modctx.effects_lookup[otherspell.effect_record_id];
@@ -802,19 +805,26 @@ MSpell.getEffect = function(spell) {
 	
 	if (spell.range) {
 		effect.range_base = parseInt(spell.range) % 1000;
+		if (parseInt(spell.range) > 999) {
+			effect.range_per_level = Math.round(parseInt(spell.range) / 1000);
+		}
 	} else {
 		effect.range_base = '0';
 		effect.range_per_level = '0';
 	}
 	
+	if (spell.aoe) {
+		effect.area_base = parseInt(spell.aoe) % 1000
+		effect.area_per_level = parseInt(spell.aoe) / 1000;
+		if (parseInt(spell.aoe) > 999) {
+			effect.area_per_level = Math.round(parseInt(spell.aoe) / 1000);
+		}
+	}
+	
 	return effect;
 
-//effect.duration INTEGER,
-//	effect.range_base INTEGER, 
-//	effect.range_per_level INTEGER, 
+//  effect.duration INTEGER,
 //	effect.range_strength_divisor INTEGER, 
-//	effect.area_base INTEGER, 
-//	effect.area_per_level INTEGER, 
 //	effect.area_battlefield_pct INTEGER, 
 //	effect.sound_number INTEGER, 
 //	effect.flight_sprite_number INTEGER, 

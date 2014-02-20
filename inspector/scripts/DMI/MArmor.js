@@ -148,6 +148,7 @@ var hiddenkeys = DMI.Utils.cutDisplayOrder(aliases, formats,
 	'rcost',	'resource cost'
 ]);
 var ignorekeys = {
+	modded:1,
 	used_by:1,
 	name:1,
 	type:1,

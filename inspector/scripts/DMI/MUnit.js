@@ -693,6 +693,7 @@ MUnit.prepareData_PostNationData = function(o) {
 			sumu.createdby.push(o)
 		}
 		o.unprep = true;
+		
 	}
 }
 
@@ -1421,15 +1422,16 @@ var displayorder3 = Utils.cutDisplayOrder(aliases, formats,
 	'incorporate', 'incorporate',
 	'bonusspells', 'bonus spells',
 	'special',	'special',
+	'homerealm',	'homerealm',
 	
 	'firstshape',	'natural shape',	function(v,o){	return chainedUnitRef(o, 'firstshape', []);	},
 	'secondshape',	'wounded shape',	function(v,o){	return chainedUnitRef(o, 'secondshape', []);	},
 	'shapechange',	'shape changer',	function(v,o){	return chainedUnitRef(o, 'shapechange', []);	},
 	'secondtmpshape','dying shape',	function(v,o){	return chainedUnitRef(o, 'secondtmpshape', []);	},
 	'landshape',	'land shape',	function(v,o){	return chainedUnitRef(o, 'landshape', []);	},
-	'seashape',	'sea shape',	function(v,o){	return chainedUnitRef(o, 'seashape', []);	},
+	'watershape',	'sea shape',	function(v,o){	return chainedUnitRef(o, 'watershape', []);	},
 	'forestshape',	'forest shape',	function(v,o){	return chainedUnitRef(o, 'forestshape', []);	},
-	'normalshape',	'normal shape',	function(v,o){	return chainedUnitRef(o, 'normalshape', []);	},
+	'plainshape',	'normal shape',	function(v,o){	return chainedUnitRef(o, 'plainshape', []);	},
 	'prophetshape',	'prophet shape',	function(v,o){	return chainedUnitRef(o, 'prophetshape', []);	},
 	
 	'domsummon',	'dominion attracts units',	function(v,o){ 
