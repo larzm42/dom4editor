@@ -89,6 +89,9 @@ function list_summons(spell, effect) {
 		arr = MSpell.uniqueSummon[effect.raw_argument];
 	}
 	
+	if (!arr) {
+		arr = [spell.damage];
+	}
 	//create array of refs
 	var tokens = [];
 	for (var i=0, uid; uid= arr[i];  i++)

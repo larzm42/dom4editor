@@ -1405,7 +1405,8 @@ var displayorder3 = Utils.cutDisplayOrder(aliases, formats,
 	'succubus',	'capture cmdr (succubus)',	function(v){ if (v=='0') return '0'; return 'morale vs '+v; },
 	'corrupt',	'capture cmdr (corruption)',	function(v){ if (v=='0') return '0'; return 'morale vs '+v; },
 	'beckon',	'lure cmdr into sea',		function(v){ if (v=='0') return '0'; return 'morale vs '+v; },
-	
+	'startaff',	'starting affliction',	Format.Percent,
+
 	'reaper',	'leper',		Format.Percent,
 	'popkill',	'kills population',	function(v,o){ return Format.PerTurn( parseInt(v)*10 ) },
 	'homesick',	'homesick',		Format.Percent,
@@ -1462,6 +1463,7 @@ var flagorder = Utils.cutDisplayOrder(aliases, formats,
 [
 //	dbase key	displayed key		function/dict to format value
 	'slow_to_recruit',	'slow to recruit',
+	'reqtemple', 'requires temple',
 	'unique',	'unique',
 	'immortal',	'immortal',
 	'isold',	'old age',

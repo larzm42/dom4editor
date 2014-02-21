@@ -186,7 +186,7 @@ MSpell.prepareData_PostMod = function() {
 			if (attr.spell_number == o.id) {
 				var attribute = modctx.attributes_lookup[parseInt(attr.attribute_record_id)];
 				if (attribute.attribute_number == "700") {
-					o.rng_prov = attribute.raw_value;
+					o.provrange = attribute.raw_value;
 				}
 			}
 		}
@@ -246,6 +246,9 @@ MSpell.prepareData_PostMod = function() {
 					arr = MSpell.terrainSummon[_effects.raw_argument];
 				} else if (_effects.effect_number == "114") {
 					arr = MSpell.uniqueSummon[_effects.raw_argument];
+				}
+				if (!arr) {
+					arr = [o.damage];
 				}
 				for (var i=0, uid;  uid= arr[i];  i++) {
 					var u = modctx.unitlookup[uid];
@@ -520,13 +523,14 @@ var moddingkeys = Utils.cutDisplayOrder(aliases, formats,
 var displayorder = Utils.cutDisplayOrder(aliases, formats,
 [
 	'rng_bat',	'range', 		function(v,o){ return o.rngplus ? v+'+' : v; },
-	'rng_prov',	'range', 		function(v,o){ return o.rng_prov == 1 ? v+' province' : v+' provinces' },
+	'provrange',	'range', 		function(v,o){ return o.provrange == 1 ? v+' province' : v+' provinces' },
 	'aoe_s',	'area of effect', 	MSpell.formatAoe,
 	'nreff', 	'number of effects',	function(v,o){ return o.effplus ? v+'+' : v; },
 	'fatiguecost',	'fatigue cost',		function(v){ return v+'-'; },
 	'precision',	'precision',	{0: '0 '},	
 	'duration',	'duration',	function(v,o){ return o.duration == 1 ? v+' round' : v+' rounds' },
 	'gemcost',	'gems required',	Format.Gems,
+	'onlyowndst', 'target own province', {0:'false', 1:'true'},
 	'onlygeosrc', 'source terrain', function(v,o){ return Utils.renderFlags(MSpell.bitfieldValues(o.onlygeosrc, modctx.map_terrain_types_lookup), 1) }
 ]);
 var ignorekeys = {

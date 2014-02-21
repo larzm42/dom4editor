@@ -16,10 +16,12 @@ var modconstants = DMI.modconstants;
 //////////////////////////////////////////////////////////////////////////
 
 MItem.initItem = function(o) {
+	o.nations = [];
 }
 
 MItem.prepareData_PreMod = function() {
 	for (var oi=0, o;  o= modctx.itemdata[oi];  oi++) {
+		o.nations = [];
 	}
 }
 
@@ -316,7 +318,7 @@ var displayorder = DMI.Utils.cutDisplayOrder(aliases, formats,
 	'tmpwatergems',		'temporary water gems',		function(v){ return Format.PerTurn(Format.Gems(v+'W')); },
 
 	'str',		'strength',		Format.Signed,
-	'inv',		'reinvigoration',
+	'reinvigoration',		'reinvigoration',
 	'att',		'attack',		Format.Signed,
 			
 	'protbody',	'protection, body',
@@ -348,9 +350,9 @@ var displayorder = DMI.Utils.cutDisplayOrder(aliases, formats,
 	'shockres',	'resist shock',		Format.Signed,
 	'aff_prot',	'affliction protection',		Format.Percent,
 	
-	'mor',		'morale bonus',		Format.Signed,
+	'morale',		'morale bonus',		Format.Signed,
 	'exp',		'experience bonus',	Format.SignedPerTurn,
-	'research',	'research bonus',	Format.Signed,
+	'researchbonus',	'research bonus',	Format.Signed,
 	'prc',		'precision bonus',	Format.Signed,
 	'firerange',	'fire ritual range bonus',	Format.Signed,
 	'airrange',	'air ritual range bonus',	Format.Signed,
@@ -382,7 +384,7 @@ var displayorder = DMI.Utils.cutDisplayOrder(aliases, formats,
 	'ldr-n',		'leadership',		Format.Signed,
 	'ldr-m',		'leadership (magic)',	Format.Signed,
 	'ldr-u',		'leadership (undead)',	Format.Signed,
-	'ldr-i',		'inspirational leadership',	Format.Signed,
+	'inspirational',		'inspirational leadership',	Format.Signed,
 	
 	'airtransport',		'map flight',		function(v){ if (v==1) return '(self only)'; else return 'self + total size '+v; },
 	'waterbreathing',	'water breathing',
@@ -410,6 +412,7 @@ var displayorder = DMI.Utils.cutDisplayOrder(aliases, formats,
 	'sup',			'supply bonus',		Format.Signed,
 	'siege',		'siege bonus',		Format.Signed,
 	'forge',		'forge bonus',		Format.Percent,
+	'woundfend',	'fends wounds',		Format.Percent,
 	'fixforge',		'fixed forge bonus',	
 	'pllg',			'pillage bonus',	Format.Signed,
 	'stealth',		'stealth',	Format.Signed,
@@ -430,12 +433,13 @@ var flagorder = DMI.Utils.cutDisplayOrder(aliases, formats,
 [
 //	dbase key	displayed key		function/dict to format value
 	'taint',	'horrormark chance',
+	'onlymounted',	'can only be worn by mounted units',
 	'eth',	'ethereal',
 	'mount',	'mountain survival',
 	'forest',	'forest survival',
 	'waste',	'waste survival',
 	'swamp',	'swamp survival',
-	'nodrop',	'unremovable',
+	'cursed',	'unremovable',
 	'bless',	'blessed',
 	'trmpl',	'trample',
 	'fly',		'flying',
@@ -448,7 +452,7 @@ var flagorder = DMI.Utils.cutDisplayOrder(aliases, formats,
 	'luck',		'lucky',
 	'fluck',	'fool\'s luck',
 	'curse',	'curses bearer',
-	'nopickup',	'won\'t be picked up',
+	'nofind',	'won\'t be picked up',
 	'haste',	'haste',
 	'nodiscount',	'no forge discounts'	
 ]);
