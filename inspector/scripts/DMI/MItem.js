@@ -48,11 +48,13 @@ MItem.prepareData_PostMod = function() {
 		
 		//sprite
 		if (o.copyspr) {
-			o.copyspr = modctx.itemlookup[o.copyspr];
+			o.sprite = 'images/items/item'+o.copyspr.id+'.png';
+		} else if (o.spr) {
+			o.sprite = 'mods/' + o.spr.replace('.tga', '.png').replace(/^.\//, '');
+		} else {
+			o.sprite = 'images/items/item'+o.id+'.png';
 		}
-		if (!o.copyspr)
-			o.copyspr = o;
-			
+		
 		//combine linked armor stats
 		if (o.armor) {
 			var a = modctx.armorlookup[o.armor];
@@ -475,6 +477,8 @@ var ignorekeys = {
 	alch:1,
 	protb:1,
 	dcloud:1,
+	spr:1,
+	sprite:1,
 	
 	//common fields
 	name:1,descr:1,
@@ -506,7 +510,7 @@ MItem.renderOverlay = function(o) {
 	
 	//header
 	h+='	<div class="overlay-header" title="item id: '+o.id+'"> ';
-	h+='		<div class="item-image" style="background-image:url(\'images/items/item'+o.copyspr.id+'.png\');">&nbsp;</div> ';
+	h+='		<div class="item-image" style="background-image:url(\''+o.sprite+'\');">&nbsp;</div> ';
 	h+='		<h2>'+o.name+'</h2> ';
 	h+='		<p>'+formatItemType[o.type]+' '+formatItemCon[o.constlevel]+'</p>';
 	
