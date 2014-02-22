@@ -803,7 +803,7 @@ MSpell.getEffect = function(spell) {
 	
 	if (spell.spec) {
 		effect.modifiers_mask = spell.spec; 
-	} else {
+	} else if (!effect.modifiers_mask) {
 		effect.modifiers_mask = 0; 
 	}
 	
@@ -812,7 +812,7 @@ MSpell.getEffect = function(spell) {
 		if (parseInt(spell.range) > 999) {
 			effect.range_per_level = Math.round(parseInt(spell.range) / 1000);
 		}
-	} else {
+	} else if (!effect.range_base) {
 		effect.range_base = '0';
 		effect.range_per_level = '0';
 	}

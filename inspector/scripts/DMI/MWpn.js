@@ -390,9 +390,14 @@ MWpn.getEffect = function(weapon) {
 		effect.effect_number = 2;
 	}
 	
-	effect.modifiers_mask = "0";
-	if (!weapon.nostr) {
-		effect.modifiers_mask = bitfields.longOr(effect.modifiers_mask, "1");
+	if (!effect.modifiers_mask) {
+		effect.modifiers_mask = "0";
+		if (!weapon.nostr) {
+			effect.modifiers_mask = bitfields.longOr(effect.modifiers_mask, "1");
+		}
+		if (!weapon.magic) {
+			effect.modifiers_mask = bitfields.longOr(effect.modifiers_mask, "2097152");
+		}
 	}
 	if (weapon.twohanded) {
 		effect.modifiers_mask = bitfields.longOr(effect.modifiers_mask, "2");
@@ -435,9 +440,6 @@ MWpn.getEffect = function(weapon) {
 	}
 	if (weapon.flyingimmune) {
 		effect.modifiers_mask = bitfields.longOr(effect.modifiers_mask, "1048576");
-	}
-	if (!weapon.magic) {
-		effect.modifiers_mask = bitfields.longOr(effect.modifiers_mask, "2097152");
 	}
 	if (weapon.enemyimmune) {
 		effect.modifiers_mask = bitfields.longOr(effect.modifiers_mask, "4194304");

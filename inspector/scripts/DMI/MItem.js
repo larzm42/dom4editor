@@ -483,6 +483,7 @@ var ignorekeys = {
 	dcloud:1,
 	spr:1,
 	sprite:1,
+	nations:1,
 	
 	//common fields
 	name:1,descr:1,
