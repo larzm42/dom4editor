@@ -386,7 +386,7 @@ MWpn.getEffect = function(weapon) {
 		effect.effect_number = 107;
 	} else if (weapon.dt_cap) {
 		effect.effect_number = 109;
-	} else {
+	} else if (!effect.effect_number) {
 		effect.effect_number = 2;
 	}
 	
