@@ -108,10 +108,6 @@ function isCmdr(u) {
 	}
 	return false;
 }
-function isSummon(u) {
-	return u.type.indexOf('summon') != -1;
-}
-
 
 //////////////////////////////////////////////////////////////////////////
 // PREPARE DATA
@@ -121,6 +117,7 @@ MUnit.initUnit = function(o) {
 	o.weapons = [];
 	o.armor = [];
 	o.randompaths = [];
+	o.typechar = '';
 	
 	o.hand = '2';
 	o.head = '1';
@@ -344,180 +341,177 @@ MUnit.prepareData_PostMod = function() {
 		
 		if (o.rcost > 60000)	o.rcost = 1; //gladiators
 		
-		//numeric gold and resource costs (for sorting)
-		if (parseInt(o.basecost) > 1000) {
-
-			// Autocalc
-			var leadership = {
-					0:	10,
-					10:	15,
-					40: 30,
-					60: 45,
-					80: 60,
-					120: 100,
-					160: 150
-			}
-			
-			//Leader cost
-			var ldr_cost = 0;
-			if (o.leader) {
-				ldr_cost = parseInt(leadership[o.leader]);
-			}
-			if (o.inspirational) {
-				ldr_cost = ldr_cost + 10*parseInt(o.inspirational);
-			}
-			if (o.sailsz && parseInt(o.sailsz) > 0) {
-				ldr_cost = ldr_cost + .5 * ldr_cost;
-			}
-			
-			var path1 = {
-					1: 30,
-					2: 90,
-					3: 150,
-					4: 210,
-					5: 270
-			}
-			var path2 = {
-					1: 20,
-					2: 60,
-					3: 100,
-					4: 140,
-					5: 180
-			}
-			
-			// Paths cost
-			var paths_cost = 0;
-			var arr = [];
-			var baseM = [o.F, o.A, o.W, o.E, o.S, o.D, o.N, o.B];
-			if (MUnit.hasRandom(o)) {
-				MUnit.buildRandomArrays(o, 0, arr, baseM);
-				for (var rand1=0; rand1 < arr.length; rand1++) {
-					arr[rand1].sort(function(a,b){return b-a});
-				}
-				var largest = 0;
-				var smallest = 0;
-				for (var rand2=0; rand2 < arr.length; rand2++) {
-					var tempPathCost = 0;
-					for (var rand3=0, valrand; valrand = arr[rand2][rand3];  rand3++) {
-						if (rand3 == 0) {
-							tempPathCost = path1[valrand];
-						} else {
-							tempPathCost = tempPathCost + path2[valrand];
-						}
-					}
-					if (largest == 0) {
-						largest = tempPathCost;
-						smallest = tempPathCost;
-					} else {
-						if (tempPathCost > largest) {
-							largest = tempPathCost;
-						} else if (tempPathCost < smallest) {
-							smallest = tempPathCost;
-						}
-					}
-				}
-				paths_cost = (largest * .75) + (smallest *.25);
-				
-			} else {
-				var sortedArr = [];
-				for (var oj=0; oj<baseM.length; oj++) {
-					if (parseInt(baseM[oj]) > 0) {
-						sortedArr.push(parseInt(baseM[oj]));
-					}
-				}
-				sortedArr.sort(function(a,b){return b-a});
-				for (var ok=0, val2; val2 = sortedArr[ok];  ok++) {
-					if (ok == 0) {
-						paths_cost = path1[val2];
-					} else {
-						paths_cost = paths_cost + path2[val2];
-					}
-				}
-			}
-			if (paths_cost > 0 && o.adept_research) {
-				paths_cost = paths_cost + parseInt(o.adept_research) * 5;
-			}
-			if (o.inept_research) {
-				paths_cost = paths_cost - 5;
-			}
-			if (o.fixforgebonus) {
-				paths_cost = paths_cost + paths_cost*(parseInt(o.fixforgebonus)/100);
-			}
-			
-			// Priest cost
-			var priest = {
-					1: 20,
-					2: 40,
-					3: 80,
-					4: 140
-			}
-			var priest_cost = 0;
-			if (o.H) {
-				priest_cost = parseInt(priest[o.H]);
-			}
-			
-			// Spy cost
-			var spy_cost = 0;
-			if ((o.spy && parseInt(o.spy) > 0)) {
-				spy_cost = spy_cost + 40;
-			}
-			if ((o.assassin && parseInt(o.assassin) > 0)) {
-				spy_cost = spy_cost + 40;
-			}
-			if (o.seduce && parseInt(o.seduce) > 0) {
-				spy_cost = spy_cost + 60;
-			}
-			
-			var cost_array = [ldr_cost, paths_cost, priest_cost, spy_cost];
-			cost_array.sort(function(a,b){return b-a});
-			
-			var cost;
-			if (o.type == 'u') {
-				cost = 0;
-			} else {
-				cost = cost_array[0] + cost_array[1]/2 + cost_array[2]/2 + cost_array[3]/2;
-			}
-			
-			// Special costs
-			var special_cost = 0;
-			if (o.stealthy && parseInt(o.stealthy) > 0 && o.type != 'u') {
-				special_cost = special_cost + 5;
-			}
-			if (o.autohealer && parseInt(o.autohealer) > 0 && o.type != 'u') {
-				special_cost = special_cost + 50;
-			}
-			if (o.autodishealer && parseInt(o.autodishealer) > 0 && o.type != 'u') {
-				special_cost = special_cost + 20;
-			}
-			if (o.mounted && parseInt(o.mounted) > 0) {
-				special_cost = special_cost + 15;
-			}
-			
-			o.goldcost = parseInt(cost + special_cost);
-			o.goldcost = o.goldcost + parseInt(o.basecost) - 10000;
-			if (o.slow_to_recruit && parseInt(o.slow_to_recruit) > 0 && o.type != 'u') {
-				o.goldcost = Math.round(o.goldcost * .9); 
-			}
-			if (o.holy && parseInt(o.holy) > 0) {
-				o.goldcost = Math.round(o.goldcost * 1.3); 
-			}
-			o.goldcost = MUnit.roundIfNeeded(o.goldcost);
-		} else {
-			o.goldcost = parseInt(o.basecost);
-		}
-//		if (o.type == 'u') {
-//			o.diffsort = parseInt(o.goldcost - o.gmon);
-//		} else {
-//			o.diffsort = parseInt(o.goldcost - o.gcom);
-//		}
+		//numeric gold costs (for sorting)
+		MUnit.autocalc(o);
 		
-		o.type = '';
 		if (!o.goldcost)
 			o.rcost = 0;
 		else
 			o.rcost = Math.floor(o.rcost || 1);
 
 		o.rcostsort = parseInt(o.rcost);
+	}
+}
+
+MUnit.autocalc = function (o) {
+	if (parseInt(o.basecost) > 1000) {
+		// Autocalc
+		var leadership = {
+				0:	10,
+				10:	15,
+				40: 30,
+				60: 45,
+				80: 60,
+				120: 100,
+				160: 150
+		}
+
+		//Leader cost
+		var ldr_cost = 0;
+		if (o.leader) {
+			ldr_cost = parseInt(leadership[o.leader]);
+		}
+		if (o.inspirational) {
+			ldr_cost = ldr_cost + 10*parseInt(o.inspirational);
+		}
+		if (o.sailsz && parseInt(o.sailsz) > 0) {
+			ldr_cost = ldr_cost + .5 * ldr_cost;
+		}
+
+		var path1 = {
+				1: 30,
+				2: 90,
+				3: 150,
+				4: 210,
+				5: 270
+		}
+		var path2 = {
+				1: 20,
+				2: 60,
+				3: 100,
+				4: 140,
+				5: 180
+		}
+
+		// Paths cost
+		var paths_cost = 0;
+		var arr = [];
+		var baseM = [o.F, o.A, o.W, o.E, o.S, o.D, o.N, o.B];
+		if (MUnit.hasRandom(o)) {
+			MUnit.buildRandomArrays(o, 0, arr, baseM);
+			for (var rand1=0; rand1 < arr.length; rand1++) {
+				arr[rand1].sort(function(a,b){return b-a});
+			}
+			var largest = 0;
+			var smallest = 0;
+			for (var rand2=0; rand2 < arr.length; rand2++) {
+				var tempPathCost = 0;
+				for (var rand3=0, valrand; valrand = arr[rand2][rand3];  rand3++) {
+					if (rand3 == 0) {
+						tempPathCost = path1[valrand];
+					} else {
+						tempPathCost = tempPathCost + path2[valrand];
+					}
+				}
+				if (largest == 0) {
+					largest = tempPathCost;
+					smallest = tempPathCost;
+				} else {
+					if (tempPathCost > largest) {
+						largest = tempPathCost;
+					} else if (tempPathCost < smallest) {
+						smallest = tempPathCost;
+					}
+				}
+			}
+			paths_cost = (largest * .75) + (smallest *.25);
+
+		} else {
+			var sortedArr = [];
+			for (var oj=0; oj<baseM.length; oj++) {
+				if (parseInt(baseM[oj]) > 0) {
+					sortedArr.push(parseInt(baseM[oj]));
+				}
+			}
+			sortedArr.sort(function(a,b){return b-a});
+			for (var ok=0, val2; val2 = sortedArr[ok];  ok++) {
+				if (ok == 0) {
+					paths_cost = path1[val2];
+				} else {
+					paths_cost = paths_cost + path2[val2];
+				}
+			}
+		}
+		if (paths_cost > 0 && o.adept_research) {
+			paths_cost = paths_cost + parseInt(o.adept_research) * 5;
+		}
+		if (o.inept_research) {
+			paths_cost = paths_cost - 5;
+		}
+		if (o.fixforgebonus) {
+			paths_cost = paths_cost + paths_cost*(parseInt(o.fixforgebonus)/100);
+		}
+
+		// Priest cost
+		var priest = {
+				1: 20,
+				2: 40,
+				3: 80,
+				4: 140
+		}
+		var priest_cost = 0;
+		if (o.H) {
+			priest_cost = parseInt(priest[o.H]);
+		}
+
+		// Spy cost
+		var spy_cost = 0;
+		if ((o.spy && parseInt(o.spy) > 0)) {
+			spy_cost = spy_cost + 40;
+		}
+		if ((o.assassin && parseInt(o.assassin) > 0)) {
+			spy_cost = spy_cost + 40;
+		}
+		if (o.seduce && parseInt(o.seduce) > 0) {
+			spy_cost = spy_cost + 60;
+		}
+
+		var cost_array = [ldr_cost, paths_cost, priest_cost, spy_cost];
+		cost_array.sort(function(a,b){return b-a});
+
+		var cost;
+		if (o.type == 'u') {
+			cost = 0;
+		} else {
+			cost = cost_array[0] + cost_array[1]/2 + cost_array[2]/2 + cost_array[3]/2;
+		}
+
+		// Special costs
+		var special_cost = 0;
+		if (o.stealthy && parseInt(o.stealthy) > 0 && o.type != 'u') {
+			special_cost = special_cost + 5;
+		}
+		if (o.autohealer && parseInt(o.autohealer) > 0 && o.type != 'u') {
+			special_cost = special_cost + 50;
+		}
+		if (o.autodishealer && parseInt(o.autodishealer) > 0 && o.type != 'u') {
+			special_cost = special_cost + 20;
+		}
+		if (o.mounted && parseInt(o.mounted) > 0) {
+			special_cost = special_cost + 15;
+		}
+
+		o.goldcost = parseInt(cost + special_cost);
+		o.goldcost = o.goldcost + parseInt(o.basecost) - 10000;
+		if (o.slow_to_recruit && parseInt(o.slow_to_recruit) > 0 && o.type != 'u') {
+			o.goldcost = Math.round(o.goldcost * .9); 
+		}
+		if (o.holy && parseInt(o.holy) > 0) {
+			o.goldcost = Math.round(o.goldcost * 1.3); 
+		}
+		o.goldcost = MUnit.roundIfNeeded(o.goldcost);
+	} else {
+		o.goldcost = MUnit.roundIfNeeded(o.basecost);
 	}
 }
 
@@ -647,22 +641,22 @@ MUnit.buildRandomArrays = function (o, i, arr, baseM) {
 MUnit.prepareData_PostNationData = function(o) {
 	for (var oi=0, o;  o= modctx.unitdata[oi];  oi++) {
 
-		if (!o.type || o.type == '') {
-			o.type = o.typeclass;
+		if (!o.typechar || o.typechar == '') {
+			o.typechar = o.typeclass;
 			if (o.from && o.from != '') {
-				if (o.type == 'Commander') {
-					o.type = 'cmdr' + ' (' + o.from + ')';
+				if (o.typechar == 'Commander') {
+					o.typechar = 'cmdr' + ' (' + o.from + ')';
 				} else {
-					o.type = o.type + ' (' + o.from + ')';
+					o.typechar = o.typechar + ' (' + o.from + ')';
 				}
 			}
 		}
 		//clear pretender cost
-		if (o.type == 'Pretender') {
+		if (o.typechar == 'Pretender') {
 			delete o.rcost;
 		}
 		//sorttype
-		o.sorttype = MUnit.unitSortableTypes[o.type];
+		o.sorttype = MUnit.unitSortableTypes[o.typechar];
 
 		if (!o.sorttype || o.sorttype == '') {
 			o.sorttype = o.typeclass;
@@ -1012,7 +1006,7 @@ MUnit.prepareForRender = function(o) {
 
  function formatGold(_,__,v){ return v || ''; }
  function formatRes(_,__,v){ return v || ''; }
- function formatType(_,__,v,___,o){ return o.type; }
+ function formatType(_,__,v,___,o){ return o.typechar; }
  function formatHoly(_,__,v,___,o){  return v=='1' ?  Format.AbilityIcon('holy', 'sacred')  :  ''; }
 
 MUnit.CGrid = Utils.Class( DMI.CGrid, function() {
@@ -1045,9 +1039,9 @@ MUnit.CGrid = Utils.Class( DMI.CGrid, function() {
 		//clicked a nation? (or era.. but not "any")
 		if (! $(that.domselp+" select.nation option.default").prop('selected')) {
 			//currently showing "all units"?
-			if ( $(that.domselp+" select.type option.default").prop('selected')) {
+			if ( $(that.domselp+" select.typechar option.default").prop('selected')) {
 				//show only national units
-				$(that.domselp+" select.type option.available").prop('selected', true).parent().saveState();
+				$(that.domselp+" select.typechar option.available").prop('selected', true).parent().saveState();
 				$(that.domselp+" input.national").prop('checked', true).saveState();
 				$(that.domselp+".filters-units input.clear-filters-btn").show();
 			}
@@ -1071,7 +1065,7 @@ MUnit.CGrid = Utils.Class( DMI.CGrid, function() {
 		var args = Utils.merge(this.getPropertyMatchArgs(), {
 			str: $(that.domselp+" input.search-box").val().toLowerCase(),
 			nation: $(that.domselp+" select.nation").val(),
-			types: Utils.splitToLookup( $(that.domselp+" select.type").val(), ','),
+			types: Utils.splitToLookup( $(that.domselp+" select.typechar").val(), ','),
 			
 			generic: $(that.domselp+" input.generic:checked").val(),
 			national: $(that.domselp+" input.national:checked").val()
@@ -1098,7 +1092,7 @@ MUnit.CGrid = Utils.Class( DMI.CGrid, function() {
 			return false;
 
 		//type		
-		if (args.types && !args.types[o.type])
+		if (args.types && !args.types[o.typechar])
 			return false;
 		
 		//national (national units only)
@@ -1560,6 +1554,7 @@ var ignorekeys = {
 	notes:1,
 	rt:1,
 	typeclass:1,
+	typechar:1,
 	from:1,
 	basecost:1,
 	gmon:1,
@@ -1621,8 +1616,8 @@ MUnit.renderOverlay = function(o) {
 			ntitle = 'title="'+nnlist.join(',  \n')+'"';
 		}
 	}
-	if (nname || o.type) {
-		h+='	<p style="float:right; clear:right">'+(o.type || '&nbsp;')+'</p> ';
+	if (nname || o.typechar) {
+		h+='	<p style="float:right; clear:right">'+(o.typechar || '&nbsp;')+'</p> ';
 		h+='	<p '+ntitle+'>'+(nname || '&nbsp;')+'</p> ';
 	}
 	h+='	</div>';
@@ -1693,13 +1688,13 @@ MUnit.renderOverlay = function(o) {
 	//source details
 	var isfree = false;
 	var noupkeep = false;
-	if (o.summonedby /*&& isSummon(o)*/) {
+	if (o.summonedby) {
 		for (var i=0, refarr=[], s; s= o.summonedby[i]; i++) 
 			refarr.push(Utils.spellRef(s.id)); 
 		h+='	<p class="firstline">summoned with '+refarr.join(', ')+'</p>';
 		//isfree = true;
 	}
-	else if (o.type=='Pretender') {
+	else if (o.typechar=='Pretender') {
 		h+='<p class="firstline">';
 		h+= ' Cost: ' + o.goldcost +' pts ';
 		
@@ -1712,7 +1707,7 @@ MUnit.renderOverlay = function(o) {
 		h+='</p>';
 		isfree = noupkeep = true;
 	}
-	else if ((!o.type) || o.type=="special") {
+	else if ((!o.typechar) || o.typechar=="special") {
 		if (o.createdby) {
 			for (var i=0, refarr=[], s; s= o.createdby[i]; i++) 
 				refarr.push(Utils.unitRef(s.id)); 

@@ -324,7 +324,7 @@ MNation.prepareData_PostMod = function() {
 			//set nation value on summoned units
 			var arr = s.summonsunits || [];
 			for (var i=0, u; u= arr[i]; i++) {
-				if (u.type == 'combat summon' || u.type == 'combat summon (cmdr)')
+				if (u.typechar == 'combat summon' || u.typechar == 'combat summon (cmdr)')
 					continue;
 				
 		 		var basekey;
@@ -333,11 +333,11 @@ MNation.prepareData_PostMod = function() {
 		 		} else {
 		 			basekey = 'cmdr (Summon)';
 		 		}
-				if (u.type && u.type!=basekey) {
+				if (u.typechar && u.typechar!=basekey) {
 					//find pretender version of this unit
 					u = modctx.getUnitOfType(u, basekey) || modctx.cloneUnit(u);
 				}
-				u.type = basekey;
+				u.typechar = basekey;
 
 				u.nations = u.nations || {};
 				u.nations[o.id] = o;
@@ -363,11 +363,11 @@ MNation.prepareData_PostMod = function() {
 				console.log(basekey+' '+arr[i]+' not found (nation '+o.id+')');
 				continue;
 			}
-			if (u.type && u.type!=basekey) {
+			if (u.typechar && u.typechar!=basekey) {
 				//find pretender version of this unit
 				u = modctx.getUnitOfType(u, basekey) || modctx.cloneUnit(u);
 			}
-			u.type = basekey;
+			u.typechar = basekey;
 			u.nations = u.nations || {};
 			u.nations[o.id] = o;
 			u.eracodes = u.eracodes || {}; 
@@ -472,7 +472,7 @@ MNation.prepareData_PostMod = function() {
 					console.log(basekey+' '+arr[i]+' not found (nation '+o.id+')');
 					continue;
 				}
-				if (u.type && u.type!=basekey) {
+				if (u.typechar && u.typechar!=basekey) {
 					//find right version of this unit
 					var newu = modctx.getUnitOfType(u, basekey);
 					if (newu) u = newu;
@@ -482,7 +482,18 @@ MNation.prepareData_PostMod = function() {
 						u.eracodes = {};
 					}
 				}
-				u.type = basekey;
+				u.typechar = basekey;
+				if (u.typechar.indexOf('unit') != -1) {
+					if (!u.type || u.type == 'c') {
+						u.type = 'u';
+						MUnit.autocalc(u);
+					}
+				} else {
+					if (!u.type || u.type == 'u') {
+						u.type = 'c';
+						MUnit.autocalc(u);
+					}
+				}
 				u.nations = u.nations || {};
 				if (u.nations[o.id]) continue;
 				

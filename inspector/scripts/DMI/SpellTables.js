@@ -123,7 +123,7 @@ MSpell.uniqueSummon = {
 		9:	/* King of Banefires */ [
 		    909],
 		10:	/* Bind Demon Lord */ [
-		    446, 810, 900, 1405, 2277],
+		    446, 810, 900, 1405, 2277, 2278],
 		11:	/* Awaken Treelord */ [
 		    621, 980, 981],
 		12:	/* Call Amesha Spenta */ [
