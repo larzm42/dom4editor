@@ -115,7 +115,24 @@ MItem.prepareData_PostMod = function() {
 			
 		if (o.boosters)
 			o.boosters = '+'+o.boosters;
+
+		if (o.spell) {
+			var spell = DMI.modctx.spelllookup[o.spell];
+			if (o.type=='Ritual') {
+				o.ritual=o.spell;
+			} else {
+				o.itemspell=o.spell;
+			}
+		}
+		if (o.autospell) {
+			if (o.autospellrepeat) {
+				o.autocombatspell = o.autospell;
+			} else {
+				o.startbattlespell = o.autospell;
+			}
+		}
 	}
+	
 }
 
 
@@ -327,8 +344,9 @@ var displayorder = DMI.Utils.cutDisplayOrder(aliases, formats,
 	'def',		'defence',		Format.Signed,
 	'parry',	'parry',
 	'enc',		'encumbrance',
+	'prec',		'precision',
 	'invul',	'invulnerable',
-	'darkvis',	'darkvision',
+	'darkvision',	'darkvision',
 	
 	'airshield',	'air shield',		Format.Percent,
 	'mr',		'magic resistance',	Format.Signed,
@@ -365,12 +383,16 @@ var displayorder = DMI.Utils.cutDisplayOrder(aliases, formats,
 	
 	'sumbat',	'monster autosummons', Utils.unitRef,
 	'#sumbat',	'number of autosummons',
+	'batstartsum',	'summons in battle',	function(v,o){ 
+		return Utils.is(o.n_batstartsum) ?  Utils.unitRef(v)+' x '+o.n_batstartsum  :  Utils.unitRef(v); 
+	},
 
-	'fshld',	'fire shield',
+	'fireshield',	'fire shield',
+	'banefireshield',	'banefire shield',
 	'disheal',	'disease healer',
 	'heal',		'healer',
 	'chill',	'cold aura',
-	'bldvng',	'blood vengeance',
+	'bloodvengeance',	'blood vengeance',
 	'taskm',	'taskmaster',
 	
 	'ivylord',		'ivy lord',		function(v){ return '+'+v+' '+Utils.unitRef(361)+' / '+Utils.unitRef(362)+' awakening'; },
@@ -393,8 +415,8 @@ var displayorder = DMI.Utils.cutDisplayOrder(aliases, formats,
 	
 	'insa',		'bearer grows insane',	function(v){ return '+'+v+'% chance per turn'; },
 	'horrormarks',		'horror marks bearer',	function(v){ return v+'% chance per turn'; },
-	'brsrk',		'berserk when wounded',	Format.SignedZero,
-	'goneberserk',		'gone berserk',		Format.SignedZero,
+	'berserk',		'berserk when wounded',	Format.SignedZero,
+	'bers',		'gone berserk',		Format.SignedZero,
 	'awe',			'awe',			Format.SignedZero,
 	'aawe',			'animal awe',		Format.SignedZero,
 	'fear',			'fear',			Format.SignedZero,
@@ -409,7 +431,7 @@ var displayorder = DMI.Utils.cutDisplayOrder(aliases, formats,
 	
 	'ptrl',			'patrol bonus',		Format.Signed,
 	'bhunt',		'blood hunt bonus',	Format.Signed,
-	'sup',			'supply bonus',		Format.Signed,
+	'supplybonus',	'supply bonus',		Format.Signed,
 	'siege',		'siege bonus',		Format.Signed,
 	'forge',		'forge bonus',		Format.Percent,
 	'woundfend',	'fends wounds',		Format.Percent,
@@ -433,8 +455,7 @@ var flagorder = DMI.Utils.cutDisplayOrder(aliases, formats,
 [
 //	dbase key	displayed key		function/dict to format value
 	'taint',	'horrormark chance',
-	'onlymounted',	'can only be worn by mounted units',
-	'eth',	'ethereal',
+	'eth',		'ethereal',
 	'mount',	'mountain survival',
 	'forest',	'forest survival',
 	'waste',	'waste survival',
@@ -453,6 +474,19 @@ var flagorder = DMI.Utils.cutDisplayOrder(aliases, formats,
 	'fluck',	'fool\'s luck',
 	'curse',	'curses bearer',
 	'nofind',	'won\'t be picked up',
+	'nomounted', 'cannot be used by mounted beings',
+	'nocoldblood', 'cannot be used by coldblooded beings',
+	'nodemon', 'cannot be used by demons',
+	'noundead', 'cannot be used by undead',
+	'noinanim', 'cannot be used by inanimate beings',
+	'nofemale', 'cannot be used by female beings',
+	'onlymounted', 'can only be used by mounted beings',
+	'onlycoldblood', 'can only be used by coldblooded beings',
+	'onlydemon', 'can only be used by demons',
+	'onlyundead', 'can only be used by undead',
+	'onlyinanim', 'can only be used by inanimate beings',
+	'onlyfemale', 'can only be used by female beings',
+	'reqeyes', 'can only be used by a being with eyes',
 	'haste',	'haste',
 	'nodiscount',	'no forge discounts'	
 ]);
@@ -484,6 +518,10 @@ var ignorekeys = {
 	spr:1,
 	sprite:1,
 	nations:1,
+	spell:1,
+	autospell:1,
+	autospellrepeat:1,
+	n_batstartsum:1,
 	
 	//common fields
 	name:1,descr:1,

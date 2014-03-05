@@ -67,7 +67,19 @@ MSpell.format = {
 function show_summon(unit, count, pathlevel1) {
 	var ref;
 	if (parseInt(unit) < 0) {
-		ref = modctx.monster_tags_lookup[parseInt(unit)].name;
+		ref = modctx.monster_tags_lookup[parseInt(unit)];
+		if (ref) {
+			ref = ref.name;
+		} else {
+			ref = '';
+			for (var oi=0, o;  o= modctx.unitdata[oi];  oi++) {
+				if (o.montag) {
+					if (-parseInt(unit) == parseInt(o.montag)) {
+						ref = ref + Utils.unitRef(o.id) + ', <br />';
+					}
+				}
+			}
+		}
 	} else {
 		ref = Utils.unitRef(unit);
 	}

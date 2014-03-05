@@ -531,7 +531,11 @@ var displayorder = Utils.cutDisplayOrder(aliases, formats,
 	'duration',	'duration',	function(v,o){ return o.duration == 1 ? v+' round' : v+' rounds' },
 	'gemcost',	'gems required',	Format.Gems,
 	'onlyowndst', 'target own province', {0:'false', 1:'true'},
-	'onlygeosrc', 'source terrain', function(v,o){ return Utils.renderFlags(MSpell.bitfieldValues(o.onlygeosrc, modctx.map_terrain_types_lookup), 1) }
+	'onlygeosrc', 'source terrain', function(v,o){ return Utils.renderFlags(MSpell.bitfieldValues(o.onlygeosrc, modctx.map_terrain_types_lookup), 1) },
+	'onlyfriendlydst', 'target allied provinces', {0:'false', 1:'true'},
+	'nowatertrace', 'cannot trace through water', {0:'false', 1:'true'},
+	'nolandtrace', 'cannot trace over land', {0:'false', 1:'true'},
+	'walkable', 'trace along a walkable path', {0:'false', 1:'true'}
 ]);
 var ignorekeys = {
 	modded:1,
@@ -792,6 +796,7 @@ MSpell.getEffect = function(spell) {
 		effect.effect_number == "38" ||
 		effect.effect_number == "43" ||
 		effect.effect_number == "50" ||
+		effect.effect_number == "81" ||
 		effect.effect_number == "93" ||
 		effect.effect_number == "119") {
 		if (spell.damagemon) {

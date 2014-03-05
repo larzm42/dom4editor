@@ -158,8 +158,10 @@ var displayorder = DMI.Utils.cutDisplayOrder(aliases, formats,
 	'nratt',	'nbr of attacks',
 	'ammo',		'ammunition',	{'0':'12'},
 	'aoe',		'area of effect',
+	'beam',		'beam weapon',
 	'demonundead', 	'only effect demon and undead',
 	'melee50',		'50% chance of being used',
+	'range050',		'50% chance of being used in melee',
 	'special',	'special',	function(v,o){ 
 		return v.replace(/affliction:\s*(.*)/i, 'affliction: '+Utils.ref('affliction $1','$1'));
 	}
@@ -215,6 +217,7 @@ var ignorekeys = {
 	dt_holy:1,
 	dt_magic:1,
 	dt_raise:1,
+	dt_paralyze:1,
 
 	wpnclass:1,
 	searchable:1, renderOverlay:1, matchProperty:1
