@@ -23,8 +23,8 @@ number	name	test
 29	Charm
 30	Dispel
 31	Call Horror
-32	Damage vs Large Creatures {Wpn: #dt_large}
-33	Damage vs Small Creatures {Wpn: #dt_small}
+32	Damage (x2 vs Large Creatures) {Wpn: #dt_large}
+33	Damage (x3 vs Small Creatures) {Wpn: #dt_small}
 35	Cross Breeding
 37	Remote Summon (Type I)
 38	Remote Summon (Type II)
@@ -49,7 +49,7 @@ number	name	test
 68	Summon Animals
 70	Crumble
 72	Life Overload Damage (?)
-73	Damage vs Magic Beings {Wpn: #dt_magic}
+73	Damage (x2 vs Magic Beings) {Wpn: #dt_magic}
 74	Unlife Damage (?) {Wpn: #dt_raise}
 75	Raven Feast
 76	Tartarian Gate
