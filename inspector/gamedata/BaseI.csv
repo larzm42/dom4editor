@@ -17,7 +17,7 @@ id	name	type	constlevel	mainpath	mainlevel	secondarypath	secondarylevel	weapon	a
 16	Just Man's Cross	2-h wpn	2	F	1			161																																																																																																																																					
 17	Thunder Whip	1-h wpn	2	A	1			208																																																																																																																																					
 18	Longbow of Accuracy	2-h wpn	2	A	1			152																																																																																																																																					
-19	Lightning Rod	2-h wpn	2	E	1			238		10																																																																																																																										534	2								
+19	Lightning Rod	2-h wpn	2	E	1			238		15																																																																																																																										534	2								
 20	Ice Pebble Staff	2-h wpn	2	W	3			238				5																																																																																																																						Numbness											
 21	Smasher	1-h wpn	2	E	2			327																																																																																																																																					
 22	Main Gauche of Parrying	1-h wpn	2	E	1			99																																																																																																																																					
@@ -75,7 +75,7 @@ id	name	type	constlevel	mainpath	mainlevel	secondarypath	secondarylevel	weapon	a
 74	Staff of Storms	2-h wpn	6	A	5			105																																																																																																																								Storm		Lightning Bolt		534	5								
 75	Star of Thraldom	1-h wpn	6	A	1			218																																																																																																																																					
 76	Staff of Elemental Mastery	2-h wpn	6	A	4	E	4	238		5															15																																																1	1	1	1						1	1	1	1																																										Stoneskin														
-77	Demon Bane	2-h wpn	6	W	1			436			10																																																																																																																																		
+77	Demon Bane	2-h wpn	6	W	1			436			15																																																																																																																																		
 78	Wave Breaker	2-h wpn	6	W	3			83																																							1																																																																																	Friendly Currents													
 79	Gate Cleaver	2-h wpn	6	E	3			169																																																																																																												50																									
 80	Moon Blade	2-h wpn	6	S	1			289																																																																																																																																					
@@ -85,7 +85,7 @@ id	name	type	constlevel	mainpath	mainlevel	secondarypath	secondarylevel	weapon	a
 84	Ivory Bow	2-h wpn	6	D	3	A	1	566																																																						5																																																																															
 85	Wraith Sword	2-h wpn	6	D	4			110																																																																																																																																					
 86	Standard of the Damned	2-h wpn	6	D	4			100																																																										5																																																																Drain Life											
-87	Axe of Hate	1-h wpn	6	N	2			412					-10																																																																																																																	1															
+87	Axe of Hate	1-h wpn	6	N	2			412					-15																																																																																																																	1															
 88	Treelord's Staff	2-h wpn	6	N	6			238																															1																																								2									1																																																					
 89	Banner of the Northern Star	2-h wpn	6	S	5			100																		-2																																																																																																						Light of the Northern Star													
 90	Blood Thorn	1-h wpn	6	B	4			101																																																																								1																																																													
@@ -95,7 +95,7 @@ id	name	type	constlevel	mainpath	mainlevel	secondarypath	secondarylevel	weapon	a
 94	Unquenched Sword	1-h wpn	8	F	7			84																																																																																																		1																						Heat from Hell													
 95	Ember	1-h wpn	8	F	2	W	2	191			5	5																																																																																																																																	
 96	Sword of Justice	2-h wpn	8	F	3	S	3	170			5																																																																						1																																																	Prison of Fire											
-97	Tempest	2-h wpn	8	A	6			113		10																																																																																																																						Storm		Thunder Strike											
+97	Tempest	2-h wpn	8	A	6			113		15																																																																																																																						Storm		Thunder Strike											
 98	Winter Bringer	1-h wpn	8	W	2			151																																																																																																																										Falling Frost											
 99	Trident from Beyond	2-h wpn	8	W	3	S	2	193																																																																			1																																																																		
 100	Dawn Fang	1-h wpn	8	E	2	S	2	555									20									1																																									1																																																																										
@@ -117,7 +117,7 @@ id	name	type	constlevel	mainpath	mainlevel	secondarypath	secondarylevel	weapon	a
 116	Woundflame	1-h wpn	8	D	4			97																																																		1																																																																x																			
 117	Sun Slayer	2-h wpn	8	D	6			72																																																										5												1																																																				Drain Life											
 118	Picus's Axe of Rulership	1-h wpn	8	D	2	E	1	341																																																																																																																																					
-119	The Sharpest Tooth	1-h wpn	8	N	2	S	1	336					15																																																																																																																																
+119	The Sharpest Tooth	1-h wpn	8	N	2	S	1	336					25																																																																																																																																
 120	Sceptre of Corruption	1-h wpn	8	B	4			172																																																			1	x	50																																																																					Bane Fire											
 121	Procas's Axe of Rulership	1-h wpn	8	B	2	E	1	340																																																																																																																																					
 122	Harvest Blade	2-h wpn	8	B	3	N	1	122																			2																																1							5																																									0																																		
@@ -134,7 +134,7 @@ id	name	type	constlevel	mainpath	mainlevel	secondarypath	secondarylevel	weapon	a
 133	Shield of Valor	shield	2	E	1	A	1		57						80																																																																																																																														
 134	Crystal Shield	shield	2	S	3	E	2		73																																																																																																																							Power of the Spheres											Cannot be used by mounted units		
 135	Eye Shield	shield	2	N	2				61																																																																																																																																			eyeloss on attacker	
-136	Golden Hoplon	shield	4	F	2				71		10																																																																																																																																		
+136	Golden Hoplon	shield	4	F	2				71		15																																																																																																																																		
 137	Charcoal Shield	shield	4	E	2	F	1		60		5																																																																																																	7																																	
 138	Lucky Coin	shield	4	S	2				67																																														1																																																																																						
 139	Shield of the Accursed	shield	4	S	2	B	1		62																																																																																																																																			horror mark on attacker	
@@ -144,7 +144,7 @@ id	name	type	constlevel	mainpath	mainlevel	secondarypath	secondarylevel	weapon	a
 143	Scutata Volturnus	shield	6	A	1	E	1		87	5																																																																																																																							Shocking Grasp										Cannot be used by mounted units		
 144	Lantern Shield	shield	6	D	2	F	1		88																																																						1			5																																																														Corpse Candle													
 145	Immaculate Shield	shield	8	F	3	S	2		71																																																										2														1																																														Blessing														
-146	Barrier	shield	8	E	5				68	10	10																	4																																																																																																																	
+146	Barrier	shield	8	E	5				68	15	15																	4																																																																																																																	
 147	The Aegis	shield	8	E	6				64																																																									5																																																																										petrification	
 148	Shield of the Dawn	shield	8	E	3	S	2		178		5						20									1																																									1																																																																										
 149	Black Steel Helmet	helm	0	E	1				40																																																																																																																																				
@@ -168,8 +168,8 @@ id	name	type	constlevel	mainpath	mainlevel	secondarypath	secondarylevel	weapon	a
 167	Amon Hotep	helm	8	F	6	S	5		148		5														25	5																																	1								5																																												25																				Mummification										
 168	Helmet of Perfection	helm	8	W	3	A	3		175																																																							3			5																																																																									eyeloss on attacker	
 169	Helmet of the Dawn	helm	8	E	2	S	1		180								20									2																																									1																																																																										
-170	The Jade Mask	helm	8	D	7	N	3		45				5			10										3																																								10												2																																																				Rigor Mortis									Can only be used by coldblooded units		
-171	Crown of the Ivy King	helm	8	N	2								5			5																							1																													5																																																										x	Barkskin				Awaken Vine Men	"361, 362"	??								
+170	The Jade Mask	helm	8	D	7	N	3		45				15			10										3																																								10												2																																																				Rigor Mortis									Can only be used by coldblooded units		
+171	Crown of the Ivy King	helm	8	N	2								15			5																							1																													5																																																										x	Barkskin				Awaken Vine Men	"361, 362"	??								
 172	The Crown of Despair	misc	8	D	2									100																																																				5																					1																																																						
 173	Black Steel Plate	armor	0	E	1				39																																																																																																																																				
 174	Black Steel Full Plate	armor	0	E	2				38																																																																																																																																				
@@ -179,7 +179,7 @@ id	name	type	constlevel	mainpath	mainlevel	secondarypath	secondarylevel	weapon	a
 178	Lightweight Scale Mail	armor	2	A	1				49																																																																																																																																				
 179	Mirror Armor	armor	2	A	1	W	1		177																	3																																																																																																																			
 180	Weightless Scale Mail	armor	2	A	2				50																																																																																																																																				
-181	Copper Plate	armor	2	A	1				89	15																																																																																																																						Charge Body													
+181	Copper Plate	armor	2	A	1				89	25																																																																																																																						Charge Body													
 182	Shambler Skin Armor	armor	2	W	1				37																																						1																																																																																														
 183	Dire Wolf Pelt	armor	2	N	1				176			5																	1	1																																																																																																															
 184	Armor of Souls	armor	2	B	6				56																	5																																																						1																																																													
@@ -187,7 +187,7 @@ id	name	type	constlevel	mainpath	mainlevel	secondarypath	secondarylevel	weapon	a
 186	Chain Mail of Displacement	armor	4	A	2				81																																																																																																																																				
 187	Silver Hauberk	armor	4	A	2	E	1		48						80																																																																																																																														
 188	Brightmail Haubergeon	armor	4	A	1	E	1		185																																																																																																																																				
-189	Elemental Armor	armor	4	E	2	F	1		59	5	5	5																																																																																																																																	
+189	Elemental Armor	armor	4	E	2	F	1		59	10	10	10																																																																																																																																	
 190	Robe of the Sea	armor	4	W	3																																										1																												1																																																																		
 191	Shroud of the Battle Saint	armor	4	S	1				54																																													1																																																																									Blessing														
 192	Robe of Shadows	armor	4	S	2																																	20														1																																																																																									
@@ -198,13 +198,13 @@ id	name	type	constlevel	mainpath	mainlevel	secondarypath	secondarylevel	weapon	a
 197	Rainbow Armor	armor	6	A	1	N	1		90																	2									3																																																																																																										
 198	Robe of the Magi	armor	6	A	6	B	6																												5																									x													1	1	1	1	1	1	1	1																																																													
 199	Robe of Invulnerability	armor	6	D	4																				25																																																																																						25																Invulnerability														
-200	Rime Hauberk	armor	6	W	2				46			10																																																										6																																								1																															
+200	Rime Hauberk	armor	6	W	2				46			5																																																										6																																								1																															
 201	Jade Armor	armor	6	W	2	E	1		107																																										1																																																																												Quickness														
 202	Bone Armor	armor	6	D	5				51			5																																																																																																																				Soul Vortex													
-203	Hydra Skin Armor	armor	6	N	2				43				10			10																																																																																																																													
-204	Red Dragon Scale Mail	armor	6	F	2				36		10																4																																																																																																																		
-205	Blue Dragon Scale Mail	armor	6	W	2				36			10															4																																																																																																																		
-206	Green Dragon Scale Mail	armor	6	N	2				36				10														4																																																																																																																		
+203	Hydra Skin Armor	armor	6	N	2				43				15			10																																																																																																																													
+204	Red Dragon Scale Mail	armor	6	F	2				36		15																4																																																																																																																		
+205	Blue Dragon Scale Mail	armor	6	W	2				36			15															4																																																																																																																		
+206	Green Dragon Scale Mail	armor	6	N	2				36				15														4																																																																																																																		
 207	Aseftik's Armor	armor	8	E	4				35																	3	8																																1																																																																																		
 208	Monolith Armor	armor	8	E	5				47							10											10																																																																																																																Cannot be used by mounted units		
 209	Armor of the Dawn	armor	8	E	3	S	2		179		5						30									1																																									1																																																																										
@@ -218,7 +218,7 @@ id	name	type	constlevel	mainpath	mainlevel	secondarypath	secondarylevel	weapon	a
 217	Boots of Giant Strength	boots	2	E	1																							5																																																																																																																	
 218	Birch Boots	boots	2	N	1							5	5																											1																																																																																																					
 219	Ranger's Boots	boots	2	N	1																														2			20	1																																																																																																						
-220	Brimstone Boots	boots	4	F	1	E	1				10																	4													1																																																																																																				
+220	Brimstone Boots	boots	4	F	1	E	1				15																	4													1																																																																																																				
 221	Chi Shoes	boots	4	A	1			175																																																																																																																																					
 222	Winged Shoes	boots	4	A	2																												1										1																																																																																																		
 223	Earth Boots	boots	4	E	2																																																																							1																																																																	
@@ -230,12 +230,12 @@ id	name	type	constlevel	mainpath	mainlevel	secondarypath	secondarylevel	weapon	a
 229	Sandals of the Crane	boots	8	S	1																																																																																																																												Blink												
 230	Boots of the Planes	boots	8	S	6																																															1								x																																																																							Teleport										
 231	The Boots of Calius the Druid	boots	8	N	4																												1		10																																																																																																										
-232	Ring of Fire	misc	0	F	1						10																																																																																																																																		
-233	Ring of Tamed Lightning	misc	0	A	1					10																																																																																																																																			
-234	Ring of Frost	misc	0	W	1							10																																																																																																																																	
+232	Ring of Fire	misc	0	F	1						15																																																																																																																																		
+233	Ring of Tamed Lightning	misc	0	A	1					15																																																																																																																																			
+234	Ring of Frost	misc	0	W	1							15																																																																																																																																	
 235	Bear Claw Talisman	misc	0	E	1	N	1																				2	5																																																																																																																	
 236	Skull Talisman	misc	0	D	1																																																									1																																																																		Animate Skeleton		Animate Skeleton						longdead	1				
-237	Snake Ring	misc	0	N	1								10																																																																																																																					Poison Touch											
+237	Snake Ring	misc	0	N	1								30																																																																																																																					Poison Touch											
 238	Slave Collar	misc	0	B	1																						20																																1																																																																															Feeblemind			
 239	Imp Familiar	misc	2	B	1																																																						1	x		1																																																								3										Summon Imp Familiar													
 240	Burning Pearl	misc	2	F	1						5																		4																																																																																																																
@@ -363,13 +363,13 @@ id	name	type	constlevel	mainpath	mainlevel	secondarypath	secondarylevel	weapon	a
 362	The Admiral's Sword	1-h wpn	12	D	3			186																																																										5																																																																											
 363	Precious	misc	12	F	2																							4	4																																																																																																															Bogus the Troll	
 364	Vial of Frozen Tears	misc	12	W	4	D	3																																																																				1			1																																																														Starke the Ice Druid	
-365	Crown of Katafagus	helm	12	D	6				148	10	10																																																1							5												1																																																										mummy				Katafagus the Lich	
+365	Crown of Katafagus	helm	12	D	6				148	15	15																																																1							5												1																																																										mummy				Katafagus the Lich	
 366	Crown of Ptah	helm	12	F	5	D	6		148																	3	4																														1		1							10																																																														Power of the Sepulchre		Control the Dead										Ptah the Divine Mummy	
 367	Robe of the Sorceress	armor	12	E	5	S	5		98																																																																				1	1	1	1																																																												Satina the Sorceress	
 368	Sun Armor	armor	12	F	4				95																		4																																								3																																																																									Solaris the Paladin	
 369	Sun Helmet	helm	12	F	4				96																	5																																									1																																																																									Solaris the Paladin	
 370	Sun Sword	1-h wpn	12	F	4			275																																														1							25																																														0																				Blessing													Solaris the Paladin	
-371	Sun Shield	shield	12	F	4				97	10	10																																																								1																																																																									Solaris the Paladin	
+371	Sun Shield	shield	12	F	4				97	15	15																																																								1																																																																									Solaris the Paladin	
 372	Greenstone Armor	armor	12	E	3				108																																																																																																																																			Bogus the Troll	
 373	The Protection of Geryon	misc	8	B	5																																																						1																																																																																		
 374	Pearl of Light	misc	12	W	5	S	5																																																																																																																																						
@@ -379,4 +379,4 @@ id	name	type	constlevel	mainpath	mainlevel	secondarypath	secondarylevel	weapon	a
 378	Golden Sandals	boots	12		1																																																																																																																																								
 379	Enchanted Ring Mail Armor	armor	0	S	1				194																																																																																																																																				
 380	Mercury Barrel	misc	6	W	1	E	1																																																																																																																																						
-381	Storm Spool	misc	4	A	1																																																																																																																																								
+381	Storm Spool	misc	4	A	1					15																																																																																																																																			
