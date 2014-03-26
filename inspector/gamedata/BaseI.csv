@@ -91,7 +91,7 @@ id	name	type	constlevel	mainpath	mainlevel	secondarypath	secondarylevel	weapon	a
 90	Blood Thorn	1-h wpn	6	B	4			101																																																																								1																																																													
 91	Hell Sword	2-h wpn	6	B	3	F	2	241			5																																																																																															3																																			
 92	Demon Whip	1-h wpn	6	F	1	B	1	277																																																																																																																																					
-93	O'al Kan's Sceptre	1-h wpn	8	F	2			410				5																																																	50																																																																					Fireball											
+93	O'al Kan's Sceptre	1-h wpn	8	F	2			410				5																																																	50																					1																																																Fireball											
 94	Unquenched Sword	1-h wpn	8	F	7			84																																																																																																		1																						Heat from Hell													
 95	Ember	1-h wpn	8	F	2	W	2	191			5	5																																																																																																																																	
 96	Sword of Justice	2-h wpn	8	F	3	S	3	170			5																																																																						1																																																	Prison of Fire											
@@ -319,7 +319,7 @@ id	name	type	constlevel	mainpath	mainlevel	secondarypath	secondarylevel	weapon	a
 318	Elixir of Life	misc	6	N	2	F	2																																																																																																																																					"prevents aging, resurrects bearer upon death"	
 319	Pocket Ship	misc	6	N	3	A	2																																						200	4																																																																																														grants sailing	
 320	Moonvine Bracelet	misc	6	N	3	S	1																																																																								1																																																	Summon Vine Man								361	1				
-321	The Black Heart	misc	6	B	2																																																						1																																																																															Chest Wound	Cannot be used by inanimate beings	stealthy bearer becomes an assassin	
+321	The Black Heart	misc	6	B	2																						2																																1																																																																															Chest Wound	Cannot be used by inanimate beings	stealthy bearer becomes an assassin	
 322	Blood Pendant	misc	6	B	2									50														2																																																													1																																																				
 323	The Ruby Eye	misc	8	F	3																																																						1														1																																																																	Lost an Eye		occasionally produces water gems	
 324	Fever Fetish	misc	8	F	1	N	1																																																			1																																								*																																										"gem production not automatic, chance based on how many hit points wearer has lost to disease"	
@@ -342,7 +342,7 @@ id	name	type	constlevel	mainpath	mainlevel	secondarypath	secondarylevel	weapon	a
 341	The Forbidden Light	misc	8	S	5	F	5				5	5																																															1	x													2				2																																																			Solar Brilliance												powerful horror mark	
 342	Nethgul	misc	8	S	3	W	2																																																																																																																										various												
 343	The Black Mirror	misc	8	S	4	B	2																			-4																															1																																																																								Disbelieve		Mind Hunt									dispels illusions	
-344	The Horror Harmonica	misc	8	S	6	D	4																																																					x																																																																				Wailing Winds		Call Horror											
+344	The Horror Harmonica	misc	8	S	6	D	4																				-2																																	x																																																																				Wailing Winds		Call Horror											
 345	Tome of the Lower Planes	misc	8	S	3	B	2																																																																									1																																																												Increases chance of returning from Inferno & Kokytos	
 346	Carcator the Pocket Lich	misc	8	D	4																																																									20																																																								4										Grow Lich								960	1				
 347	The Ankh	misc	8	D	6					5																																																		x																																																																				Life After Death													
@@ -372,9 +372,9 @@ id	name	type	constlevel	mainpath	mainlevel	secondarypath	secondarylevel	weapon	a
 371	Sun Shield	shield	12	F	4				97	15	15																																																								1																																																																									Solaris the Paladin	
 372	Greenstone Armor	armor	12	E	3				108																																																																																																																																			Bogus the Troll	
 373	The Protection of Geryon	misc	8	B	5																																																						1																																																																																		
-374	Pearl of Light	misc	12	W	5	S	5																																																																																																																																						
+374	Pearl of Light	misc	12	W	5	S	5																													1																																																																																																									
 375	Draupnir	misc	8	E	5																																																																			200																																																																					
-376	Champion's Helmet	helm	12		0				174																																																																																																																																				
+376	Champion's Helmet	helm	12		0				174																		4																																																																																																																		
 377	Champion's Gladius	1-h wpn	12		1		1	588																																																																																																																																					
 378	Golden Sandals	boots	12		1																																																																																																																																								
 379	Enchanted Ring Mail Armor	armor	0	S	1				194																																																																																																																																				
