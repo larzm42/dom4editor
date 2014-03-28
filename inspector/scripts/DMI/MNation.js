@@ -167,9 +167,9 @@ MNation.prepareData_PostMod = function() {
 		for (var oj=0, attr; attr = modctx.unpretender_types_by_nation[oj];  oj++) {
 			if (parseInt(attr.nation_number) == o.id) {
 				for (var ok=0, pret; pret = o.pretenders[ok]; ok++) {
-					if (pret == attr.monster_number) {
+					if (parseInt(pret) == parseInt(attr.monster_number)) {
 						o.pretenders.splice(ok, 1);
-						break;
+						ok--;
 					}
 				}
 			}
