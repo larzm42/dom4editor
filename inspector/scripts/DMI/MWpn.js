@@ -292,6 +292,17 @@ MWpn.renderWpnTable = function(o, isImplicitWpn) {
 	h+= 			Utils.renderDetailsRows(o, displayorder, aliases, formats);
 	h+= 			Utils.renderStrangeDetailsRows(o, ignorekeys, aliases, 'strange');
 	
+	// Attributes
+	for (var oi=0, attr; attr = modctx.attributes_by_weapon[oi];  oi++) {
+		if (attr.weapon_number == o.id) {
+			var attribute = modctx.attributes_lookup[parseInt(attr.attribute_record_id)];
+			if (attribute.attribute_number != "302") {
+				var specflags = modctx.attribute_keys_lookup[attribute.attribute_number].name;
+				h+= '<tr class="'+attribute.attribute_number+'"><th>'+modctx.attribute_keys_lookup[attribute.attribute_number].name.replace(/{(.*?)}|<|>/g, "")+'</th></tr>'
+			}
+		}
+	}
+
 	var effects = MWpn.getEffect(o);
 	if (effects) {
 		var specflags = Utils.renderFlags(MWpn.bitfieldValues(effects.modifiers_mask, modctx.effect_modifier_bits_lookup) );

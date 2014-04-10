@@ -38,7 +38,7 @@ id	name	type	constlevel	mainpath	mainlevel	secondarypath	secondarylevel	weapon	a
 37	Jade Knife	1-h wpn	2	N	1	B	1	309																																																																																																																																				"+2 blood sacrifice, restricted to Mictlan"	
 38	Staff of Flame Focus	2-h wpn	2	F	1			238																																																																										1																																																											
 39	Fire Bola	1-h wpn	4	F	1			301																																																																																																																																					
-40	Wand of Wild Fire	1-h wpn	4	F	3			134																																																																																																																										Fireball											
+40	Wand of Wild Fire	1-h wpn	4	F	3			172																																																																																																																										Fireball											
 41	Flambeau	2-h wpn	4	F	3			95			5																																																																																																																							Holy Pyre											
 42	Fire Brand	1-h wpn	4	F	1	E	1	80			5																2																																																																																																																		
 43	Lightning Spear	1-h wpn	4	A	1			278																																																																																																																																					
@@ -208,7 +208,7 @@ id	name	type	constlevel	mainpath	mainlevel	secondarypath	secondarylevel	weapon	a
 207	Aseftik's Armor	armor	8	E	4				35																	3	8																																1																																																																																		
 208	Monolith Armor	armor	8	E	5				47							10											10																																																																																																																Cannot be used by mounted units		
 209	Armor of the Dawn	armor	8	E	3	S	2		179		5						30									1																																									1																																																																										
-210	Robe of Calius the Druid	armor	8	N	3					5	5	5														3												20									1																																																																																														
+210	Robe of Calius the Druid	armor	8	N	3					10	10	10														3												20									1																																																																																														
 211	Fenris' Pelt	armor	8	N	4				72			5																												1																																																																			0																					Howl													
 212	Armor of Virtue	armor	8	S	3				110																																													1													4																																																														Returning											automatically casts Returning when wearer is wounded	
 213	Flesh Ward	armor	8	B	6				82																			4							2																								1	x																				1																																1																											Cannot be used by inanimate beings		
@@ -222,7 +222,7 @@ id	name	type	constlevel	mainpath	mainlevel	secondarypath	secondarylevel	weapon	a
 221	Chi Shoes	boots	4	A	1			175																																																																																																																																					
 222	Winged Shoes	boots	4	A	2																												1										1																																																																																																		
 223	Earth Boots	boots	4	E	2																																																																							1																																																																	
-224	Boots of the Messenger	boots	4	N	1																														2				1	1	1	1																																																																																																			
+224	Boots of the Messenger	boots	4	N	1																														3				1	1	1	1																																																																																																			
 225	Boots of Quickness	boots	6	W	2																												2																		1																																																																												Quickness														
 226	Boots of Stone	boots	6	E	2																				15															1																																																																																							Stoneskin														
 227	Boots of Youth	boots	6	B	2																														3																																																																																																									prevents aging	

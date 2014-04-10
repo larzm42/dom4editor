@@ -168,7 +168,8 @@ DMI.loadDom3Data = function(cb_success) {
 		'gamedata/pretender_types_by_nation.csv'+versionCode,
 		'gamedata/realms.csv'+versionCode,
 		'gamedata/unpretender_types_by_nation.csv'+versionCode,
-		'gamedata/map_terrain_types.csv'+versionCode
+		'gamedata/map_terrain_types.csv'+versionCode,
+		'gamedata/attributes_by_weapon.csv'+versionCode
 		
 		];
 	
@@ -206,6 +207,10 @@ DMI.loadDom3Data = function(cb_success) {
 			if (!data) throw(DMI.Utils.error('ERROR LOADING: gamedata/weapons.csv'));
 			modctx.wpndata = parseTextToTable(data);
 			modctx.wpnlookup = createLookup(modctx.wpndata, 'id', 'name');
+			
+			var data = dataobj['gamedata/attributes_by_weapon.csv'+versionCode];
+			if (!data) throw(DMI.Utils.error('ERROR LOADING: gamedata/attributes_by_weapon.csv'));
+			modctx.attributes_by_weapon = parseTextToTable(data);
 
 			var data = dataobj['gamedata/spells.csv'+versionCode];
 			if (!data) throw(DMI.Utils.error('ERROR LOADING: gamedata/spells.csv'));

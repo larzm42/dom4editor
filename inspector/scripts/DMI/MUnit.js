@@ -1405,7 +1405,7 @@ var displayorder3 = Utils.cutDisplayOrder(aliases, formats,
 	'woundfend','affliction reduction chance',	Format.Percent,
 
 	'reaper',	'leper',		Format.Percent,
-	'popkill',	'kills population',	function(v,o){ return Format.PerTurn( parseInt(v)*10 ) },
+	'popkill',	'kills population',	function(v,o){ return Format.PerTurn( parseInt(v) ) },
 	'homesick',	'homesick',		Format.Percent,
 	'deserter',	'deserter',		Format.Percent,
 	'beastmaster',	'beast master',
