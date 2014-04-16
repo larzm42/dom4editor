@@ -136,8 +136,8 @@ DMI.loadDom3Data = function(cb_success) {
 		'gamedata/BaseI.csv'+versionCode,
 		'gamedata/BaseU.csv'+versionCode,
 		'gamedata/MagicSites.csv'+versionCode,
-		'gamedata/Nations.csv'+versionCode,
 
+		'gamedata/nations.csv'+versionCode,
 		'gamedata/armors.csv'+versionCode,
 		'gamedata/protections_by_armor.csv'+versionCode,
 		'gamedata/weapons.csv'+versionCode,
@@ -222,8 +222,8 @@ DMI.loadDom3Data = function(cb_success) {
 			modctx.sitedata = parseTextToTable(data);
 			modctx.sitelookup = createLookup(modctx.sitedata, 'id', 'name');
 			
-			var data = dataobj['gamedata/Nations.csv'+versionCode];
-			if (!data) throw(DMI.Utils.error('ERROR LOADING: gamedata/Nations.csv'));
+			var data = dataobj['gamedata/nations.csv'+versionCode];
+			if (!data) throw(DMI.Utils.error('ERROR LOADING: gamedata/nations.csv'));
 			modctx.nationdata = parseTextToTable(data);
 			modctx.nationlookup = createLookup(modctx.nationdata, 'id', 'nationname');
 			
