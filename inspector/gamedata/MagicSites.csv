@@ -19,9 +19,9 @@ id	name	era	rarity	loc	level	path	F	A	W	E	S	D	N	B	gold	res	sup	unr	exp	lab	fort	
 18	Ravens Vale	2	5	0	0	Death																				414	Wingless																																													
 19	Hidden Grove	2	5	0	0	Nature																				516	Pandemoniac																																													
 20	Surakid's Tower		5	0	1	Astral					4	2																																																												
-21	Mine of the Cyclops		5	0	0	Earth		2				2																																																												
+21	Mine of the Cyclops		5	0	0	Earth				2		2																																																												
 22	Bolivar's Tower of Reflections		5	0	3	Air		4																		341	Illusionist																																													
-23	The Unholy Sepulchre	3	5	0	0	Holy						15																																																												
+23	The Unholy Sepulchre	3	5	0	0	Holy						8																																																												
 24	The Unholy Sepulchre	3	5	0	0	Holy						15																																																												
 25	The Unholy Sepulchre	3	5	0	0	Holy						22																																																												
 26	Starke's Ice Cave		5	0	1	Water			4													Cold																																																		
@@ -39,7 +39,7 @@ id	name	era	rarity	loc	level	path	F	A	W	E	S	D	N	B	gold	res	sup	unr	exp	lab	fort	
 38	Temple of the Everburning Pyre	3	5	0	0	Fire	1																			1970	Anathemant Dragon	1966	Slayer Anathemant	990	Guardian of the Pyre																																									
 39	The Smouldercone	3	5	0	0	Fire	3															Heat				923	Warlock Apprentice	89	Warlock																																											
 40	The Citadel of Frozen Crystal	3	5	0	0	Water		1	1																	1004	Caelian Seraph																																													
-41	Ravens Vale	3	5	0	0	Death				1		1														1003	Harab Elder	1280	Earthbound																																											
+41	Ravens Vale	3	5	0	0	Earth				1		1														1003	Harab Elder	1280	Earthbound																																											
 42	Black Forest	3	5	0	0	Nature					1		1													1028	Wolfherd	1011	Fortune Teller																																											
 43	The Sacred Swamp	3	5	0	1	Nature							3													1879	Serpent Assassin	761	Serpent Priest	1859	Hydra Hatchling	1850	Hydra																																							
 44	The Black Temple	3	5	0	0	Holy																				738	Black Templar	1237	Hochmeister	740	Black Priest																																									
@@ -48,18 +48,18 @@ id	name	era	rarity	loc	level	path	F	A	W	E	S	D	N	B	gold	res	sup	unr	exp	lab	fort	
 47	Well of Urd	3	5	0	0	Astral					2	1	1													281	Norna	784	Garmhirding																																											
 48	The Grove of Gaia	-1	5	0	0	Nature							5													787	Black Centaur																																													
 49	The Grove of Gaia	3	5	0	0	Nature				1			3													704	Dryad Hoplite																																													
-50	The Heavenly Gate	2	5	0	0	Astral		1			2															803	Celestial Master																																													
-51	The Celestial City	2	5	0	0	Holy		2		1																791	Red Guard	793	Prince General	1892	Imperial Alchemist																																									
+50	The Heavenly Gate	2	5	0	0	Astral		1			2													S	1	803	Celestial Master																																													
+51	The Celestial City	2	5	0	0	Holy			1	1																791	Red Guard	793	Prince General	1892	Imperial Alchemist																																									
 52	The Celestial City	3	5	0	0	Holy				1		1														1577	Ancestor Vessel																																													
 53	The Bamboo Grove	1	5	0	0	Nature																				940	Master of the Five Elements	1544	Warrior of the Five Elements																																											
-54	The Gate of Spring and Autumn	1	5	0	0	Astral	1		2		2	1														941	Celestial Master																																													
+54	The Gate of Spring and Autumn	1	5	0	0	Astral	1		2		2	1												S	1	941	Celestial Master																																													
 55	Temple of the Dead	2	5	0	0	Death						3														1654	Lictor	1655	Censor																																											
 56	Forest of Avalon		5	0	0	Nature							2													851	Cu Sidhe																																													
 57	Avalon		5	0	0	Nature		3																		849	Daoine Sidhe	850	Sidhe Champion	848	Sidhe Lord	856	Tuatha																																							
 58	Vanhalla	3	5	0	0	Air		3		1																262	Van	263	Vanherse	264	Vanjarl																																									
 59	Helhalla	1	5	0	0	Death		1																		855	Valkyrie	1503	Helhirding	1507	Dis	847	Hangadrott																																							
 60	God Forest	2	5	0	0	Nature	1						2													890	Hunter Lord	889	Black Hunter																																											
-61	God Mountain	2	5	0	0	Earth				2																894	Black Sorcerer	891	Sorceress	877	Bane Spider	876	Spider Warrior																																							
+61	God Mountain	2	5	0	0	Earth				2														*	1	894	Black Sorcerer	891	Sorceress	877	Bane Spider	876	Spider Warrior																																							
 62	The Temple Marsh	2	5	0	0	Nature			1			2	2													2238	Sobek General	2236	Sobek Warrior	2237	Sobek Swamp Guard	164	Swamp Guard																																							
 63	The City of Tombs	3	5	0	0	Death	1					3														1095	Keeper of the Tombs	1094	Desert Ranger	1166	Tomb Guard																																									
 64	Temple of the Spheres	2	5	0	0	Astral					1															670	Grand Thaumaturg																																													
@@ -77,7 +77,7 @@ id	name	era	rarity	loc	level	path	F	A	W	E	S	D	N	B	gold	res	sup	unr	exp	lab	fort	
 76	Temple Sanguine	3	5	0	0	Blood																				1967	Slayer Sanguine																																													
 77	Temple of the Shroud	1	5	0	0	Holy	3				3															1108	Equite of the Sacred Shroud	1112	Bishop of the Sacred Shroud	1111	Arch Bishop of the Sacred Shroud																																									
 78	The Lotus Gardens	2	5	0	0	Nature					3		2													1144	Rishi	1141	Tiger Rider																																											
-79	The Carrion Grove	-1	5	0	0	Nature						1	6													787	Black Centaur																																													
+79	The Carrion Grove	-1	5	0	0	Nature						1	4													787	Black Centaur																																													
 80	The Carrion Grove	-1	5	0	0	Nature						1	6													787	Black Centaur																																													
 81	The Carrion Grove	-1	5	0	0	Nature						1	9													787	Black Centaur																																													
 82	The Wheel of Pain	1	5	0	0	Earth																				1157	Steel Warrior																																													
@@ -88,7 +88,7 @@ id	name	era	rarity	loc	level	path	F	A	W	E	S	D	N	B	gold	res	sup	unr	exp	lab	fort	
 87	High Temple of the Land	2	5	0	0	Nature							1													727	Jaguar Warrior	1190	Priest King	1194	Couatl																																									
 88	High Temple of the Sky and the Rain	2	5	0	0	Water		1	1																	1191	Rain Priest	1907	High Priest of the Sky																																											
 89	Temple of the Moon	2	5	0	0	Astral					1															1192	Moon Priest																																													
-90	Temple of the Sun	2	5	0	0	Fire		1																		725	Sun Warrior	1193	Sun Priest																																											
+90	Temple of the Sun	2	5	0	0	Fire	1																			725	Sun Warrior	1193	Sun Priest																																											
 91	Carnutes	1	5	0	0	Nature				2	3		1													1222	Boar Warrior	1223	Boar Lord	1204	Druid																																									
 92	Temple of the Pure War	3	5	0	0	Holy		1																		1247	Sohei																																													
 93	Mountain of the Mystics	3	5	0	0	Earth	1			1			1													1248	Yamabushi																																													
@@ -99,14 +99,14 @@ id	name	era	rarity	loc	level	path	F	A	W	E	S	D	N	B	gold	res	sup	unr	exp	lab	fort	
 98	Mount Kailasa	1	5	0	0	Earth				2																1327	Yavana	1328	Yavana Archer																																											
 99	The Lotus Garden	1	5	0	0	Nature					2		2													1329	Yaksha	1330	Yakshini																																											
 100	Augurs' Circle		5	0	0	Death						1														1115	Augur Elder																																													
-101	The Grove of Aphros	1	5	0	0	Water			2				4													2399	Aphroi Lord	2401	Aphroi																																											
+101	The Grove of Aphros	1	5	0	0	Nature			2				4													2399	Aphroi Lord	2401	Aphroi																																											
 102	Temple of the Land	3	5	0	0	Blood							1													732	Priest King	726	Eagle Warrior																																											
 103	High Temple of the Rain	3	5	0	0	Blood			1																	1423	Rain Warrior	1421	Rain Priest	1420	King of Rain																																									
 104	Temple of the Moon	3	5	0	0	Blood					1															734	Moon Priest																																													
 105	Temple of the Sun	3	5	0	0	Blood	1							1												1424	Sun Priest																																													
 106	Mount Shinuyama	2	5	0	0	Earth	1		1	1		2																																																												
 107	Tombs of the Oracles	3	5	0	0	Death						2														1438	Ktonian Necromancer																																													
-108	Mines of the Pale Ones	3	5	0	0	Earth	1			1																																																														
+108	Mines of the Pale Ones	3	5	0	0	Earth	1			1						50																																																								
 109	Halls of the Oracles	1	5	0	0	Earth																				1457	Oracle of the Subterranean Waters	1467	Oracle of the Subterranean Fires	1468	Oracle of the Dead																												Earth													
 110	Roots of the Earth	1	5	0	0	Earth	1			3																																																														
 111	Halls of the Oracles	2	5	0	0	Earth																				2506	Ancient Lord	1459	Oracle of the Ancients	2189	Ancient Stone Hurler	2188	Ancient One																																							
@@ -117,7 +117,7 @@ id	name	era	rarity	loc	level	path	F	A	W	E	S	D	N	B	gold	res	sup	unr	exp	lab	fort	
 116	The Gorge of Ancient Cities	1	5	0	0	Water			2	1	3															1521	Mind Lord	1522	Gibodai																																											
 117	The Carrion Grove	3	5	0	0	Nature						1														787	Black Centaur	901	Black Dryad	709	Panic Apostate																																									
 118	The Grove of Gaia	1	5	0	0	Nature							6													769	White Centaur																																													
-119	The Smouldercone	1	5	0	0	Fire	5															Heat				1661	Misbred	1542	Warlock Apprentice	1538	Warlock	1537	Demonbred																																							
+119	The Smouldercone	1	5	0	0	Fire	5																			1661	Misbred	1542	Warlock Apprentice	1538	Warlock	1537	Demonbred																																							
 120	Temple of the All-Consuming Flame	1	5	0	0	Fire	1																			1536	Anointed of Rhuax	1543	Burning One																																											
 121	Temple of the All-Consuming Flame	2	5	0	0	Fire	1																			90	Lava Warrior																																													
 122	The Sibylline Caves	3	5	0	0	Astral					3		1													1557	Sibyl																																Astral													
@@ -147,7 +147,7 @@ id	name	era	rarity	loc	level	path	F	A	W	E	S	D	N	B	gold	res	sup	unr	exp	lab	fort	
 146	Gomorrah	1	5	0	0	Earth								2												2031	Melqart	2032	Ba'al	2030	Rephaite Warrior																																									
 147	Mount Hermon	1	5	0	0	Earth	2			2	1																																																													
 148	Campus Sceleris	2	5	0	0	Death						1														809	Shadow Vestal																																													
-149	The House of Water	1	5	0	0	Water			2				1													2176	Enki's Chosen																																													
+149	The House of Water	1	5	0	0	Water			2	1																2176	Enki's Chosen																																													
 150	The First City	1	5	0	0	Holy																				2269	Entu	2181	Ensi																																											
 151	The Swamps of Ur	1	5	0	0	Nature							3													1347	Sirrush																																													
 152	Temple of Storms and Flames	1	5	0	0	Blood	2	3						2												2266	Bride-in-Waiting	2262	Colossi Warrior																																											
@@ -155,14 +155,14 @@ id	name	era	rarity	loc	level	path	F	A	W	E	S	D	N	B	gold	res	sup	unr	exp	lab	fort	
 154	Great Mababwe	1	5	0	0	Holy	1			2																2297	Lion Queen	2296	Lion King	2309	Lion Warrior																																									
 155	Novgård	2	5	0	0	Air	1	2																		2349	Oathbound	2342	Vanabog																																											
 156	Pine of Skulls	2	5	0	0	Nature						1	1													2352	Chud Skinshifter																																													
-157	Campus Sceleris	3	5	0	0	Holy						15																																																												
+157	Campus Sceleris	3	5	0	0	Holy						8																																																												
 158	Campus Sceleris	3	5	0	0	Holy						15																																																												
 159	Campus Sceleris	3	5	0	0	Holy						22																																																												
 160	Palace of Pearls	2	5	0	0	Water			4				1													1061	Triton Prince	1088	Triton King	1059	Knight of the Deeps																																									
 161	Palace of Pearls	3	5	0	0	Water			3				1													2397	Pearl King	2387	Pearl Guard																																											
-162	The Grove of Aphros	2	5	0	0	Nature			3				2													2399	Aphroi Lord	2401	Aphroi																																											
+162	The Grove of Aphros	2	5	0	0	Nature			2				3													2399	Aphroi Lord	2401	Aphroi																																											
 163	The Grove of Aphros	3	5	0	0	Nature			2				2													2399	Aphroi Lord	2401	Aphroi																																											
-164	City of Unfulfilled Dreams	3	5	0	0	Astral			1		3																																																													
+164	The City of Unfullfilled Dreams	3	5	0	0	Astral			1		3																																																													
 165	The Chamber of the Broken Seal		5	0	0	Death						5										Death																																																		
 166	The Chamber of the Broken Seal	2	5	0	0	Death						1														2508	Shard Guard																																													
 167	The Womb of the Earth	1	5	0	0	Earth			1																	2493	Olm Sage	2492	Great Olm																																											
@@ -218,11 +218,11 @@ id	name	era	rarity	loc	level	path	F	A	W	E	S	D	N	B	gold	res	sup	unr	exp	lab	fort	
 217	Smoke Forest		1	2	1	Fire	1	1																																																						Yes										
 218	Rage Wind Heath		1	9	1	Fire	1	1																																																					Yes			Yes								
 219	Bog of Strange Lights		1	134	1	Fire	1		1																																																					Yes	Yes					Yes				
-220	Copper Cliff		1	255	1	Fire	1			1																																																			Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes				
+220	Copper Cliff		1	1023	1	Fire	1			1																																																			Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes				
 221	Stargazers Cliff		1	223	1	Fire	1				1																																																		Yes	Yes	Yes	Yes	Yes		Yes	Yes				
 222	Desert of Bones		0	8	1	Fire	1					1										Heat				2245	Sorcerer of the Sands																																					Yes								
 223	Lantern Forest		1	2	1	Fire	1						1																																																	Yes										
-224	Orichalum Mine		1	516	2	Fire									150																																																Yes							Yes		
+224	Orichalcum Mine		1	516	2	Fire									150																																																Yes							Yes		
 225	Volcano		2	223	0	Fire	3															Heat																																							Yes	Yes	Yes	Yes	Yes		Yes	Yes				
 226	Solar Lens		2	223	1	Fire	1																	F	3																																				Yes	Yes	Yes	Yes	Yes		Yes	Yes				
 227	Solar Circle		2	223	2	Fire	1																																									20%													Yes	Yes	Yes	Yes	Yes		Yes	Yes				
@@ -272,7 +272,7 @@ id	name	era	rarity	loc	level	path	F	A	W	E	S	D	N	B	gold	res	sup	unr	exp	lab	fort	
 271	Tower of the Silver Order		2	223	1	Air		2			3									lab						100	Adept of the Silver Order																																		Yes	Yes	Yes	Yes	Yes		Yes	Yes				
 272	Tower of the Silver Order		2	223	1	Air		2			2									lab						100	Adept of the Silver Order																																		Yes	Yes	Yes	Yes	Yes		Yes	Yes				
 273	Academy of High Magics		2	223	1	Air		1				1								lab						312	Wizard	302	Wizard																																Yes	Yes	Yes	Yes	Yes		Yes	Yes				
-274	Cloud Spire		2	223	2	Air		2																		93	Wind Master	92	Cloud Mage																																Yes	Yes	Yes	Yes	Yes		Yes	Yes				
+274	Cloud Spire		2	223	2	Air		2												lab						93	Wind Master	92	Cloud Mage																																Yes	Yes	Yes	Yes	Yes		Yes	Yes				
 275	Ivory Tower		2	223	2	Air		3			1									lab						343	Sorceress																																		Yes	Yes	Yes	Yes	Yes		Yes	Yes				
 276	Twin Spire Tower		2	223	1	Air		1			1															343	Sorceress																																		Yes	Yes	Yes	Yes	Yes		Yes	Yes				
 277	Stone Spires		2	8	1	Air		2																A	2																																							Yes								
@@ -317,14 +317,14 @@ id	name	era	rarity	loc	level	path	F	A	W	E	S	D	N	B	gold	res	sup	unr	exp	lab	fort	
 316	Corpse Candles' Marsh		0	130	1	Water			1			1																																																		Yes						Yes				
 317	Overgrown Lake		1	223	1	Water			1				1																																																Yes	Yes	Yes	Yes	Yes		Yes	Yes				
 318	Lifeless Lake		1	735	1	Water						1																																																	Yes	Yes	Yes	Yes	Yes		Yes	Yes		Yes		
-319	River Fortress		2	223	1	Water			1												20																																								Yes	Yes	Yes	Yes	Yes		Yes	Yes				
+319	River Fortress		2	223	1	Water			1												3																																								Yes	Yes	Yes	Yes	Yes		Yes	Yes				
 320	Bottomless Lake		2	735	1	Water			1																																					20%															Yes	Yes	Yes	Yes	Yes		Yes	Yes		Yes		
 321	Mist Swamps		1	130	1	Water		1	1																																																					Yes						Yes				
 322	Academy of High Magics		2	223	1	Water			1					1						lab						312	Wizard	302	Wizard																																Yes	Yes	Yes	Yes	Yes		Yes	Yes				
 323	Frost Vale		2	4	2	Water			1													Cold				309	Ice Druid																																				Yes									
-324	Azure Academy		1	16607	1	Water														lab	2					97	Azure Mage	96	Azure Initiate																																Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
+324	Azure Academy		1	16607	1	Water			1											lab	3					97	Azure Mage	96	Azure Initiate																																Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
 325	Rustwater		1	16607	1	Water	1		2	2																																																			Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
-326	The Ferry		1	16607	1	Water	1					1																																																	Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
+326	The Ferry		1	16607	1	Water			1			1																																																	Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
 327	Mount Frost		1	16388	1	Water			2													Cold														Water	511	Winter Wolf	2																								Yes								Yes	
 328	The Forest of the Lake		1	16386	1	Water			2				1																																																	Yes									Yes	
 329	Stony Swamps		1	16514	1	Water				1																																																				Yes						Yes			Yes	
@@ -338,7 +338,7 @@ id	name	era	rarity	loc	level	path	F	A	W	E	S	D	N	B	gold	res	sup	unr	exp	lab	fort	
 337	Frozen Fountain		2	735	2	Water			3																																																				Yes	Yes	Yes	Yes	Yes		Yes	Yes		Yes		
 338	Frozen Lands		2	223	0	Water			1													Cold																																							Yes	Yes	Yes	Yes	Yes		Yes	Yes				
 339	Academy of the Crescent Moon		2	16607	3	Water			2		2									lab																																									Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
-340	Well of All Waters		2	16607	3	Water																																																					Water		Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
+340	Well of All Waters		2	16607	3	Water			3																																																		Water		Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
 341	The Swamp of Dread		2	16512	1	Water			1			2																																																								Yes			Yes	
 342	The Sunless Sea		2	16904	3	Water			3																																																							Yes						Yes	Yes	
 343	Healing Spring		2	223	2	Water			1				1																																								10%								Yes	Yes	Yes	Yes	Yes		Yes	Yes				
@@ -354,9 +354,9 @@ id	name	era	rarity	loc	level	path	F	A	W	E	S	D	N	B	gold	res	sup	unr	exp	lab	fort	
 353	Temple of the Sacred River		2	223	2	Water			1			1														1877	Renata	1878	Renatus																																Yes	Yes	Yes	Yes	Yes		Yes	Yes				
 354	Mineral Cave		0	607	1	Earth				1																																																			Yes	Yes	Yes	Yes	Yes		Yes			Yes		
 355	Earth Blood Seepage		0	735	1	Earth				2																																																			Yes	Yes	Yes	Yes	Yes		Yes	Yes		Yes		
-356	Firbolg Fortress		1	223	2	Earth				2											23																																								Yes	Yes	Yes	Yes	Yes		Yes	Yes				
-357	Iron Cliff		0	255	3	Earth				1																																																			Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes				
-358	Canyon of Sand		1	255	0	Earth				1																																																			Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes				
+356	Firbolg Fortress		1	223	2	Earth				2											4																																								Yes	Yes	Yes	Yes	Yes		Yes	Yes				
+357	Iron Cliff		0	1023	3	Earth				1																																																			Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes				
+358	Canyon of Sand		1	1023	0	Earth				1																																																			Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes				
 359	Mine of Superior Iron		0	4	0	Earth										60																																															Yes									
 360	Great Iron Mine		0	516	0	Earth										100																																															Yes							Yes		
 361	Great Gold Mine		0	516	0	Earth									100																																																Yes							Yes		
@@ -376,15 +376,15 @@ id	name	era	rarity	loc	level	path	F	A	W	E	S	D	N	B	gold	res	sup	unr	exp	lab	fort	
 375	Tower of the Iron Order		2	223	1	Earth				2	2									lab						477	Adept of the Iron Order																																		Yes	Yes	Yes	Yes	Yes		Yes	Yes				
 376	Academy of High Magics		2	223	1	Earth				1			1							lab						312	Wizard	302	Wizard																																Yes	Yes	Yes	Yes	Yes		Yes	Yes				
 377	Twice Walled Tower		2	223	1	Earth				1	1															344	Sorceress																																		Yes	Yes	Yes	Yes	Yes		Yes	Yes				
-378	Archaic Fortress		2	223	1	Earth															22																																								Yes	Yes	Yes	Yes	Yes		Yes	Yes				
+378	Archaic Fortress		2	223	1	Earth															3																																								Yes	Yes	Yes	Yes	Yes		Yes	Yes				
 379	Lost Vale of the Elders		2	4	2	Earth				1			1													345	Gnome																																				Yes									
 380	Troll Pit		2	735	2	Earth																				518	Troll																																		Yes	Yes	Yes	Yes	Yes		Yes	Yes		Yes		
 381	Troglodyte Den		2	735	3	Earth				1																447	Troglodyte																																		Yes	Yes	Yes	Yes	Yes		Yes	Yes		Yes		
 382	Runaway Pit		2	735	3	Earth				1	2																																																		Yes	Yes	Yes	Yes	Yes		Yes	Yes		Yes		
 383	Steel Swamps		1	16512	0	Earth			1	1						30																																																				Yes			Yes	
 384	White Man Hill		1	16607	0	Earth							1				100					Growth																																							Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
-385	The Forgotten Fortress		1	16607	2	Earth															10																																								Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
-386	The Jervellan Wall		1	16607	1	Earth															21																																								Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
+385	The Forgotten Fortress		1	16607	2	Earth				3		1									3																																								Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
+386	The Jervellan Wall		1	16607	1	Earth															3																																								Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
 387	Ten Thousand Things		1	735	1	Earth	1	1	1	1			1																																																Yes	Yes	Yes	Yes	Yes		Yes	Yes		Yes		
 388	The Broken Maze		1	16607	2	Earth				2	1																																																		Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
 389	The Labyrinth		1	16607	2	Earth				2	2															234	Minotaur																																		Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
@@ -393,15 +393,15 @@ id	name	era	rarity	loc	level	path	F	A	W	E	S	D	N	B	gold	res	sup	unr	exp	lab	fort	
 392	The Statues of the Overlords		2	16607	0	Earth																Order	Productivity	E	2																																				Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
 393	The Cornerstone		2	16607	3	Earth				4	1											Order																																							Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
 394	The Factory		2	16607	4	Earth				3																										Earth	532	Mechanical Man	1																						Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
-395	Castle Arcanum		1	16477	1	Earth	1			1											6					312	Wizard	875	Warrior Mage																																Yes		Yes	Yes	Yes		Yes				Yes	
+395	Castle Arcanum		1	16477	1	Earth	1			1											4					312	Wizard	875	Warrior Mage																																Yes		Yes	Yes	Yes		Yes				Yes	
 396	Ancient Forge		2	735	1	Earth				1																																							20%												Yes	Yes	Yes	Yes	Yes		Yes	Yes		Yes		
 397	Chamber of Changes		2	735	1	Earth				1																																					20%														Yes	Yes	Yes	Yes	Yes		Yes	Yes		Yes		
 398	Standing Stones		2	735	1	Earth				1																																								20%											Yes	Yes	Yes	Yes	Yes		Yes	Yes		Yes		
 399	Conjurer's Cave		2	516	3	Earth				1																																				30%																	Yes							Yes		
 400	The Statue of the Sitting God		0	16607	2	Earth					1											Order																												20%											Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
 401	The Jade Pagoda		2	16607	1	Earth			1	1	1															1894	Minister of Magic	808	Master of the Way																																Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
-402	The Imperial Quarry		0	16639	1	Earth				1																																																			Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
-403	Dolmen		1	17119	1	Death				1																																																			Yes	Yes	Yes	Yes	Yes		Yes	Yes		Yes	Yes	
+402	The Imperial Quarry		0	17407	1	Earth				1																																																			Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
+403	Dolmen		1	17119	1	Earth				1																																																			Yes	Yes	Yes	Yes	Yes		Yes	Yes		Yes	Yes	
 404	Forest of Golden Leaves		2	16386	0	Earth	1			1			1																																																	Yes									Yes	
 405	The Vaults Beneath		2	16607	3	Earth				1						150																																													Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
 406	The Deepest Mine		2	16900	2	Earth				4																																																					Yes							Yes	Yes	
@@ -431,7 +431,7 @@ id	name	era	rarity	loc	level	path	F	A	W	E	S	D	N	B	gold	res	sup	unr	exp	lab	fort	
 430	Sages Guild		1	223	1	Astral					1									lab						478	Sage																																		Yes	Yes	Yes	Yes	Yes		Yes	Yes				
 431	Abandoned Laboratory		1	735	1	Astral														lab																																									Yes	Yes	Yes	Yes	Yes		Yes	Yes		Yes		
 432	Crystal Flames		1	735	1	Astral	1				1																																																		Yes	Yes	Yes	Yes	Yes		Yes	Yes		Yes		
-433	Mirror Palace		1	16607	1	Astral		1			1																																																		Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
+433	Mirror Palace		1	16607	1	Astral		1			1				25		25																																												Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
 434	Caves of Passing Time		1	735	1	Astral				1	1																																																		Yes	Yes	Yes	Yes	Yes		Yes	Yes		Yes		
 435	Scrying Pool		2	735	1	Astral			1		1																																																Astral		Yes	Yes	Yes	Yes	Yes		Yes	Yes		Yes		
 436	Pyramid of Life		1	223	1	Astral					1	1																																																	Yes	Yes	Yes	Yes	Yes		Yes	Yes				
@@ -441,18 +441,18 @@ id	name	era	rarity	loc	level	path	F	A	W	E	S	D	N	B	gold	res	sup	unr	exp	lab	fort	
 440	Nexus		2	735	1	Astral					1													S	1																									20%											Yes	Yes	Yes	Yes	Yes		Yes	Yes		Yes		
 441	Village of Strange Men		2	223	1	Astral					1																																				20%														Yes	Yes	Yes	Yes	Yes		Yes	Yes				
 442	The Ancient Master		1	16607	1	Astral													8																																										Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
-443	The Crystal Citadel		1	16607	2	Astral				1	1									lab	24					340	Crystal Mage																																		Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
+443	The Crystal Citadel		1	16607	2	Astral				1	1									lab	5					340	Crystal Mage																																		Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
 444	Citadel of the Lore Masters		1	16607	2	Astral					2									lab						479	Lore Master	478	Sage																																Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
-445	The Metal Spires		2	16607	3	Astral					3															101	Adept of the Golden Order	100	Adept of the Silver Order	477	Adept of the Iron Order																														Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
+445	The Metal Spires		2	16607	3	Astral					3									lab						101	Adept of the Golden Order	100	Adept of the Silver Order	477	Adept of the Iron Order																														Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
 446	The Council of Sages		2	16607	1	Astral		1	1	1	1															479	Lore Master																																		Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
 447	Moon Mages Circle		2	16607	2	Astral					2	1														342	Moon Mage																																		Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
-448	The Hidden Kingdom of Elludia		2	16607	2	Astral					3	1									9					630	Elludian Moon Mage	629	Stalker																																Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
+448	The Hidden Kingdom of Elludia		2	16607	2	Astral					3	1														630	Elludian Moon Mage	629	Stalker																																Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
 449	The Grey Tower of Nexus		2	16607	3	Astral					3															390	Grey Knight	391	Grey Lord	106	Shadow Seer																														Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
 450	The Ultimate Gateway		2	17119	3	Astral																																								40%															Yes	Yes	Yes	Yes	Yes		Yes	Yes		Yes	Yes	
 451	Library of Time		2	16607	4	Astral					4															106	Shadow Seer																																		Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	reveals score graphs
 452	The Crystal Academy		2	17119	3	Astral				1	1									lab						340	Crystal Mage																																		Yes	Yes	Yes	Yes	Yes		Yes	Yes		Yes	Yes	
 453	Temple of the All-Seeing Eye		2	17119	3	Astral																																																					Astral		Yes	Yes	Yes	Yes	Yes		Yes	Yes		Yes	Yes	
-454	Throne of Enlightenment		2	16388	4	Astral					2																																							30%													Yes								Yes	
+454	Hall of Enlightenment		2	16388	4	Astral					2																																							30%													Yes								Yes	
 455	Moonlit Pond of Pearls		2	223	2	Astral					3																																																		Yes	Yes	Yes	Yes	Yes		Yes	Yes				
 456	Strange House in the Mist		2	16607	3	Astral					1																									Astral		void monsters																							Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
 457	The Cave of Souls		2	16900	1	Astral					2	1																																																			Yes							Yes	Yes	
@@ -466,7 +466,7 @@ id	name	era	rarity	loc	level	path	F	A	W	E	S	D	N	B	gold	res	sup	unr	exp	lab	fort	
 465	Mountain Crater		1	4	2	Astral				1	1																																																				Yes									
 466	Painted Crypt		1	735	2	Astral					1	1																																																	Yes	Yes	Yes	Yes	Yes		Yes	Yes		Yes		
 467	Moonvine Forest		1	2	2	Astral					1		1																																																	Yes										
-468	Huge Crater		5	255	0	Astral				1	1																																																		Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes				
+468	Huge Crater		5	511	0	Astral				1	1																																																		Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes				
 469	The Forgotten City		2	16607	3	Astral																																																		2%				10	Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
 470	Battlefield		0	735	1	Death						1																																																	Yes	Yes	Yes	Yes	Yes		Yes	Yes		Yes		
 471	Burial Mound		0	223	1	Death						1																																																	Yes	Yes	Yes	Yes	Yes		Yes	Yes				
@@ -477,7 +477,7 @@ id	name	era	rarity	loc	level	path	F	A	W	E	S	D	N	B	gold	res	sup	unr	exp	lab	fort	
 476	Gallows		1	223	1	Death						1																																																	Yes	Yes	Yes	Yes	Yes		Yes	Yes				
 477	Broken Tower		1	223	1	Death						2																																																	Yes	Yes	Yes	Yes	Yes		Yes	Yes				
 478	Forest of the Dead		0	2	1	Death						1																																																		Yes										
-479	Ashen Forest		1	10	2	Death																																																								Yes		Yes								
+479	Ashen Forest		1	10	2	Death						1																																																		Yes		Yes								
 480	Banefire Braziers		1	735	1	Death	1					1										Death	Heat																																						Yes	Yes	Yes	Yes	Yes		Yes	Yes		Yes		
 481	Windswept Catacombs		1	223	1	Death		1				1																																																	Yes	Yes	Yes	Yes	Yes		Yes	Yes				
 482	Crypt in the Sand		1	223	1	Death				1		1																																																	Yes	Yes	Yes	Yes	Yes		Yes	Yes				
@@ -489,8 +489,8 @@ id	name	era	rarity	loc	level	path	F	A	W	E	S	D	N	B	gold	res	sup	unr	exp	lab	fort	
 488	Black Tower		2	223	2	Death						3								lab						95	Circle Master	94	Conjurer																																Yes	Yes	Yes	Yes	Yes		Yes	Yes				
 489	Death Mound Downs		2	223	2	Death						2														310	Necromancer																																		Yes	Yes	Yes	Yes	Yes		Yes	Yes				
 490	Statue of Death		2	735	3	Death						2																																																	Yes	Yes	Yes	Yes	Yes		Yes	Yes		Yes		
-491	Chillsick Swamp		1	16514	1	Death				1		1	1																																									5%								Yes						Yes			Yes	
-492	Leper Fens		1	16513	1	Death				1		2																																										10%							Yes							Yes			Yes	
+491	Chillsick Swamp		1	16514	1	Death			1			1	1																																									5%								Yes						Yes			Yes	
+492	Leper Fens		1	16513	1	Death			1			2																																										10%							Yes							Yes			Yes	
 493	Grayshade Forest		1	16386	1	Death						3														310	Necromancer																																			Yes									Yes	
 494	Litter Skull		1	17119	2	Death						4														310	Necromancer									Death	197	Soulless	3																						Yes	Yes	Yes	Yes	Yes		Yes	Yes		Yes	Yes	
 495	The Crypt Underneath		1	17119	2	Death						3																																		20%															Yes	Yes	Yes	Yes	Yes		Yes	Yes		Yes	Yes	
@@ -499,7 +499,7 @@ id	name	era	rarity	loc	level	path	F	A	W	E	S	D	N	B	gold	res	sup	unr	exp	lab	fort	
 498	Skull Temple		2	16607	0	Death						1																								Death	535	Longdead Archer	1	189	Longdead Horseman	1																			Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
 499	Tomb of the Ancients		2	16388	3	Death						4																																																			Yes								Yes	
 500	The Shaded Lands		2	16607	0	Death						3						10																		Death	676	Shade	1																						Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
-501	The City of a Thousand Wonders		2	16607	1	Death	1					2									7	Death																																							Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
+501	The City of a Thousand Wonders		2	16607	1	Death	1					2									4	Death																																							Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
 502	The Mausoleum of the Great Sarlah		2	16607	2	Death						3																								Death	433	Bone Fiend	2																						Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
 503	The Shadow Furnace		2	17119	4	Death	1					4																																																	Yes	Yes	Yes	Yes	Yes		Yes	Yes		Yes	Yes	
 504	Halls of the Dead		2	735	1	Death						1																																						20%											Yes	Yes	Yes	Yes	Yes		Yes	Yes		Yes		
@@ -563,13 +563,13 @@ id	name	era	rarity	loc	level	path	F	A	W	E	S	D	N	B	gold	res	sup	unr	exp	lab	fort	
 562	Twisting Woods		2	2	1	Nature							1																																		20%															Yes										
 563	Ancient Forest		2	2	1	Nature							2																																																	Yes										
 564	The Vale of Unicorns		2	16386	4	Nature							3																																																	Yes									Yes	
-565	Forest of Splendour		2	16386	2	Nature		1					1					-5																																												Yes									Yes	
+565	Forest of Splendor		2	16386	2	Nature		1					1					-5																																												Yes									Yes	
 566	The Snake Collector		2	16512	3	Nature						1	1																																																							Yes			Yes	
 567	Shrine of the Wild		2	223	2	Nature							3																																																Yes	Yes	Yes	Yes	Yes		Yes	Yes				
-568	Oak of Ages		2	16607	3	Nature																																												50%											Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
+568	Oak of Ages		2	16607	3	Nature							3																																					50%											Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
 569	The Valley of Shame		2	16607	1	Nature							1									Turmoil	Sloth																																						Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
 570	The Previous Forest		2	16392	4	Nature							4																																																			Yes							Yes	
-571	Thornwood Heights		1	16386	1	Nature							2													1182	Hedge Wizard																																			Yes									Yes	
+571	Thorn Wood Heights		1	16386	1	Nature							2													1182	Hedge Wizard																																			Yes									Yes	
 572	Poison Glades		1	16386	1	Nature						2	1													1182	Hedge Wizard	310	Necromancer																																	Yes									Yes	
 573	Lyfjaberg		5	16388	0	Nature				1			1																																								50%										Yes								Yes	
 574	Enchanted Field		0	223	1	Nature							1				50																																												Yes	Yes	Yes	Yes	Yes		Yes	Yes				
@@ -593,9 +593,9 @@ id	name	era	rarity	loc	level	path	F	A	W	E	S	D	N	B	gold	res	sup	unr	exp	lab	fort	
 592	Gore Swamps		1	16512	1	Blood						1	1																																																							Yes			Yes	
 593	Mount Chaining		1	16607	1	Blood																																														30%									Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
 594	The Vale of Infinite Horror		1	16607	1	Blood												5				Misfortune																																		1%					Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
-595	The Blood Keep		1	16388	1	Blood								1							42					1389	Blood Lord	1353	Blood Guard																																		Yes								Yes	
+595	The Blood Keep		1	16388	1	Blood								1							4					1389	Blood Lord	1353	Blood Guard																																		Yes								Yes	
 596	Devil's Den		1	16607	2	Blood												15																		Blood	304	Devil	1																						Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
-597	The Ebony Circle		2	16607	2	Blood					1	3								lab				B	2	339	Sorcerer																			30%															Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
+597	The Ebony Circle		2	16607	2	Blood					1	3								lab						339	Sorcerer																			30%															Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
 598	The Demon Gate		1	16607	3	Blood												10																		Blood	88	Fiend of Darkness	1																						Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
 599	The Prison of Hearts		1	16607	3	Blood									40			5																																											Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
 600	The Mountain of Power		2	16392	2	Blood								3										*	2											Blood	403	Horned Serpent	1									30%																Yes							Yes	
@@ -610,8 +610,8 @@ id	name	era	rarity	loc	level	path	F	A	W	E	S	D	N	B	gold	res	sup	unr	exp	lab	fort	
 609	Bloodwind Waste		1	8	1	Blood		1																																																								Yes								
 610	Bloodsucker Fens		1	128	1	Blood			1																																																											Yes				
 611	Bloodmarble Mausoleum		1	735	1	Blood						1																																																	Yes	Yes	Yes	Yes	Yes		Yes	Yes		Yes		
-612	Bloodpslatter Pattern		1	735	1	Blood					1																																																		Yes	Yes	Yes	Yes	Yes		Yes	Yes		Yes		
-613	Torture Tower		1	16	1	Blood															1																																			3%									Yes							
+612	Bloodsplatter Pattern		1	735	1	Blood					1																																																		Yes	Yes	Yes	Yes	Yes		Yes	Yes		Yes		
+613	Torture Tower		1	16	1	Blood															14																																			3%									Yes							
 614	Bloodshade Glen		2	16514	2	Blood							1																																	15%						20%										Yes						Yes			Yes	
 615	The Slaughterhouse		2	16607	2	Blood																														Blood	460	Foul Spawn	1	198	Ghoul	1	435	Maenad	1																Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
 616	The Lodge		2	16607	2	Blood								1												428	Assassin	94	Conjurer	95	Circle Master																														Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
@@ -632,7 +632,7 @@ id	name	era	rarity	loc	level	path	F	A	W	E	S	D	N	B	gold	res	sup	unr	exp	lab	fort	
 631	The Records of Mankind		2	16607	3	Holy																				479	Lore Master																																		Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	reveals score graphs
 632	Cave of Dark Rites		1	735	2	Death						2																																																	Yes	Yes	Yes	Yes	Yes		Yes	Yes		Yes		
 633	Temple of Darkness		1	735	2	Death						1																								Death	675	Shadow	1	676	Shade	1																			Yes	Yes	Yes	Yes	Yes		Yes	Yes		Yes		
-634	Grove Unpleasant		2	223	2	Nature					1	1																								Nature	716	Carrion Beast	1	715	Carrion Beast	1	313	Manikin	1																Yes	Yes	Yes	Yes	Yes		Yes	Yes				
+634	Grove Unpleasant		2	223	2	Nature						1	1																							Nature	716	Carrion Beast	1	715	Carrion Beast	1	313	Manikin	1																Yes	Yes	Yes	Yes	Yes		Yes	Yes				
 635	Inkpot End		1	16607	0	Death												5																																				5%							Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
 636	Flesh Eater's Isle		1	16607	2	Death																														Death	198	Ghoul	5																						Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
 637	Tower of Seven Tombs		1	16607	3	Death						2																								Death	625	Mummy	1																						Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
@@ -652,15 +652,15 @@ id	name	era	rarity	loc	level	path	F	A	W	E	S	D	N	B	gold	res	sup	unr	exp	lab	fort	
 651	Shrine of the Shark Lords		2	32	0	Water																				545	Shark Knight																																							Yes						
 652	Tower of Pearls		2	32	3	Water			1		2															103	Hydromancer	545	Shark Knight																																					Yes						
 653	Isle of Ice		1	16416	1	Water			3																																																									Yes					Yes	
-654	Academy Underneath		1	16416	1	Water			2												12					103	Hydromancer	529	Sea Father	577	Triton Trooper																																			Yes					Yes	
+654	Academy Underneath		1	16416	1	Water			2												16			W	1	103	Hydromancer	529	Sea Father	577	Triton Trooper																																			Yes					Yes	
 655	The Hippocampoi Fields		2	16416	2	Water			1				1																							Water	1058	Hippocampus	1																											Yes					Yes	
 656	Sentient Current		2	32	2	Water			1																																					20%																				Yes						
 657	Underwater Cliff		0	288	1	Earth				1																																																								Yes			Yes			
-658	Moving Sandbanks		0	32	1	Earth				1																																																								Yes						
+658	Moving Sand Banks		0	32	1	Earth				1																																																								Yes						
 659	Basalt Statue		1	288	2	Earth				2																																																								Yes			Yes			
 660	Isle of the Sea Fathers		1	16416	2	Earth			2																	529	Sea Father																																							Yes					Yes	
 661	Kelp Forest		0	32	0	Nature							1																																																					Yes						
-662	Kelp Fortress		0	32	1	Nature							1								12																																													Yes						
+662	Kelp Fortress		0	32	1	Nature							1								16																																													Yes						
 663	Amber Beach Island		2	32	1	Nature				1			1		50																																																			Yes						
 664	Floating Forest		2	32	1	Nature							2																																																					Yes						
 665	Kelp Grove		0	32	2	Nature							1																																																					Yes						
@@ -712,21 +712,21 @@ id	name	era	rarity	loc	level	path	F	A	W	E	S	D	N	B	gold	res	sup	unr	exp	lab	fort	
 711	The Primal Forest		5	16386	0	Nature							3																							Nature	932	Hamadryad	1																							Yes									Yes	
 712	The Holy Crypt of Anre		5	16607	0	Holy	1	1					1					-10																																											Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
 713	The World Pillar		5	16388	0	Earth		1		4																																																					Yes								Yes	
-714	The Desert of Ptah		5	16392	0	Earth		1		4																																																						Yes							Yes	
+714	The Desert of Ptah		5	16392	0	Fire	2			2		2																																																				Yes							Yes	
 715	Throne of the World		5	0	0	Astral	5		5		5				250	200																																																								
-716	Rain Forest		5	2	0	Nature																Growth	Heat																																							Yes										
+716	Rain Forest		5	2	0	Nature																Heat	Growth																																							Yes										
 717	Tundra		5	8	0	Water																Cold																																										Yes								
 718	Desert		5	8	0	Fire																Heat	Death																																									Yes								
 719	Mirage		0	8	1	Air		1																																																								Yes								
 720	Oasis		0	8	1	Water			1								50																																															Yes								
 721	Great Oasis		2	8	1	Water			1				1				75																																															Yes								
 722	Date Oasis		1	8	1	Nature							1		25		50																																															Yes								
-723	City of Dates		2	16392	0	Nature			1				1		50		150				7																																											Yes							Yes	
+723	City of Dates		2	16392	0	Nature			1				1		50		150				1																																											Yes							Yes	
 724	Oasis of Verdant Greenery		2	16392	3	Nature			1				2				100																																															Yes							Yes	
 725	Chitterpalm Oasis		0	8	1	Water			1								50									1116	Markata																																					Yes								
 726	Cavern of Flames		1	512	0	Fire	1																																																															Yes		
 727	Underground Lake		1	512	0	Water			1																																																													Yes		
-728	Airshaft		1	512	0	Air		1																																																														Yes		
+728	Air Shaft		1	512	0	Air		1																																																														Yes		
 729	Basalt Wall		1	512	0	Earth				1																																																												Yes		
 730	Painted Cavern		1	512	0	Astral					1																																																											Yes		
 731	Bone Filled Cave		1	512	0	Death						1																																																										Yes		
@@ -744,7 +744,7 @@ id	name	era	rarity	loc	level	path	F	A	W	E	S	D	N	B	gold	res	sup	unr	exp	lab	fort	
 743	Dripping Caverns		1	512	1	Water			1																																																													Yes		
 744	Mud Caverns		1	512	1	Water			1	1																																																												Yes		
 745	Ice Caverns		2	512	0	Water			1													Cold																																																Yes		
-746	Stalagmite Caverns		1	512	1	Water			1	1																																																												Yes		
+746	Stalagmite Cavern		1	512	1	Water			1	1																																																												Yes		
 747	Mist Caverns		1	512	1	Water		1	1																																																													Yes		
 748	Gold Deposit		0	512	0	Earth									60																																																							Yes		
 749	Silver Deposit		0	512	0	Earth									40																																																							Yes		
@@ -770,55 +770,55 @@ id	name	era	rarity	loc	level	path	F	A	W	E	S	D	N	B	gold	res	sup	unr	exp	lab	fort	
 769	Splattermaid Gorge		2	16896	2	Blood		1																												Blood	1357	Beast Bat																																Yes	Yes	
 770	Tomb of Seven Oracles		2	16896	3	Death				1		2																								Death	1501	Cavern Wight	1																															Yes	Yes	
 771	Infinite Cavern		2	16896	3	Earth				2																																				20%																								Yes	Yes	
-772	Riddle Dark		2	16896	3	Death				2		2																																																										Yes	Yes	
+772	Riddle Dark		2	16896	3	Earth				2		2																																																										Yes	Yes	
 773	The Umbral Conclave		2	16896	3	Death						3																																		20%																								Yes	Yes	
 774	The Silent Sea		2	16896	2	Water			3																																																													Yes	Yes	
 775	The Olm Cavern		2	16896	2	Water			1			1																																																										Yes	Yes	
-776	Halls of Stalagmitic Splendour		2	512	2	Water			2	1																																																												Yes		
+776	Halls of Stalagmitic Splendor		2	512	2	Water			2	1																																																												Yes		
 777	Halls of Imprisoned Sunlight		2	16896	3	Fire	3				1																																																											Yes	Yes	
 778	Undermirks		2	16896	2	Nature						1	2																																																									Yes	Yes	
-779	The Throne of War		11	16639	0	Holy																																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
-780	The Throne of Night		11	16639	0	Holy																																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
-781	The Throne of Beasts		11	16639	0	Holy																																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
-782	The Throne of Thorns		11	16639	0	Holy																																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
-783	The Throne of Flames		11	16639	0	Holy																																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
-784	The Throne of Ice		11	16639	0	Holy																																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
-785	The Throne of Storms		11	16607	0	Holy																																																							Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
-786	The Throne of Might		11	16639	0	Holy																																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
-787	The Throne of Stability		11	16639	0	Holy																																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
+779	The Throne of War		11	17407	0	Holy																																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
+780	The Throne of Night		11	17407	0	Holy																																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
+781	The Throne of Beasts		11	17407	0	Holy							2																																																Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
+782	The Throne of Thorns		11	17407	0	Holy							2																																																Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
+783	The Throne of Flames		11	17407	0	Holy	2																																																						Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
+784	The Throne of Ice		11	17407	0	Holy			2																																																				Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
+785	The Throne of Storms		11	16607	0	Holy		2																																																					Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
+786	The Throne of Might		11	17407	0	Holy																																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
+787	The Throne of Stability		11	17407	0	Holy																																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
 788	The Throne of the Deeps		11	16640	0	Holy																																																															Yes		Yes	
-789	The Throne of Bones		11	16639	0	Holy																																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
+789	The Throne of Bones		11	17407	0	Holy																																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
 790	The Throne of Knowledge		12	16607	0	Holy																																																							Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
-791	The Crystal Throne		12	16607	0	Holy																																																							Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
-792	The High Throne		11	16639	0	Holy																																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
-793	The Throne of Law		11	16639	0	Holy																																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
-794	The Throne of Zeal		11	16639	0	Holy																																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
-795	The Brass Throne		11	16639	0	Holy																																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
-796	The Iron Throne		12	16607	0	Holy																																																							Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
-797	The Silver Throne		12	16607	0	Holy																																																							Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
-798	The Throne of Pestilence		11	16639	0	Holy																																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
-799	The Lower Throne		11	16639	0	Holy																																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
-800	The Throne of Spring		11	16639	0	Holy																																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
-801	The Throne of Summer		11	16639	0	Holy																																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
-802	The Throne of Autumn		11	16639	0	Holy																																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
-803	The Throne of Winter		11	16639	0	Holy																																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
-804	The Throne of Gaia		12	16639	0	Holy																																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
-805	The Golden Throne		12	16607	0	Holy																																																							Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
-806	The Throne of Bureaucracy		12	16639	0	Holy																																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
-807	The Throne of Life		12	16639	0	Holy																																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
-808	The Throne of Death		12	16639	0	Holy																																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
-809	The Throne of Fortune		12	16639	0	Holy																																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
-810	The Throne of Misfortune		12	16639	0	Holy																																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
-811	The Inner Throne		12	16607	0	Holy																																																							Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
-812	The Outer Throne		12	16639	0	Holy																																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
-813	The Throne of Fire		12	16607	0	Holy																																																							Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
-814	The Throne of Earth		12	16607	0	Holy																																																							Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
-815	The Throne of Water		12	16639	0	Holy																																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
-816	The Throne of Air		12	16607	0	Holy																																																							Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
-817	The Throne of Splendour		13	16639	0	Holy																																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
-818	The Throne of Pantokrator		13	16639	0	Holy																																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
-819	The Throne of Abundance		13	16639	0	Holy																																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
-820	The Throne of Eternal Suffering		13	16639	0	Holy																																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
+791	The Crystal Throne		12	16607	0	Holy				1	1																																																		Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
+792	The High Throne		11	17407	0	Holy																																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
+793	The Throne of Law		11	17407	0	Holy																Order																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
+794	The Throne of Zeal		11	17407	0	Holy																																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
+795	The Brass Throne		11	17407	0	Holy	1			1					50																																														Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
+796	The Iron Throne		12	16607	0	Holy										100																																													Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
+797	The Silver Throne		12	16607	0	Holy									100																																														Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
+798	The Throne of Pestilence		11	17407	0	Holy						3										Death																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
+799	The Lower Throne		11	17407	0	Holy								5																																															Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
+800	The Throne of Spring		11	17407	0	Holy		1														Growth																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
+801	The Throne of Summer		11	17407	0	Holy	1															Heat																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
+802	The Throne of Autumn		11	17407	0	Holy				1												Death																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
+803	The Throne of Winter		11	17407	0	Holy			1													Cold																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
+804	The Throne of Gaia		12	17407	0	Holy							2																																																Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
+805	The Golden Throne		12	16607	0	Holy									200																																														Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
+806	The Throne of Bureaucracy		12	17407	0	Holy									65436																																														Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
+807	The Throne of Life		12	17407	0	Holy							3									Growth																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
+808	The Throne of Death		12	17407	0	Holy						5										Death																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
+809	The Throne of Fortune		12	17407	0	Holy					2											Luck																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
+810	The Throne of Misfortune		12	17407	0	Holy					4											Misfortune																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
+811	The Inner Throne		12	16607	0	Holy				1				3																																															Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
+812	The Outer Throne		12	17407	0	Holy					3																																																		Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
+813	The Throne of Fire		12	16607	0	Holy	2																	F	1																																				Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
+814	The Throne of Earth		12	16607	0	Holy				2														E	1																																				Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
+815	The Throne of Water		12	17407	0	Holy			2															W	1																																				Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
+816	The Throne of Air		12	16607	0	Holy		2																BA	1																																				Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
+817	The Throne of Splendour		13	17407	0	Holy																																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
+818	The Throne of the Pantokrator		13	17407	0	Holy																																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
+819	The Throne of Abundance		13	17407	0	Holy	1	1	1	1	2	1	1		150																																														Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
+820	The Throne of Eternal Suffering		13	17407	0	Holy																																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
 821	Glowing Sands		0	256	1	Fire	1																																																														Yes			
 822	Sparkling Current		0	32	1	Fire	1																																																											Yes						
 823	Crust of Molten Sulphur		0	256	1	Fire	1																																																														Yes			
@@ -838,7 +838,7 @@ id	name	era	rarity	loc	level	path	F	A	W	E	S	D	N	B	gold	res	sup	unr	exp	lab	fort	
 837	Frozen Deeps		0	256	1	Water			1													Cold																																															Yes			
 838	Tears of the Ancients		1	256	2	Water			1		1																																																										Yes			
 839	Ridge of Ice		0	288	1	Water			1																																																									Yes			Yes			
-840	Fathoms Deep		0	256	1	Water			1													Magic																																															Yes			
+840	Fathoms Deep		0	16640	1	Water			1													Magic																																															Yes			
 841	Maelstrom		1	32	1	Water			2																																																									Yes						
 842	Rock Crab Colony		0	32	1	Earth				1																																																								Yes						
 843	Underwater Stalagmite		0	256	1	Earth				1																																																											Yes			
@@ -855,8 +855,8 @@ id	name	era	rarity	loc	level	path	F	A	W	E	S	D	N	B	gold	res	sup	unr	exp	lab	fort	
 854	Pearl Farm		0	32	1	Astral					1																																																							Yes						
 855	Eye Pebble Plain		1	32	1	Astral					1																																																							Yes						
 856	Abyss to the Beyond		1	256	2	Astral					2																																																										Yes			
-857	Blasphemous Presence		1	256	1	Astral					1																																																										Yes			
-858	Enchanted Current		1	32	1	Astral					2											Magic																																												Yes						
+857	Blasphemous Presense		1	256	1	Astral					1																																																										Yes			
+858	Enchanted Current		1	16416	1	Astral					2											Magic																																												Yes						
 859	Black Sands		0	32	1	Death						1																																																						Yes						
 860	Basalt Ruins		0	256	1	Death						1																																																									Yes			
 861	Submerged Catacombs		0	32	1	Death						1																																																						Yes						
@@ -872,25 +872,25 @@ id	name	era	rarity	loc	level	path	F	A	W	E	S	D	N	B	gold	res	sup	unr	exp	lab	fort	
 871	Lair of the Eel-King		1	256	1	Nature							1																																																								Yes			
 872	Breeding Ground of Eels		1	256	1	Nature							1																																																								Yes			
 873	Halls of the Drowned		1	16416	1	Death						1																										Longdead Warrior			Longdead Warrior																									Yes					Yes	
-874	Sunken Ship of Dread		2	16416	2	Death						1																									2241	Damned Boatswain	x																											Yes					Yes	
+874	Sunken Ship of Dread		2	17440	2	Death						1																									2241	Damned Boatswain	x																											Yes					Yes	
 875	The Wormwood Tower		1	16386	3	Nature		1				1	1													2358	Wormwood Witch																																			Yes									Yes	
 876	The Dusk Spiral		1	16386	1	Nature						1	1													2361	Black Witch																																			Yes									Yes	
 877	Blackrose Tower		1	16386	1	Earth						1	1													2362	Blackrose Sorceress																																			Yes									Yes	
 878	The Dusk Spiral		1	16386	1	Death						1	1													2361	Black Witch																																			Yes									Yes	
-879	Hoburg Holdfast		2	16	0	Nature																				272	Hoburg Champion	271	Burgmeister Guard	273	Hoburg Crossbow																																		Yes							Extra units for native PD (1 per point)
+879	Hoburg Holdfast		2	3088	0	Nature																				272	Hoburg Champion	271	Burgmeister Guard	273	Hoburg Crossbow																																		Yes							Extra units for native PD (1 per point)
 880	Hoburg Settlement		2	16	0	Nature																Growth				1198	Horticulturist	483	Hoburg Militia																																				Yes							
 881	Barbarian Warcamp		5	14	0	Nature																				147	Barbarian Lord	141	Barbarian Chief	139	Barbarian	140	Barbarian																													Yes	Yes	Yes								
 882	Knightly Order		5	223	0	Holy																Order				23	Knight Commander	22	Knight																																Yes	Yes	Yes	Yes	Yes		Yes	Yes				Extra units for native PD (1 per point)
-883	Knightly Order of the Deeps		5	32	0	Holy																Order				406	Triton Commander	1060	Triton Knight																																					Yes						Extra units for native PD (1 per point)
+883	Knightly Order of the Deep		5	32	0	Holy																Order				406	Triton Commander	1060	Triton Knight																																					Yes						Extra units for native PD (1 per point)
 884	The Halfway Inn		1	16607	0	Astral									10																																														Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
 885	Ancient Ruin		1	223	0	Nature																														Nature	2223	Large Spider	x																						Yes	Yes	Yes	Yes	Yes		Yes	Yes				
-886	Order of the Secret Light		2	16607	1	Holy					1															478	Sage	23	Knight Commander	22	Knight																														Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	Extra units for native PD (1 per point) (knight)
-887	Order of the Undying		2	16607	1	Holy																														Holy		Longdead Horseman	x																						Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
+886	Order of the Secret Light		2	17631	1	Holy					1															478	Sage	23	Knight Commander	22	Knight																														Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	Extra units for native PD (1 per point) (knight)
+887	Order of the Undying		2	17631	1	Holy																														Holy		Longdead Horseman	x																						Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
 888	Shrine of the Outcast		1	735	1	Holy																														Holy		Foul Spawn			Foul Spawn																				Yes	Yes	Yes	Yes	Yes		Yes	Yes		Yes		
 889	Temple of the Spider God		2	735	1	Holy																														Holy		Giant Spider	x		Large Spider																				Yes	Yes	Yes	Yes	Yes		Yes	Yes		Yes		
 890	Temple of the Hidden Flame		2	735	2	Holy	1																													Holy		Will o'the Wisp	1																						Yes	Yes	Yes	Yes	Yes		Yes	Yes		Yes		
 891	Temple of Flying Monkeys		2	16607	1	Holy																														Holy		Winged Monkey	x																						Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
-892	The Martyr's Grave		2	767	1	Holy																																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes		Yes		domspread 1
+892	The Martyrs Grave		2	767	1	Holy																																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes		Yes		domspread 1
 893	Cradle of Faith		2	767	1	Holy																																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes		Yes		domspread 2
 894	Pillar of Life		2	17151	1	Holy																																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes		Yes	Yes	healing
 895	The Prophet's Sigil		2	767	1	Holy																																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes		Yes		reveals dominion score graphs
@@ -903,15 +903,15 @@ id	name	era	rarity	loc	level	path	F	A	W	E	S	D	N	B	gold	res	sup	unr	exp	lab	fort	
 902	Smoulderstone		0	223	1	Fire	1																																																						Yes	Yes	Yes	Yes	Yes		Yes	Yes				
 903	Wildfire Glade		0	2	1	Fire	1																																																							Yes										
 904	Caverns of Glowing Moss		0	516	1	Fire	1																																																								Yes							Yes		
-905	Glowing Crack		1	4	1	Fire	1																																																								Yes									
+905	Glowing Fissure		1	4	1	Fire	1																																																								Yes									
 906	Smouldering Maze		1	223	1	Fire	1																	F	2																																				Yes	Yes	Yes	Yes	Yes		Yes	Yes				
 907	Scorched Tower		2	16607	2	Fire	2																																																						Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
 908	House of Embers		2	16607	1	Fire	1																																																						Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
 909	Heart of the Desert		2	16392	3	Fire	2															Heat		F	2																																							Yes							Yes	
 910	Egg of the Phoenix		2	223	3	Fire	2																																																						Yes	Yes	Yes	Yes	Yes		Yes	Yes				
-911	House of Aratron		2	16607	2	Fire	1			1																551	Alchemist																																		Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
+911	House of Aratron		2	16607	2	Fire	2			1																551	Alchemist																																		Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
 912	Rune of Fire		1	223	2	Fire																		F	2																																				Yes	Yes	Yes	Yes	Yes		Yes	Yes				
-913	Maze of Frozen Flames		2	16591	2	Fire																		FW	2																																				Yes	Yes	Yes	Yes			Yes	Yes			Yes	
+913	Maze of Frozen Flames		2	16591	2	Fire																		WF	2																																				Yes	Yes	Yes	Yes			Yes	Yes			Yes	
 914	Devil's Furnace		1	16607	3	Fire	1																													Fire		Fiery Imp	x																						Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
 915	Copper Idol		0	223	2	Air		1																																																					Yes	Yes	Yes	Yes	Yes		Yes	Yes				
 916	Sparkling Fields		0	223	1	Air		1																																																					Yes	Yes	Yes	Yes	Yes		Yes	Yes				
@@ -936,7 +936,7 @@ id	name	era	rarity	loc	level	path	F	A	W	E	S	D	N	B	gold	res	sup	unr	exp	lab	fort	
 935	Wellspring of the Virgins		2	16607	1	Water			1																																																				Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
 936	Sign of Nodens		2	16450	3	Water			2																																																					Yes					Yes				Yes	
 937	Rune of Water		1	255	2	Water																		W	2																																				Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes				
-938	Pharos		2	16448	1	Water																		W	2																																		Water								Yes				Yes	scrying lasts 2 turns
+938	Pharos		2	16448	1	Water																		*	2																																		Water								Yes				Yes	scrying lasts 2 turns
 939	Deep Crevasse		0	255	1	Earth				1																																																			Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes				
 940	Mud Field		0	223	1	Earth				1																																																			Yes	Yes	Yes	Yes	Yes		Yes	Yes				
 941	Quicksand		0	223	1	Earth				1																																																			Yes	Yes	Yes	Yes	Yes		Yes	Yes				
@@ -947,17 +947,17 @@ id	name	era	rarity	loc	level	path	F	A	W	E	S	D	N	B	gold	res	sup	unr	exp	lab	fort	
 946	Heart of the Mountain		2	16388	3	Earth				2														E	3																																						Yes								Yes	
 947	Basilisk Cave		2	223	2	Earth				1																																					15%														Yes	Yes	Yes	Yes	Yes		Yes	Yes				
 948	Rune of Earth		1	255	2	Earth																		E	2																																				Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes				
-949	Undiscovered Door		0	255	4	Astral					1																																																		Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes				
+949	Unfound Door		0	255	4	Astral					1																																																		Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes				
 950	Starlit Pond		0	215	1	Astral					1																																																		Yes	Yes	Yes		Yes		Yes	Yes				
 951	Garden of Pearls		0	215	2	Astral					2																																																		Yes	Yes	Yes		Yes		Yes	Yes				
 952	Impossible Angle		1	223	2	Astral					1																																																		Yes	Yes	Yes	Yes	Yes		Yes	Yes				
 953	Moonlit Halls		1	223	1	Astral					1																																																		Yes	Yes	Yes	Yes	Yes		Yes	Yes				
-954	Brook of Glimmering Pearls		1	215	1	Astral					1																																																		Yes	Yes	Yes		Yes		Yes	Yes				
+954	Brook of Glimmering Pearls		1	215	1	Astral			1		1																																																		Yes	Yes	Yes		Yes		Yes	Yes				
 955	Seer's Grave		2	767	2	Astral					1																																																		Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes		Yes		reveals magic score graphs
 956	Dreaming Stone		2	767	2	Astral																		S	2																																				Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes		Yes		reveals magic score graphs
 957	Sorcerer's Circle		2	223	2	Astral																																													15%										Yes	Yes	Yes	Yes	Yes		Yes	Yes				
 958	Archaic Diagram		2	255	2	Astral																																										15%													Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes				
-959	Chamber of Enchantment		2	223	2	Astral																																												15%											Yes	Yes	Yes	Yes	Yes		Yes	Yes				
+959	Chamber of Enchantment		2	223	2	Astral														lab																														15%											Yes	Yes	Yes	Yes	Yes		Yes	Yes				
 960	Unsettling Pattern		2	255	2	Astral																																													15%										Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes				
 961	Basalt Mirror		2	255	2	Astral																																																					Astral		Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes				
 962	Cave of the Sleepers		2	16607	4	Astral					1																																																		Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
@@ -970,20 +970,20 @@ id	name	era	rarity	loc	level	path	F	A	W	E	S	D	N	B	gold	res	sup	unr	exp	lab	fort	
 969	Murdering Mire		1	223	2	Death						1																																																	Yes	Yes	Yes	Yes	Yes		Yes	Yes				
 970	Animal Cemetery		1	219	2	Death																														Death		Carrion Beast			Carrion Beast																				Yes	Yes		Yes	Yes		Yes	Yes				
 971	Gloom Gate		1	255	3	Death						2												D	2																																				Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes				
-972	Tomb of the Grand Thaumaturg		2	16479	3	Death						1												D	2																																				Yes	Yes	Yes	Yes	Yes		Yes				Yes	
+972	Tomb of the Grand Thaumathurg		2	16479	3	Death						1												D	2																																				Yes	Yes	Yes	Yes	Yes		Yes				Yes	
 973	Sigil of the Ancients		2	16639	3	Death																		D	3																																				Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
-974	Circle of Sending		2	223	2	Death																		*	15																																				Yes	Yes	Yes	Yes	Yes		Yes	Yes				
+974	Circle of Sending		2	223	2	Death																		*	2																																				Yes	Yes	Yes	Yes	Yes		Yes	Yes				
 975	Nidus of Power		2	255	2	Death																																													15%										Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes				
 976	Conjurer's Circle		2	223	2	Death																																								10%															Yes	Yes	Yes	Yes	Yes		Yes	Yes				
 977	Plague Barrow		2	223	1	Death						1																																										x							Yes	Yes	Yes	Yes	Yes		Yes	Yes				
 978	Pit of Despair		2	16607	1	Death						1						-5																																											Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
 979	Wolf Oak		0	223	1	Nature							1																																																Yes	Yes	Yes	Yes	Yes		Yes	Yes				
 980	Grove of Fertility		0	215	1	Nature							1																																																Yes	Yes	Yes		Yes		Yes	Yes				
-981	Druids Grave		0	223	2	Nature							1																																																Yes	Yes	Yes	Yes	Yes		Yes	Yes				
+981	Druid's Grave		0	223	2	Nature							1																																																Yes	Yes	Yes	Yes	Yes		Yes	Yes				
 982	Lair of Spiders		2	2	1	Nature							1																							Nature		Giant Spider	x																							Yes										
 983	Skin Shifter's Barrow		2	223	1	Nature							1																																																Yes	Yes	Yes	Yes	Yes		Yes	Yes				
 984	The Frogmarch		1	16512	1	Nature							1																							Nature		Frog	x																													Yes			Yes	
-985	Heart of the Forest		2	16386	3	Nature							2											N	2																																					Yes									Yes	
+985	Heart of the Forest		2	16386	3	Nature							2											N	3																																					Yes									Yes	
 986	Field of Golden Rye		1	16	1	Nature							1		20																																																		Yes							
 987	Withering Woods		2	2	1	Nature						1	1																																																	Yes										
 988	Grove of Hooded Spirits		2	2	3	Nature							1									Growth																																								Yes										
@@ -994,7 +994,7 @@ id	name	era	rarity	loc	level	path	F	A	W	E	S	D	N	B	gold	res	sup	unr	exp	lab	fort	
 993	Earthroot Grove		2	18	1	Nature							1											N	2																																					Yes			Yes							
 994	Starsong Grove		2	16386	3	Nature					1													S	3																																					Yes									Yes	
 995	Tree of Life		2	16599	2	Nature																																															x								Yes	Yes	Yes		Yes		Yes	Yes			Yes	
-996	Tree of Knowledge		2	16607	2	Nature													*																																										Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
+996	Tree of Knowledge		2	16607	2	Nature													8																																										Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
 997	Tower of the Moon		2	16607	2	Nature																														Nature		Werewolf																							Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
 998	Vale of Healing Herbs		2	199	2	Nature																																															x								Yes	Yes	Yes				Yes	Yes				
 999	Slave Market		0	735	0	Blood								3				2																																											Yes	Yes	Yes	Yes	Yes		Yes	Yes		Yes		
@@ -1002,41 +1002,40 @@ id	name	era	rarity	loc	level	path	F	A	W	E	S	D	N	B	gold	res	sup	unr	exp	lab	fort	
 1001	Sacrificial Grove		0	18	1	Blood																																														10%										Yes			Yes							
 1002	Bleeding Tree		2	2	1	Blood							1																																																	Yes										
 1003	Stained Altar		1	16607	1	Blood																														Blood		Rakshasa														20%									Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
-1004	Pentagram		1	223	2	Blood																		B	2																																				Yes	Yes	Yes	Yes	Yes		Yes	Yes				
+1004	Pentagram		1	223	2	Blood																																																							Yes	Yes	Yes	Yes	Yes		Yes	Yes				
 1005	The First Gate		1	17119	1	Blood																																														10%									Yes	Yes	Yes	Yes	Yes		Yes	Yes		Yes	Yes	
 1006	The Second Gate		1	17119	2	Blood																																														15%									Yes	Yes	Yes	Yes	Yes		Yes	Yes		Yes	Yes	
 1007	The Third Gate		2	17119	4	Blood																																														20%									Yes	Yes	Yes	Yes	Yes		Yes	Yes		Yes	Yes	
 1008	Tower of the Deformer		2	16607	2	Blood																														Blood		Foul Spawn			Foul Spawn			Foul Spawn			20%														Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
 1009	House of Disfigurement		2	16607	2	Blood																														Blood		Foul Spawn									10%														Yes	Yes	Yes	Yes	Yes		Yes	Yes			Yes	
-1010	Guild of the Merchant Princes		2	16448	0	Astral									30																																																				Yes				Yes	reveals mundane score graphs
-1011	The Golden City		2	16416	0	Water									50	10										1056	Pelagian Militia																																							Yes					Yes	
-1012	Subterranean City		2	16896	0	Earth									30	20																																																						Yes	Yes	
+1010	Guild of the Merchant Princes		2	17472	0	Astral									30																																																				Yes				Yes	reveals mundane score graphs
+1011	The Golden City		2	17440	0	Water									50	10										1056	Pelagian Militia																																							Yes					Yes	
+1012	Subterranean City		2	17920	0	Earth									30	20																																																						Yes	Yes	
 1013	Demon Gate		5	223	0	Blood												10																		Blood		Fiend of Darkness																							Yes	Yes	Yes	Yes	Yes		Yes	Yes				
 1014	Cursed Land		5	223	0	Nature																Magic																																							Yes	Yes	Yes	Yes	Yes		Yes	Yes				
-1015	Ruins of the Old Empire		1	223	0	Death						1																																																	Yes	Yes	Yes	Yes	Yes		Yes	Yes				
-1016	Ancient Temple of Ctis		1	128	0	Astral						1																																																								Yes				
-1017	The Throne of the Moon		12	16639	0	Holy																																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
-1018	The Throne of the Sun		13	16639	0	Holy																																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
-1019	Imperial Tomb		5	223	2	Death						1																																																	Yes	Yes	Yes	Yes	Yes		Yes	Yes				
+1015	Ruins of the Old Empire		1	1247	0	Death						1																																																	Yes	Yes	Yes	Yes	Yes		Yes	Yes				
+1016	Ancient Temple of C'tis		1	1152	0	Death						1																																																								Yes				
+1017	The Throne of the Moon		12	17407	0	Holy			1		1																																																		Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
+1018	The Throne of the Sun		13	17407	0	Holy	3																																																						Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
+1019	Imperial Tomb		5	1247	2	Death						1																																																	Yes	Yes	Yes	Yes	Yes		Yes	Yes				
 1020	Toad Tribe Settlement		5	128	0	Nature																				1614	Toad Tribe Shaman	1613	Toad Tribe Warrior																																							Yes				Extra units for native PD (1 per point)
-1021	The Throne of Sorcery		13	16639	0	Holy																																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
-1022	The Throne of Elements		13	16639	0	Holy																																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
-1023	The Shattered Throne		13	16639	0	Holy																																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
-1024	The Throne of the First Age		12	16639	0	Holy																																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
-1025	The Throne of the Second Age		11	16639	0	Holy																																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
-1026	The Throne of the Stars		11	16639	0	Holy																																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
-1027																																																																								
-1028																																																																								
-1029																																																																								
-1030																																																																								
-1031																																																																								
-1032																																																																								
-1033																																																																								
-1034																																																																								
-1035																																																																								
-1036																																																																								
-1037																																																																								
-1038																																																																								
-1039																																																																								
-1040																																																																								
-1041																																																																								
+1021	The Throne of Sorcery		13	17407	0	Holy					1	1	1																																																Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
+1022	The Throne of Elements		13	17407	0	Holy	1	1	1	1																																																			Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
+1023	The Shattered Throne		13	17407	0	Holy					2			4				10				Magic	Misfortune																																						Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
+1024	The Throne of the First Age		12	17407	0	Holy																Magic																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
+1025	The Throne of the Second Age		11	17407	0	Holy																																																							Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
+1026	The Throne of the Stars		11	17407	0	Holy					2													S	1																																				Yes	Yes	Yes	Yes	Yes	Yes	Yes	Yes			Yes	
+1027	Citadel of the Mage King		2	16398	6	Astral					1									lab	1																																																			
+1028	Necromancer's Lair		2	16398	6	Death						2								lab				D	2																																															
+1029	Tower of Ice		2	16396	6	Water			2											lab				W	2																																															
+1030	Tower of Thorns		2	16386	6	Nature							2							lab				N	2																																															
+1031	Oath Stone		1	16607	6	Death																																																																		
+1032	Isle of Rebirth		2	16416	6	Fire	1					1																																																												
+1033	Dragon Lair		2	16388	6	Fire	2																																																																	
+1034	Halls of the Mountain King		5	16388	5	Earth				1					50																																																									
+1035	Ruined Halls of the Mountain King		5	16388	5	Earth																																																																		
+1036	Horror Cult		5	223	5	Astral																																																																		
+1037	Cult of Death		5	16607	5	Death																Death																																																		
+1038	Translucent Tower		5	16607	3	Air														lab				A	2																																															
+1039	Withered Land		5	16607	1	Death						1										Death																																																		
+1040	Hall of the Draugadrott		5	223	2	Death																																																																		
