@@ -1242,6 +1242,15 @@ function chainedUnitRef(o, key, refq) {
 	var n= 1;
 	return '> '+refq.slice(1).join(' > ');
 }
+function list_sites(arr) {
+	//create array of refs
+	var tokens = [];
+	for (var i=0; i < arr.length;  i++)
+		tokens.push( Utils.siteRef( arr[i].id ) );
+	
+	//comma separated & one per line
+	return tokens.join(', <br />');
+}
 
 //////////////////////////////////////////////////////////////////////////
 // OVERLAY RENDERING
@@ -1456,7 +1465,8 @@ var displayorder3 = Utils.cutDisplayOrder(aliases, formats,
 	'insane',	'insane',		Format.Percent,
 	
 	'voidsanity',		'void sanity',		
-	'voidsum',		'void summoning',	Format.Signed //rl'yeh	
+	'voidsum',		'void summoning',	Format.Signed, //rl'yeh	
+	'recruitedby', 'recruited from', list_sites
 	
 ]);
 var flagorder = Utils.cutDisplayOrder(aliases, formats,

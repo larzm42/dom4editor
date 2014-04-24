@@ -1570,8 +1570,8 @@ var modctx = DMI.modctx = {
 		rarity: _ignore,//_num,
 		loc: _ignore,//_num,
 
-		homemon: function(c,a,t){ modctx[t]['capunits'].push(argref(a)); },
-		homecom: function(c,a,t){ modctx[t]['capcommanders'].push(argref(a)); },
+		homemon: function(c,a,t){ modctx[t]['hmon'].push(argref(a)); },
+		homecom: function(c,a,t){ modctx[t]['hcom'].push(argref(a)); },
 
 		mon: function(c,a,t){ modctx[t]['units'].push(argref(a)); },
 		com: function(c,a,t){ modctx[t]['commanders'].push(argref(a)); },

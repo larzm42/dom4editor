@@ -44,6 +44,7 @@
 	<script type="text/javascript" src="scripts/DMI/MSpell.js?v=30"></script>
 	<script type="text/javascript" src="scripts/DMI/MUnit.js?v=30"></script>
 	<script type="text/javascript" src="scripts/DMI/MNation.js?v=30"></script>
+	<script type="text/javascript" src="scripts/DMI/MSite.js?v=30"></script>
 	<script type="text/javascript" src="scripts/DMI/bitfields.js?v=30"></script>
 	
 	<script type="text/javascript" src="scripts/main.js?v=30"></script>
@@ -71,7 +72,7 @@
 		
         <!-- /GLOBAL INTERFACE -->       
 
-	
+		<div id="spacer" style="height:10px"></div>
 	
  		<div id="global-buttons" class="primary-panel">
 			<input id="global-clear-filters-btn" type="button" value="X" title="clear all filters" style="clear:none;" />
@@ -79,9 +80,10 @@
 		</div>
        <!-- PAGE TABS -->
 		<div id="page-tabs" class="primary-panel">
-			<button id="item-page-button"  class="page-button" value="items">Items</button>
-			<button id="spell-page-button" class="page-button" value="spells">Spells</button>
-			<button id="unit-page-button"  class="page-button" value="units">Units</button>
+			<button id="item-page-button"  class="page-button" value="items">Item</button>
+			<button id="spell-page-button" class="page-button" value="spells">Spell</button>
+			<button id="unit-page-button"  class="page-button" value="units">Unit</button>
+			<button id="site-page-button"  class="page-button" value="sites">Site</button>
             <button id="wpn-page-button"  class="page-button hidden-inline" value="wpns">Wp</button>
             <button id="armor-page-button"  class="page-button hidden-inline" value="armor">Ar</button>
 		</div>
@@ -187,6 +189,28 @@
 		</div>
 			
 
+		<div class="filters-text  panel siteview">
+			<input type="button" value="X" class="clear-filters-btn" title="clear filters" />
+
+			search Sites: <input type="text" class="search-box" title="filter by name or find id" id="siteq" />
+		</div>
+		<div class="hidden-block">
+			<div class="filters-text panel siteview">
+				<input type="button" value="X" class="clear-filters-btn" title="clear filters" />
+			
+				property (key):<input size="5" type="text" class="search-key" title="search for any named key" id="sitekey" />
+				!<input tabindex="-1" type="checkbox" class="search-not" id="itemnot" title="not (opposite results)">
+				<select tabindex="-1" class="search-comp" id="sitecomp">
+					<option title="regular expression match" class="default" selected="selected" value="=~">=~</option>
+					<option title="equals" value="==">==</option>
+					<option title="greater than or equal (int)" value=">=">&gt;=</option>
+					<option title="less than or equal (int)" value="<=">&lt;=</option>
+				</select>
+				<input size="5" type="text" class="search-val" title="search for any named key=~value"  id="siteval" />
+			</div>
+		</div>
+
+
 		<div class="filters-text  panel wpnview">
 			<input type="button" value="X" class="clear-filters-btn" title="clear filters" />
 
@@ -280,7 +304,7 @@
 		
 
         <!-- PATH CHECKBOXES -->
-		<div class="filters-paths  panel itemview spellview">
+		<div class="filters-paths  panel itemview spellview siteview">
 			<input type="button" value="X" class="clear-filters-btn" title="clear filters" />
 
 			<input class="toggle-path" type='checkbox' value='F' id="pathF" />
@@ -501,6 +525,14 @@
 	</div>
 
     <div id="item-page" class="page" style="display:none;">
+		<div class="grid-container"></div>
+		<div class="static-overlay-container">
+			<div class="primary-overlay"></div>
+			<div class="fixed-overlay overlay"></div>
+		</div>
+	</div>
+
+	<div id="site-page" class="page" style="display:none;">
 		<div class="grid-container"></div>
 		<div class="static-overlay-container">
 			<div class="primary-overlay"></div>

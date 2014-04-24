@@ -169,6 +169,7 @@ DMI.loadDom3Data = function(cb_success) {
 		'gamedata/realms.csv'+versionCode,
 		'gamedata/unpretender_types_by_nation.csv'+versionCode,
 		'gamedata/map_terrain_types.csv'+versionCode,
+		'gamedata/site_terrain_types.csv'+versionCode,
 		'gamedata/attributes_by_weapon.csv'+versionCode
 		
 		];
@@ -319,6 +320,11 @@ DMI.loadDom3Data = function(cb_success) {
 			modctx.map_terrain_types = parseTextToTable(data);
 			modctx.map_terrain_types_lookup = createLookup(modctx.map_terrain_types, 'bit_value');
 			
+			var data = dataobj['gamedata/site_terrain_types.csv'+versionCode];
+			if (!data) throw(DMI.Utils.error('ERROR LOADING: gamedata/site_terrain_types.csv'));
+			modctx.site_terrain_types = parseTextToTable(data);
+			modctx.site_terrain_types_lookup = createLookup(modctx.site_terrain_types, 'bit_value');
+			
 			var data = dataobj['gamedata/attributes_by_nation.csv'+versionCode];
 			if (!data) throw(DMI.Utils.error('ERROR LOADING: gamedata/attributes_by_nation.csv'));
 			modctx.attributes_by_nation = parseTextToTable(data);
@@ -387,8 +393,8 @@ DMI.loadDom3Data = function(cb_success) {
 			DMI.MItem.prepareData_PostMod();
 			DMI.MUnit.prepareData_PostMod();
 			DMI.MSpell.prepareData_PostMod();
-			DMI.MSite.prepareData_PostMod();
 			DMI.MNation.prepareData_PostMod();
+			DMI.MSite.prepareData_PostMod();
 			
 			//run callback
 			setTimeout(cb_success,1);

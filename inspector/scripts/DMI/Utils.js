@@ -319,6 +319,7 @@ Utils.spellRef = function(id, text) { return objectRef('spell', id, text); }
 Utils.wpnRef   = function(id, text) { return objectRef('wpn',   id, text); }
 Utils.armorRef = function(id, text) { return objectRef('armor', id, text); }
 Utils.nationRef = function(id, text) { return objectRef('nation', id, text); }
+Utils.siteRef = function(id, text) { return objectRef('site', id, text); }
 Utils.afflictionRef = function(name) { return Utils.ref('affliction '+name, name); }
 
 Utils.unitOfTypeRef = function(id, utype) {
@@ -342,6 +343,7 @@ PaneManager.renderPane = function(ref) {
 		case 'wpn': 	o = DMI.modctx.wpnlookup[args[1]]; break;
 		case 'armor': 	o = DMI.modctx.armorlookup[args[1]]; break;
 		case 'nation': 	o = DMI.modctx.nationlookup[args[1]]; break;
+		case 'site': 	o = DMI.modctx.sitelookup[args[1]]; break;
 		case 'affliction': o = DMI.MAffliction.lookup[args[1]]; break;
 		
 		case 'rndmagic': 

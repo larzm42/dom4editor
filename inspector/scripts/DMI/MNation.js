@@ -12,37 +12,6 @@ var modctx = DMI.modctx;
 var modconstants = DMI.modconstants;
 
 
-MSite.initSite = function(o) {
-	o.units = [];
-	o.commanders = [];
-	o.capunits = [];
-	o.capcommanders = [];	
-}
-MSite.prepareData_PreMod = function() {
-	for (var oi=0, o;  o= modctx.sitedata[oi];  oi++) {
-		
-		o.units = Utils.keyListToTable(o, 'mon');
-		o.commanders = Utils.keyListToTable(o, 'com');
-		o.capunits = [];
-		o.capcommanders = [];	
-		var capunit = Utils.keyListToTable(o, 'hmon');
-		for (var oj=0, cap; cap = capunit[oj]; oj++) {
-			var u = modctx.unitlookup[cap];
-			if (u.type == 'c') {
-				o.capcommanders.push(cap);
-			} else {
-				o.capunits.push(cap);
-			}
-		}
-	}
-}
-MSite.prepareData_PostMod = function() {
-	for (var oi=0, o;  o= modctx.sitedata[oi];  oi++) {
-	}
-}
-
-
-
 MNation.initNation = function(o) {
 	o.foreignunits = [];
 	o.forestrec = [];
@@ -391,8 +360,8 @@ MNation.prepareData_PostMod = function() {
 				console.log(basekey+' '+arr[i]+' not found (nation '+o.id+')');
 				continue;
 			}
-			o.capunits = o.capunits.concat(s.units, s.capunits);
-			o.capcommanders = o.capcommanders.concat(s.commanders, s.capcommanders);
+			o.capunits = o.capunits.concat(s.units, s.hmon);
+			o.capcommanders = o.capcommanders.concat(s.commanders, s.hcom);
 			for (k in gemkeys) {
 				if (s[k])
 				gemkeys[k] += parseInt(s[k]);  
