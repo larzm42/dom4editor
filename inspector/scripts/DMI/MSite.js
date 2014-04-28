@@ -414,6 +414,60 @@ var displayorder = DMI.Utils.cutDisplayOrder(aliases, formats,
 	'holypow', 'holy power',
 	'scry', 'enter to scry',
 	'adventure', 'adventure',
+	'domspread', 'spreads dominion',
+	'turmoil', 'dominion gets', function(v,o) {
+		if (v > 0) {
+			return 'Turmoil +' + v;
+		} else {
+			return 'Order +' + -v;
+		}
+	},
+	'sloth', 'dominion gets', function(v,o) {
+		if (v > 0) {
+			return 'Sloth +' + v;
+		} else {
+			return 'Productivity +' + -v;
+		}
+	},
+	'cold', 'dominion gets', function(v,o) {
+		if (v > 0) {
+			return 'Cold +' + v;
+		} else {
+			return 'Heat +' + -v;
+		}
+	},
+	'death', 'dominion gets', function(v,o) {
+		if (v > 0) {
+			return 'Death +' + v;
+		} else {
+			return 'Growth +' + -v;
+		}
+	},
+	'misfortune', 'dominion gets', function(v,o) {
+		if (v > 0) {
+			return 'Misfortune +' + v;
+		} else {
+			return 'Luck +' + -v;
+		}
+	},
+	'drain', 'dominion gets', function(v,o) {
+		if (v > 0) {
+			return 'Drain +' + v;
+		} else {
+			return 'Magic +' + -v;
+		}
+	},
+	'fireres', 'fire resistence', Format.Signed,
+	'coldres', 'cold resistence', Format.Signed,
+	'shockres', 'shock resistence', Format.Signed,
+	'poisonres', 'poison resistence', Format.Signed,
+	'str', 'strength', Format.Signed,
+	'prec', 'precision', Format.Signed,
+	'mor', 'morale,', Format.Signed,
+	'undying', 'undying',
+	'att', 'attack', Format.Signed,
+	'darkvision', 'darkvision',
+	'aawe', 'animal awe',
 	'rit', 'ritual range', function(v,o){
 		return MSite.ritual_string[v] + ' +' + o.ritrng;
 	},
