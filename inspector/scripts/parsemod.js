@@ -1564,11 +1564,11 @@ var modctx = DMI.modctx = {
 			}
 		},
 		
-		path: _ignore, //function(c,a,t){ modctx[t][c] = modconstants['16'][a.n1] },
-		level: _ignore,//_num,
+		path: function(c,a,t){ modctx[t][c] = modconstants['pathnames'][a.n1] },
+		level: _num,
 		
-		rarity: _ignore,//_num,
-		loc: _ignore,//_num,
+		rarity: _num,
+		loc: _num,
 
 		homemon: function(c,a,t){ modctx[t]['hmon'].push(argref(a)); },
 		homecom: function(c,a,t){ modctx[t]['hcom'].push(argref(a)); },
@@ -1576,8 +1576,8 @@ var modctx = DMI.modctx = {
 		mon: function(c,a,t){ modctx[t]['units'].push(argref(a)); },
 		com: function(c,a,t){ modctx[t]['commanders'].push(argref(a)); },
 
-		gold: _ignore,//_num,
-		res: _ignore,//_num,
+		gold: _num,
+		res: _num,
 		incscale: _ignore,//_num, //See Table 21 (Scale)
 		decscale: _ignore,//_num, //See Table 21 (Opposite)
 		
@@ -1801,7 +1801,7 @@ modctx.parseMod = function(str, modnum, modname) {
 			
 			//debug.. attaches relevant mod commands to data (will show on details pane)
 			if (DMI.Options['Show mod cmds'] && cmd && cmd!='descr') {
-				var types =  ['unit', 'spell', 'wpn', 'item', 'armor', 'nation'];				
+				var types =  ['unit', 'spell', 'wpn', 'item', 'armor', 'nation', 'site'];				
 				for (var j=0, type; type=types[j]; j++) {
 					if (modctx[type] && cmd!='select'+type) {
 						if (emsg) modctx[type].modded += emsg.split('\n')[0] +'<br />!! ';

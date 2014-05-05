@@ -147,6 +147,21 @@ DMI.modconstants = {
 		255: ''
 	},
 	
+	//magic paths
+	pathnames: {
+		'-1': '',
+		0: 'Fire',
+		1: 'Air',
+		2: 'Water',
+		3: 'Earth',
+		4: 'Astral',
+		5: 'Death',
+		6: 'Nature',
+		7: 'Blood',
+		8: 'Holy',
+		255: ''
+	},
+	
 	//Item types
 	19: {
 		1: "1-h wpn",
