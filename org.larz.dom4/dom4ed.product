@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="Dominions 4 Mod Editor" uid="dom4editor" id="org.larz.dom4.product" application="org.larz.dom4.application" version="1.0" useFeatures="false" includeLaunchers="true">
+<product name="Dominions 4 Mod Editor" uid="dom4editor" id="org.larz.dom4.product" application="org.larz.dom4.application" version="1.1" useFeatures="false" includeLaunchers="true">
 
    <aboutInfo>
       <image path="/org.larz.dom4/icons/alt_about.png"/>
@@ -10,7 +10,7 @@
 Project home: http://dom4editor.googlecode.com/
 License: http://www.gnu.org/licenses/gpl.txt
 
-Release 1.0 - December 12, 2013.
+Release 1.1 - January 31, 2015.
       </text>
    </aboutInfo>
 
@@ -38,7 +38,6 @@ Release 1.0 - December 12, 2013.
          <bmp/>
       </win>
    </launcher>
-
 
    <vm>
       <linux include="true">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7</linux>
