@@ -63,6 +63,7 @@ public class ArmorDetailsPage extends AbstractDetailsPage {
 
 	enum Inst2 {
 		NAME (Messages.getString("ArmorDetailsSection.mod.name"), ""), 
+		COPYARMOR (Messages.getString("ArmorDetailsSection.mod.copyarmor"), ""), 
 		TYPE (Messages.getString("ArmorDetailsSection.mod.type"), "4"), 
 		PROT (Messages.getString("ArmorDetailsSection.mod.prot"), "1"),
 		DEF (Messages.getString("ArmorDetailsSection.mod.def"), "1"), 
@@ -89,6 +90,7 @@ public class ArmorDetailsPage extends AbstractDetailsPage {
 	
 	public ArmorDetailsPage(XtextEditor doc, TableViewer viewer) {
 		super(doc, viewer);
+		inst2Map.put(Inst2.COPYARMOR, new Inst2Fields());
 		inst2Map.put(Inst2.TYPE, new Inst2Fields());
 		inst2Map.put(Inst2.PROT, new Inst2Fields());
 		inst2Map.put(Inst2.DEF, new Inst2Fields());
@@ -131,7 +133,7 @@ public class ArmorDetailsPage extends AbstractDetailsPage {
 		nameComp.setLayoutData(gd);
 
 		nameCheck = toolkit.createButton(nameComp, Messages.getString("ArmorDetailsSection.mod.name"), SWT.CHECK); //$NON-NLS-1$
-		nameCheck.setToolTipText(HelpTextHelper.getText(HelpTextHelper.ARMOR_CATEGORY, "name"));
+		setToolTip(nameCheck, HelpTextHelper.getText(HelpTextHelper.ARMOR_CATEGORY, "name"));
 
 		name = toolkit.createText(nameComp, null, SWT.SINGLE | SWT.BORDER); //$NON-NLS-1$
 		name.addFocusListener(new FocusAdapter() {
@@ -177,7 +179,7 @@ public class ArmorDetailsPage extends AbstractDetailsPage {
 		for (final Map.Entry<Inst2, Inst2Fields> fields : inst2Map.entrySet()) {
 			final Inst2 key = fields.getKey();
 			final Button check = toolkit.createButton(client, key.label, SWT.CHECK);
-			check.setToolTipText(HelpTextHelper.getText(HelpTextHelper.ARMOR_CATEGORY, key.label));
+			setToolTip(check, HelpTextHelper.getText(HelpTextHelper.ARMOR_CATEGORY, key.label));
 			final Text value = toolkit.createText(client, "", SWT.SINGLE | SWT.BORDER); //$NON-NLS-1$
 			Label defaultLabel = toolkit.createLabel(client, "");
 			defaultLabel.setEnabled(false);

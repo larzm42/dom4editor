@@ -128,7 +128,7 @@ public class PoptypeDetailsPage extends AbstractDetailsPage {
 			final Inst key = fields.getKey();
 			final InstFields field = fields.getValue();
 			final Button check = toolkit.createButton(client, key.label, SWT.CHECK);
-			check.setToolTipText(HelpTextHelper.getText(HelpTextHelper.POPTYPE_CATEGORY, key.label));
+			setToolTip(check, HelpTextHelper.getText(HelpTextHelper.POPTYPE_CATEGORY, key.label));
 			Text myValue = null;
 			Label defaultLabel = null;
 			if (field instanceof Inst1Fields) {

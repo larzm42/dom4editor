@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: org.larz.dom4
 Bundle-SymbolicName: org.larz.dom4;singleton:=true
-Bundle-Version: 1.0
+Bundle-Version: 1.1
 Bundle-Activator: org.larz.dom4.Activator
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
@@ -12,7 +12,8 @@ Bundle-ClassPath: .,
  lib/imageio_tga_1.1.0.jar,
  lib/commons-compress-1.1.jar,
  lib/itextpdf-5.1.1.jar,
- lib/commons-io-2.4.jar
+ lib/commons-io-2.4.jar,
+ lib/sqlite-jdbc-3.7.2.jar
 Require-Bundle: org.larz.dom4.dm,
  org.larz.dom4.dm.ui,
  org.eclipse.xtext.ui,

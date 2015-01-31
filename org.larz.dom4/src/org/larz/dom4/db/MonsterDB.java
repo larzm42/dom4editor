@@ -62,6 +62,7 @@ public class MonsterDB {
 	public Integer healer;
 	public Integer startaff;
 	public Integer supplybonus;
+	public Integer resources;
 	public Integer uwdamage;
 	public Integer coldpower;
 	public Integer firepower;

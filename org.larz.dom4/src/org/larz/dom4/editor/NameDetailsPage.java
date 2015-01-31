@@ -137,7 +137,7 @@ public class NameDetailsPage extends AbstractDetailsPage {
 		id.setLayoutData(gd);
 		
 		clear = toolkit.createButton(nameComp, "clear", SWT.CHECK);
-		clear.setToolTipText(HelpTextHelper.getText(HelpTextHelper.NAME_CATEGORY, "clear"));
+		setToolTip(clear, HelpTextHelper.getText(HelpTextHelper.NAME_CATEGORY, "clear"));
 		clear.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {

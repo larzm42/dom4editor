@@ -145,7 +145,7 @@ public class MercenaryDetailsPage extends AbstractDetailsPage {
 			final Inst key = fields.getKey();
 			final InstFields field = fields.getValue();
 			final Button check = toolkit.createButton(client, key.label, SWT.CHECK);
-			check.setToolTipText(HelpTextHelper.getText(HelpTextHelper.MERCENARY_CATEGORY, key.label));
+			setToolTip(check, HelpTextHelper.getText(HelpTextHelper.MERCENARY_CATEGORY, key.label));
 			final Text value = toolkit.createText(client, "", SWT.SINGLE | SWT.BORDER); //$NON-NLS-1$
 			name = value;
 			Label defaultLabel = toolkit.createLabel(client, "");

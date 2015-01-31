@@ -1,1 +1,1 @@
-The caster creates a dense mist across the battle field. The mist will limit sight and the range of all spells and missiles.
+The caster creates a dense mist across the battle field that makes it difficult to see far. The mist will limit the precision of all spells and missiles.

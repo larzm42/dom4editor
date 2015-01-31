@@ -440,7 +440,7 @@ public class SiteDetailsPage extends AbstractDetailsPage {
 		nameComp.setLayoutData(gd);
 		
 		nameCheck = toolkit.createButton(nameComp, Messages.getString("SiteDetailsSection.mod.name"), SWT.CHECK); //$NON-NLS-1$
-		nameCheck.setToolTipText(HelpTextHelper.getText(HelpTextHelper.SITE_CATEGORY, "name"));
+		setToolTip(nameCheck, HelpTextHelper.getText(HelpTextHelper.SITE_CATEGORY, "name"));
 
 		name = toolkit.createText(nameComp, null, SWT.SINGLE | SWT.BORDER); //$NON-NLS-1$
 		name.addFocusListener(new FocusAdapter() {
@@ -561,7 +561,7 @@ public class SiteDetailsPage extends AbstractDetailsPage {
 
 			final InstFields field = fields.getValue();
 			final Button check = new DynamicButton(isRight?rightColumn:leftColumn, SWT.CHECK);
-			check.setToolTipText(HelpTextHelper.getText(HelpTextHelper.SITE_CATEGORY, key.label));
+			setToolTip(check, HelpTextHelper.getText(HelpTextHelper.SITE_CATEGORY, key.label));
 
 			check.addSelectionListener(new SelectionAdapter() {
 				@Override

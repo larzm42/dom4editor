@@ -61,6 +61,7 @@ import org.larz.dom4.dm.dm.SpellInst2;
 import org.larz.dom4.dm.dm.SpellInst3;
 import org.larz.dom4.dm.dm.SpellInst4;
 import org.larz.dom4.dm.dm.SpellInst5;
+import org.larz.dom4.dm.dm.SpellInst6;
 import org.larz.dom4.dm.dm.SpellMods;
 import org.larz.dom4.dm.ui.help.HelpTextHelper;
 
@@ -160,11 +161,17 @@ public class SpellDetailsPage extends AbstractDetailsPage {
 	
 	class Inst6Fields implements InstFields {
 		private Button check;
-		private MappedDynamicCombo value;
+		private Text value;
 		private Label defaultLabel;
 	}
 	
 	class Inst7Fields implements InstFields {
+		private Button check;
+		private MappedDynamicCombo value;
+		private Label defaultLabel;
+	}
+	
+	class Inst8Fields implements InstFields {
 		private Button check;
 		private Text value1;
 		private Label defaultLabel1;
@@ -176,7 +183,7 @@ public class SpellDetailsPage extends AbstractDetailsPage {
 	
 	public SpellDetailsPage(XtextEditor doc, TableViewer viewer) {
 		super(doc, viewer);
-		instMap.put(Inst.SCHOOL, new Inst6Fields());
+		instMap.put(Inst.SCHOOL, new Inst7Fields());
 		instMap.put(Inst.RESEARCHLEVEL, new Inst2Fields());
 		instMap.put(Inst.AOE, new Inst2Fields());
 		instMap.put(Inst.DAMAGE, new Inst2Fields());
@@ -189,12 +196,12 @@ public class SpellDetailsPage extends AbstractDetailsPage {
 		instMap.put(Inst.RANGE, new Inst2Fields());
 		instMap.put(Inst.PRECISION, new Inst2Fields());
 		instMap.put(Inst.SOUND, new Inst2Fields());
-		instMap.put(Inst.SPEC, new Inst2Fields());
+		instMap.put(Inst.SPEC, new Inst6Fields());
 		instMap.put(Inst.RESTRICTED1, new Inst2Fields());	
 		instMap.put(Inst.RESTRICTED2, new Inst2Fields());	
 		instMap.put(Inst.RESTRICTED3, new Inst2Fields());	
-		instMap.put(Inst.PATH1, new Inst7Fields());	
-		instMap.put(Inst.PATH2, new Inst7Fields());	
+		instMap.put(Inst.PATH1, new Inst8Fields());	
+		instMap.put(Inst.PATH2, new Inst8Fields());	
 		instMap.put(Inst.PATHLEVEL1, new Inst3Fields());	
 		instMap.put(Inst.PATHLEVEL2, new Inst3Fields());	
 		instMap.put(Inst.CLEAR, new Inst4Fields());	
@@ -245,7 +252,7 @@ public class SpellDetailsPage extends AbstractDetailsPage {
 		nameComp.setLayoutData(gd);
 		
 		nameCheck = toolkit.createButton(nameComp, Messages.getString("SpellDetailsSection.mod.name"), SWT.CHECK); //$NON-NLS-1$
-		nameCheck.setToolTipText(HelpTextHelper.getText(HelpTextHelper.SPELL_CATEGORY, "name"));
+		setToolTip(nameCheck, HelpTextHelper.getText(HelpTextHelper.SPELL_CATEGORY, "name"));
 
 		name = toolkit.createText(nameComp, null, SWT.SINGLE | SWT.BORDER); //$NON-NLS-1$
 		name.addFocusListener(new FocusAdapter() {
@@ -289,7 +296,7 @@ public class SpellDetailsPage extends AbstractDetailsPage {
 		});
 
 		descCheck = toolkit.createButton(nameComp, Messages.getString("SpellDetailsSection.mod.descr"), SWT.CHECK);
-		descCheck.setToolTipText(HelpTextHelper.getText(HelpTextHelper.SPELL_CATEGORY, "descr"));
+		setToolTip(descCheck, HelpTextHelper.getText(HelpTextHelper.SPELL_CATEGORY, "descr"));
 
 		descr = toolkit.createText(nameComp, null, SWT.MULTI | SWT.BORDER | SWT.WRAP); //$NON-NLS-1$
 		descr.addFocusListener(new FocusAdapter() {
@@ -363,7 +370,7 @@ public class SpellDetailsPage extends AbstractDetailsPage {
 			final Inst key = fields.getKey();
 			final InstFields field = fields.getValue();
 			final Button check = toolkit.createButton(isRight?rightColumn:leftColumn, key.label, SWT.CHECK);
-			check.setToolTipText(HelpTextHelper.getText(HelpTextHelper.SPELL_CATEGORY, key.label));
+			setToolTip(check, HelpTextHelper.getText(HelpTextHelper.SPELL_CATEGORY, key.label));
 
 			check.addSelectionListener(new SelectionAdapter() {
 				@Override
@@ -381,8 +388,10 @@ public class SpellDetailsPage extends AbstractDetailsPage {
 						} else if (field instanceof Inst5Fields) {
 							addInst5(key, doc, key.defaultValue);
 						} else if (field instanceof Inst6Fields) {
-							addInst2(key, doc, key.defaultValue);
+							addInst6(key, doc, key.defaultValue);
 						} else if (field instanceof Inst7Fields) {
+							addInst2(key, doc, key.defaultValue);
+						} else if (field instanceof Inst8Fields) {
 							addInst3(key, doc, key.defaultValue, key.defaultValue2);
 						}
 					} else {
@@ -401,11 +410,11 @@ public class SpellDetailsPage extends AbstractDetailsPage {
 
 			Text myValue1 = null;
 			Text myValue2 = null;
-			if (field instanceof Inst1Fields ||	field instanceof Inst2Fields ||	field instanceof Inst3Fields ||	field instanceof Inst5Fields ||	field instanceof Inst7Fields) {
+			if (field instanceof Inst1Fields ||	field instanceof Inst2Fields ||	field instanceof Inst3Fields ||	field instanceof Inst5Fields ||	field instanceof Inst6Fields ||	field instanceof Inst8Fields) {
 				final Text value = toolkit.createText(isRight?rightColumn:leftColumn, "", SWT.SINGLE | SWT.BORDER); //$NON-NLS-1$
 				myValue1 = value;
 				
-				if (field instanceof Inst2Fields ||	field instanceof Inst3Fields ||	field instanceof Inst7Fields) {
+				if (field instanceof Inst2Fields ||	field instanceof Inst3Fields ||	field instanceof Inst6Fields ||	field instanceof Inst8Fields) {
 					value.addVerifyListener(new VerifyListener() {
 						
 						@Override
@@ -440,7 +449,9 @@ public class SpellDetailsPage extends AbstractDetailsPage {
 							setInst3(key, doc, value.getText(), null);
 						} else if (field instanceof Inst5Fields) {
 							setInst5(key, doc, value.getText());
-						} else if (field instanceof Inst7Fields) {
+						} else if (field instanceof Inst6Fields) {
+							setInst6(key, doc, value.getText());
+						} else if (field instanceof Inst8Fields) {
 							setInst3(key, doc, value.getText(), null);
 						}
 					}			
@@ -457,7 +468,9 @@ public class SpellDetailsPage extends AbstractDetailsPage {
 								setInst3(key, doc, value.getText(), null);
 							} else if (field instanceof Inst5Fields) {
 								setInst5(key, doc, value.getText());
-							} else if (field instanceof Inst7Fields) {
+							} else if (field instanceof Inst6Fields) {
+								setInst6(key, doc, value.getText());
+							} else if (field instanceof Inst8Fields) {
 								setInst3(key, doc, value.getText(), null);
 							}
 						}
@@ -468,7 +481,7 @@ public class SpellDetailsPage extends AbstractDetailsPage {
 					gd = new GridData(SWT.FILL, SWT.FILL, false, false);
 					gd.widthHint = 160;
 					gd.horizontalSpan = 4;
-				} else if (field instanceof Inst2Fields ||field instanceof Inst3Fields ||field instanceof Inst7Fields) {
+				} else if (field instanceof Inst2Fields || field instanceof Inst3Fields || field instanceof Inst6Fields ||field instanceof Inst8Fields) {
 					gd = new GridData(SWT.FILL, SWT.BEGINNING, false, false);
 					gd.widthHint = DEFAULT_VALUE_WIDTH;
 				} else if (field instanceof Inst5Fields) {
@@ -480,7 +493,7 @@ public class SpellDetailsPage extends AbstractDetailsPage {
 			}
 				
 			MappedDynamicCombo myInst6Value1 = null;
-			if (field instanceof Inst6Fields) {
+			if (field instanceof Inst7Fields) {
 				final MappedDynamicCombo value = new MappedDynamicCombo(isRight?rightColumn:leftColumn, SWT.READ_ONLY);
 				myInst6Value1 = value;
 
@@ -522,15 +535,15 @@ public class SpellDetailsPage extends AbstractDetailsPage {
 
 			Label defaultLabel1 = null;
 			
-			if (field instanceof Inst2Fields || field instanceof Inst3Fields || field instanceof Inst4Fields || field instanceof Inst5Fields || field instanceof Inst6Fields || field instanceof Inst7Fields) {
+			if (field instanceof Inst2Fields || field instanceof Inst3Fields || field instanceof Inst4Fields || field instanceof Inst5Fields || field instanceof Inst6Fields || field instanceof Inst7Fields || field instanceof Inst8Fields) {
 				defaultLabel1 = toolkit.createLabel(isRight?rightColumn:leftColumn, "");
 				defaultLabel1.setEnabled(false);
 			}
-			if (field instanceof Inst2Fields || field instanceof Inst6Fields) {
+			if (field instanceof Inst2Fields || field instanceof Inst6Fields || field instanceof Inst7Fields) {
 				gd = new GridData(SWT.FILL, SWT.CENTER, false, false);
 				gd.horizontalSpan = 3;
 				defaultLabel1.setLayoutData(gd);
-			} else if (field instanceof Inst3Fields || field instanceof Inst7Fields) {
+			} else if (field instanceof Inst3Fields || field instanceof Inst8Fields) {
 				gd = new GridData(SWT.FILL, SWT.CENTER, false, false);
 				defaultLabel1.setLayoutData(gd);
 			} else if (field instanceof Inst4Fields) {
@@ -590,7 +603,7 @@ public class SpellDetailsPage extends AbstractDetailsPage {
 			}
 			
 			MappedDynamicCombo myInst7Value2 = null;
-			if (field instanceof Inst7Fields) {
+			if (field instanceof Inst8Fields) {
 				final MappedDynamicCombo value = new MappedDynamicCombo(isRight?rightColumn:leftColumn, SWT.READ_ONLY);
 				myInst7Value2 = value;
 
@@ -654,14 +667,18 @@ public class SpellDetailsPage extends AbstractDetailsPage {
 				((Inst5Fields)field).defaultLabel = defaultLabel1;
 			} else if (field instanceof Inst6Fields) {
 				((Inst6Fields)field).check = check;
-				((Inst6Fields)field).value = myInst6Value1;
+				((Inst6Fields)field).value = myValue1;
 				((Inst6Fields)field).defaultLabel = defaultLabel1;
 			} else if (field instanceof Inst7Fields) {
 				((Inst7Fields)field).check = check;
-				((Inst7Fields)field).value1 = myValue1;
-				((Inst7Fields)field).defaultLabel1 = defaultLabel1;
-				((Inst7Fields)field).value2 = myInst7Value2;
-				((Inst7Fields)field).defaultLabel2 = defaultLabel2;
+				((Inst7Fields)field).value = myInst6Value1;
+				((Inst7Fields)field).defaultLabel = defaultLabel1;
+			} else if (field instanceof Inst8Fields) {
+				((Inst8Fields)field).check = check;
+				((Inst8Fields)field).value1 = myValue1;
+				((Inst8Fields)field).defaultLabel1 = defaultLabel1;
+				((Inst8Fields)field).value2 = myInst7Value2;
+				((Inst8Fields)field).defaultLabel2 = defaultLabel2;
 			}
 
 			isRight = !isRight;
@@ -741,16 +758,16 @@ public class SpellDetailsPage extends AbstractDetailsPage {
 					((Inst2Fields)fields.getValue()).check.setSelection(true);
 					((Inst2Fields)fields.getValue()).check.setFont(boldFont);
 				}
-				if (fields.getValue() instanceof Inst6Fields) {
-					((Inst6Fields)fields.getValue()).value.setEnabled(true);
-					((Inst6Fields)fields.getValue()).value.setItems(new String[]{
+				if (fields.getValue() instanceof Inst7Fields) {
+					((Inst7Fields)fields.getValue()).value.setEnabled(true);
+					((Inst7Fields)fields.getValue()).value.setItems(new String[]{
 							"cannot be researched", "Conjuration", "Alteration", "Evocation", "Construction", "Enchantment", "Thaumaturgy", "Blood", "Divine"},
 							new int[]{-1, 0, 1, 2, 3, 4, 5, 6, 7});
 					int selection = Integer.parseInt(val.toString());
-					((Inst6Fields)fields.getValue()).value.select(selection);
-					((Inst6Fields)fields.getValue()).value.setEnabled(true);
-					((Inst6Fields)fields.getValue()).check.setSelection(true);
-					((Inst6Fields)fields.getValue()).check.setFont(boldFont);
+					((Inst7Fields)fields.getValue()).value.select(selection);
+					((Inst7Fields)fields.getValue()).value.setEnabled(true);
+					((Inst7Fields)fields.getValue()).check.setSelection(true);
+					((Inst7Fields)fields.getValue()).check.setFont(boldFont);
 				}
 			} else {
 				if (fields.getValue() instanceof Inst2Fields) {
@@ -759,11 +776,11 @@ public class SpellDetailsPage extends AbstractDetailsPage {
 					((Inst2Fields)fields.getValue()).check.setSelection(false);
 					((Inst2Fields)fields.getValue()).check.setFont(normalFont);
 				}
-				if (fields.getValue() instanceof Inst6Fields) {
-					((Inst6Fields)fields.getValue()).value.removeAll();
-					((Inst6Fields)fields.getValue()).value.setEnabled(false);
-					((Inst6Fields)fields.getValue()).check.setSelection(false);
-					((Inst6Fields)fields.getValue()).check.setFont(normalFont);
+				if (fields.getValue() instanceof Inst7Fields) {
+					((Inst7Fields)fields.getValue()).value.removeAll();
+					((Inst7Fields)fields.getValue()).value.setEnabled(false);
+					((Inst7Fields)fields.getValue()).check.setSelection(false);
+					((Inst7Fields)fields.getValue()).check.setFont(normalFont);
 				}
 			}
 			Integer[] vals = getInst3(fields.getKey(), input);
@@ -776,19 +793,19 @@ public class SpellDetailsPage extends AbstractDetailsPage {
 					((Inst3Fields)fields.getValue()).check.setSelection(true);
 					((Inst3Fields)fields.getValue()).check.setFont(boldFont);
 				}
-				if (fields.getValue() instanceof Inst7Fields) {
-					((Inst7Fields)fields.getValue()).value1.setText(vals[0].toString());
-					((Inst7Fields)fields.getValue()).value1.setEnabled(true);
-					((Inst7Fields)fields.getValue()).value2.setItems(new String[]{
+				if (fields.getValue() instanceof Inst8Fields) {
+					((Inst8Fields)fields.getValue()).value1.setText(vals[0].toString());
+					((Inst8Fields)fields.getValue()).value1.setEnabled(true);
+					((Inst8Fields)fields.getValue()).value2.setItems(new String[]{
 							"None", "Fire",	"Air", "Water", "Earth", "Astral", "Death",
 							"Nature", "Blood", "Holy"
 							},
 							new int[]{-1, 0, 1, 2, 3, 4, 5, 6, 7, 8});
 					int selection = Integer.parseInt(vals[1].toString());
-					((Inst7Fields)fields.getValue()).value2.select(selection);
-					((Inst7Fields)fields.getValue()).value2.setEnabled(true);
-					((Inst7Fields)fields.getValue()).check.setSelection(true);
-					((Inst7Fields)fields.getValue()).check.setFont(boldFont);
+					((Inst8Fields)fields.getValue()).value2.select(selection);
+					((Inst8Fields)fields.getValue()).value2.setEnabled(true);
+					((Inst8Fields)fields.getValue()).check.setSelection(true);
+					((Inst8Fields)fields.getValue()).check.setFont(boldFont);
 				}
 			} else {
 				if (fields.getValue() instanceof Inst3Fields) {
@@ -799,13 +816,13 @@ public class SpellDetailsPage extends AbstractDetailsPage {
 					((Inst3Fields)fields.getValue()).check.setSelection(false);
 					((Inst3Fields)fields.getValue()).check.setFont(normalFont);
 				}
-				if (fields.getValue() instanceof Inst7Fields) {
-					((Inst7Fields)fields.getValue()).value1.setText("");
-					((Inst7Fields)fields.getValue()).value1.setEnabled(false);
-					((Inst7Fields)fields.getValue()).value2.removeAll();
-					((Inst7Fields)fields.getValue()).value2.setEnabled(false);
-					((Inst7Fields)fields.getValue()).check.setSelection(false);
-					((Inst7Fields)fields.getValue()).check.setFont(normalFont);
+				if (fields.getValue() instanceof Inst8Fields) {
+					((Inst8Fields)fields.getValue()).value1.setText("");
+					((Inst8Fields)fields.getValue()).value1.setEnabled(false);
+					((Inst8Fields)fields.getValue()).value2.removeAll();
+					((Inst8Fields)fields.getValue()).value2.setEnabled(false);
+					((Inst8Fields)fields.getValue()).check.setSelection(false);
+					((Inst8Fields)fields.getValue()).check.setFont(normalFont);
 				}
 			}
 			Boolean isVal = getInst4(fields.getKey(), input);
@@ -831,11 +848,27 @@ public class SpellDetailsPage extends AbstractDetailsPage {
 					((Inst5Fields)fields.getValue()).check.setFont(normalFont);
 				}
 			}
+			Long val6 = getInst6(fields.getKey(), input);
+			if (val6 != null) {
+				if (fields.getValue() instanceof Inst6Fields) {
+					((Inst6Fields)fields.getValue()).value.setText(val6.toString());
+					((Inst6Fields)fields.getValue()).value.setEnabled(true);
+					((Inst6Fields)fields.getValue()).check.setSelection(true);
+					((Inst6Fields)fields.getValue()).check.setFont(boldFont);
+				}
+			} else {
+				if (fields.getValue() instanceof Inst6Fields) {
+					((Inst6Fields)fields.getValue()).value.setText("");
+					((Inst6Fields)fields.getValue()).value.setEnabled(false);
+					((Inst6Fields)fields.getValue()).check.setSelection(false);
+					((Inst6Fields)fields.getValue()).check.setFont(normalFont);
+				}
+			}
 			if (input instanceof SelectSpellByName || input instanceof SelectSpellById) {
 				switch (fields.getKey()) {
 				case SCHOOL:
 					if (spellDB.school != null) {
-						((Inst6Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", getSchoolName(spellDB.school)));
+						((Inst7Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", getSchoolName(spellDB.school)));
 						Inst.SCHOOL.defaultValue = spellDB.school.toString();
 					}
 					break;
@@ -847,27 +880,27 @@ public class SpellDetailsPage extends AbstractDetailsPage {
 					break;
 				case PATH1:
 					if (spellDB.path1 != null) {
-						((Inst7Fields)fields.getValue()).defaultLabel1.setText(Messages.format("DetailsPage.DefaultLabel.fmt", 0));
+						((Inst8Fields)fields.getValue()).defaultLabel1.setText(Messages.format("DetailsPage.DefaultLabel.fmt", 0));
 						Inst.PATH1.defaultValue = "0";
-						((Inst7Fields)fields.getValue()).defaultLabel2.setText(Messages.format("DetailsPage.DefaultLabel.fmt", getPathName(spellDB.path1)));
+						((Inst8Fields)fields.getValue()).defaultLabel2.setText(Messages.format("DetailsPage.DefaultLabel.fmt", getPathName(spellDB.path1)));
 						Inst.PATH1.defaultValue2 = spellDB.path1.toString();
 					} else {
-						((Inst7Fields)fields.getValue()).defaultLabel1.setText(Messages.format("DetailsPage.DefaultLabel.fmt", 0));
+						((Inst8Fields)fields.getValue()).defaultLabel1.setText(Messages.format("DetailsPage.DefaultLabel.fmt", 0));
 						Inst.PATH1.defaultValue = "0";
-						((Inst7Fields)fields.getValue()).defaultLabel2.setText("");
+						((Inst8Fields)fields.getValue()).defaultLabel2.setText("");
 						Inst.PATH1.defaultValue2 = "0";
 					}
 					break;
 				case PATH2:
 					if (spellDB.path2 != null) {
-						((Inst7Fields)fields.getValue()).defaultLabel1.setText(Messages.format("DetailsPage.DefaultLabel.fmt", 1));
+						((Inst8Fields)fields.getValue()).defaultLabel1.setText(Messages.format("DetailsPage.DefaultLabel.fmt", 1));
 						Inst.PATH2.defaultValue = "1";
-						((Inst7Fields)fields.getValue()).defaultLabel2.setText(Messages.format("DetailsPage.DefaultLabel.fmt", getPathName(spellDB.path2)));
+						((Inst8Fields)fields.getValue()).defaultLabel2.setText(Messages.format("DetailsPage.DefaultLabel.fmt", getPathName(spellDB.path2)));
 						Inst.PATH2.defaultValue2 = spellDB.path2.toString();
 					} else {
-						((Inst7Fields)fields.getValue()).defaultLabel1.setText(Messages.format("DetailsPage.DefaultLabel.fmt", 1));
+						((Inst8Fields)fields.getValue()).defaultLabel1.setText(Messages.format("DetailsPage.DefaultLabel.fmt", 1));
 						Inst.PATH2.defaultValue = "1";
-						((Inst7Fields)fields.getValue()).defaultLabel2.setText("");
+						((Inst8Fields)fields.getValue()).defaultLabel2.setText("");
 						Inst.PATH2.defaultValue2 = "0";
 					}
 					break;
@@ -891,12 +924,18 @@ public class SpellDetailsPage extends AbstractDetailsPage {
 					if (spellDB.aoe != null) {
 						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", spellDB.aoe));
 						Inst.AOE.defaultValue = spellDB.aoe.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.AOE.defaultValue = "";
 					}
 					break;
 				case DAMAGE:
 					if (spellDB.damage != null) {
 						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", spellDB.damage));
 						Inst.DAMAGE.defaultValue = spellDB.damage.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.DAMAGE.defaultValue = "";
 					}
 					break;
 				case DAMAGEMON:
@@ -908,110 +947,174 @@ public class SpellDetailsPage extends AbstractDetailsPage {
 					if (spellDB.effect != null) {
 						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", spellDB.effect));
 						Inst.EFFECT.defaultValue = spellDB.effect.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.EFFECT.defaultValue = "";
 					}
 					break;
 				case FATIGUECOST:
 					if (spellDB.fatiguecost != null) {
 						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", spellDB.fatiguecost));
 						Inst.FATIGUECOST.defaultValue = spellDB.fatiguecost.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.FATIGUECOST.defaultValue = "";
 					}
 					break;
 				case NREFF:
 					if (spellDB.nreff != null) {
 						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", spellDB.nreff));
 						Inst.NREFF.defaultValue = spellDB.nreff.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.NREFF.defaultValue = "";
 					}
 					break;
 				case RANGE:
 					if (spellDB.range != null) {
 						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", spellDB.range));
 						Inst.RANGE.defaultValue = spellDB.range.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.RANGE.defaultValue = "";
 					}
 					break;
 				case PRECISION:
 					if (spellDB.precision != null) {
 						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", spellDB.precision));
 						Inst.PRECISION.defaultValue = spellDB.precision.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.PRECISION.defaultValue = "";
 					}
 					break;
 				case SPEC:
 					if (spellDB.spec != null) {
-						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", spellDB.spec));
+						((Inst6Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", spellDB.spec));
 						Inst.SPEC.defaultValue = spellDB.spec.toString();
+					} else {
+						((Inst6Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.SPEC.defaultValue = "";
+					}
+					break;
+				case SOUND:
+					if (spellDB.sound != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", spellDB.sound));
+						Inst.SOUND.defaultValue = spellDB.sound.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.SOUND.defaultValue = "";
 					}
 					break;
 				case NEXTSPELL:
 					if (spellDB.nextspell != null) {
 						((Inst5Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", spellDB.nextspell));
 						Inst.NEXTSPELL.defaultValue = spellDB.nextspell.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.NEXTSPELL.defaultValue = "";
 					}
 					break;
 				case RESTRICTED1:
 					if (spellDB.restricted1 != null) {
 						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", spellDB.restricted1));
 						Inst.RESTRICTED1.defaultValue = spellDB.restricted1.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.RESTRICTED1.defaultValue = "";
 					}
 					break;
 				case RESTRICTED2:
 					if (spellDB.restricted2 != null) {
 						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", spellDB.restricted2));
 						Inst.RESTRICTED2.defaultValue = spellDB.restricted2.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.RESTRICTED2.defaultValue = "";
 					}
 					break;
 				case RESTRICTED3:
 					if (spellDB.restricted3 != null) {
 						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", spellDB.restricted3));
 						Inst.RESTRICTED3.defaultValue = spellDB.restricted3.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.RESTRICTED3.defaultValue = "";
 					}
 					break;
 				case PROVRANGE:
 					if (spellDB.provrange != null) {
 						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", spellDB.provrange));
 						Inst.PROVRANGE.defaultValue = spellDB.provrange.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.PROVRANGE.defaultValue = "";
 					}
 					break;
 				case ONLYGEOSRC:
 					if (spellDB.onlygeosrc != null) {
 						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", spellDB.onlygeosrc));
 						Inst.ONLYGEOSRC.defaultValue = spellDB.onlygeosrc.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.ONLYGEOSRC.defaultValue = "";
 					}
 					break;
 				case ONLYGEODST:
 					if (spellDB.onlygeodst != null) {
 						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", spellDB.onlygeodst));
 						Inst.ONLYGEODST.defaultValue = spellDB.onlygeodst.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.ONLYGEODST.defaultValue = "";
 					}
 					break;
 				case ONLYFRIENDLYDST:
 					if (spellDB.onlyfriendlydst != null) {
 						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", spellDB.onlyfriendlydst));
 						Inst.ONLYFRIENDLYDST.defaultValue = spellDB.onlyfriendlydst.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.ONLYFRIENDLYDST.defaultValue = "";
 					}
 					break;
 				case ONLYOWNDST:
 					if (spellDB.onlyowndst != null) {
 						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", spellDB.onlyowndst));
 						Inst.ONLYOWNDST.defaultValue = spellDB.onlyowndst.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.ONLYOWNDST.defaultValue = "";
 					}
 					break;
 				case NOWATERTRACE:
 					if (spellDB.nowatertrace != null) {
 						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", spellDB.nowatertrace));
 						Inst.NOWATERTRACE.defaultValue = spellDB.nowatertrace.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.NOWATERTRACE.defaultValue = "";
 					}
 					break;
 				case NOLANDTRACE:
 					if (spellDB.nolandtrace != null) {
 						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", spellDB.nolandtrace));
 						Inst.NOLANDTRACE.defaultValue = spellDB.nolandtrace.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.NOLANDTRACE.defaultValue = "";
 					}
 					break;
 				case WALKABLE:
 					if (spellDB.walkable != null) {
 						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", spellDB.walkable));
 						Inst.WALKABLE.defaultValue = spellDB.walkable.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.WALKABLE.defaultValue = "";
 					}
-					break;				}
+					break;				
+				}
 			}
 		}
 		name.getParent().getParent().getParent().layout(true, true);
@@ -1248,11 +1351,6 @@ public class SpellDetailsPage extends AbstractDetailsPage {
 						return Integer.valueOf(((SpellInst2)mod).getValue());
 					}
 					break;
-				case SPEC:
-					if (((SpellInst2)mod).isSpec()){
-						return Integer.valueOf(((SpellInst2)mod).getValue());
-					}
-					break;
 				case RESTRICTED1:
 					if (((SpellInst2)mod).isRestricted()) {
 						restrictedCount++;
@@ -1414,6 +1512,22 @@ public class SpellDetailsPage extends AbstractDetailsPage {
 		return null;
 	}
 	
+	private Long getInst6(Inst inst6, Object spell) {
+		EList<SpellMods> list = ((Spell)spell).getMods();
+		for (SpellMods mod : list) {
+			if (mod instanceof SpellInst6) {
+				switch (inst6) {
+				case SPEC:
+					if (((SpellInst6)mod).isSpec()){
+						return Long.valueOf(((SpellInst6)mod).getValue());
+					}
+					break;
+				}
+			}
+		}
+		return null;
+	}
+
 	private void setInst1(final Inst inst2, final XtextEditor editor, final String newName) 
 	{
 		final IXtextDocument myDocument = editor.getDocument();
@@ -1519,11 +1633,6 @@ public class SpellDetailsPage extends AbstractDetailsPage {
 							break;
 						case SOUND:
 							if (((SpellInst2)mod).isSound()){
-								((SpellInst2)mod).setValue(Integer.parseInt(newName));
-							}
-							break;
-						case SPEC:
-							if (((SpellInst2)mod).isSpec()){
 								((SpellInst2)mod).setValue(Integer.parseInt(newName));
 							}
 							break;
@@ -1731,6 +1840,31 @@ public class SpellDetailsPage extends AbstractDetailsPage {
 
 		updateSelection();
 	}
+	
+	private void setInst6(final Inst inst6, final XtextEditor editor, final String newName) 
+	{
+		final IXtextDocument myDocument = editor.getDocument();
+		myDocument.modify(new IUnitOfWork.Void<XtextResource>() {
+			@Override
+			public void process(XtextResource resource) throws Exception {
+				Spell spellToEdit = (Spell)input;
+				EList<SpellMods> mods = spellToEdit.getMods();
+				for (SpellMods mod : mods) {
+					if (mod instanceof SpellInst6) {
+						switch (inst6) {
+						case SPEC:
+							if (((SpellInst6)mod).isSpec()){
+								((SpellInst6)mod).setValue(Long.parseLong(newName));
+							}
+							break;
+						}
+					}
+				}
+			}
+		});
+
+		updateSelection();
+	}
 
 	private void addInst1(final Inst inst, final XtextEditor editor, final String newName) {
 		BusyIndicator.showWhile(Display.getDefault(), new Runnable() {
@@ -1809,9 +1943,6 @@ public class SpellDetailsPage extends AbstractDetailsPage {
 							break;
 						case SOUND:
 							type.setSound(true);
-							break;
-						case SPEC:
-							type.setSpec(true);
 							break;
 						case RESTRICTED1:
 							type.setRestricted(true);
@@ -1953,6 +2084,31 @@ public class SpellDetailsPage extends AbstractDetailsPage {
 		});
 	}
 	
+	private void addInst6(final Inst inst, final XtextEditor editor, final String newName) {
+		BusyIndicator.showWhile(Display.getDefault(), new Runnable() {
+			@Override
+			public void run() {
+				final IXtextDocument myDocument = editor.getDocument();
+				myDocument.modify(new IUnitOfWork.Void<XtextResource>() {
+					@Override
+					public void process(XtextResource resource) throws Exception {
+						EList<SpellMods> mods = ((Spell)input).getMods();
+						SpellInst6 type = DmFactory.eINSTANCE.createSpellInst6();
+						switch (inst) {
+						case SPEC:
+							type.setSpec(true);
+							break;
+						}
+						type.setValue(Integer.valueOf(newName));
+						mods.add(type);
+					}  
+				});
+
+				updateSelection();
+			}
+		});
+	}
+	
 	private void removeInst(final Inst inst2, final XtextEditor editor) {
 		BusyIndicator.showWhile(Display.getDefault(), new Runnable() {
 			@Override
@@ -2044,11 +2200,6 @@ public class SpellDetailsPage extends AbstractDetailsPage {
 									break;
 								case SOUND:
 									if (((SpellInst2)mod).isSound()){
-										modToRemove = mod;
-									}
-									break;
-								case SPEC:
-									if (((SpellInst2)mod).isSpec()){
 										modToRemove = mod;
 									}
 									break;
@@ -2167,6 +2318,16 @@ public class SpellDetailsPage extends AbstractDetailsPage {
 									break;
 								}
 							}
+							if (mod instanceof SpellInst6) {
+								switch (inst2) {
+								case SPEC:
+									if (((SpellInst6)mod).isSpec()){
+										modToRemove = mod;
+									}
+									break;
+								}
+							}
+
 						}
 						if (modToRemove != null) {
 							mods.remove(modToRemove);

@@ -291,6 +291,7 @@ public class NationDetailsPage extends AbstractDetailsPage {
 		
 		FORTERA (Messages.getString("NationDetailsSection.mod.fortera"), "0"),
 		FORTCOST (Messages.getString("NationDetailsSection.mod.fortcost"), "0"),
+		UWBUILD (Messages.getString("NationDetailsSection.mod.uwbuild"), "0"),
 		LABCOST (Messages.getString("NationDetailsSection.mod.labcost"), "0"),
 		TEMPLECOST (Messages.getString("NationDetailsSection.mod.templecost"), "0"),
 		TEMPLEPIC (Messages.getString("NationDetailsSection.mod.templepic"), "0"),
@@ -597,6 +598,7 @@ public class NationDetailsPage extends AbstractDetailsPage {
 		instMap.put(Inst.LIKESPOP, new Inst2Fields());
 		instMap.put(Inst.FORTERA, new Inst2Fields());
 		instMap.put(Inst.FORTCOST, new Inst2Fields());
+		instMap.put(Inst.UWBUILD, new Inst2Fields());
 		instMap.put(Inst.SPREADCOLD, new Inst2Fields());
 		instMap.put(Inst.SPREADHEAT, new Inst2Fields());
 		instMap.put(Inst.SPREADCHAOS, new Inst2Fields());
@@ -824,7 +826,7 @@ public class NationDetailsPage extends AbstractDetailsPage {
 		nameComp.setLayoutData(gd);
 		
 		nameCheck = toolkit.createButton(nameComp, Messages.getString("NationDetailsSection.mod.name"), SWT.CHECK); //$NON-NLS-1$
-		nameCheck.setToolTipText(HelpTextHelper.getText(HelpTextHelper.NATION_CATEGORY, "name"));
+		setToolTip(nameCheck, HelpTextHelper.getText(HelpTextHelper.NATION_CATEGORY, "name"));
 
 		name = toolkit.createText(nameComp, null, SWT.SINGLE | SWT.BORDER); //$NON-NLS-1$
 		name.addFocusListener(new FocusAdapter() {
@@ -864,7 +866,7 @@ public class NationDetailsPage extends AbstractDetailsPage {
 		});
 
 		descrCheck = toolkit.createButton(nameComp, Messages.getString("NationDetailsSection.mod.descr"), SWT.CHECK);
-		descrCheck.setToolTipText(HelpTextHelper.getText(HelpTextHelper.NATION_CATEGORY, "descr"));
+		setToolTip(descrCheck, HelpTextHelper.getText(HelpTextHelper.NATION_CATEGORY, "descr"));
 
 		descr = toolkit.createText(nameComp, null, SWT.MULTI | SWT.BORDER | SWT.WRAP); //$NON-NLS-1$
 		descr.addFocusListener(new FocusAdapter() {
@@ -918,7 +920,7 @@ public class NationDetailsPage extends AbstractDetailsPage {
 		});
 
 		summaryCheck = toolkit.createButton(nameComp, Messages.getString("NationDetailsSection.mod.summary"), SWT.CHECK);
-		summaryCheck.setToolTipText(HelpTextHelper.getText(HelpTextHelper.NATION_CATEGORY, "summary"));
+		setToolTip(summaryCheck, HelpTextHelper.getText(HelpTextHelper.NATION_CATEGORY, "summary"));
 
 		summary = toolkit.createText(nameComp, null, SWT.MULTI | SWT.BORDER | SWT.WRAP); //$NON-NLS-1$
 		summary.addFocusListener(new FocusAdapter() {
@@ -972,7 +974,7 @@ public class NationDetailsPage extends AbstractDetailsPage {
 		});
 
 		briefCheck = toolkit.createButton(nameComp, Messages.getString("NationDetailsSection.mod.brief"), SWT.CHECK);
-		briefCheck.setToolTipText(HelpTextHelper.getText(HelpTextHelper.NATION_CATEGORY, "brief"));
+		setToolTip(briefCheck, HelpTextHelper.getText(HelpTextHelper.NATION_CATEGORY, "brief"));
 
 		brief = toolkit.createText(nameComp, null, SWT.MULTI | SWT.BORDER | SWT.WRAP); //$NON-NLS-1$
 		brief.addFocusListener(new FocusAdapter() {
@@ -1120,7 +1122,7 @@ public class NationDetailsPage extends AbstractDetailsPage {
 
 			final InstFields field = fields.getValue();
 			final Button check = new DynamicButton(isRight?rightColumn:leftColumn, SWT.CHECK);
-			check.setToolTipText(HelpTextHelper.getText(HelpTextHelper.NATION_CATEGORY, key.label));
+			setToolTip(check, HelpTextHelper.getText(HelpTextHelper.NATION_CATEGORY, key.label));
 			check.addSelectionListener(new SelectionAdapter() {
 				@Override
 				public void widgetSelected(SelectionEvent e) {
@@ -1968,6 +1970,11 @@ public class NationDetailsPage extends AbstractDetailsPage {
 					break;
 				case FORTCOST:
 					if (((NationInst2)mod).isFortcost()){
+						return Integer.valueOf(((NationInst2)mod).getValue());
+					}
+					break;
+				case UWBUILD:
+					if (((NationInst2)mod).isUwbuild()){
 						return Integer.valueOf(((NationInst2)mod).getValue());
 					}
 					break;
@@ -4394,6 +4401,11 @@ public class NationDetailsPage extends AbstractDetailsPage {
 							break;
 						case FORTCOST:
 							if (((NationInst2)mod).isFortcost()){
+								((NationInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
+						case UWBUILD:
+							if (((NationInst2)mod).isUwbuild()){
 								((NationInst2)mod).setValue(Integer.parseInt(newName));
 							}
 							break;
@@ -7185,6 +7197,9 @@ public class NationDetailsPage extends AbstractDetailsPage {
 						case FORTCOST:
 							type.setFortcost(true);
 							break;
+						case UWBUILD:
+							type.setUwbuild(true);
+							break;
 						case SPREADCOLD:
 							type.setSpreadcold(true);
 							break;
@@ -8080,6 +8095,11 @@ public class NationDetailsPage extends AbstractDetailsPage {
 									break;
 								case FORTCOST:
 									if (((NationInst2)mod).isFortcost()){
+										modToRemove = mod;
+									}
+									break;
+								case UWBUILD:
+									if (((NationInst2)mod).isUwbuild()){
 										modToRemove = mod;
 									}
 									break;

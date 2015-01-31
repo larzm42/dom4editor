@@ -41,6 +41,7 @@ import org.larz.dom4.Activator;
  */
 public class Database {
 	private static Connection connection = null;
+	private static Connection connection2 = null;
 	private static Map<Integer, String> monsterNameMap = new HashMap<Integer, String>();
 	private static Map<Integer, MonsterDB> monsterDBIdMap = new HashMap<Integer, MonsterDB>();
 	private static Map<String, MonsterDB> monsterDBNameMap = new HashMap<String, MonsterDB>();
@@ -72,20 +73,64 @@ public class Database {
 	private static Map<Integer, NationDB> nationDBIdMap = new HashMap<Integer, NationDB>();
 
 	private static Map<Integer, String> poptypeNameMap = new HashMap<Integer, String>();
-
+	
 	private static Format numberFormat = new DecimalFormat("0000");
+	
+	private static long notnostr =		0x00000000001l;
+	private static long twohanded =		0x00000000002l;
+	private static long flail =			0x00000000004l;
+	private static long demononly = 	0x00000000008l;
+	//private static long xx = 			0x00000000010l;
+	private static long fire = 			0x00000000020l;
+	private static long armorpiercing = 0x00000000040l;
+	private static long armornegating = 0x00000000080l;
+	//private static long xx = 			0x00000000100l;
+	private static long cold = 			0x00000000200l;
+	//private static long xx = 			0x00000000400l;
+	private static long shock = 		0x00000000800l;
+	private static long mrneg = 		0x00000001000l;
+	private static long poison =		0x00000002000l;
+	//private static long xx = 			0x00000004000l;
+	private static long sacredonly = 	0x00000008000l;
+	//private static long xx = 			0x00000010000l;
+	private static long mind = 			0x00000020000l;
+	private static long friendimmune = 	0x00000040000l;
+	private static long undeadimmune = 	0x00000080000l;
+	private static long flyingimmue = 	0x00000100000l;
+	private static long notmagic = 		0x00000200000l;
+	private static long enemyimmune = 	0x00000400000l;
+	//private static long xx = 			0x00000800000l;
+	private static long mrnegeasy = 	0x00010000000l;
+	//private static long xx = 			0x00002000000l;
+	private static long undeadonly = 	0x00004000000l;
+	private static long bonus = 		0x00008000000l;
+	//private static long xx = 			0x00010000000l;
+	//private static long xx = 			0x00020000000l;
+	//private static long xx = 			0x00040000000l;
+	private static long charge = 		0x00080000000l;
+	//private static long xx = 			0x00100000000l;
+	//private static long xx = 			0x00200000000l;
+	//private static long xx = 			0x00400000000l;
+	//private static long xx = 			0x00800000000l;
+	//private static long xx = 			0x01000000000l;
+	private static long unrepel = 		0x02000000000l;
+	private static long pierce = 		0x04000000000l;
+	private static long blunt = 		0x08000000000l;
+	private static long slash = 		0x10000000000l;
+	private static long acid = 			0x20000000000l;
+	private static long sizeresist = 	0x40000000000l;
 
 	public static List<IDNameDB> getAllArmor() {
 		List<IDNameDB> list = new ArrayList<IDNameDB>();
 		try {
-			Statement statement = getConnection().createStatement();
-			ResultSet rs = statement.executeQuery("SELECT \"id\", \"armorname\" FROM \"armor_base\"");
+			Statement statement = getConnection2().createStatement();
+			ResultSet rs = statement.executeQuery("SELECT \"number\", \"name\" FROM \"armors\"");
 
 			while (rs.next())
 			{
 				IDNameDB armor = new IDNameDB();
-				armor.id = rs.getInt("id");
-				armor.name = rs.getString("armorname");
+				armor.id = rs.getInt("number");
+				armor.name = rs.getString("name");
 				list.add(armor);
 			}
 
@@ -104,14 +149,14 @@ public class Database {
 	public static List<IDNameDB> getAllWeapon() {
 		List<IDNameDB> list = new ArrayList<IDNameDB>();
 		try {
-			Statement statement = getConnection().createStatement();
-			ResultSet rs = statement.executeQuery("SELECT \"id\", \"weapon_name\" FROM \"weapons_base\"");
+			Statement statement = getConnection2().createStatement();
+			ResultSet rs = statement.executeQuery("SELECT \"number\", \"name\" FROM \"weapons\"");
 
 			while (rs.next())
 			{
 				IDNameDB weapon = new IDNameDB();
-				weapon.id = rs.getInt("id");
-				weapon.name = rs.getString("weapon_name");
+				weapon.id = rs.getInt("number");
+				weapon.name = rs.getString("name");
 				list.add(weapon);
 			}
 
@@ -131,13 +176,13 @@ public class Database {
 		List<IDNameDB> list = new ArrayList<IDNameDB>();
 		try {
 			Statement statement = getConnection().createStatement();
-			ResultSet rs = statement.executeQuery("SELECT \"id\", \"unitname\" FROM \"units_base\"");
+			ResultSet rs = statement.executeQuery("SELECT \"id\", \"name\" FROM \"units_base\"");
 
 			while (rs.next())
 			{
 				IDNameDB armor = new IDNameDB();
 				armor.id = rs.getInt("id");
-				armor.name = rs.getString("unitname");
+				armor.name = rs.getString("name");
 				list.add(armor);
 			}
 
@@ -208,13 +253,13 @@ public class Database {
 	public static List<IDNameDB> getAllNation() {
 		List<IDNameDB> list = new ArrayList<IDNameDB>();
 		try {
-			Statement statement = getConnection().createStatement();
-			ResultSet rs = statement.executeQuery("SELECT \"id\", \"name\" FROM \"nations\"");
+			Statement statement = getConnection2().createStatement();
+			ResultSet rs = statement.executeQuery("SELECT \"number\", \"name\" FROM \"nations\"");
 
 			while (rs.next())
 			{
 				IDNameDB nation = new IDNameDB();
-				nation.id = rs.getInt("id");
+				nation.id = rs.getInt("number");
 				nation.name = rs.getString("name");
 				list.add(nation);
 			}
@@ -234,13 +279,13 @@ public class Database {
 	public static List<IDNameDB> getAllSpell() {
 		List<IDNameDB> list = new ArrayList<IDNameDB>();
 		try {
-			Statement statement = getConnection().createStatement();
-			ResultSet rs = statement.executeQuery("SELECT \"id\", \"name\" FROM \"spells\"");
+			Statement statement = getConnection2().createStatement();
+			ResultSet rs = statement.executeQuery("SELECT \"number\", \"name\" FROM \"spells\"");
 
 			while (rs.next())
 			{
 				IDNameDB spell = new IDNameDB();
-				spell.id = rs.getInt("id");
+				spell.id = rs.getInt("number");
 				spell.name = rs.getString("name");
 				list.add(spell);
 			}
@@ -288,10 +333,13 @@ public class Database {
 		if (armor == null) {
 			armor = new ArmorDB();
 			try {
-				Statement statement = getConnection().createStatement();
-				ResultSet rs = statement.executeQuery("SELECT * FROM \"armor_base\" where \"id\"="+id);
-				armor = getArmorDB(rs);
+				Statement statement = getConnection2().createStatement();
+				Statement statement2 = getConnection2().createStatement();
+				ResultSet rs = statement.executeQuery("SELECT * FROM \"armors\" where \"number\"="+id);
+				ResultSet prots = statement2.executeQuery("SELECT * FROM \"protections_by_armor\" where \"armor_number\"="+id);
+				armor = getArmorDB(rs, prots);
 				statement.close();
+				statement2.close();
 				armorDBIdMap.put(id, armor);
 			} catch (Exception ex) {
 				ex.printStackTrace();
@@ -305,10 +353,16 @@ public class Database {
 		if (armor == null) {
 			armor = new ArmorDB();
 			try {
-				Statement statement = getConnection().createStatement();
-				ResultSet rs = statement.executeQuery("SELECT * FROM \"armor_base\" where \"armorname\" = '"+getSafeString(name)+"'");
-				armor = getArmorDB(rs);
+				Statement statement = getConnection2().createStatement();
+				Statement statement2 = getConnection2().createStatement();
+				ResultSet rs = statement.executeQuery("SELECT * FROM \"armors\" where \"name\" = '"+getSafeString(name)+"'");
+				rs.next();
+				int id = rs.getInt("number");
+				rs.beforeFirst();
+				ResultSet prots = statement2.executeQuery("SELECT * FROM \"protections_by_armor\" where \"armor_number\"="+id);
+				armor = getArmorDB(rs, prots);
 				statement.close();
+				statement2.close();
 				armorDBNameMap.put(name, armor);
 			} catch (Exception ex) {
 				ex.printStackTrace();
@@ -322,25 +376,25 @@ public class Database {
 		return str;
 	}
 
-	private static ArmorDB getArmorDB(ResultSet rs) throws SQLException {
+	private static ArmorDB getArmorDB(ResultSet rs, ResultSet prots) throws SQLException {
 		ArmorDB armor = new ArmorDB();
 		if (rs.next()) {	
-			armor.name = rs.getString("armorname");
-			armor.id = rs.getInt("id");
-			armor.def = rs.getInt("def");
-			armor.enc = rs.getInt("enc");
-			armor.rcost = rs.getInt("res");
-			armor.type = rs.getInt("type");
-			Integer head = rs.getInt("head");
-			Integer body = rs.getInt("body");
-			Integer shield = rs.getInt("shield");
-			if (armor.type != null && armor.type == 4) {
-				armor.prot = shield;
-			} else if (armor.type != null && armor.type == 5) {
-				armor.prot = body;
-			} else if (armor.type != null) {
-				armor.prot = head;
+			armor.name = rs.getString("name");
+			armor.id = rs.getInt("number");
+			armor.def = rs.getInt("defense");
+			armor.enc = rs.getInt("encumbrance");
+			armor.rcost = rs.getInt("resource_cost");
+			armor.type = rs.getInt("armor_type");
+			while (prots.next()) {
+				if (prots.getInt("zone_number") == 1 || 
+					prots.getInt("zone_number") == 2 || 
+					prots.getInt("zone_number") == 5 || 
+					prots.getInt("zone_number") == 6) {
+					armor.prot = prots.getInt("protection");
+					break;
+				}
 			}
+
 		}
 		return armor;
 
@@ -351,8 +405,8 @@ public class Database {
 		if (weapon == null) {
 			weapon = new WeaponDB();
 			try {
-				Statement statement = getConnection().createStatement();
-				ResultSet rs = statement.executeQuery("SELECT * FROM \"weapons_base\" where \"id\"="+id);
+				Statement statement = getConnection2().createStatement();
+				ResultSet rs = statement.executeQuery("SELECT * FROM \"weapons\" where \"number\"="+id);
 				weapon = getWeaponDB(rs);
 				statement.close();
 				weaponDBIdMap.put(id, weapon);
@@ -368,8 +422,8 @@ public class Database {
 		if (weapon == null) {
 			weapon = new WeaponDB();
 			try {
-				Statement statement = getConnection().createStatement();
-				ResultSet rs = statement.executeQuery("SELECT * FROM \"weapons_base\" where \"weapon_name\" = '"+getSafeString(name)+"'");
+				Statement statement = getConnection2().createStatement();
+				ResultSet rs = statement.executeQuery("SELECT * FROM \"weapons\" where \"name\" = '"+getSafeString(name)+"'");
 				weapon = getWeaponDB(rs);
 				statement.close();
 				weaponDBNameMap.put(name, weapon);
@@ -403,7 +457,7 @@ public class Database {
 			monster = new MonsterDB();
 			try {
 				Statement statement = getConnection().createStatement();
-				ResultSet rs = statement.executeQuery("SELECT * FROM \"units_base\" where \"unitname\" = '"+getSafeString(name)+"'");
+				ResultSet rs = statement.executeQuery("SELECT * FROM \"units_base\" where \"name\" = '"+getSafeString(name)+"'");
 				monster = getMonsterDB(rs);
 				statement.close();
 				monsterDBNameMap.put(name, monster);
@@ -453,8 +507,8 @@ public class Database {
 		if (spell == null) {
 			spell = new SpellDB();
 			try {
-				Statement statement = getConnection().createStatement();
-				ResultSet rs = statement.executeQuery("SELECT * FROM \"spells\" where \"id\"="+id);
+				Statement statement = getConnection2().createStatement();
+				ResultSet rs = statement.executeQuery("SELECT * FROM \"spells\" where \"number\"="+id);
 				spell = getSpellDB(rs);
 				statement.close();
 				spellDBIdMap.put(id, spell);
@@ -470,7 +524,7 @@ public class Database {
 		if (spell == null) {
 			spell = new SpellDB();
 			try {
-				Statement statement = getConnection().createStatement();
+				Statement statement = getConnection2().createStatement();
 				ResultSet rs = statement.executeQuery("SELECT * FROM \"spells\" where \"name\" = '"+getSafeString(name)+"'");
 				spell = getSpellDB(rs);
 				statement.close();
@@ -487,8 +541,8 @@ public class Database {
 		if (nation == null) {
 			nation = new NationDB();
 			try {
-				Statement statement = getConnection().createStatement();
-				ResultSet rs = statement.executeQuery("SELECT * FROM \"nations\" where \"id\"="+id);
+				Statement statement = getConnection2().createStatement();
+				ResultSet rs = statement.executeQuery("SELECT * FROM \"nations\" where \"number\"="+id);
 
 				nation = getNationDB(rs);
 				statement.close();
@@ -505,7 +559,7 @@ public class Database {
 		if (rs.next()) {
 			site.id = rs.getInt("id");
 			site.name = rs.getString("name");
-			String type = rs.getString("type");
+			String type = rs.getString("path");
 			if (type != null) {
 				if (type.equals("Fire")) {
 					site.path = 0;
@@ -527,9 +581,9 @@ public class Database {
 					site.path = 8;
 				}
 			}
-			site.level = rs.getInt("lvl");
-			site.rarity = rs.getInt("frq");
-			site.loc = rs.getInt("mask");
+			site.level = rs.getInt("level");
+			site.rarity = rs.getInt("rarity");
+			site.loc = rs.getInt("loc");
 			site.gold = rs.getInt("gold");
 			site.res = rs.getInt("res");
 			
@@ -732,17 +786,52 @@ public class Database {
 		return site;
 	}
 
-	private static NationDB getNationDB(ResultSet rs) throws SQLException {
+	private static NationDB getNationDB(ResultSet rs) throws SQLException, ClassNotFoundException, IOException {
 		NationDB nation = new NationDB();
 		if (rs.next()) {
-			nation.id = rs.getInt("id");
+			nation.id = rs.getInt("number");
 			nation.name = rs.getString("name");
 			nation.epithet = rs.getString("epithet");
-			nation.era = rs.getInt("era");
-			nation.startsite1 = getSiteName(rs.getInt("site1"));
-			nation.startsite2 = getSiteName(rs.getInt("site2"));
-			nation.startsite3 = getSiteName(rs.getInt("site3"));
-			nation.startsite4 = getSiteName(rs.getInt("site4"));
+			String fileName = rs.getString("file_name_base");
+			if (fileName.startsWith("early")) {
+				nation.era = 1;
+			} else if (fileName.startsWith("mid")) {
+				nation.era = 2;
+			} else if (fileName.startsWith("late")) {
+				nation.era = 3;
+			}
+			
+			int numSites = 0;
+			Statement statement2 = getConnection2().createStatement();
+			ResultSet rsAttributesByNation = statement2.executeQuery("SELECT * FROM \"attributes_by_nation\" where \"nation_number\"="+nation.id);
+			while (rsAttributesByNation.next()) {
+				int attrRecId = rsAttributesByNation.getInt("attribute_record_id");
+				
+				Statement statement4 = getConnection2().createStatement();
+				ResultSet rsAttributes = statement4.executeQuery("SELECT * FROM \"attributes\" where \"record_id\"="+attrRecId);
+				if (rsAttributes.next()) {
+					if (rsAttributes.getInt("attribute_number") == 52 ||
+						rsAttributes.getInt("attribute_number") == 100) {
+						numSites++;
+						switch (numSites) {
+						case 1:
+							nation.startsite1 = getSiteName(rsAttributes.getInt("raw_value"));
+							break;
+						case 2:
+							nation.startsite2 = getSiteName(rsAttributes.getInt("raw_value"));
+							break;
+						case 3:
+							nation.startsite3 = getSiteName(rsAttributes.getInt("raw_value"));
+							break;
+						case 4:
+							nation.startsite4 = getSiteName(rsAttributes.getInt("raw_value"));
+							break;
+						}
+					}
+				}
+
+			}
+
 //			int heroCount = 1;
 //			int hero = rs.getInt("hero"+heroCount);
 //			while (hero != 0 ) {
@@ -799,81 +888,188 @@ public class Database {
 		return nation;
 	}
 
-	private static WeaponDB getWeaponDB(ResultSet rs) throws SQLException {
+	private static WeaponDB getWeaponDB(ResultSet rs) throws SQLException, ClassNotFoundException, IOException {
 		WeaponDB weapon = new WeaponDB();
 		if (rs.next()) {
-			weapon.id = rs.getInt("id");
-			weapon.name = rs.getString("weapon_name");
-			weapon.dmg = rs.getInt("dmg");
-			weapon.nratt = rs.getInt("n_att");
-			weapon.att = rs.getInt("att");
-			weapon.def = rs.getInt("def");
-			weapon.len = rs.getInt("lgt");
-			weapon.range = rs.getInt("rng");
-			weapon.ammo = rs.getInt("shots");
-			weapon.rcost = rs.getInt("res");
-			//weapon.sound = rs.getInt("");
-			weapon.aoe = rs.getInt("aoe");
-			weapon.secondaryeffect = rs.getInt("2nd_effect");
-			weapon.secondaryeffectalways = rs.getInt("effauto");
-			//weapon.explspr = rs.getInt("");
-			//weapon.flyspr1 = rs.getInt("");
-			//weapon.flyspr2 = rs.getInt("");
-			weapon.twohanded = rs.getInt("2h") == 1;
-			weapon.armorpiercing = rs.getInt("ap") == 1;
-			weapon.armornegating = rs.getInt("an") == 1;
-			weapon.magic = rs.getInt("magic") == 1;
-			weapon.dt_normal = rs.getInt("dt_norm") == 1;
-			weapon.dt_stun = rs.getInt("dt_stun") == 1;
-			weapon.dt_paralyze = rs.getInt("dt_paralyze") == 1;
-			weapon.dt_poison = rs.getInt("dt_poison") == 1;
-			weapon.dt_cap = rs.getInt("dt_cap") == 1;
-			weapon.dt_demon = rs.getInt("dt_demon") == 1;
-			weapon.dt_demononly = rs.getInt("dt_demononly") == 1;
-			weapon.dt_holy = rs.getInt("dt_holy") == 1;
-			weapon.dt_magic = rs.getInt("dt_magic") == 1;
-			weapon.dt_small = rs.getInt("dt_small") == 1;
-			weapon.dt_large = rs.getInt("dt_large") == 1;
-			weapon.dt_constructonly = rs.getInt("dt_constronly") == 1;
-			weapon.dt_raise = rs.getInt("dt_raise") == 1;
-			weapon.mind = rs.getInt("mind") == 1;
-			weapon.cold = rs.getInt("cold") == 1;
-			weapon.fire = rs.getInt("fire") == 1;
-			weapon.shock = rs.getInt("shock") == 1;
-			weapon.poison = rs.getInt("poison") == 1;
-			weapon.bonus = rs.getInt("bonus") == 1;
-			weapon.charge = rs.getInt("charge") == 1;
-			weapon.flail = rs.getInt("flail") == 1;
-			weapon.nostr = rs.getInt("nostr") == 1;
-			weapon.mrnegates = rs.getInt("mres") == 1;
-			//weapon.mrnegateseasily = rs.getInt("") == 1;
-			weapon.slash = rs.getInt("dt_s") == 1;
-			weapon.pierce = rs.getInt("dt_p") == 1;
-			weapon.blunt = rs.getInt("dt_b") == 1;
-			weapon.acid = rs.getInt("acid") == 1;
-			//weapon.hardmrneg;
-			weapon.sizeresist = rs.getInt("sizeres") == 1;
-			//weapon.undeadimmune;
-			//weapon.inanimateimmune;
-			//weapon.flyingimmune;
-			//weapon.enemyimmune;
-			//weapon.friendlyimmune;
-			weapon.undeadonly = rs.getInt("dt_undeadonly") == 1;
-			weapon.norepel = rs.getInt("norepel") == 1;
-			weapon.unrepel = rs.getInt("unrepel") == 1;
-			//weapon.beam;
-			//weapon.range050;
-			//weapon.range0;
-			//weapon.melee50;
-			//weapon.skip;
-			//weapon.skip2;
+			int effectId = rs.getInt("effect_record_id");
 			
-			//weapon.dt_weakness;
-			weapon.dt_drain = rs.getInt("drain") == 1;
-			//weapon.dt_weapondrain;
-			weapon.sacredonly = rs.getInt("dt_sacred") == 1;
-			//weapon.dt_sizestun;
-			weapon.demonundead = rs.getInt("dt_demonundead") == 1;
+			Statement statement = getConnection2().createStatement();
+			ResultSet rsEffect = statement.executeQuery("SELECT * FROM \"effects\" where \"record_id\"="+effectId);
+			rsEffect.next();
+			
+			weapon.id = rs.getInt("number");
+			weapon.name = rs.getString("name");
+			int effectNumber = rsEffect.getInt("effect_number");
+			if (effectNumber != 11) {
+				weapon.dmg = rsEffect.getInt("raw_argument");
+			}
+			switch (effectNumber) {
+			case 2:
+				weapon.dt_normal = true;
+				break;
+			case 3:
+				weapon.dt_stun = true;
+				break;
+			case 7:
+				weapon.dt_poison = true;
+				break;
+			case 24:
+				weapon.dt_holy = true;
+				break;
+			case 32:
+				weapon.dt_large = true;
+				break;
+			case 33:
+				weapon.dt_small = true;
+				break;
+			case 66:
+				weapon.dt_paralyze = true;
+				break;
+			case 67:
+				weapon.dt_weakness = true;
+				break;
+			case 73:
+				weapon.dt_magic = true;
+				break;
+			case 96:
+				weapon.dt_constructonly = true;
+				break;
+			case 103:
+				weapon.dt_drain = true;
+				break;
+			case 104:
+				weapon.dt_weapondrain = true;
+				break;
+			case 107:
+				weapon.dt_demon = true;
+				break;
+			case 109:
+				weapon.dt_cap = true;
+				break;
+			}
+//			weapon.dt_raise = rs.getInt("dt_raise") == 1;
+//			weapon.dt_sizestun;
+//			weapon.demonundead = rs.getInt("dt_demonundead") == 1;
+
+			weapon.nratt = rs.getInt("attack_rate");
+			weapon.att = rs.getInt("attack");
+			weapon.def = rs.getInt("defense");
+			weapon.len = rs.getInt("length");
+			
+			if (rsEffect.getObject("range_base") != null) {
+				weapon.range = rsEffect.getInt("range_base");
+			} else {
+				weapon.range = -rsEffect.getInt("range_strength_divisor");
+			}
+			
+			weapon.ammo = rs.getInt("attacks_total");
+			weapon.rcost = rs.getInt("resource_cost");
+			weapon.sound = rsEffect.getInt("sound_number");
+			weapon.aoe = rsEffect.getInt("area_base");
+			weapon.secondaryeffect = rs.getInt("secondary_effect_on_hit");
+			weapon.secondaryeffectalways = rs.getInt("secondary_effect_always");
+			if (rsEffect.getObject("explosion_sprite_number") != null) {
+				weapon.explspr = rsEffect.getInt("explosion_sprite_number");
+			}
+			if (rsEffect.getObject("flight_sprite_number") != null) {
+				weapon.flyspr1 = rsEffect.getInt("flight_sprite_number");
+			}
+			if (rsEffect.getObject("flight_sprite_length") != null) {
+				weapon.flyspr2 = rsEffect.getInt("flight_sprite_length");
+			}
+			
+			long bitMask = rsEffect.getLong("modifiers_mask");
+			if ((bitMask & twohanded) != 0) {
+				weapon.twohanded = true;
+			}
+			if ((bitMask & armorpiercing) != 0) {
+				weapon.armorpiercing = true;
+			}
+			if ((bitMask & armornegating) != 0) {
+				weapon.armornegating = true;
+			}
+			if ((bitMask & notmagic) == 0) {
+				weapon.magic = true;
+			}
+			if ((bitMask & mind) != 0) {
+				weapon.mind = true;
+			}
+			if ((bitMask & cold) != 0) {
+				weapon.cold = true;
+			}
+			if ((bitMask & fire) != 0) {
+				weapon.fire = true;
+			}
+			if ((bitMask & shock) != 0) {
+				weapon.shock = true;
+			}
+			if ((bitMask & poison) != 0) {
+				weapon.poison = true;
+			}
+			if ((bitMask & bonus) != 0) {
+				weapon.bonus = true;
+			}
+			if ((bitMask & charge) != 0) {
+				weapon.charge = true;
+			}
+			if ((bitMask & flail) != 0) {
+				weapon.flail = true;
+			}
+			if ((bitMask & notnostr) == 0) {
+				weapon.nostr = true;
+			}
+			if ((bitMask & mrneg) != 0) {
+				weapon.mrnegates = true;
+			}
+			if ((bitMask & mrnegeasy) != 0) {
+				weapon.mrnegateseasily = true;
+			}
+			if ((bitMask & slash) != 0) {
+				weapon.slash = true;
+			}
+			if ((bitMask & pierce) != 0) {
+				weapon.pierce = true;
+			}
+			if ((bitMask & blunt) != 0) {
+				weapon.blunt = true;
+			}
+			if ((bitMask & acid) != 0) {
+				weapon.acid = true;
+			}
+//			//weapon.hardmrneg;
+			if ((bitMask & sizeresist) != 0) {
+				weapon.sizeresist = true;
+			}
+//			//weapon.inanimateimmune;
+			if ((bitMask & undeadimmune) != 0) {
+				weapon.undeadimmune = true;
+			}
+			if ((bitMask & flyingimmue) != 0) {
+				weapon.flyingimmune = true;
+			}
+			if ((bitMask & enemyimmune) != 0) {
+				weapon.enemyimmune = true;
+			}
+			if ((bitMask & friendimmune) != 0) {
+				weapon.friendlyimmune = true;
+			}
+			if ((bitMask & undeadonly) != 0) {
+				weapon.undeadonly = true;
+			}
+//			weapon.norepel = rs.getInt("norepel") == 1;
+			if ((bitMask & unrepel) != 0) {
+				weapon.unrepel = true;
+			}
+//			weapon.beam;
+//			weapon.range050;
+//			weapon.range0;
+//			weapon.melee50;
+//			weapon.skip;
+//			weapon.skip2;
+			if ((bitMask & sacredonly) != 0) {
+				weapon.sacredonly = true;
+			}
+		statement.close();
 		}
 		return weapon;
 	}
@@ -882,20 +1078,20 @@ public class Database {
 		MonsterDB monster = new MonsterDB();
 		if (rs.next()) {
 			monster.id = rs.getInt("id");
-			monster.name = rs.getString("unitname");
+			monster.name = rs.getString("name");
 			//monster.spr1 = rs.getString("spr1");
 			//monster.spr2 = rs.getString("spr2");
 			//monster.descr = rs.getString("descr");
-			monster.armor1 = rs.getInt("helm") != 0 ? Integer.toString(rs.getInt("helm")) : null;
-			monster.armor2 = rs.getInt("armor") != 0 ? Integer.toString(rs.getInt("armor")) : null;
-			monster.armor3 = rs.getInt("shield") != 0 ? Integer.toString(rs.getInt("shield")) : null;
+			monster.armor1 = rs.getInt("armor1") != 0 ? Integer.toString(rs.getInt("armor1")) : null;
+			monster.armor2 = rs.getInt("armor2") != 0 ? Integer.toString(rs.getInt("armor2")) : null;
+			monster.armor3 = rs.getInt("armor3") != 0 ? Integer.toString(rs.getInt("armor3")) : null;
 			//monster.speciallook = rs.getInt("speciallook") != 0 ? rs.getInt("speciallook") : null;
 			monster.ap = rs.getInt("ap");
-			monster.mapmove = rs.getInt("map");
+			monster.mapmove = rs.getInt("mapmove");
 			monster.hp = rs.getInt("hp");
 			monster.prot = rs.getInt("prot");
-			monster.size = rs.getInt("sz");
-			monster.ressize = rs.getInt("resz") != 0 ? rs.getInt("resz") : null;
+			monster.size = rs.getInt("size");
+			monster.ressize = rs.getInt("ressize") != 0 ? rs.getInt("ressize") : null;
 			monster.str = rs.getInt("str");
 			monster.enc = rs.getInt("enc");
 			monster.att = rs.getInt("att");
@@ -904,73 +1100,73 @@ public class Database {
 			monster.mr = rs.getInt("mr");
 			monster.mor = rs.getInt("mor");
 			monster.gcost = rs.getInt("basecost");
-			monster.rcost = rs.getInt("rsrc");
-			monster.pathcost = rs.getInt("path");
-			monster.startdom = rs.getInt("dom");
+			monster.rcost = rs.getInt("rcost");
+			monster.pathcost = rs.getInt("pathcost");
+			monster.startdom = rs.getInt("startdom");
 			//monster.eyes = rs.getInt("eyes") != 0 ? rs.getInt("eyes") : 2;
 			//monster.copystats = rs.getInt("copystats");
 			//monster.copyspr = rs.getInt("copyspr");
 //			monster.restrictedgod = rs.getInt("restrictedgod");
-			monster.shatteredsoul = rs.getInt("soulsh");
-			monster.coldres = rs.getInt("rescold");
-			monster.fireres = rs.getInt("resfire");
-			monster.poisonres = rs.getInt("respois");
-			monster.shockres = rs.getInt("resshck");
-			monster.darkvision = rs.getInt("dv");
-			monster.stealthy = rs.getInt("stealth");
+			monster.shatteredsoul = rs.getInt("shatteredsoul");
+			monster.coldres = rs.getInt("coldres");
+			monster.fireres = rs.getInt("fireres");
+			monster.poisonres = rs.getInt("poisonres");
+			monster.shockres = rs.getInt("shockres");
+			monster.darkvision = rs.getInt("darkvision");
+			monster.stealthy = rs.getInt("stealthy");
 			monster.seduce = rs.getInt("seduce");
 			monster.succubus = rs.getInt("succubus");
 			//monster.beckon = rs.getInt("beckon");
-			monster.startage = rs.getInt("agestrt");
-			monster.maxage = rs.getInt("ageold");
+			monster.startage = rs.getInt("startage");
+			monster.maxage = rs.getInt("startage");
 			//monster.older = rs.getInt("older");
 			monster.healer = rs.getInt("heal");
 			//monster.startaff = rs.getInt("startaff");
-			monster.supplybonus = rs.getInt("sup");
+			monster.supplybonus = rs.getInt("supplybonus");
 			//monster.uwdamage = rs.getInt("uwdamage");
-			monster.coldpower = rs.getInt("pwcold");
-			monster.firepower = rs.getInt("pwfire");
-			monster.stormpower = rs.getInt("pwstrm");
-			monster.darkpower = rs.getInt("pwdark");
-			monster.springpower = rs.getInt("spring");
-			monster.summerpower = rs.getInt("summer");
-			monster.fallpower = rs.getInt("fall");
-			monster.winterpower = rs.getInt("winter");
-			monster.ambidextrous = rs.getInt("adx");
-			monster.banefireshield = rs.getInt("bfshld");
-			monster.berserk = rs.getInt("brsrk");
-			monster.standard = rs.getInt("std");
-			monster.animalawe = rs.getInt("aawe");
+			monster.coldpower = rs.getInt("coldpower");
+			monster.firepower = rs.getInt("firepower");
+			monster.stormpower = rs.getInt("stormpower");
+			monster.darkpower = rs.getInt("darkpower");
+			monster.springpower = rs.getInt("springpower");
+			monster.summerpower = rs.getInt("summerpower");
+			monster.fallpower = rs.getInt("fallpower");
+			monster.winterpower = rs.getInt("winterpower");
+			monster.ambidextrous = rs.getInt("ambidextrous");
+			monster.banefireshield = rs.getInt("banefireshield");
+			monster.berserk = rs.getInt("berserk");
+			monster.standard = rs.getInt("standard");
+			monster.animalawe = rs.getInt("animalawe");
 			monster.awe = rs.getInt("awe");
 			monster.fear = rs.getInt("fear");
-			monster.regeneration = rs.getInt("regen");
-			monster.reinvigoration = rs.getInt("inv");
-			monster.fireshield = rs.getInt("fshld");
+			monster.regeneration = rs.getInt("regeneration");
+			monster.reinvigoration = rs.getInt("reinvigoration");
+			monster.fireshield = rs.getInt("fireshield");
 			monster.heat = rs.getInt("heat");
-			monster.cold = rs.getInt("chill");
+			monster.cold = rs.getInt("cold");
 			monster.iceprot = rs.getInt("iceprot");
-			monster.poisoncloud = rs.getInt("pcloud");
-			monster.diseasecloud = rs.getInt("plague");
+			monster.poisoncloud = rs.getInt("poisoncloud");
+			monster.diseasecloud = rs.getInt("diseasecloud");
 			//monster.bloodvengeance = rs.getInt("bloodvengeance");
-			monster.castledef = rs.getInt("cdef");
-			monster.siegebonus = rs.getInt("siege");
-			monster.patrolbonus = rs.getInt("ptrl");
-			monster.pillagebonus = rs.getInt("pllg");
-			monster.researchbonus = rs.getInt("research");
-			monster.forgebonus = rs.getInt("forge");
-			monster.douse = rs.getInt("bloodsearch");
-			monster.nobadevents = rs.getInt("fortune");
-			monster.incunrest = rs.getInt("unrest");
+			monster.castledef = rs.getInt("castledef");
+			monster.siegebonus = rs.getInt("siegebonus");
+			monster.patrolbonus = rs.getInt("patrolbonus");
+			monster.pillagebonus = rs.getInt("pillagebonus");
+			monster.researchbonus = rs.getInt("researchbonus");
+			monster.forgebonus = rs.getInt("forgebonus");
+			monster.douse = rs.getInt("douse");
+			monster.nobadevents = rs.getInt("nobadevents");
+			monster.incunrest = rs.getInt("incunrest");
 			//monster.spreaddom = rs.getInt("spreaddom");
 			//monster.leper = rs.getInt("leper");
 			monster.popkill = rs.getInt("popkill");
-			monster.heretic = rs.getInt("her");
+			monster.heretic = rs.getInt("heretic");
 			
 			int hand = rs.getInt("hand");
 			int head = rs.getInt("head");
 			int body = rs.getInt("body");
 			int foot = rs.getInt("foot");
-			int misc = rs.getInt("misc1");
+			int misc = rs.getInt("misc");
 			int slots = 0;
 			int handmask = 0;
 			int headmask = 0;
@@ -1156,76 +1352,76 @@ public class Database {
 //					monster.magicboost2 = magicboost;
 //				}
 //			}
-			String gemgen = rs.getString("gemgen");
-			if (gemgen != null) {
-				int gemprod = Integer.valueOf(gemgen.substring(0, 1));
-				String path = gemgen.substring(1, 2);
-				if (path.equals("F")) {
-					monster.gemprod1 = 0;
-				} else if (path.equals("W")) {
-					monster.gemprod1 = 2;
-				} else if (path.equals("E")) {
-					monster.gemprod1 = 3;
-				} else if (path.equals("S")) {
-					monster.gemprod1 = 4;
-				} else if (path.equals("N")) {
-					monster.gemprod1 = 6;
-				} else if (path.equals("A")) {
-					monster.gemprod1 = 1;
-				} else if (path.equals("D")) {
-					monster.gemprod1 = 5;
-				} else if (path.equals("B")) {
-					monster.gemprod1 = 7;
-				}
-
-				monster.gemprod2 = gemprod;
-			}
+//			String gemgen = rs.getString("gemgen");
+//			if (gemgen != null) {
+//				int gemprod = Integer.valueOf(gemgen.substring(0, 1));
+//				String path = gemgen.substring(1, 2);
+//				if (path.equals("F")) {
+//					monster.gemprod1 = 0;
+//				} else if (path.equals("W")) {
+//					monster.gemprod1 = 2;
+//				} else if (path.equals("E")) {
+//					monster.gemprod1 = 3;
+//				} else if (path.equals("S")) {
+//					monster.gemprod1 = 4;
+//				} else if (path.equals("N")) {
+//					monster.gemprod1 = 6;
+//				} else if (path.equals("A")) {
+//					monster.gemprod1 = 1;
+//				} else if (path.equals("D")) {
+//					monster.gemprod1 = 5;
+//				} else if (path.equals("B")) {
+//					monster.gemprod1 = 7;
+//				}
+//
+//				monster.gemprod2 = gemprod;
+//			}
 			
 //			monster.clear = rs.getInt("clear") == 1;
 //			monster.clearmagic = rs.getInt("clearmagic") == 1;
 //			monster.clearspec = rs.getInt("clearspec") == 1;
 			monster.female = rs.getInt("female") == 1;
-			monster.mounted = rs.getInt("mount") == 1;
+			monster.mounted = rs.getInt("mounted") == 1;
 			monster.holy = rs.getInt("holy") == 1;
 			monster.animal = rs.getInt("animal") == 1;
 			monster.undead = rs.getInt("undead") == 1;
 			monster.demon = rs.getInt("demon") == 1;
-			monster.magicbeing = rs.getInt("mgcbng") == 1;
+			monster.magicbeing = rs.getInt("magicbeing") == 1;
 			
-			monster.stonebeing = rs.getInt("stone") == 1;
-			monster.inanimate = rs.getInt("lifeless") == 1;
-			monster.coldblood = rs.getInt("cldbld") == 1;
-			monster.immortal = rs.getInt("imm") == 1;
+			monster.stonebeing = rs.getInt("stonebeing") == 1;
+			monster.inanimate = rs.getInt("inanimate") == 1;
+			monster.coldblood = rs.getInt("coldblood") == 1;
+			monster.immortal = rs.getInt("immortal") == 1;
 			monster.blind = rs.getInt("blind") == 1;
 			monster.unique = rs.getInt("unique") == 1;
-			monster.immobile = rs.getInt("immob") == 1;
-			monster.aquatic = rs.getInt("aqua") == 1;
-			monster.amphibian = rs.getInt("amphi") == 1;
-			monster.pooramphibian = rs.getInt("pamph") == 1;
-			monster.flying = rs.getInt("fly") == 1;
-			monster.stormimmune = rs.getInt("strmfly") == 1;
+			monster.immobile = rs.getInt("immobile") == 1;
+			monster.aquatic = rs.getInt("aquatic") == 1;
+			monster.amphibian = rs.getInt("amphibian") == 1;
+			monster.pooramphibian = rs.getInt("pooramphibian") == 1;
+			monster.flying = rs.getInt("flying") == 1;
+			monster.stormimmune = rs.getInt("stormimmune") == 1;
 			monster.sailing1 = (rs.getInt("sailsz") == 0 ? null : rs.getInt("sailsz"));
 			monster.sailing2 = rs.getInt("sailmaxsz");
-			monster.forestsurvival = rs.getInt("forest") == 1;
-			monster.mountainsurvival = rs.getInt("mount") == 1;
-			monster.swampsurvival = rs.getInt("swamp") == 1;
-			monster.wastesurvival = rs.getInt("waste") == 1;
-			monster.illusion = rs.getInt("disbel") == 1;
+			monster.forestsurvival = rs.getInt("forestsurvival") == 1;
+			monster.mountainsurvival = rs.getInt("mountainsurvival") == 1;
+			monster.swampsurvival = rs.getInt("swampsurvival") == 1;
+			monster.wastesurvival = rs.getInt("wastesurvival") == 1;
+			monster.illusion = rs.getInt("illusion") == 1;
 			monster.spy = rs.getInt("spy") == 1;
 			monster.assassin = rs.getInt("assassin") == 1;
-			monster.heal = rs.getInt("rec") == 1;
+			//monster.heal = rs.getInt("rec") == 1;
 			monster.noheal = rs.getInt("noheal") == 1;
-			monster.neednoteat = rs.getInt("noeat") == 1;
-			monster.ethereal = rs.getInt("eth") == 1;
-			monster.trample = rs.getInt("trmpl") == 1;
+			monster.neednoteat = rs.getInt("neednoteat") == 1;
+			monster.ethereal = rs.getInt("ethereal") == 1;
+			monster.trample = rs.getInt("trample") == 1;
 			//monster.entangle = rs.getInt("entangle") == 1;
 			monster.eyeloss = rs.getInt("eyeloss") == 1;
 			//monster.horrormark = rs.getInt("horrormark") == 1;
-			monster.poisonarmor = rs.getInt("barbs") == 1;
-			monster.inquisitor = rs.getInt("barbs") == 1;
+//			monster.poisonarmor = rs.getInt("poisonarmor") == 1;
+			monster.inquisitor = rs.getInt("inquisitor") == 1;
 //			monster.noitem = rs.getInt("noitem") == 1;
 			
-			int normalLeadership = rs.getInt("ldr-n");
+			int normalLeadership = rs.getInt("leader");
 			switch (normalLeadership) {
 			case 0:
 				monster.noleader = true;
@@ -1246,7 +1442,7 @@ public class Database {
 				monster.superiorleader = true;
 				break;
 			}
-			int magicLeadership = rs.getInt("ldr-m");
+			int magicLeadership = rs.getInt("magicleader");
 			switch (magicLeadership) {
 			case 0:
 				monster.nomagicleader = true;
@@ -1267,7 +1463,7 @@ public class Database {
 				monster.superiormagicleader = true;
 				break;
 			}
-			int undeadLeadership = rs.getInt("ldr-u");
+			int undeadLeadership = rs.getInt("undeadleader");
 			switch (undeadLeadership) {
 			case 0:
 				monster.noundeadleader = true;
@@ -1296,43 +1492,43 @@ public class Database {
 			
 			//monster.onebattlespell = rs.getInt("onebattlespell") != 0 ? Integer.toString(rs.getInt("onebattlespell")) : null;
 			
-			monster.firstshape = Integer.toString(rs.getInt("1shape"));
-			monster.secondshape = Integer.toString(rs.getInt("2shape"));
-			monster.secondtmpshape = Integer.toString(rs.getInt("tmp2shape"));
+			monster.firstshape = Integer.toString(rs.getInt("firstshape"));
+			monster.secondshape = Integer.toString(rs.getInt("secondshape"));
+			monster.secondtmpshape = Integer.toString(rs.getInt("secondtmpshape"));
 			monster.shapechange = Integer.toString(rs.getInt("shapechange"));
 			monster.landshape = Integer.toString(rs.getInt("landshape"));
-			monster.watershape = Integer.toString(rs.getInt("seashape"));
+			monster.watershape = Integer.toString(rs.getInt("watershape"));
 			monster.forestshape = Integer.toString(rs.getInt("forestshape"));
 			//monster.plainshape = Integer.toString(rs.getInt("plainshape"));
 			
-			int domNum = rs.getInt("n_domsum");
-			if (domNum == 1) {
-				monster.domsummon = Integer.toString(rs.getInt("domsum"));
-			} else if (domNum == 2) {
-				monster.domsummon2 = Integer.toString(rs.getInt("domsum"));
-			} else if (domNum == 20) {
-				monster.domsummon20 = Integer.toString(rs.getInt("domsum"));
-			}
-			
-			int mmNum = rs.getInt("n_autosum");
-			if (mmNum == 1) {
-				monster.makemonsters1 = Integer.toString(rs.getInt("autosum"));
-			} else if (mmNum == 2) {
-				monster.makemonsters2 = Integer.toString(rs.getInt("autosum"));
-			} else if (mmNum == 3) {
-				monster.makemonsters3 = Integer.toString(rs.getInt("autosum"));
-			} else if (mmNum == 4) {
-				monster.makemonsters4 = Integer.toString(rs.getInt("autosum"));
-			} else if (mmNum == 5) {
-				monster.makemonsters5 = Integer.toString(rs.getInt("autosum"));
-			}
-			
-			int sumNum = rs.getInt("n_sum");
-			if (sumNum == 1) {
-				monster.summon1 = Integer.toString(rs.getInt("sum"));
-			} else if (sumNum == 5) {
-				monster.summon5 = Integer.toString(rs.getInt("sum"));
-			}
+//			int domNum = rs.getInt("n_domsum");
+//			if (domNum == 1) {
+//				monster.domsummon = Integer.toString(rs.getInt("domsum"));
+//			} else if (domNum == 2) {
+//				monster.domsummon2 = Integer.toString(rs.getInt("domsum"));
+//			} else if (domNum == 20) {
+//				monster.domsummon20 = Integer.toString(rs.getInt("domsum"));
+//			}
+//			
+//			int mmNum = rs.getInt("n_autosum");
+//			if (mmNum == 1) {
+//				monster.makemonsters1 = Integer.toString(rs.getInt("autosum"));
+//			} else if (mmNum == 2) {
+//				monster.makemonsters2 = Integer.toString(rs.getInt("autosum"));
+//			} else if (mmNum == 3) {
+//				monster.makemonsters3 = Integer.toString(rs.getInt("autosum"));
+//			} else if (mmNum == 4) {
+//				monster.makemonsters4 = Integer.toString(rs.getInt("autosum"));
+//			} else if (mmNum == 5) {
+//				monster.makemonsters5 = Integer.toString(rs.getInt("autosum"));
+//			}
+//			
+//			int sumNum = rs.getInt("n_sum");
+//			if (sumNum == 1) {
+//				monster.summon1 = Integer.toString(rs.getInt("sum"));
+//			} else if (sumNum == 5) {
+//				monster.summon5 = Integer.toString(rs.getInt("sum"));
+//			}
 		}
 		return monster;
 	}
@@ -1350,8 +1546,8 @@ public class Database {
 					System.err.println("Incorrect armor value in item DB: " + rs.getString("armor"));
 				}
 			}
-			item.constlevel = rs.getInt("con");
-			String mainPath = rs.getString("p1");
+			item.constlevel = rs.getInt("constlevel");
+			String mainPath = rs.getString("mainpath");
 			if (mainPath != null) {
 				if (mainPath.equals("F")) {
 					item.mainpath = 0;
@@ -1371,9 +1567,9 @@ public class Database {
 					item.mainpath = 7;
 				}
 			}
-			item.mainlevel = rs.getInt("lv1");
+			item.mainlevel = rs.getInt("mainlevel");
 			
-			String secondarypath = rs.getString("p2");
+			String secondarypath = rs.getString("secondarypath");
 			if (secondarypath != null) {
 				if (secondarypath.equals("F")) {
 					item.secondarypath = 0;
@@ -1393,7 +1589,7 @@ public class Database {
 					item.secondarypath = 7;
 				}
 			}
-			item.secondarylevel = rs.getInt("lv2");
+			item.secondarylevel = rs.getInt("secondarylevel");
 			
 			String type = rs.getString("type");
 			if (type != null) {
@@ -1415,7 +1611,7 @@ public class Database {
 					item.type = 8;
 				}
 			}
-			item.weapon = rs.getInt("wpn") != 0 ? rs.getInt("wpn") : null;
+			item.weapon = rs.getInt("weapon") != 0 ? rs.getInt("weapon") : null;
 
 //			public Integer type;
 //			public Integer weapon;
@@ -1633,11 +1829,11 @@ public class Database {
 		String armorName = armorNameMap.get(Integer.valueOf(id));
 		if (armorName == null) {
 			try {
-				Statement statement = getConnection().createStatement();
-				ResultSet rs = statement.executeQuery("SELECT \"armorname\" FROM \"armor_base\" where \"id\"="+id);
+				Statement statement = getConnection2().createStatement();
+				ResultSet rs = statement.executeQuery("SELECT \"name\" FROM \"armors\" where \"number\"="+id);
 
 				while (rs.next()) {			
-					armorName = rs.getString("armorname");
+					armorName = rs.getString("name");
 				}
 
 				statement.close();
@@ -1654,125 +1850,115 @@ public class Database {
 		return armorName;
 	}
 	
-	private static SpellDB getSpellDB(ResultSet rs) throws SQLException {
+	private static SpellDB getSpellDB(ResultSet rs) throws SQLException, ClassNotFoundException, IOException {
 		SpellDB spell = new SpellDB();
 		if (rs.next()) {
-			spell.id = rs.getInt("id");
+			spell.id = rs.getInt("number");
 			spell.name = rs.getString("name");
-			
-			String school = rs.getString("school");
-			int schoolNum = -1;
-			if (school != null) {
-				if (school.equals("Conjuration")) {
-					schoolNum = 0;
-				} else if (school.equals("Alteration")) {
-					schoolNum = 1;
-				} else if (school.equals("Evocation")) {
-					schoolNum = 2;
-				} else if (school.equals("Construction")) {
-					schoolNum = 3;
-				} else if (school.equals("Enchantment")) {
-					schoolNum = 4;
-				} else if (school.equals("Thaumaturgy")) {
-					schoolNum = 5;
-				} else if (school.equals("Blood")) {
-					schoolNum = 6;
-				} else if (school.equals("Divine")) {
-					schoolNum = 7;
-				}
-				
-			}
-			spell.school = schoolNum;
-			
-			spell.researchlevel = rs.getInt("research");
-			int path1 = -1;
-			String p1 = rs.getString("p1");
-			if (p1 != null) {
-				if (p1.equals("F")) {
-					path1 = 0;
-				} else if (p1.equals("A")) {
-					path1 = 1;
-				} else if (p1.equals("W")) {
-					path1 = 2;
-				} else if (p1.equals("E")) {
-					path1 = 3;
-				} else if (p1.equals("S")) {
-					path1 = 4;
-				} else if (p1.equals("D")) {
-					path1 = 5;
-				} else if (p1.equals("N")) {
-					path1 = 6;
-				} else if (p1.equals("B")) {
-					path1 = 7;
-				} else if (p1.equals("H")) {
-					path1 = 8;
-				}
-			}
-			spell.path1 = path1;
-			
-			int path2 = -1;
-			String p2 = rs.getString("p2");
-			if (p2 != null) {
-				if (p2.equals("F")) {
-					path2 = 0;
-				} else if (p2.equals("A")) {
-					path2 = 1;
-				} else if (p2.equals("W")) {
-					path2 = 2;
-				} else if (p2.equals("E")) {
-					path2 = 3;
-				} else if (p2.equals("S")) {
-					path2 = 4;
-				} else if (p2.equals("D")) {
-					path2 = 5;
-				} else if (p2.equals("N")) {
-					path2 = 6;
-				} else if (p2.equals("B")) {
-					path2 = 7;
-				} else if (p2.equals("H")) {
-					path2 = 8;
-				}
-			}
-			spell.path2 = path2;
+			spell.school = rs.getInt("school");
+			spell.researchlevel = rs.getInt("research_level");
+			spell.path1 = rs.getInt("path_0");
+			spell.path2 = rs.getInt("path_1");
 
-			int level1 = rs.getInt("lv1");
+			int level1 = rs.getInt("path_level_0");
 			if (level1 != 0) {
 				spell.pathlevel1 = level1;
 			}
-			int level2 = rs.getInt("lv2");
+			int level2 = rs.getInt("path_level_1");
 			if (level2 != 0) {
 				spell.pathlevel2 = level2;
 			}
 			
-			spell.fatiguecost = rs.getInt("fatigue");			
+			spell.fatiguecost = rs.getInt("fatigue") + 100 * rs.getInt("gem_cost");			
 			
-			String aoe = rs.getString("aoe_s");
-			if (aoe != null && aoe.equals("bf")) {
-				spell.aoe = 666;
+			int effectId = rs.getInt("effect_record_id");
+			Statement statement = getConnection2().createStatement();
+			ResultSet rsEffect = statement.executeQuery("SELECT * FROM \"effects\" where \"record_id\"="+effectId);
+			rsEffect.next();
+
+			if (rsEffect.getObject("area_base") != null) {
+				spell.aoe = rsEffect.getInt("area_base");
+				spell.aoe = spell.aoe + 1000 * rsEffect.getInt("area_per_level");
 			} else {
-				spell.aoe = rs.getInt("aoe_s");
+				int pct = rsEffect.getInt("area_battlefield_pct");
+				switch (pct) {
+				case 100:
+					spell.aoe = 666;
+					break;
+				case 50:
+					spell.aoe = 663;
+					break;
+				case 10:
+					spell.aoe = 664;
+					break;
+				}
 			}
+
+			spell.effect = rsEffect.getInt("effect_number") + 10000;
+			spell.range = rsEffect.getInt("range_base") + 1000 * rsEffect.getInt("range_per_level");;
+			spell.precision = rs.getInt("precision");
+			spell.damage = rsEffect.getInt("raw_argument");
+			spell.nreff = rs.getInt("effects_count");
+			spell.spec = rsEffect.getInt("modifiers_mask");
+			spell.nextspell = rs.getInt("next_spell");
 			
-			//spell.effect = rs.getInt("effect");
-			spell.range = rs.getInt("rng_bat");
-			spell.precision = rs.getInt("prec");
-			spell.damage = rs.getInt("dmg");
-			spell.nreff = rs.getInt("n_eff");
-			//spell.spec = rs.getInt("spec");
-			//spell.nextspell = rs.getInt("nextspell");
+			if (rsEffect.getObject("flight_sprite_number") != null) {
+				spell.flightspr = rsEffect.getInt("flight_sprite_number");
+			}
+			if (rsEffect.getObject("explosion_sprite_number") != null) {
+				spell.explspr = rsEffect.getInt("explosion_sprite_number");
+			}
+			spell.sound = rsEffect.getInt("sound_number");
 			
-			//spell.restricted1 = rs.getInt("restricted1");
-			//spell.restricted2 = rs.getInt("restricted2");
-			//spell.restricted3 = rs.getInt("restricted3");
+			int numRestricted = 0;
+			Statement statement2 = getConnection2().createStatement();
+			ResultSet rsAttributesBySpell = statement2.executeQuery("SELECT * FROM \"attributes_by_spell\" where \"spell_number\"="+spell.id);
+			while (rsAttributesBySpell.next()) {
+				int attrRecId = rsAttributesBySpell.getInt("attribute_record_id");
+				
+				Statement statement3 = getConnection2().createStatement();
+				ResultSet rsRestrict = statement3.executeQuery("SELECT * FROM \"restrict_to_nations_by_attribute\" where \"attribute_record_id\"="+attrRecId);
+				if (rsRestrict.next()) {
+					numRestricted++;
+					switch (numRestricted) {
+					case 1:
+						spell.restricted1 = rsRestrict.getInt("nation_number");
+						break;
+					case 2:
+						spell.restricted2 = rsRestrict.getInt("nation_number");
+						break;
+					case 3:
+						spell.restricted3 = rsRestrict.getInt("nation_number");
+						break;
+					}
+				}
+				statement3.close();
+				
+				Statement statement4 = getConnection2().createStatement();
+				ResultSet rsAttributes = statement4.executeQuery("SELECT * FROM \"attributes\" where \"record_id\"="+attrRecId);
+				if (rsAttributes.next()) {
+					if (rsAttributes.getInt("attribute_number") == 700) {
+						spell.provrange = rsAttributes.getInt("raw_value");
+					}
+					if (rsAttributes.getInt("attribute_number") == 702) {
+						spell.onlygeosrc = rsAttributes.getInt("raw_value");
+					}
+					if (rsAttributes.getInt("attribute_number") == 703) {
+						spell.onlyowndst = rsAttributes.getInt("raw_value");
+					}
+					if (rsAttributes.getInt("attribute_number") == 706) {
+						spell.nolandtrace = rsAttributes.getInt("raw_value");
+					}
+				}
+				statement4.close();
+			}
 			//spell.damagemon;
-			spell.provrange = rs.getInt("rng_prov");
-			//spell.onlygeosrc;
 			//spell.onlygeodst;
 			//spell.onlyfriendlydst;
-			//spell.onlyowndst;
 			//spell.nowatertrace;
-			//spell.nolandtrace;
 			//spell.walkable;
+			statement2.close();
+			statement.close();
 		}
 		return spell;
 	}
@@ -1781,11 +1967,11 @@ public class Database {
 		String weaponName = weaponNameMap.get(Integer.valueOf(id));
 		if (weaponName == null) {
 			try {
-				Statement statement = getConnection().createStatement();
-				ResultSet rs = statement.executeQuery("SELECT \"weapon_name\" FROM \"weapons_base\" where \"id\"="+id);
+				Statement statement = getConnection2().createStatement();
+				ResultSet rs = statement.executeQuery("SELECT \"name\" FROM \"weapons\" where \"number\"="+id);
 
 				while (rs.next()) {			
-					weaponName = rs.getString("weapon_name");
+					weaponName = rs.getString("name");
 				}
 
 				statement.close();
@@ -1832,10 +2018,10 @@ public class Database {
 		if (monsterName == null) {
 			try {
 				Statement statement = getConnection().createStatement();
-				ResultSet rs = statement.executeQuery("SELECT \"unitname\" FROM \"units_base\" where \"id\"="+id);
+				ResultSet rs = statement.executeQuery("SELECT \"name\" FROM \"units_base\" where \"id\"="+id);
 
 				while (rs.next()) {			
-					monsterName = rs.getString("unitname");
+					monsterName = rs.getString("name");
 				}
 
 				statement.close();
@@ -1948,8 +2134,8 @@ public class Database {
 		String spellName = spellNameMap.get(Integer.valueOf(id));
 		if (spellName == null) {
 			try {
-				Statement statement = getConnection().createStatement();
-				ResultSet rs = statement.executeQuery("SELECT \"name\" FROM \"spells\" where \"id\"="+id);
+				Statement statement = getConnection2().createStatement();
+				ResultSet rs = statement.executeQuery("SELECT \"name\" FROM \"spells\" where \"number\"="+id);
 
 				while (rs.next()) {			
 					spellName = rs.getString("name");
@@ -2042,25 +2228,20 @@ public class Database {
 		String nationName = nationNameMap.get(Integer.valueOf(id));
 		if (nationName == null) {
 			try {
-				Statement statement = getConnection().createStatement();
-				ResultSet rs = statement.executeQuery("SELECT \"name\", \"era\" FROM \"nations\" where \"id\"="+id);
+				Statement statement = getConnection2().createStatement();
+				ResultSet rs = statement.executeQuery("SELECT \"name\", \"file_name_base\" FROM \"nations\" where \"number\"="+id);
 
 				while (rs.next()) {			
 					nationName = rs.getString("name");
-					int era = rs.getInt("era");
-					switch (era) {
-					case 1:
+					String fileName = rs.getString("file_name_base");
+					if (fileName.startsWith("early")) {
 						nationName = "EA " + nationName;
-						break;
-					case 2:
+					} else if (fileName.startsWith("mid")) {
 						nationName = "MA " + nationName;
-						break;
-					case 3:
+					} else if (fileName.startsWith("late")) {
 						nationName = "LA " + nationName;
-						break;
-					default:
-						nationName = "Era " + era + " " + nationName;
-						break;
+					} else {
+						nationName = "Unknown Era " + nationName;
 					}
 				}
 
@@ -2120,4 +2301,16 @@ public class Database {
 		return connection;
 	}
 
+	private static Connection getConnection2() throws IOException, ClassNotFoundException, SQLException {
+		if (connection2 == null) {
+			Path path = new Path("$nl$/data/Dominions.sqlite");
+			URL url = FileLocator.find(Activator.getDefault().getBundle(), path, null);
+			String dbPath = FileLocator.toFileURL(url).getPath();
+			dbPath = dbPath.substring(1, dbPath.length());
+
+			Class.forName("org.sqlite.JDBC");
+			connection2 = DriverManager.getConnection("jdbc:sqlite:" + dbPath);
+		}
+		return connection2;
+	}
 }

@@ -29,6 +29,8 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TableViewer;
+import org.eclipse.jface.window.DefaultToolTip;
+import org.eclipse.jface.window.ToolTip;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionListener;
@@ -42,6 +44,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
@@ -95,6 +98,17 @@ public abstract class AbstractDetailsPage implements IDetailsPage {
 		GridData gd = new GridData(SWT.BEGINNING, SWT.DEFAULT, false, false);
 		gd.horizontalSpan = span;
 		spacer.setLayoutData(gd);
+	}
+	
+	/**
+	 * @param control
+	 * @param text
+	 */
+	protected void setToolTip(Control control, String text) {
+		DefaultToolTip toolTip = new DefaultToolTip(control, SWT.BALLOON | ToolTip.NO_RECREATE, false);
+		toolTip.setText(text);
+		toolTip.setHideDelay(0);
+		toolTip.setShift(new Point(0, 25));
 	}
 	
 	/**

@@ -290,6 +290,7 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 		PATROLBONUS (Messages.getString("MonsterDetailsSection.mod.patrolbonus"), "10"),
 		PILLAGEBONUS (Messages.getString("MonsterDetailsSection.mod.pillagebonus"), "10"),
 		SUPPLYBONUS (Messages.getString("MonsterDetailsSection.mod.supplybonus"), "10"),
+		RESOURCES (Messages.getString("MonsterDetailsSection.mod.resources"), "10"),
 		NEEDNOTEAT (Messages.getString("MonsterDetailsSection.mod.neednoteat")),
 		NOBADEVENTS (Messages.getString("MonsterDetailsSection.mod.nobadevents"), "10"),
 		INCUNREST (Messages.getString("MonsterDetailsSection.mod.incunrest"), "10"),
@@ -581,6 +582,7 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 		instMap.put(Inst.HEALER, new Inst2Fields());
 		instMap.put(Inst.STARTAFF, new Inst2Fields());
 		instMap.put(Inst.SUPPLYBONUS, new Inst2Fields());
+		instMap.put(Inst.RESOURCES, new Inst2Fields());
 		instMap.put(Inst.UWDAMAGE, new Inst2Fields());
 		instMap.put(Inst.HOMESICK, new Inst2Fields());
 		instMap.put(Inst.COLDPOWER, new Inst2Fields());
@@ -942,8 +944,8 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 		nameComp.setLayoutData(gd);
 		
 		nameCheck = toolkit.createButton(nameComp, Messages.getString("MonsterDetailsSection.mod.name"), SWT.CHECK); //$NON-NLS-1$
-		nameCheck.setToolTipText(HelpTextHelper.getText(HelpTextHelper.MONSTER_CATEGORY, "name"));
-
+		setToolTip(nameCheck, HelpTextHelper.getText(HelpTextHelper.MONSTER_CATEGORY, "name"));
+		
 		name = toolkit.createText(nameComp, null, SWT.SINGLE | SWT.BORDER); //$NON-NLS-1$
 		name.addFocusListener(new FocusAdapter() {
 			@Override
@@ -988,7 +990,7 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 		});
 
 		fixedNameCheck = toolkit.createButton(nameComp, Messages.getString("MonsterDetailsSection.mod.fixedname"), SWT.CHECK); //$NON-NLS-1$
-		fixedNameCheck.setToolTipText(HelpTextHelper.getText(HelpTextHelper.MONSTER_CATEGORY, "fixedname"));
+		setToolTip(fixedNameCheck, HelpTextHelper.getText(HelpTextHelper.MONSTER_CATEGORY, "fixedname"));
 
 		fixedName = toolkit.createText(nameComp, null, SWT.SINGLE | SWT.BORDER); //$NON-NLS-1$
 		fixedName.addFocusListener(new FocusAdapter() {
@@ -1030,7 +1032,7 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 		});
 
 		descCheck = toolkit.createButton(nameComp, Messages.getString("MonsterDetailsSection.mod.descr"), SWT.CHECK);
-		descCheck.setToolTipText(HelpTextHelper.getText(HelpTextHelper.MONSTER_CATEGORY, "descr"));
+		setToolTip(descCheck, HelpTextHelper.getText(HelpTextHelper.MONSTER_CATEGORY, "descr"));
 
 		descr = toolkit.createText(nameComp, null, SWT.MULTI | SWT.BORDER | SWT.WRAP); //$NON-NLS-1$
 		descr.addFocusListener(new FocusAdapter() {
@@ -1099,7 +1101,7 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 		sprite2Label.setLayoutData(gridData);
 		
 		spr1Check = toolkit.createButton(nameComp, Messages.getString("MonsterDetailsSection.mod.spr1"), SWT.CHECK);
-		spr1Check.setToolTipText(HelpTextHelper.getText(HelpTextHelper.MONSTER_CATEGORY, "spr1"));
+		setToolTip(spr1Check, HelpTextHelper.getText(HelpTextHelper.MONSTER_CATEGORY, "spr1"));
 
 		spr1 = toolkit.createText(nameComp, null, SWT.BORDER); //$NON-NLS-1$
 		spr1.addFocusListener(new FocusAdapter() {
@@ -1160,7 +1162,7 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 		});
 
 		spr2Check = toolkit.createButton(nameComp, Messages.getString("MonsterDetailsSection.mod.spr2"), SWT.CHECK);
-		spr2Check.setToolTipText(HelpTextHelper.getText(HelpTextHelper.MONSTER_CATEGORY, "spr2"));
+		setToolTip(spr2Check, HelpTextHelper.getText(HelpTextHelper.MONSTER_CATEGORY, "spr2"));
 
 		spr2 = toolkit.createText(nameComp, null, SWT.BORDER); //$NON-NLS-1$
 		spr2.addFocusListener(new FocusAdapter() {
@@ -1221,7 +1223,7 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 		});
 
 		specialLookCheck = toolkit.createButton(nameComp, Messages.getString("MonsterDetailsSection.mod.speciallook"), SWT.CHECK); //$NON-NLS-1$
-		specialLookCheck.setToolTipText(HelpTextHelper.getText(HelpTextHelper.MONSTER_CATEGORY, "speciallook"));
+		setToolTip(specialLookCheck, HelpTextHelper.getText(HelpTextHelper.MONSTER_CATEGORY, "speciallook"));
 
 		specialLook = toolkit.createText(nameComp, null, SWT.SINGLE | SWT.BORDER); //$NON-NLS-1$
 		specialLook.addFocusListener(new FocusAdapter() {
@@ -1248,9 +1250,9 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				if (specialLookCheck.getSelection()) {
-					addInst2(Inst.SPECIALLOOK, doc, "");
+					addInst2(Inst.SPECIALLOOK, doc, "1");
 					specialLook.setEnabled(true);
-					specialLook.setText("");
+					specialLook.setText("1");
 					specialLookCheck.setFont(boldFont);
 				} else {
 					removeInst(Inst.SPECIALLOOK, doc);
@@ -1442,7 +1444,7 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 			}
 			final Button check = new DynamicButton(checkParent, SWT.CHECK);
 			check.setText(key.label);
-			check.setToolTipText(HelpTextHelper.getText(HelpTextHelper.MONSTER_CATEGORY, key.label));
+			setToolTip(check, HelpTextHelper.getText(HelpTextHelper.MONSTER_CATEGORY, key.label));
 			check.addSelectionListener(new SelectionAdapter() {
 				@Override
 				public void widgetSelected(SelectionEvent e) {
@@ -2852,6 +2854,15 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 					} else {
 						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
 						Inst.SUPPLYBONUS.defaultValue = "";
+					}
+					break;
+				case RESOURCES:
+					if (monsterDB.resources != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", monsterDB.resources));
+						Inst.RESOURCES.defaultValue = monsterDB.resources.toString();
+					} else {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.RESOURCES.defaultValue = "";
 					}
 					break;
 				case UWDAMAGE:
@@ -5662,6 +5673,11 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 						return Integer.valueOf(((MonsterInst2)mod).getValue());
 					}
 					break;
+				case RESOURCES:
+					if (((MonsterInst2)mod).isResources()){
+						return Integer.valueOf(((MonsterInst2)mod).getValue());
+					}
+					break;
 				case UWDAMAGE:
 					if (((MonsterInst2)mod).isUwdamage()){
 						return Integer.valueOf(((MonsterInst2)mod).getValue());
@@ -7723,6 +7739,11 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
 							}
 							break;
+						case RESOURCES:
+							if (((MonsterInst2)mod).isResources()){
+								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
+							}
+							break;
 						case UWDAMAGE:
 							if (((MonsterInst2)mod).isUwdamage()){
 								((MonsterInst2)mod).setValue(Integer.parseInt(newName));
@@ -9562,6 +9583,9 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 						case SUPPLYBONUS:
 							type.setSupplybonus(true);
 							break;
+						case RESOURCES:
+							type.setResources(true);
+							break;
 						case UWDAMAGE:
 							type.setUwdamage(true);
 							break;
@@ -10752,6 +10776,11 @@ public class MonsterDetailsPage extends AbstractDetailsPage {
 									break;
 								case SUPPLYBONUS:
 									if (((MonsterInst2)mod).isSupplybonus()){
+										modToRemove = mod;
+									}
+									break;
+								case RESOURCES:
+									if (((MonsterInst2)mod).isResources()){
 										modToRemove = mod;
 									}
 									break;

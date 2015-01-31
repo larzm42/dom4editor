@@ -19,6 +19,7 @@ package org.larz.dom4.db;
 public class WeaponDB {
 	public Integer id;
 	public String name;
+	public String sample;
 	public Integer dmg;
 	public Integer nratt;
 	public Integer att;
@@ -44,7 +45,6 @@ public class WeaponDB {
 	public Boolean dt_poison;
 	public Boolean dt_cap;
 	public Boolean dt_demon;
-	public Boolean dt_demononly;
 	public Boolean dt_holy;
 	public Boolean dt_magic;
 	public Boolean dt_small;
@@ -85,7 +85,15 @@ public class WeaponDB {
 	public Boolean dt_weakness;
 	public Boolean dt_drain;
 	public Boolean dt_weapondrain;
+	public Boolean dt_aff;
 	public Boolean sacredonly;
 	public Boolean dt_sizestun;
 	public Boolean demonundead;
+	public Boolean demononly;
+	public Boolean ironweapon;
+	public Boolean woodenweapon;
+	public Boolean iceweapon;
+	public Boolean uwok;
+	public Boolean nouw;
+
 }

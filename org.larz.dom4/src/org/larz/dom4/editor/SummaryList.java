@@ -73,6 +73,8 @@ import org.larz.dom4.dm.dm.Armor;
 import org.larz.dom4.dm.dm.ArmorInst1;
 import org.larz.dom4.dm.dm.ArmorMods;
 import org.larz.dom4.dm.dm.Dom4Mod;
+import org.larz.dom4.dm.dm.EventInst1;
+import org.larz.dom4.dm.dm.EventMods;
 import org.larz.dom4.dm.dm.GeneralInst1;
 import org.larz.dom4.dm.dm.GeneralInst2;
 import org.larz.dom4.dm.dm.Item;
@@ -86,6 +88,7 @@ import org.larz.dom4.dm.dm.MonsterMods;
 import org.larz.dom4.dm.dm.NationInst1;
 import org.larz.dom4.dm.dm.NationMods;
 import org.larz.dom4.dm.dm.NewArmor;
+import org.larz.dom4.dm.dm.NewEvent;
 import org.larz.dom4.dm.dm.NewItem;
 import org.larz.dom4.dm.dm.NewMercenary;
 import org.larz.dom4.dm.dm.NewMonster;
@@ -502,6 +505,16 @@ public class SummaryList extends MasterDetailsBlock {
 					}
 				}
 				return Messages.getString("ScrolledPropertiesBlock.mercenary.zero.txt");
+			} else if (element instanceof NewEvent) {
+				EList<EventMods> list = ((NewEvent)element).getMods();
+				for (EventMods mod : list) {
+					if (mod instanceof EventInst1) {
+						if (((EventInst1)mod).isMsg()) {
+							return Messages.format("ScrolledPropertiesBlock.event.single.fmt", ((EventInst1)mod).getValue().substring(0, ((EventInst1)mod).getValue().length() > 25 ? 25 : ((EventInst1)mod).getValue().length()));
+						}
+					}
+				}
+				return Messages.getString("ScrolledPropertiesBlock.event.zero.txt");
 			}
 			return obj.toString();
 		}

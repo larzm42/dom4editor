@@ -80,6 +80,7 @@ public class WeaponDetailsPage extends AbstractDetailsPage {
 		RCOST (Messages.getString("WeaponDetailsSection.mod.rcost"), "0"),
 		TWOHANDED (Messages.getString("WeaponDetailsSection.mod.twohanded")),
 		SOUND (Messages.getString("WeaponDetailsSection.mod.sound"), "12"),
+		SAMPLE (Messages.getString("WeaponDetailsSection.mod.sample"), ""), 
 		SLASH (Messages.getString("WeaponDetailsSection.mod.slash")),
 		PIERCE (Messages.getString("WeaponDetailsSection.mod.pierce")),
 		BLUNT (Messages.getString("WeaponDetailsSection.mod.blunt")),
@@ -111,7 +112,7 @@ public class WeaponDetailsPage extends AbstractDetailsPage {
 		DT_POISON (Messages.getString("WeaponDetailsSection.mod.dt_poison")),
 		DT_HOLY (Messages.getString("WeaponDetailsSection.mod.dt_holy")),
 		DT_DEMON (Messages.getString("WeaponDetailsSection.mod.dt_demon")),
-		DT_DEMONONLY (Messages.getString("WeaponDetailsSection.mod.dt_demononly")),
+		DEMONONLY (Messages.getString("WeaponDetailsSection.mod.demononly")),
 		DEMONUNDEAD (Messages.getString("WeaponDetailsSection.mod.demonundead")),
 		DT_MAGIC (Messages.getString("WeaponDetailsSection.mod.dt_magic")),
 		DT_SMALL (Messages.getString("WeaponDetailsSection.mod.dt_small")),
@@ -121,11 +122,15 @@ public class WeaponDetailsPage extends AbstractDetailsPage {
 		DT_WEAKNESS (Messages.getString("WeaponDetailsSection.mod.dt_weakness")),
 		DT_DRAIN (Messages.getString("WeaponDetailsSection.mod.dt_drain")),
 		DT_WEAPONDRAIN (Messages.getString("WeaponDetailsSection.mod.dt_weapondrain")),
+		DT_AFF (Messages.getString("WeaponDetailsSection.mod.dt_aff")),
 		SACREDONLY (Messages.getString("WeaponDetailsSection.mod.sacredonly")),
 		AOE (Messages.getString("WeaponDetailsSection.mod.aoe"), "10"),
 		BONUS (Messages.getString("WeaponDetailsSection.mod.bonus")),
 		SECONDARYEFFECT (Messages.getString("WeaponDetailsSection.mod.secondaryeffect"), "0"),
 		SECONDARYEFFECTALWAYS (Messages.getString("WeaponDetailsSection.mod.secondaryeffectalways"), "0"),
+		IRONWEAPON (Messages.getString("WeaponDetailsSection.mod.ironweapon")),
+		WOODWENEAPON (Messages.getString("WeaponDetailsSection.mod.woodenweapon")),
+		ICEWEAPON (Messages.getString("WeaponDetailsSection.mod.iceweapon")),
 		CHARGE (Messages.getString("WeaponDetailsSection.mod.charge")),
 		FLAIL (Messages.getString("WeaponDetailsSection.mod.flail")),
 		NOREPEL (Messages.getString("WeaponDetailsSection.mod.norepel")),
@@ -137,7 +142,9 @@ public class WeaponDetailsPage extends AbstractDetailsPage {
 		SKIP (Messages.getString("WeaponDetailsSection.mod.skip")),
 		SKIP2 (Messages.getString("WeaponDetailsSection.mod.skip2")),
 		FLYSPR (Messages.getString("WeaponDetailsSection.mod.flyspr"), "100", "1"),
-		EXPLSPR (Messages.getString("WeaponDetailsSection.mod.explspr"), "10001");
+		EXPLSPR (Messages.getString("WeaponDetailsSection.mod.explspr"), "10001"),
+		UWOK (Messages.getString("WeaponDetailsSection.mod.uwok")),
+		NOUW (Messages.getString("WeaponDetailsSection.mod.nouw"));
 
 		private String label;
 		private String defaultValue;
@@ -160,6 +167,12 @@ public class WeaponDetailsPage extends AbstractDetailsPage {
 	}
 	
 	interface InstFields {}
+	
+	class Inst1Fields implements InstFields {
+		private Button check;
+		private Text value;
+		private Label defaultLabel;
+	}
 	
 	class Inst2Fields implements InstFields {
 		private Button check;
@@ -194,6 +207,7 @@ public class WeaponDetailsPage extends AbstractDetailsPage {
 		instMap.put(Inst.RCOST, new Inst2Fields());
 		instMap.put(Inst.TWOHANDED, new Inst4Fields());
 		instMap.put(Inst.SOUND, new Inst2Fields());
+		instMap.put(Inst.SAMPLE, new Inst1Fields());
 		instMap.put(Inst.SLASH, new Inst4Fields());
 		instMap.put(Inst.PIERCE, new Inst4Fields());
 		instMap.put(Inst.BLUNT, new Inst4Fields());
@@ -223,7 +237,6 @@ public class WeaponDetailsPage extends AbstractDetailsPage {
 		instMap.put(Inst.UNDEADONLY, new Inst4Fields());
 		instMap.put(Inst.DT_CAP, new Inst4Fields());
 		instMap.put(Inst.DT_DEMON, new Inst4Fields());
-		instMap.put(Inst.DT_DEMONONLY, new Inst4Fields());
 		instMap.put(Inst.DT_HOLY, new Inst4Fields());
 		instMap.put(Inst.DT_MAGIC, new Inst4Fields());
 		instMap.put(Inst.DT_SMALL, new Inst4Fields());
@@ -234,6 +247,9 @@ public class WeaponDetailsPage extends AbstractDetailsPage {
 		instMap.put(Inst.BONUS, new Inst4Fields());
 		instMap.put(Inst.SECONDARYEFFECT, new Inst2Fields());
 		instMap.put(Inst.SECONDARYEFFECTALWAYS, new Inst2Fields());		
+		instMap.put(Inst.IRONWEAPON, new Inst4Fields());		
+		instMap.put(Inst.WOODWENEAPON, new Inst4Fields());		
+		instMap.put(Inst.ICEWEAPON, new Inst4Fields());		
 		instMap.put(Inst.CHARGE, new Inst4Fields());
 		instMap.put(Inst.FLAIL, new Inst4Fields());
 		instMap.put(Inst.NOREPEL, new Inst4Fields());
@@ -249,9 +265,13 @@ public class WeaponDetailsPage extends AbstractDetailsPage {
 		instMap.put(Inst.DT_WEAKNESS, new Inst4Fields());
 		instMap.put(Inst.DT_DRAIN, new Inst4Fields());
 		instMap.put(Inst.DT_WEAPONDRAIN, new Inst4Fields());
+		instMap.put(Inst.DT_AFF, new Inst4Fields());
 		instMap.put(Inst.SACREDONLY, new Inst4Fields());
 		instMap.put(Inst.DT_SIZESTUN, new Inst4Fields());
 		instMap.put(Inst.DEMONUNDEAD, new Inst4Fields());
+		instMap.put(Inst.DEMONONLY, new Inst4Fields());
+		instMap.put(Inst.UWOK, new Inst4Fields());
+		instMap.put(Inst.NOUW, new Inst4Fields());
 	}
 	
 	/* (non-Javadoc)
@@ -289,7 +309,7 @@ public class WeaponDetailsPage extends AbstractDetailsPage {
 		nameComp.setLayoutData(gd);
 		
 		nameCheck = toolkit.createButton(nameComp, Messages.getString("WeaponDetailsSection.mod.name"), SWT.CHECK); //$NON-NLS-1$
-		nameCheck.setToolTipText(HelpTextHelper.getText(HelpTextHelper.WEAPON_CATEGORY, "name"));
+		setToolTip(nameCheck, HelpTextHelper.getText(HelpTextHelper.WEAPON_CATEGORY, "name"));
 
 		name = toolkit.createText(nameComp, null, SWT.SINGLE | SWT.BORDER); //$NON-NLS-1$
 		name.addFocusListener(new FocusAdapter() {
@@ -399,7 +419,9 @@ public class WeaponDetailsPage extends AbstractDetailsPage {
 				public void widgetSelected(SelectionEvent e) {
 					if (check.getSelection()) {
 						check.setFont(boldFont);
-						if (field instanceof Inst2Fields) {
+						if (field instanceof Inst1Fields) {
+							addInst1(key, doc, key.defaultValue);
+						} else if (field instanceof Inst2Fields) {
 							addInst2(key, doc, key.defaultValue);
 						} else if (field instanceof Inst3Fields) {
 							addInst3(key, doc, key.defaultValue, key.defaultValue2);
@@ -414,16 +436,36 @@ public class WeaponDetailsPage extends AbstractDetailsPage {
 
 			});
 			if (key.label.equals("2ndFx")) {
-				check.setToolTipText(HelpTextHelper.getText(HelpTextHelper.WEAPON_CATEGORY, "secondaryeffect"));
+				setToolTip(check, HelpTextHelper.getText(HelpTextHelper.WEAPON_CATEGORY, "secondaryeffect"));
 			} else if (key.label.equals("2ndFxAll")) {
-				check.setToolTipText(HelpTextHelper.getText(HelpTextHelper.WEAPON_CATEGORY, "secondaryeffectalways"));
+				setToolTip(check, HelpTextHelper.getText(HelpTextHelper.WEAPON_CATEGORY, "secondaryeffectalways"));
 			} else {
-				check.setToolTipText(HelpTextHelper.getText(HelpTextHelper.WEAPON_CATEGORY, key.label));
+				setToolTip(check, HelpTextHelper.getText(HelpTextHelper.WEAPON_CATEGORY, key.label));
 			}
 
 			Text myValue1 = null;
 			Text myValue2 = null;
-			if (field instanceof Inst2Fields ||	field instanceof Inst3Fields) {
+			if (field instanceof Inst1Fields) {
+				final Text value = toolkit.createText(isRight?rightColumn:leftColumn, "", SWT.SINGLE | SWT.BORDER); //$NON-NLS-1$
+				myValue1 = value;
+				check.addSelectionListener(new SelectionAdapter() {
+					@Override
+					public void widgetSelected(SelectionEvent e) {
+						if (check.getSelection()) {
+							value.setEnabled(true);
+							value.setText(key.defaultValue);
+						} else {
+							value.setEnabled(false);
+							value.setText("");
+						}
+					}
+				});
+				value.setEnabled(false);
+				gd = new GridData(SWT.FILL, SWT.BEGINNING, false, false);
+				gd.widthHint = DEFAULT_VALUE_WIDTH;
+				value.setLayoutData(gd);
+				
+			} else if (field instanceof Inst2Fields ||	field instanceof Inst3Fields) {
 				final Text value = toolkit.createText(isRight?rightColumn:leftColumn, "", SWT.SINGLE | SWT.BORDER); //$NON-NLS-1$
 				myValue1 = value;
 				value.addVerifyListener(new VerifyListener() {
@@ -457,7 +499,7 @@ public class WeaponDetailsPage extends AbstractDetailsPage {
 				
 			Label defaultLabel1 = toolkit.createLabel(isRight?rightColumn:leftColumn, "");
 			defaultLabel1.setEnabled(false);
-			if (field instanceof Inst2Fields) {
+			if (field instanceof Inst1Fields || field instanceof Inst2Fields) {
 				gd = new GridData(SWT.FILL, SWT.CENTER, false, false);
 				gd.horizontalSpan = 3;
 				defaultLabel1.setLayoutData(gd);
@@ -510,7 +552,9 @@ public class WeaponDetailsPage extends AbstractDetailsPage {
 				myValue1.addFocusListener(new FocusAdapter() {
 					@Override
 					public void focusLost(FocusEvent e) {
-						if (field instanceof Inst2Fields) {
+						if (field instanceof Inst1Fields) {
+							setInst1(key, doc, finalValue1.getText());
+						} else if (field instanceof Inst2Fields) {
 							setInst2(key, doc, finalValue1.getText());
 						} else if (field instanceof Inst3Fields) {
 							setInst3(key, doc, finalValue1.getText(), finalValue2.getText());
@@ -521,7 +565,9 @@ public class WeaponDetailsPage extends AbstractDetailsPage {
 					@Override
 					public void keyPressed(KeyEvent e) {
 						if (e.character == '\r') {
-							if (field instanceof Inst2Fields) {
+							if (field instanceof Inst1Fields) {
+								setInst1(key, doc, finalValue1.getText());
+							} else if (field instanceof Inst2Fields) {
 								setInst2(key, doc, finalValue1.getText());
 							} else if (field instanceof Inst3Fields) {
 								setInst3(key, doc, finalValue1.getText(), finalValue2.getText());
@@ -547,7 +593,11 @@ public class WeaponDetailsPage extends AbstractDetailsPage {
 				});
 			}
 
-			if (field instanceof Inst2Fields) {
+			if (field instanceof Inst1Fields) {
+				((Inst1Fields)field).check = check;
+				((Inst1Fields)field).value = myValue1;
+				((Inst1Fields)field).defaultLabel = defaultLabel1;
+			} else if (field instanceof Inst2Fields) {
 				((Inst2Fields)field).check = check;
 				((Inst2Fields)field).value = myValue1;
 				((Inst2Fields)field).defaultLabel = defaultLabel1;
@@ -701,6 +751,12 @@ public class WeaponDetailsPage extends AbstractDetailsPage {
 						Inst.SOUND.defaultValue = weaponDB.sound.toString();
 					}
 					break;
+				case SAMPLE:
+					if (weaponDB.sample != null) {
+						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.sample));
+						Inst.SAMPLE.defaultValue = weaponDB.sample.toString();
+					}
+					break;
 				case AOE:
 					if (weaponDB.aoe != null) {
 						((Inst2Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.aoe));
@@ -733,324 +789,540 @@ public class WeaponDetailsPage extends AbstractDetailsPage {
 					if (weaponDB.twohanded != null) {
 						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.twohanded));
 						Inst.TWOHANDED.defaultValue = weaponDB.twohanded.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.TWOHANDED.defaultValue = "";
 					}
 					break;
 				case ARMORPIERCING:
 					if (weaponDB.armorpiercing != null) {
 						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.armorpiercing));
 						Inst.ARMORPIERCING.defaultValue = weaponDB.armorpiercing.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.ARMORPIERCING.defaultValue = "";
 					}
 					break;
 				case ARMORNEGATING:
 					if (weaponDB.armornegating != null) {
 						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.armornegating));
 						Inst.ARMORNEGATING.defaultValue = weaponDB.armornegating.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.ARMORNEGATING.defaultValue = "";
 					}
 					break;
 				case MAGIC:
 					if (weaponDB.magic != null) {
 						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.magic));
 						Inst.MAGIC.defaultValue = weaponDB.magic.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.MAGIC.defaultValue = "";
 					}
 					break;
 				case DT_NORMAL:
 					if (weaponDB.dt_normal != null) {
 						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.dt_normal));
 						Inst.DT_NORMAL.defaultValue = weaponDB.dt_normal.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.DT_NORMAL.defaultValue = "";
 					}
 					break;
 				case DT_STUN:
 					if (weaponDB.dt_stun != null) {
 						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.dt_stun));
 						Inst.DT_STUN.defaultValue = weaponDB.dt_stun.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.DT_STUN.defaultValue = "";
 					}
 					break;
 				case DT_PARALYZE:
 					if (weaponDB.dt_paralyze != null) {
 						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.dt_paralyze));
 						Inst.DT_PARALYZE.defaultValue = weaponDB.dt_paralyze.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.DT_PARALYZE.defaultValue = "";
 					}
 					break;
 				case DT_POISON:
 					if (weaponDB.dt_poison != null) {
 						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.dt_poison));
 						Inst.DT_POISON.defaultValue = weaponDB.dt_poison.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.DT_POISON.defaultValue = "";
 					}
 					break;
 				case DT_CAP:
 					if (weaponDB.dt_cap != null) {
 						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.dt_cap));
 						Inst.DT_CAP.defaultValue = weaponDB.dt_cap.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.DT_CAP.defaultValue = "";
 					}
 					break;
 				case DT_DEMON:
 					if (weaponDB.dt_demon != null) {
 						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.dt_demon));
 						Inst.DT_DEMON.defaultValue = weaponDB.dt_demon.toString();
-					}
-					break;
-				case DT_DEMONONLY:
-					if (weaponDB.dt_demononly != null) {
-						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.dt_demononly));
-						Inst.DT_DEMONONLY.defaultValue = weaponDB.dt_demononly.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.DT_DEMON.defaultValue = "";
 					}
 					break;
 				case DT_HOLY:
 					if (weaponDB.dt_holy != null) {
 						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.dt_holy));
 						Inst.DT_HOLY.defaultValue = weaponDB.dt_holy.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.DT_HOLY.defaultValue = "";
 					}
 					break;
 				case DT_MAGIC:
 					if (weaponDB.dt_magic != null) {
 						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.dt_magic));
 						Inst.DT_MAGIC.defaultValue = weaponDB.dt_magic.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.DT_MAGIC.defaultValue = "";
 					}
 					break;
 				case DT_SMALL:
 					if (weaponDB.dt_small != null) {
 						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.dt_small));
 						Inst.DT_SMALL.defaultValue = weaponDB.dt_small.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.DT_SMALL.defaultValue = "";
 					}
 					break;
 				case DT_LARGE:
 					if (weaponDB.dt_large != null) {
 						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.dt_large));
 						Inst.DT_LARGE.defaultValue = weaponDB.dt_large.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.DT_LARGE.defaultValue = "";
 					}
 					break;
 				case DT_CONSTRUCTONLY:
 					if (weaponDB.dt_constructonly != null) {
 						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.dt_constructonly));
 						Inst.DT_CONSTRUCTONLY.defaultValue = weaponDB.dt_constructonly.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.DT_CONSTRUCTONLY.defaultValue = "";
 					}
 					break;
 				case DT_RAISE:
 					if (weaponDB.dt_raise != null) {
 						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.dt_raise));
 						Inst.DT_RAISE.defaultValue = weaponDB.dt_raise.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.DT_RAISE.defaultValue = "";
 					}
 					break;
 				case MIND:
 					if (weaponDB.mind != null) {
 						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.mind));
 						Inst.MIND.defaultValue = weaponDB.mind.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.MIND.defaultValue = "";
 					}
 					break;
 				case COLD:
 					if (weaponDB.cold != null) {
 						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.cold));
 						Inst.COLD.defaultValue = weaponDB.cold.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.COLD.defaultValue = "";
 					}
 					break;
 				case FIRE:
 					if (weaponDB.fire != null) {
 						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.fire));
 						Inst.FIRE.defaultValue = weaponDB.fire.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.FIRE.defaultValue = "";
 					}
 					break;
 				case SHOCK:
 					if (weaponDB.shock != null) {
 						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.shock));
 						Inst.SHOCK.defaultValue = weaponDB.shock.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.SHOCK.defaultValue = "";
 					}
 					break;
 				case POISON:
 					if (weaponDB.poison != null) {
 						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.poison));
 						Inst.POISON.defaultValue = weaponDB.poison.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.POISON.defaultValue = "";
 					}
 					break;
 				case BONUS:
 					if (weaponDB.bonus != null) {
 						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.bonus));
 						Inst.BONUS.defaultValue = weaponDB.bonus.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.BONUS.defaultValue = "";
 					}
 					break;
 				case CHARGE:
 					if (weaponDB.charge != null) {
 						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.charge));
 						Inst.CHARGE.defaultValue = weaponDB.charge.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.CHARGE.defaultValue = "";
 					}
 					break;
 				case FLAIL:
 					if (weaponDB.flail != null) {
 						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.flail));
 						Inst.FLAIL.defaultValue = weaponDB.flail.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.FLAIL.defaultValue = "";
 					}
 					break;
 				case NOSTR:
 					if (weaponDB.nostr != null) {
 						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.nostr));
 						Inst.NOSTR.defaultValue = weaponDB.nostr.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.NOSTR.defaultValue = "";
 					}
 					break;
 				case MRNEGATES:
 					if (weaponDB.mrnegates != null) {
 						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.mrnegates));
 						Inst.MRNEGATES.defaultValue = weaponDB.mrnegates.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.MRNEGATES.defaultValue = "";
 					}
 					break;
 				case MRNEGATESEASILY:
 					if (weaponDB.mrnegateseasily != null) {
 						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.mrnegateseasily));
 						Inst.MRNEGATESEASILY.defaultValue = weaponDB.mrnegateseasily.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.MRNEGATESEASILY.defaultValue = "";
 					}
 					break;	
 				case SLASH:
 					if (weaponDB.slash != null) {
 						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.slash));
 						Inst.SLASH.defaultValue = weaponDB.slash.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.SLASH.defaultValue = "";
 					}
 					break;
 				case PIERCE:
 					if (weaponDB.pierce != null) {
 						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.pierce));
 						Inst.PIERCE.defaultValue = weaponDB.pierce.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.PIERCE.defaultValue = "";
 					}
 					break;
 				case BLUNT:
 					if (weaponDB.blunt != null) {
 						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.blunt));
 						Inst.BLUNT.defaultValue = weaponDB.blunt.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.BLUNT.defaultValue = "";
 					}
 					break;
 				case ACID:
 					if (weaponDB.acid != null) {
 						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.acid));
 						Inst.ACID.defaultValue = weaponDB.acid.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.ACID.defaultValue = "";
 					}
 					break;
 				case HARDMRNEG:
 					if (weaponDB.hardmrneg != null) {
 						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.hardmrneg));
 						Inst.HARDMRNEG.defaultValue = weaponDB.hardmrneg.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.HARDMRNEG.defaultValue = "";
 					}
 					break;
 				case SIZERESIST:
 					if (weaponDB.sizeresist != null) {
 						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.sizeresist));
 						Inst.SIZERESIST.defaultValue = weaponDB.sizeresist.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.SIZERESIST.defaultValue = "";
 					}
 					break;
 				case UNDEADIMMUNE:
 					if (weaponDB.undeadimmune != null) {
 						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.undeadimmune));
 						Inst.UNDEADIMMUNE.defaultValue = weaponDB.undeadimmune.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.UNDEADIMMUNE.defaultValue = "";
 					}
 					break;
 				case INANIMATEIMMUNE:
 					if (weaponDB.inanimateimmune != null) {
 						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.inanimateimmune));
 						Inst.INANIMATEIMMUNE.defaultValue = weaponDB.inanimateimmune.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.INANIMATEIMMUNE.defaultValue = "";
 					}
 					break;
 				case FLYINGIMMUNE:
 					if (weaponDB.flyingimmune != null) {
 						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.flyingimmune));
 						Inst.FLYINGIMMUNE.defaultValue = weaponDB.flyingimmune.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.FLYINGIMMUNE.defaultValue = "";
 					}
 					break;
 				case ENEMYIMMUNE:
 					if (weaponDB.enemyimmune != null) {
 						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.enemyimmune));
 						Inst.ENEMYIMMUNE.defaultValue = weaponDB.enemyimmune.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.ENEMYIMMUNE.defaultValue = "";
 					}
 					break;
 				case FRIENDLYIMMUNE:
 					if (weaponDB.friendlyimmune != null) {
 						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.friendlyimmune));
 						Inst.FRIENDLYIMMUNE.defaultValue = weaponDB.friendlyimmune.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.FRIENDLYIMMUNE.defaultValue = "";
 					}
 					break;
 				case UNDEADONLY:
 					if (weaponDB.undeadonly != null) {
 						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.undeadonly));
 						Inst.UNDEADONLY.defaultValue = weaponDB.undeadonly.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.UNDEADONLY.defaultValue = "";
 					}
 					break;
 				case NOREPEL:
 					if (weaponDB.norepel != null) {
 						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.norepel));
 						Inst.NOREPEL.defaultValue = weaponDB.norepel.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.NOREPEL.defaultValue = "";
 					}
 					break;
 				case UNREPEL:
 					if (weaponDB.unrepel != null) {
 						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.unrepel));
 						Inst.UNREPEL.defaultValue = weaponDB.unrepel.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.UNREPEL.defaultValue = "";
 					}
 					break;
 				case BEAM:
 					if (weaponDB.beam != null) {
 						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.beam));
 						Inst.BEAM.defaultValue = weaponDB.beam.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.BEAM.defaultValue = "";
 					}
 					break;
 				case RANGE050:
 					if (weaponDB.range050 != null) {
 						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.range050));
 						Inst.RANGE050.defaultValue = weaponDB.range050.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.RANGE050.defaultValue = "";
 					}
 					break;
 				case RANGE0:
 					if (weaponDB.range0 != null) {
 						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.range0));
 						Inst.RANGE0.defaultValue = weaponDB.range0.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.RANGE0.defaultValue = "";
 					}
 					break;
 				case MELEE50:
 					if (weaponDB.melee50 != null) {
 						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.melee50));
 						Inst.MELEE50.defaultValue = weaponDB.melee50.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.MELEE50.defaultValue = "";
 					}
 					break;
 				case SKIP:
 					if (weaponDB.skip != null) {
 						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.skip));
 						Inst.SKIP.defaultValue = weaponDB.skip.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.SKIP.defaultValue = "";
 					}
 					break;
 				case SKIP2:
 					if (weaponDB.skip2 != null) {
 						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.skip2));
 						Inst.SKIP2.defaultValue = weaponDB.skip2.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.SKIP2.defaultValue = "";
 					}
 					break;
 				case DT_WEAKNESS:
 					if (weaponDB.dt_weakness != null) {
 						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.dt_weakness));
 						Inst.DT_WEAKNESS.defaultValue = weaponDB.dt_weakness.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.DT_WEAKNESS.defaultValue = "";
 					}
 					break;
 				case DT_DRAIN:
 					if (weaponDB.dt_drain != null) {
 						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.dt_drain));
 						Inst.DT_DRAIN.defaultValue = weaponDB.dt_drain.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.DT_DRAIN.defaultValue = "";
 					}
 					break;
 				case DT_WEAPONDRAIN:
 					if (weaponDB.dt_weapondrain != null) {
 						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.dt_weapondrain));
 						Inst.DT_WEAPONDRAIN.defaultValue = weaponDB.dt_weapondrain.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.DT_WEAPONDRAIN.defaultValue = "";
+					}
+					break;
+				case DT_AFF:
+					if (weaponDB.dt_aff != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.dt_aff));
+						Inst.DT_AFF.defaultValue = weaponDB.dt_aff.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.DT_AFF.defaultValue = "";
 					}
 					break;
 				case SACREDONLY:
 					if (weaponDB.sacredonly != null) {
 						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.sacredonly));
 						Inst.SACREDONLY.defaultValue = weaponDB.sacredonly.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.SACREDONLY.defaultValue = "";
 					}
 					break;
 				case DT_SIZESTUN:
 					if (weaponDB.dt_sizestun != null) {
 						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.dt_sizestun));
 						Inst.DT_SIZESTUN.defaultValue = weaponDB.dt_sizestun.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.DT_SIZESTUN.defaultValue = "";
 					}
 					break;
 				case DEMONUNDEAD:
 					if (weaponDB.demonundead != null) {
 						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.demonundead));
 						Inst.DEMONUNDEAD.defaultValue = weaponDB.demonundead.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.DEMONUNDEAD.defaultValue = "";
+					}
+					break;
+				case DEMONONLY:
+					if (weaponDB.demononly != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.demononly));
+						Inst.DEMONONLY.defaultValue = weaponDB.demononly.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.DEMONONLY.defaultValue = "";
+					}
+					break;
+				case IRONWEAPON:
+					if (weaponDB.ironweapon != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.demononly));
+						Inst.IRONWEAPON.defaultValue = weaponDB.demononly.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.IRONWEAPON.defaultValue = "";
+					}
+					break;
+				case WOODWENEAPON:
+					if (weaponDB.woodenweapon != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.woodenweapon));
+						Inst.WOODWENEAPON.defaultValue = weaponDB.woodenweapon.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.WOODWENEAPON.defaultValue = "";
+					}
+					break;
+				case ICEWEAPON:
+					if (weaponDB.iceweapon != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.iceweapon));
+						Inst.ICEWEAPON.defaultValue = weaponDB.iceweapon.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.ICEWEAPON.defaultValue = "";
+					}
+					break;
+				case UWOK:
+					if (weaponDB.uwok != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.uwok));
+						Inst.UWOK.defaultValue = weaponDB.uwok.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.UWOK.defaultValue = "";
+					}
+					break;
+				case NOUW:
+					if (weaponDB.nouw != null) {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText(Messages.format("DetailsPage.DefaultLabel.fmt", weaponDB.nouw));
+						Inst.NOUW.defaultValue = weaponDB.nouw.toString();
+					} else {
+						((Inst4Fields)fields.getValue()).defaultLabel.setText("");
+						Inst.NOUW.defaultValue = "";
 					}
 					break;
 				}
@@ -1116,6 +1388,11 @@ public class WeaponDetailsPage extends AbstractDetailsPage {
 				switch (inst2) {
 				case NAME:
 					if (((WeaponInst1)mod).isName()){
+						return ((WeaponInst1)mod).getValue();
+					}
+					break;
+				case SAMPLE:
+					if (((WeaponInst1)mod).isSample()){
 						return ((WeaponInst1)mod).getValue();
 					}
 					break;
@@ -1269,11 +1546,6 @@ public class WeaponDetailsPage extends AbstractDetailsPage {
 					break;
 				case DT_DEMON:
 					if (((WeaponInst4)mod).isDt_demon()) {
-						return Boolean.TRUE;
-					}
-					break;
-				case DT_DEMONONLY:
-					if (((WeaponInst4)mod).isDt_demononly()) {
 						return Boolean.TRUE;
 					}
 					break;
@@ -1467,6 +1739,11 @@ public class WeaponDetailsPage extends AbstractDetailsPage {
 						return Boolean.TRUE;
 					}
 					break;
+				case DT_AFF:
+					if (((WeaponInst4)mod).isDt_aff()) {
+						return Boolean.TRUE;
+					}
+					break;
 				case SACREDONLY:
 					if (((WeaponInst4)mod).isSacredonly()) {
 						return Boolean.TRUE;
@@ -1482,10 +1759,63 @@ public class WeaponDetailsPage extends AbstractDetailsPage {
 						return Boolean.TRUE;
 					}
 					break;
+				case DEMONONLY:
+					if (((WeaponInst4)mod).isDemononly()) {
+						return Boolean.TRUE;
+					}
+					break;
+				case IRONWEAPON:
+					if (((WeaponInst4)mod).isIronweapon()) {
+						return Boolean.TRUE;
+					}
+					break;
+				case WOODWENEAPON:
+					if (((WeaponInst4)mod).isWoodenweapon()) {
+						return Boolean.TRUE;
+					}
+					break;
+				case ICEWEAPON:
+					if (((WeaponInst4)mod).isIceweapon()) {
+						return Boolean.TRUE;
+					}
+					break;
+				case UWOK:
+					if (((WeaponInst4)mod).isUwok()) {
+						return Boolean.TRUE;
+					}
+					break;
+				case NOUW:
+					if (((WeaponInst4)mod).isNouw()) {
+						return Boolean.TRUE;
+					}
+					break;
 				}
 			}
 		}
 		return Boolean.FALSE;
+	}
+	
+	private void setInst1(final Inst inst2, final XtextEditor editor, final String newName) 
+	{
+		final IXtextDocument myDocument = editor.getDocument();
+		myDocument.modify(new IUnitOfWork.Void<XtextResource>() {
+			@Override
+			public void process(XtextResource resource) throws Exception {
+				Weapon weaponToEdit = (Weapon)input;
+				EList<WeaponMods> mods = weaponToEdit.getMods();
+				for (WeaponMods mod : mods) {
+					if (mod instanceof WeaponInst1) {
+						switch (inst2) {
+						case SAMPLE:
+							if (((WeaponInst1)mod).isSample()) {
+								((WeaponInst1)mod).setValue(newName);
+							}
+							break;
+						}
+					}
+				}
+			}
+		});
 	}
 	
 	private void setInst2(final Inst inst2, final XtextEditor editor, final String newName) 
@@ -1637,6 +1967,9 @@ public class WeaponDetailsPage extends AbstractDetailsPage {
 						case NAME:
 							type.setName(true);
 							break;
+						case SAMPLE:
+							type.setSample(true);
+							break;
 						}
 						type.setValue(newName);
 						mods.add(type);
@@ -1786,9 +2119,6 @@ public class WeaponDetailsPage extends AbstractDetailsPage {
 						case DT_DEMON:
 							type.setDt_demon(true);
 							break;
-						case DT_DEMONONLY:
-							type.setDt_demononly(true);
-							break;
 						case DT_HOLY:
 							type.setDt_holy(true);
 							break;
@@ -1903,6 +2233,9 @@ public class WeaponDetailsPage extends AbstractDetailsPage {
 						case DT_WEAPONDRAIN:
 							type.setDt_weapondrain(true);
 							break;
+						case DT_AFF:
+							type.setDt_aff(true);
+							break;
 						case SACREDONLY:
 							type.setSacredonly(true);
 							break;
@@ -1911,6 +2244,24 @@ public class WeaponDetailsPage extends AbstractDetailsPage {
 							break;
 						case DEMONUNDEAD:
 							type.setDemonundead(true);
+							break;
+						case DEMONONLY:
+							type.setDemononly(true);
+							break;
+						case IRONWEAPON:
+							type.setIronweapon(true);
+							break;
+						case WOODWENEAPON:
+							type.setWoodenweapon(true);
+							break;
+						case ICEWEAPON:
+							type.setIceweapon(true);
+							break;
+						case UWOK:
+							type.setUwok(true);
+							break;
+						case NOUW:
+							type.setNouw(true);
 							break;
 						}
 						mods.add(type);
@@ -1937,6 +2288,11 @@ public class WeaponDetailsPage extends AbstractDetailsPage {
 								switch (inst2) {
 								case NAME:
 									if (((WeaponInst1)mod).isName()) {
+										modToRemove = mod;
+									}
+									break;
+								case SAMPLE:
+									if (((WeaponInst1)mod).isSample()) {
 										modToRemove = mod;
 									}
 									break;
@@ -2069,11 +2425,6 @@ public class WeaponDetailsPage extends AbstractDetailsPage {
 									break;
 								case DT_DEMON:
 									if (((WeaponInst4)mod).isDt_demon()) {
-										modToRemove = mod;
-									}
-									break;
-								case DT_DEMONONLY:
-									if (((WeaponInst4)mod).isDt_demononly()) {
 										modToRemove = mod;
 									}
 									break;
@@ -2267,6 +2618,11 @@ public class WeaponDetailsPage extends AbstractDetailsPage {
 										modToRemove = mod;
 									}
 									break;
+								case DT_AFF:
+									if (((WeaponInst4)mod).isDt_aff()) {
+										modToRemove = mod;
+									}
+									break;
 								case SACREDONLY:
 									if (((WeaponInst4)mod).isSacredonly()) {
 										modToRemove = mod;
@@ -2279,6 +2635,36 @@ public class WeaponDetailsPage extends AbstractDetailsPage {
 									break;
 								case DEMONUNDEAD:
 									if (((WeaponInst4)mod).isDemonundead()) {
+										modToRemove = mod;
+									}
+									break;
+								case DEMONONLY:
+									if (((WeaponInst4)mod).isDemononly()) {
+										modToRemove = mod;
+									}
+									break;
+								case IRONWEAPON:
+									if (((WeaponInst4)mod).isIronweapon()) {
+										modToRemove = mod;
+									}
+									break;
+								case WOODWENEAPON:
+									if (((WeaponInst4)mod).isWoodenweapon()) {
+										modToRemove = mod;
+									}
+									break;
+								case ICEWEAPON:
+									if (((WeaponInst4)mod).isIceweapon()) {
+										modToRemove = mod;
+									}
+									break;
+								case UWOK:
+									if (((WeaponInst4)mod).isUwok()) {
+										modToRemove = mod;
+									}
+									break;
+								case NOUW:
+									if (((WeaponInst4)mod).isNouw()) {
 										modToRemove = mod;
 									}
 									break;

@@ -660,7 +660,7 @@ public class ItemDetailsPage extends AbstractDetailsPage {
 		nameComp.setLayoutData(gd);
 		
 		nameCheck = toolkit.createButton(nameComp, Messages.getString("ItemDetailsSection.mod.name"), SWT.CHECK); //$NON-NLS-1$
-		nameCheck.setToolTipText(HelpTextHelper.getText(HelpTextHelper.ITEM_CATEGORY, "name"));
+		setToolTip(nameCheck, HelpTextHelper.getText(HelpTextHelper.ITEM_CATEGORY, "name"));
 
 		name = toolkit.createText(nameComp, null, SWT.SINGLE | SWT.BORDER); //$NON-NLS-1$
 		name.addFocusListener(new FocusAdapter() {
@@ -704,7 +704,7 @@ public class ItemDetailsPage extends AbstractDetailsPage {
 		});
 
 		descrCheck = toolkit.createButton(nameComp, Messages.getString("ItemDetailsSection.mod.descr"), SWT.CHECK);
-		descrCheck.setToolTipText(HelpTextHelper.getText(HelpTextHelper.ITEM_CATEGORY, "descr"));
+		setToolTip(descrCheck, HelpTextHelper.getText(HelpTextHelper.ITEM_CATEGORY, "descr"));
 
 		descr = toolkit.createText(nameComp, null, SWT.MULTI | SWT.BORDER | SWT.WRAP); //$NON-NLS-1$
 		descr.addFocusListener(new FocusAdapter() {
@@ -895,7 +895,7 @@ public class ItemDetailsPage extends AbstractDetailsPage {
 			final InstFields field = fields.getValue();
 			final Button check = new DynamicButton(isRight?rightColumn:leftColumn, SWT.CHECK);
 			check.setText(key.label);
-			check.setToolTipText(HelpTextHelper.getText(HelpTextHelper.ITEM_CATEGORY, key.label));
+			setToolTip(check, HelpTextHelper.getText(HelpTextHelper.ITEM_CATEGORY, key.label));
 			check.addSelectionListener(new SelectionAdapter() {
 				@Override
 				public void widgetSelected(SelectionEvent e) {
