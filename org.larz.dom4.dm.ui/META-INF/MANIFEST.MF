@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: org.larz.dom4.dm.ui
 Bundle-Vendor: Larz
-Bundle-Version: 1.0
+Bundle-Version: 1.1
 Bundle-SymbolicName: org.larz.dom4.dm.ui;singleton:=true
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
