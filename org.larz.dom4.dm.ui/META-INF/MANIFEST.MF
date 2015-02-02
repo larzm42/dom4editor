@@ -21,6 +21,7 @@ Require-Bundle: org.larz.dom4.dm,
  org.eclipse.xtext.common.types.ui,
  org.eclipse.ui.editors,
  org.eclipse.ui,
- org.antlr.runtime
+ org.antlr.runtime,
+ org.eclipse.xtext.xbase.lib
 Import-Package: org.eclipse.xtext.xbase.lib,
  org.apache.log4j

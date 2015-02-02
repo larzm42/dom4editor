@@ -7,10 +7,10 @@
       <image path="/org.larz.dom4/icons/alt_about.png"/>
       <text>
          This is the Dominions 4 Mod File Editor.
-Project home: http://dom4editor.googlecode.com/
+Project home: http://https://github.com/larzm42/dom4editor/
 License: http://www.gnu.org/licenses/gpl.txt
 
-Release 1.1 - January 31, 2015.
+Release 1.1 - February 1, 2015.
       </text>
    </aboutInfo>
 
@@ -18,8 +18,10 @@ Release 1.1 - January 31, 2015.
    </configIni>
 
    <launcherArgs>
-      <vmArgs>-Dosgi.requiredJavaVersion=1.6 -Xms40m -Xmx512m</vmArgs>
-      <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts</vmArgsMac>
+      <vmArgs>-Xms40m -Xmx512m
+      </vmArgs>
+      <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts
+      </vmArgsMac>
    </launcherArgs>
 
    <windowImages i16="/org.larz.dom4/icons/alt_window_16.png" i32="/org.larz.dom4/icons/alt_window_32.png" i48="/org.larz.dom4/icons/alt_window_48.png" i64="/org.larz.dom4/icons/alt_window_64.png" i128="/org.larz.dom4/icons/alt_window_128.png"/>
@@ -55,14 +57,13 @@ Release 1.1 - January 31, 2015.
    <plugins>
       <plugin id="com.google.guava"/>
       <plugin id="com.google.inject"/>
-      <plugin id="com.google.inject.assistedinject" fragment="true"/>
-      <plugin id="com.google.inject.multibindings" fragment="true"/>
       <plugin id="com.ibm.icu"/>
       <plugin id="javax.annotation"/>
       <plugin id="javax.inject"/>
       <plugin id="javax.xml"/>
       <plugin id="jp.sourceforge.pdt_tools.HideQuickAccess"/>
       <plugin id="net.jeeeyul.eclipse.themes"/>
+      <plugin id="net.jeeeyul.swtend"/>
       <plugin id="org.antlr.runtime"/>
       <plugin id="org.apache.batik.css"/>
       <plugin id="org.apache.batik.util"/>
@@ -79,10 +80,11 @@ Release 1.1 - January 31, 2015.
       <plugin id="org.eclipse.core.expressions"/>
       <plugin id="org.eclipse.core.filebuffers"/>
       <plugin id="org.eclipse.core.filesystem"/>
-      <plugin id="org.eclipse.core.filesystem.win32.x86" fragment="true"/>
+      <plugin id="org.eclipse.core.filesystem.java7" fragment="true"/>
+      <plugin id="org.eclipse.core.filesystem.win32.x86_64" fragment="true"/>
       <plugin id="org.eclipse.core.jobs"/>
       <plugin id="org.eclipse.core.resources"/>
-      <plugin id="org.eclipse.core.resources.win32.x86" fragment="true"/>
+      <plugin id="org.eclipse.core.resources.win32.x86_64" fragment="true"/>
       <plugin id="org.eclipse.core.runtime"/>
       <plugin id="org.eclipse.core.runtime.compatibility.registry" fragment="true"/>
       <plugin id="org.eclipse.core.variables"/>
@@ -126,7 +128,7 @@ Release 1.1 - January 31, 2015.
       <plugin id="org.eclipse.equinox.preferences"/>
       <plugin id="org.eclipse.equinox.registry"/>
       <plugin id="org.eclipse.equinox.security"/>
-      <plugin id="org.eclipse.equinox.security.win32.x86" fragment="true"/>
+      <plugin id="org.eclipse.equinox.security.win32.x86_64" fragment="true"/>
       <plugin id="org.eclipse.equinox.util"/>
       <plugin id="org.eclipse.help"/>
       <plugin id="org.eclipse.jdt.compiler.apt" fragment="true"/>
@@ -142,11 +144,12 @@ Release 1.1 - January 31, 2015.
       <plugin id="org.eclipse.ltk.core.refactoring"/>
       <plugin id="org.eclipse.ltk.ui.refactoring"/>
       <plugin id="org.eclipse.osgi"/>
+      <plugin id="org.eclipse.osgi.compatibility.state" fragment="true"/>
       <plugin id="org.eclipse.osgi.services"/>
       <plugin id="org.eclipse.platform"/>
       <plugin id="org.eclipse.search"/>
       <plugin id="org.eclipse.swt"/>
-      <plugin id="org.eclipse.swt.win32.win32.x86" fragment="true"/>
+      <plugin id="org.eclipse.swt.win32.win32.x86_64" fragment="true"/>
       <plugin id="org.eclipse.team.core"/>
       <plugin id="org.eclipse.team.ui"/>
       <plugin id="org.eclipse.text"/>
@@ -164,7 +167,7 @@ Release 1.1 - January 31, 2015.
       <plugin id="org.eclipse.ui.workbench"/>
       <plugin id="org.eclipse.ui.workbench.texteditor"/>
       <plugin id="org.eclipse.xtend.lib"/>
-      <plugin id="org.eclipse.xtend2.lib"/>
+      <plugin id="org.eclipse.xtend.lib.macro"/>
       <plugin id="org.eclipse.xtext"/>
       <plugin id="org.eclipse.xtext.builder"/>
       <plugin id="org.eclipse.xtext.common.types"/>
@@ -177,7 +180,9 @@ Release 1.1 - January 31, 2015.
       <plugin id="org.larz.dom4"/>
       <plugin id="org.larz.dom4.dm"/>
       <plugin id="org.larz.dom4.dm.ui"/>
+      <plugin id="org.objectweb.asm"/>
       <plugin id="org.w3c.css.sac"/>
+      <plugin id="org.w3c.dom.events"/>
       <plugin id="org.w3c.dom.smil"/>
       <plugin id="org.w3c.dom.svg"/>
    </plugins>
