@@ -21,6 +21,8 @@ import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.SubContributionItem;
+import org.eclipse.jface.action.ToolBarManager;
+import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.texteditor.BasicTextEditorActionContributor;
@@ -36,7 +38,8 @@ public class DmTextEditorActionContributor extends BasicTextEditorActionContribu
 		
 		// Remove "Toggle Occurrences"
 		IToolBarManager toolBarManager = actionBars.getToolBarManager();
-		toolBarManager.remove("markOccurrences");
+		ToolBar bar = (ToolBar)((ToolBarManager)toolBarManager).getControl();
+		bar.setVisible(false);
 		
 		// Remove "Word Completion"
 		IMenuManager menuManager = actionBars.getMenuManager();

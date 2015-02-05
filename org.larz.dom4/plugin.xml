@@ -217,7 +217,7 @@
       </menuContribution>
       <menuContribution
             allPopups="false"
-            locationURI="toolbar:org.eclipse.ui.main.toolbar">
+            locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
          <toolbar
                id="org.larz.dom4.toolbar1">
             <command
@@ -244,7 +244,7 @@
       </menuContribution>
       <menuContribution
             allPopups="false"
-            locationURI="toolbar:org.eclipse.ui.main.toolbar">
+            locationURI="toolbar:org.eclipse.ui.main.toolbar?after=org.larz.dom4.toolbar1">
          <toolbar
                id="org.larz.dom4.toolbar2">
             <command
