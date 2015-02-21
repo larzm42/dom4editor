@@ -5,9 +5,12 @@ This application can be used to help create/edit .dm files used to add and chang
 Learn how to [get started](https://github.com/larzm42/dom4editor/wiki/Getting-Started) with dom4editor.
 
 ## Download
-Download Windows version 1.1 of the application [HERE](https://drive.google.com/file/d/0B3IGmBe9vPavMEo5Y0YtMXVwN3c/view?usp=sharing).
+Download 64-bit Windows version 1.1 of the application [HERE](https://drive.google.com/file/d/0B3IGmBe9vPavMEo5Y0YtMXVwN3c/view?usp=sharing).
 
-Download 64-bit Linux version 1.0 of the application [HERE](https://docs.google.com/uc?export=download&confirm=CiCI&id=0B3IGmBe9vPavOVZCb1JHVjVqeTg).
+Download 32-bit Windows version 1.1 of the application
+[HERE](https://drive.google.com/file/d/0B3IGmBe9vPavNzBjRFFMenRpdnM/view?usp=sharing).
+
+Download 64-bit Linux version 1.1 of the application [HERE](https://drive.google.com/file/d/0B3IGmBe9vPaveWM4T3IwVTQ3SUU/view?usp=sharing).
 
 ## Screenshot
 ![screenshot](https://raw.githubusercontent.com/larzm42/dom4editor/master/org.larz.dom4/screenshots/cover.png)
