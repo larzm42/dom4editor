@@ -7,8 +7,8 @@ Learn how to [get started](https://github.com/larzm42/dom4editor/wiki/Getting-St
 ## Download
 Download 64-bit Windows version 1.2 of the application [HERE](https://drive.google.com/file/d/0B3IGmBe9vPavM2xzcXJHMHZkWE0/view?usp=sharing).
 
-Download 32-bit Windows version 1.1 of the application
-[HERE](https://drive.google.com/file/d/0B3IGmBe9vPavNzBjRFFMenRpdnM/view?usp=sharing).
+Download 32-bit Windows version 1.2 of the application
+[HERE](https://drive.google.com/file/d/0B3IGmBe9vPavYmY0NEMwOVhGSmM/view?usp=sharing).
 
 Download 64-bit Linux version 1.2 of the application [HERE](https://drive.google.com/file/d/0B3IGmBe9vPavaUZ1Sy1sbGZONEk/view?usp=sharing).
 
